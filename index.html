@@ -3,26 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#090909">
-<title>XA Cider Atlas DAW Mobile</title>
+<meta name="theme-color" content="#08111c">
+<title>XA Cider Atlas Pro Mobile</title>
 
 <style>
 :root{
-  --bg:#080807;
-  --desk:#11100e;
-  --rack:#1b1a17;
-  --slot:#24211d;
-  --slot2:#151411;
-  --line:rgba(255,232,190,.16);
-  --cream:#f5e7c8;
-  --muted:#a99a7c;
-  --gold:#d6a84f;
-  --red:#9b2032;
-  --red2:#e33d52;
-  --green:#4ee08a;
-  --blue:#69b7ff;
-  --amber:#ffc34d;
-  --shadow:0 14px 32px rgba(0,0,0,.55);
+  --bg:#07101a;
+  --panel:#101b27;
+  --panel2:#172637;
+  --metal:#202a34;
+  --metal2:#2e3a45;
+  --cream:#f6ecd2;
+  --muted:#aab8c6;
+  --cyan:#52d9ff;
+  --blue:#2f8cff;
+  --green:#42f28a;
+  --red:#ff3b55;
+  --amber:#ffc44f;
+  --orange:#ff8d3d;
+  --violet:#b58cff;
+  --line:rgba(246,236,210,.18);
+  --darkline:rgba(0,0,0,.45);
+  --shadow:0 18px 42px rgba(0,0,0,.55);
 }
 
 *{
@@ -30,189 +32,218 @@
   -webkit-tap-highlight-color:transparent;
 }
 
-body{
+html,body{
   margin:0;
+  min-height:100%;
+}
+
+body{
   background:
-    radial-gradient(circle at 50% -10%,rgba(155,32,50,.22),transparent 34%),
-    linear-gradient(180deg,#070706,#15120f 46%,#070706);
+    radial-gradient(circle at 20% 0%,rgba(82,217,255,.14),transparent 30%),
+    radial-gradient(circle at 80% 0%,rgba(255,59,85,.12),transparent 28%),
+    linear-gradient(180deg,#07101a,#0b131d 42%,#060a0f);
   color:var(--cream);
   font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  padding:10px 10px 90px;
+  padding:10px 10px 92px;
 }
 
 .app{
-  max-width:900px;
+  max-width:920px;
   margin:auto;
 }
 
 .topbar{
   position:sticky;
   top:0;
-  z-index:40;
+  z-index:50;
   margin:-10px -10px 10px;
   padding:10px;
-  background:linear-gradient(180deg,rgba(8,8,7,.98),rgba(8,8,7,.86),rgba(8,8,7,0));
-  backdrop-filter:blur(12px);
+  background:linear-gradient(180deg,rgba(7,16,26,.98),rgba(7,16,26,.88),rgba(7,16,26,0));
+  backdrop-filter:blur(14px);
 }
 
-.console{
-  border:1px solid var(--line);
+.master{
+  border:1px solid rgba(82,217,255,.24);
   border-radius:24px;
   padding:12px;
   background:
-    linear-gradient(180deg,#191713,#0f0e0c);
-  box-shadow:var(--shadow);
+    linear-gradient(180deg,rgba(32,42,52,.96),rgba(12,20,29,.98));
+  box-shadow:
+    var(--shadow),
+    inset 0 1px 0 rgba(255,255,255,.08);
 }
 
 .brand{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   gap:10px;
 }
 
 .logo{
-  width:52px;
-  height:52px;
-  border:2px solid var(--gold);
-  border-radius:15px;
+  width:56px;
+  height:56px;
+  border-radius:16px;
   display:grid;
   place-items:center;
-  font-weight:950;
+  font-weight:1000;
   font-size:24px;
   letter-spacing:-2px;
-  background:#0a0908;
+  color:#07101a;
+  background:linear-gradient(180deg,#fff2ce,#c99d3f);
+  border:2px solid #ffe8a5;
   box-shadow:
-    inset 0 0 16px rgba(214,168,79,.18),
-    0 0 16px rgba(214,168,79,.10);
+    0 0 20px rgba(255,196,79,.35),
+    inset 0 0 10px rgba(255,255,255,.45);
 }
 
 h1{
-  font-size:21px;
-  line-height:1.02;
   margin:0;
+  font-size:21px;
+  line-height:1;
+  letter-spacing:.2px;
 }
 
 .sub{
+  margin-top:5px;
+  color:var(--muted);
   font-size:12px;
-  color:var(--muted);
-  margin-top:4px;
+  line-height:1.25;
 }
 
-.status{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  font-size:11px;
+.livebox{
+  min-width:78px;
+  border:1px solid rgba(82,217,255,.28);
+  border-radius:14px;
+  background:#061018;
+  padding:8px 7px;
+  text-align:center;
+  box-shadow:inset 0 0 18px rgba(82,217,255,.08);
+}
+
+.livebox b{
+  display:block;
+  color:var(--green);
+  font-size:18px;
+  line-height:1;
+  text-shadow:0 0 10px rgba(66,242,138,.55);
+}
+
+.livebox span{
+  display:block;
   color:var(--muted);
+  font-size:9px;
   font-weight:900;
-}
-
-.led{
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 10px var(--green);
+  letter-spacing:.12em;
+  margin-top:4px;
 }
 
 .transport{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(5,1fr);
   gap:7px;
-  margin-top:11px;
+  margin-top:12px;
 }
 
 .tr{
-  border:1px solid rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.12);
   border-radius:13px;
-  padding:10px 5px;
-  font-size:12px;
-  font-weight:950;
+  padding:10px 3px;
   color:var(--cream);
-  background:linear-gradient(180deg,#302c25,#15130f);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+  font-weight:1000;
+  font-size:11px;
+  background:linear-gradient(180deg,#344454,#14202d);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    0 6px 14px rgba(0,0,0,.25);
 }
 
 .tr.rec{
-  color:#ffd4d8;
-  background:linear-gradient(180deg,#5c1520,#1b0d0f);
+  background:linear-gradient(180deg,#ff4c66,#7b1725);
+  box-shadow:0 0 14px rgba(255,59,85,.28);
 }
 
 .tr.play{
-  color:#d9ffe7;
-  background:linear-gradient(180deg,#1c5b35,#101d14);
+  background:linear-gradient(180deg,#45f58b,#11602d);
+  color:#031108;
+  box-shadow:0 0 14px rgba(66,242,138,.25);
 }
 
 .tr.stop{
-  color:#fff1c3;
-  background:linear-gradient(180deg,#5b4514,#18150d);
+  background:linear-gradient(180deg,#ffd36a,#6b4b12);
+  color:#171006;
 }
 
-.search{
-  margin-top:10px;
+.tr.blue{
+  background:linear-gradient(180deg,#52d9ff,#165e8d);
+}
+
+.searchline{
   display:grid;
-  grid-template-columns:1fr 48px;
+  grid-template-columns:1fr 52px;
   gap:8px;
+  margin-top:10px;
 }
 
-input{
-  min-width:0;
-  border:1px solid var(--line);
-  border-radius:15px;
-  background:#f5e7c8;
-  color:#1c1510;
+#q{
+  border:1px solid rgba(82,217,255,.35);
+  border-radius:16px;
   padding:14px;
   font-size:16px;
   font-weight:850;
+  color:#061018;
+  background:#e9fbff;
   outline:0;
+  box-shadow:0 0 14px rgba(82,217,255,.12);
 }
 
 .scan{
-  border:1px solid var(--line);
-  border-radius:15px;
-  background:linear-gradient(180deg,var(--red2),var(--red));
+  border:1px solid rgba(82,217,255,.35);
+  border-radius:16px;
+  background:linear-gradient(180deg,#52d9ff,#0c5d89);
   color:white;
-  font-size:18px;
-  font-weight:950;
+  font-weight:1000;
+  font-size:20px;
 }
 
 .tabs{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(5,1fr);
   gap:7px;
   margin:10px 0;
 }
 
 .tab{
   border:1px solid var(--line);
-  border-radius:15px;
-  padding:11px 4px;
-  font-size:12px;
-  font-weight:950;
+  border-radius:14px;
+  padding:11px 3px;
   color:var(--muted);
-  background:rgba(255,232,190,.06);
+  background:linear-gradient(180deg,#1d2a37,#101923);
+  font-size:11px;
+  font-weight:1000;
 }
 
 .tab.on{
-  background:var(--cream);
-  color:#19110d;
+  color:#061018;
+  background:linear-gradient(180deg,#e9fbff,#52d9ff);
+  box-shadow:0 0 18px rgba(82,217,255,.22);
 }
 
 .boardTitle{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  font-size:11px;
+  align-items:center;
   color:var(--muted);
-  font-weight:950;
+  font-size:11px;
+  font-weight:1000;
   letter-spacing:.12em;
   text-transform:uppercase;
-  margin:12px 2px 8px;
+  margin:13px 3px 8px;
 }
 
-.counter{
-  color:var(--gold);
+.boardTitle strong{
+  color:var(--cyan);
+  text-shadow:0 0 10px rgba(82,217,255,.35);
 }
 
 .scene{
@@ -228,22 +259,24 @@ input{
   gap:12px;
 }
 
-.card,
-.rack,
-.strip{
-  border:1px solid var(--line);
-  border-radius:22px;
-  background:
-    linear-gradient(180deg,rgba(52,48,41,.95),rgba(21,20,17,.96));
-  box-shadow:var(--shadow);
+.card{
+  border:1px solid rgba(82,217,255,.22);
+  border-radius:24px;
   overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(40,54,66,.96),rgba(13,22,31,.98));
+  box-shadow:var(--shadow);
 }
 
-.cardHead{
-  padding:13px;
+.cardTop{
+  padding:12px;
+  background:
+    radial-gradient(circle at 100% 0%,rgba(82,217,255,.12),transparent 35%),
+    linear-gradient(180deg,#263747,#16232f);
+  border-bottom:1px solid rgba(246,236,210,.12);
 }
 
-.row{
+.cardRow{
   display:flex;
   justify-content:space-between;
   gap:10px;
@@ -251,62 +284,142 @@ input{
 }
 
 .country{
-  color:var(--gold);
+  color:var(--amber);
   font-size:12px;
-  font-weight:950;
+  font-weight:1000;
+  letter-spacing:.03em;
 }
 
 .zone{
-  font-size:19px;
+  margin-top:3px;
+  font-size:20px;
+  font-weight:1000;
+  line-height:1.05;
+}
+
+.style{
+  margin-top:7px;
+  color:var(--cyan);
+  font-size:13px;
   font-weight:950;
-  margin:3px 0;
 }
 
 .desc{
+  margin-top:8px;
+  color:#cfdae4;
   font-size:13px;
-  color:var(--muted);
-  line-height:1.36;
-  margin-top:7px;
+  line-height:1.38;
 }
 
 .star{
-  border:1px solid var(--line);
-  background:#11100e;
-  color:var(--gold);
+  border:1px solid rgba(255,196,79,.38);
   border-radius:13px;
+  color:var(--amber);
+  background:#0a1119;
   padding:8px 10px;
-  font-size:18px;
+  font-size:19px;
+  box-shadow:0 0 12px rgba(255,196,79,.10);
 }
 
-.meters{
+.lcd{
+  margin:12px;
+  border:1px solid rgba(82,217,255,.28);
+  border-radius:18px;
+  padding:11px;
+  background:
+    linear-gradient(180deg,#071a25,#031016);
+  box-shadow:
+    inset 0 0 20px rgba(82,217,255,.10),
+    0 0 14px rgba(82,217,255,.08);
+}
+
+.lcdTitle{
+  color:var(--green);
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  text-shadow:0 0 10px rgba(66,242,138,.45);
+}
+
+.lcdText{
+  margin-top:6px;
+  color:#dffbff;
+  font-size:13px;
+  line-height:1.35;
+}
+
+.digitalGrid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(5,1fr);
   gap:6px;
-  padding:0 13px 13px;
+  padding:0 12px 12px;
+}
+
+.digital{
+  background:#071018;
+  border:1px solid rgba(82,217,255,.19);
+  border-radius:14px;
+  padding:8px 5px;
+  text-align:center;
+  box-shadow:inset 0 0 12px rgba(0,0,0,.45);
+}
+
+.digital b{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.08em;
+}
+
+.digital span{
+  display:block;
+  color:var(--green);
+  font-size:17px;
+  font-weight:1000;
+  margin-top:3px;
+  text-shadow:0 0 10px rgba(66,242,138,.38);
+}
+
+.digital small{
+  display:block;
+  color:#d6e7f4;
+  font-size:10px;
+  font-weight:900;
+  margin-top:2px;
+}
+
+.meterGrid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:6px;
+  padding:0 12px 12px;
 }
 
 .meter{
-  background:#0b0b0a;
+  background:#090d12;
   border:1px solid rgba(255,255,255,.08);
-  border-radius:13px;
-  padding:8px 5px;
+  border-radius:14px;
+  padding:7px 5px;
 }
 
 .meter b{
   display:block;
-  font-size:10px;
-  color:var(--muted);
-  margin-bottom:6px;
   text-align:center;
+  color:#aab8c6;
+  font-size:9px;
+  font-weight:1000;
+  margin-bottom:6px;
 }
 
 .bar{
-  height:44px;
-  border-radius:9px;
-  background:linear-gradient(180deg,#322,#141414);
-  position:relative;
+  height:50px;
+  border-radius:10px;
+  background:linear-gradient(180deg,#1e2832,#080b0e);
+  border:1px solid rgba(255,255,255,.08);
   overflow:hidden;
-  border:1px solid rgba(255,255,255,.06);
+  position:relative;
 }
 
 .fill{
@@ -314,92 +427,115 @@ input{
   left:0;
   right:0;
   bottom:0;
-  background:linear-gradient(180deg,var(--amber),var(--red2));
-  box-shadow:0 0 12px rgba(227,61,82,.35);
+  background:linear-gradient(180deg,#52d9ff,#2f8cff);
+  box-shadow:0 0 14px rgba(82,217,255,.35);
+}
+
+.fill.acid{
+  background:linear-gradient(180deg,#42f28a,#158a43);
+}
+
+.fill.tan{
+  background:linear-gradient(180deg,#ffc44f,#b46a12);
+}
+
+.fill.sweet{
+  background:linear-gradient(180deg,#b58cff,#6a38cb);
+}
+
+.fill.bolla{
+  background:linear-gradient(180deg,#52d9ff,#176aa0);
+}
+
+.fill.body{
+  background:linear-gradient(180deg,#ff8d3d,#bb4315);
 }
 
 .meter span{
   display:block;
-  text-align:center;
-  color:var(--cream);
-  font-size:11px;
   margin-top:5px;
-  font-weight:900;
+  text-align:center;
+  color:#eaf8ff;
+  font-size:10px;
+  font-weight:1000;
 }
 
 details{
-  border-top:1px solid var(--line);
+  border-top:1px solid rgba(246,236,210,.12);
 }
 
 summary{
   list-style:none;
-  padding:13px;
+  padding:13px 12px;
   font-size:13px;
-  font-weight:950;
+  font-weight:1000;
+  color:#f9f2df;
   cursor:pointer;
+  background:linear-gradient(180deg,#1c2c3a,#12202d);
 }
 
 summary::-webkit-details-marker{
   display:none;
 }
 
-.body{
-  padding:0 13px 13px;
-  color:var(--muted);
+.sheet{
+  padding:0 12px 13px;
+  color:#cbd7e0;
   font-size:14px;
   line-height:1.45;
 }
 
-.body h3{
+.sheet h3{
+  margin:14px 0 5px;
+  color:var(--cyan);
   font-size:11px;
-  color:var(--cream);
+  letter-spacing:.11em;
   text-transform:uppercase;
-  letter-spacing:.1em;
-  margin:13px 0 5px;
+}
+
+.pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:10px;
+}
+
+.pill{
+  border:1px solid rgba(82,217,255,.28);
+  background:rgba(82,217,255,.08);
+  color:#dffbff;
+  border-radius:999px;
+  padding:6px 8px;
+  font-size:10px;
+  font-weight:950;
 }
 
 .actions{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:8px;
-  margin-top:12px;
+  margin-top:14px;
 }
 
 .action{
+  display:block;
   text-align:center;
   text-decoration:none;
   border-radius:14px;
-  padding:11px 7px;
+  padding:12px 8px;
   font-size:12px;
-  font-weight:950;
-  background:var(--cream);
-  color:#20130d;
+  font-weight:1000;
+  color:#061018;
+  background:linear-gradient(180deg,#e9fbff,#52d9ff);
 }
 
 .action.dark{
-  background:rgba(255,232,190,.07);
   color:var(--cream);
-  border:1px solid var(--line);
+  background:linear-gradient(180deg,#253746,#121c27);
+  border:1px solid rgba(82,217,255,.25);
 }
 
-.pills{
-  display:flex;
-  gap:6px;
-  flex-wrap:wrap;
-  margin-top:9px;
-}
-
-.pill{
-  font-size:10px;
-  font-weight:950;
-  color:#f4d48e;
-  border:1px solid rgba(214,168,79,.32);
-  background:rgba(214,168,79,.11);
-  padding:6px 8px;
-  border-radius:999px;
-}
-
-.mixer{
+.mixerDeck{
   display:flex;
   gap:10px;
   overflow-x:auto;
@@ -407,28 +543,39 @@ summary::-webkit-details-marker{
   scrollbar-width:none;
 }
 
-.mixer::-webkit-scrollbar{
+.mixerDeck::-webkit-scrollbar{
   display:none;
 }
 
-.strip{
-  min-width:142px;
-  border-radius:20px;
+.channel{
+  min-width:158px;
+  border:1px solid rgba(82,217,255,.22);
+  border-radius:22px;
+  background:linear-gradient(180deg,#263747,#111b26);
+  box-shadow:var(--shadow);
   padding:10px;
 }
 
-.stripName{
+.chName{
+  color:var(--amber);
   font-size:12px;
-  font-weight:950;
-  color:var(--gold);
+  font-weight:1000;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 }
 
+.chType{
+  color:#d7e8f2;
+  font-size:11px;
+  margin-top:4px;
+  line-height:1.28;
+  min-height:30px;
+}
+
 .vu{
   display:grid;
-  grid-template-columns:repeat(8,1fr);
+  grid-template-columns:repeat(10,1fr);
   gap:3px;
   margin:10px 0;
 }
@@ -436,116 +583,137 @@ summary::-webkit-details-marker{
 .vu i{
   height:10px;
   border-radius:3px;
-  background:#2c2a24;
+  background:#18232e;
 }
 
-.vu i.on1{
+.vu i.g{
   background:var(--green);
-  box-shadow:0 0 8px var(--green);
+  box-shadow:0 0 8px rgba(66,242,138,.58);
 }
 
-.vu i.on2{
+.vu i.y{
   background:var(--amber);
-  box-shadow:0 0 8px var(--amber);
+  box-shadow:0 0 8px rgba(255,196,79,.48);
 }
 
-.vu i.on3{
-  background:var(--red2);
-  box-shadow:0 0 8px var(--red2);
+.vu i.r{
+  background:var(--red);
+  box-shadow:0 0 8px rgba(255,59,85,.48);
 }
 
-.faderBox{
-  height:122px;
-  background:#0c0c0b;
+.faderSet{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:5px;
+}
+
+.fader{
+  height:126px;
+  background:#081018;
   border:1px solid rgba(255,255,255,.08);
-  border-radius:14px;
+  border-radius:13px;
   position:relative;
-  margin:10px 12px;
+  padding-top:5px;
+}
+
+.fader label{
+  display:block;
+  text-align:center;
+  font-size:8px;
+  color:var(--muted);
+  font-weight:1000;
 }
 
 .track{
   position:absolute;
   left:50%;
-  top:10px;
-  bottom:10px;
-  width:6px;
-  background:#2b2822;
-  border-radius:99px;
+  top:24px;
+  bottom:12px;
+  width:5px;
   transform:translateX(-50%);
+  border-radius:99px;
+  background:#2a3642;
 }
 
 .knob{
   position:absolute;
   left:50%;
-  width:36px;
-  height:18px;
-  border-radius:8px;
-  background:linear-gradient(180deg,#e7d3ad,#8f7c5f);
+  width:28px;
+  height:16px;
+  border-radius:7px;
   transform:translateX(-50%);
-  box-shadow:0 4px 8px rgba(0,0,0,.5);
+  background:linear-gradient(180deg,#f9edcf,#8f9cad);
+  box-shadow:0 4px 8px rgba(0,0,0,.55);
 }
 
-.strip small{
-  display:block;
-  color:var(--muted);
-  font-size:11px;
+.matrix{
+  display:grid;
+  gap:10px;
+}
+
+.matrixCard,
+.rack{
+  border:1px solid rgba(82,217,255,.22);
+  border-radius:22px;
+  background:linear-gradient(180deg,#263747,#101a24);
+  box-shadow:var(--shadow);
+  padding:12px;
+}
+
+.matrixCard h2,
+.rack h2{
+  margin:0 0 10px;
+  color:var(--cyan);
+  font-size:14px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.infoLine{
+  display:grid;
+  grid-template-columns:108px 1fr;
+  gap:8px;
+  padding:8px 0;
+  border-top:1px solid rgba(246,236,210,.10);
+  font-size:13px;
   line-height:1.35;
 }
 
-.rack{
-  padding:12px;
-  margin-bottom:12px;
+.infoLine b{
+  color:var(--amber);
+  font-size:11px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
 }
 
-.rackTop{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:10px;
+.infoLine span{
+  color:#d8e5ee;
 }
 
-.rackName{
-  font-size:13px;
-  font-weight:950;
-  color:var(--gold);
-  letter-spacing:.05em;
-}
-
-.screws{
-  display:flex;
-  gap:5px;
-}
-
-.screws i{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:#524a3e;
-  border:1px solid rgba(255,255,255,.14);
-}
-
-.knobs{
+.knobGrid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:9px;
 }
 
 .knobModule{
-  background:#0d0d0c;
-  border:1px solid rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.10);
+  background:#081018;
   border-radius:16px;
-  padding:10px;
+  padding:10px 6px;
   text-align:center;
 }
 
 .dial{
-  width:48px;
-  height:48px;
+  width:52px;
+  height:52px;
   margin:0 auto 7px;
   border-radius:50%;
-  background:radial-gradient(circle,#4d4638 0 26%,#171512 28% 100%);
-  border:2px solid #806d4a;
+  background:
+    radial-gradient(circle,#e6edf2 0 18%,#233241 20% 56%,#080d12 58%);
+  border:2px solid rgba(82,217,255,.42);
   position:relative;
+  box-shadow:0 0 16px rgba(82,217,255,.18);
 }
 
 .dial:after{
@@ -553,67 +721,75 @@ summary::-webkit-details-marker{
   position:absolute;
   left:50%;
   top:5px;
-  width:3px;
-  height:18px;
-  background:var(--gold);
-  border-radius:9px;
+  width:4px;
+  height:21px;
+  border-radius:6px;
+  background:var(--green);
   transform:translateX(-50%) rotate(35deg);
   transform-origin:bottom;
+  box-shadow:0 0 8px rgba(66,242,138,.65);
 }
 
 .knobModule b{
   display:block;
+  color:#eff9ff;
   font-size:11px;
-  color:var(--cream);
+  font-weight:1000;
 }
 
 .knobModule span{
-  font-size:10px;
+  display:block;
   color:var(--muted);
+  font-size:10px;
+  margin-top:2px;
 }
 
 .empty{
   display:none;
-  border:1px dashed var(--line);
+  border:1px dashed rgba(82,217,255,.30);
   border-radius:20px;
-  padding:22px;
+  padding:24px;
   text-align:center;
   color:var(--muted);
 }
 
-.bottom{
+.bottomNav{
   position:fixed;
   left:10px;
   right:10px;
   bottom:10px;
-  max-width:900px;
+  max-width:920px;
   margin:auto;
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(5,1fr);
   gap:7px;
   padding:8px;
-  border:1px solid var(--line);
+  border:1px solid rgba(82,217,255,.25);
   border-radius:22px;
-  background:rgba(8,8,7,.85);
+  background:rgba(7,16,26,.88);
   backdrop-filter:blur(14px);
   box-shadow:var(--shadow);
+  z-index:60;
 }
 
-.bottom button{
-  border:1px solid var(--line);
+.bottomNav button{
+  border:1px solid rgba(246,236,210,.14);
   border-radius:14px;
-  background:rgba(255,232,190,.07);
-  color:var(--cream);
-  padding:10px 4px;
-  font-size:11px;
-  font-weight:950;
+  padding:10px 3px;
+  color:#e8f8ff;
+  font-size:10px;
+  font-weight:1000;
+  background:linear-gradient(180deg,#233546,#101b26);
 }
 
-@media(min-width:740px){
+@media(min-width:760px){
   .grid{
     grid-template-columns:1fr 1fr;
   }
-  .knobs{
+  .matrix{
+    grid-template-columns:1fr 1fr;
+  }
+  .knobGrid{
     grid-template-columns:repeat(6,1fr);
   }
 }
@@ -621,31 +797,37 @@ summary::-webkit-details-marker{
 </head>
 
 <body>
+
 <div class="app">
 
   <div class="topbar">
-    <div class="console">
+    <div class="master">
 
       <div class="brand">
         <div style="display:flex;gap:11px;align-items:center">
           <div class="logo">XA</div>
           <div>
-            <h1>Cider Atlas DAW</h1>
-            <div class="sub">Atlante mobile sidri · territori · metodi · profili</div>
+            <h1>Cider Atlas Pro</h1>
+            <div class="sub">Atlante mobile in stile DAW · sidri · mele · territori · metodi</div>
           </div>
         </div>
-        <div class="status"><i class="led"></i>ONLINE</div>
+
+        <div class="livebox">
+          <b id="liveCount">00</b>
+          <span>STYLE</span>
+        </div>
       </div>
 
       <div class="transport">
         <button class="tr rec" onclick="quick('Asturie')">● REC</button>
         <button class="tr play" onclick="quick('Alpi')">▶ PLAY</button>
-        <button class="tr" onclick="quick('moderno')">▣ LOOP</button>
-        <button class="tr stop" onclick="clearQ()">■ STOP</button>
+        <button class="tr blue" onclick="quick('mele')">MELE</button>
+        <button class="tr" onclick="quick('moderno')">LOOP</button>
+        <button class="tr stop" onclick="clearQ()">STOP</button>
       </div>
 
-      <div class="search">
-        <input id="q" type="search" placeholder="Cerca: Alpi, keeving, perry, acidità...">
+      <div class="searchline">
+        <input id="q" type="search" placeholder="Cerca: Alpi, mele, keeving, perry, tannico, ice cider...">
         <button class="scan" onclick="render()">⌕</button>
       </div>
 
@@ -655,64 +837,48 @@ summary::-webkit-details-marker{
   <div class="tabs">
     <button id="t_atlas" class="tab on" onclick="scene('atlas')">ATLAS</button>
     <button id="t_mixer" class="tab" onclick="scene('mixer')">MIXER</button>
+    <button id="t_matrix" class="tab" onclick="scene('matrix')">MELE</button>
     <button id="t_rack" class="tab" onclick="scene('rack')">RACK</button>
     <button id="t_fav" class="tab" onclick="scene('fav')">FAV</button>
   </div>
 
   <div class="boardTitle">
-    <span id="sceneTitle">Territory deck</span>
-    <span class="counter" id="count">0 schede</span>
+    <span id="sceneTitle">Territory Digital Deck</span>
+    <strong id="countText">0 schede</strong>
   </div>
 
   <section id="atlas" class="scene on">
     <div id="cards" class="grid"></div>
-    <div id="empty" class="empty">
-      Nessun risultato. Prova: Alpi, Asturie, Francia, UK, perry, moderno, acido, tannico.
-    </div>
+    <div id="empty" class="empty">Nessun risultato. Prova: Alpi, Asturie, Francia, UK, Perry, mele, moderno, tannico.</div>
   </section>
 
   <section id="mixer" class="scene">
-    <div id="mixerDeck" class="mixer"></div>
+    <div id="mixerDeck" class="mixerDeck"></div>
+  </section>
+
+  <section id="matrix" class="scene">
+    <div id="matrixDeck" class="matrix"></div>
   </section>
 
   <section id="rack" class="scene">
 
     <div class="rack">
-      <div class="rackTop">
-        <div class="rackName">XA TERRITORY PROCESSOR</div>
-        <div class="screws"><i></i><i></i></div>
-      </div>
-
-      <div class="knobs">
-        <div class="knobModule"><div class="dial"></div><b>ACID</b><span>Acidità</span></div>
-        <div class="knobModule"><div class="dial"></div><b>TANNIN</b><span>Tannino</span></div>
-        <div class="knobModule"><div class="dial"></div><b>SPARK</b><span>Bolla</span></div>
-        <div class="knobModule"><div class="dial"></div><b>METHOD</b><span>Metodo</span></div>
-        <div class="knobModule"><div class="dial"></div><b>FRUIT</b><span>Mela/Pera</span></div>
-        <div class="knobModule"><div class="dial"></div><b>STYLE</b><span>Territorio</span></div>
+      <h2>XA Territory Processor</h2>
+      <div class="knobGrid">
+        <div class="knobModule"><div class="dial"></div><b>ACID</b><span>acidità</span></div>
+        <div class="knobModule"><div class="dial"></div><b>TANNIN</b><span>tannino</span></div>
+        <div class="knobModule"><div class="dial"></div><b>DOLCE</b><span>dolcezza</span></div>
+        <div class="knobModule"><div class="dial"></div><b>BOLLA</b><span>frizzantezza</span></div>
+        <div class="knobModule"><div class="dial"></div><b>CORPO</b><span>struttura</span></div>
+        <div class="knobModule"><div class="dial"></div><b>APPLE</b><span>mele</span></div>
       </div>
     </div>
 
     <div class="rack">
-      <div class="rackTop">
-        <div class="rackName">RECIPE SEND FX</div>
-        <div class="screws"><i></i><i></i></div>
-      </div>
-      <div class="body" style="padding:0;color:var(--muted)">
-        Questo modulo è pronto per collegare in futuro le schede dell’Atlante alla ricetta XA:
-        paese, zona, stile, metodo, profilo e note tecniche.
-      </div>
-    </div>
-
-    <div class="rack">
-      <div class="rackTop">
-        <div class="rackName">XA CIDER SCHOOL BUS</div>
-        <div class="screws"><i></i><i></i></div>
-      </div>
-      <div class="body" style="padding:0;color:var(--muted)">
-        In futuro ogni territorio potrà aprire una micro-lezione: Asturie, Baschi, Normandia,
-        Alpi, Perry, Ice Cider, fermentazione naturale e metodo ancestrale.
-      </div>
+      <h2>Recipe Send FX</h2>
+      <div class="infoLine"><b>Funzione</b><span>In futuro invierà territorio, mele, metodo e profilo alla scheda ricetta XA.</span></div>
+      <div class="infoLine"><b>Uso</b><span>Scegli uno stile, apri la scheda, copia i dati e usali come base tecnica.</span></div>
+      <div class="infoLine"><b>XA School</b><span>Ogni territorio potrà aprire lezioni collegate: Asturie, Normandia, Perry, Ice Cider, Alpi.</span></div>
     </div>
 
   </section>
@@ -724,417 +890,533 @@ summary::-webkit-details-marker{
 
 </div>
 
-<div class="bottom">
+<div class="bottomNav">
   <button onclick="quick('Alpi')">ALPI</button>
   <button onclick="quick('Asturie')">ASTURIE</button>
   <button onclick="quick('Francia')">FRANCIA</button>
+  <button onclick="quick('Perry')">PERRY</button>
   <button onclick="quick('moderno')">MODERN</button>
 </div>
 
 <script>
-const DATA=[
+const DATA = [
 {
 id:"altoadige",
 paese:"Italia",
 zona:"Alpi / Alto Adige",
-tipo:"Sidro alpino moderno",
-desc:"Sidri puliti, freschi e fruttati da territorio di mele di montagna.",
-dove:"Alto Adige, Val Venosta, Merano, Bolzano.",
-metodo:"Succo di mela locale, fermentazione controllata, spesso frizzante.",
-profilo:"Mela fresca, acidità elegante, corpo leggero, bassa rusticità.",
-cerca:"Sidro secco altoatesino, metodo classico, rifermentati.",
+stile:"Sidro alpino moderno",
+famiglia:"Alpino pulito",
+descrizione:"Sidri freschi, moderni, precisi, nati in territori di mele da montagna. Molto utili come riferimento per una linea XA elegante e gastronomica.",
+dove:"Alto Adige, Val Venosta, Merano, Bolzano, Bassa Atesina.",
+metodo:"Fermentazione controllata di succo di mela locale. Spesso stile pulito, frizzante, secco o semi-secco.",
+mele:"Golden Delicious, Gala, Fuji, Granny Smith, varietà locali e mele da tavola aromatiche. Meno tanniche delle classiche mele inglesi/francesi.",
+profilo:"Mela fresca, acidità elegante, pulizia aromatica, corpo leggero, bassa rusticità.",
+cercare:"Sidro secco altoatesino, rifermentati, metodo classico, produttori agricoli con mele proprie.",
+abbinamento:"Formaggi freschi, speck delicato, canederli, crostini con lardo leggero, piatti alpini.",
+note:"Ottimo modello per una linea XA moderna, luminosa, fresca e accessibile.",
 abv:"4–7%",
 acid:62,
-tan:25,
-spark:65,
-tags:["Alpi","Italia","moderno","fruttato"],
+tan:24,
+sweet:32,
+bolla:66,
+corpo:44,
+tags:["Alpi","Italia","mele","moderno","fresco","pulito"],
 map:"https://www.google.com/maps/search/Alto+Adige+cider"
 },
 {
 id:"trentino",
 paese:"Italia",
 zona:"Trentino / Val di Non",
-tipo:"Sidro alpino sperimentale",
-desc:"Zona fortissima per mele, interessante per sidri secchi, ancestrali e moderni.",
-dove:"Val di Non, Val di Sole, frutteti trentini.",
-metodo:"Fermentazioni controllate, possibili rifermentazioni e prove con varietà antiche.",
-profilo:"Mela gialla e rossa, acidità fresca, profilo nitido.",
-cerca:"Sidro alpino, ancestrale, varietà antiche.",
+stile:"Sidro alpino sperimentale",
+famiglia:"Alpino moderno",
+descrizione:"Zona enorme per la mela, interessante per sidri secchi, ancestrali e sperimentali. Ancora giovane come cultura sidraria, quindi molto aperta alla ricerca.",
+dove:"Val di Non, Val di Sole, frutteti trentini e zone montane.",
+metodo:"Succo di mela locale, fermentazioni controllate, possibili rifermentazioni, metodo ancestrale e prove con varietà antiche.",
+mele:"Golden Delicious, Renetta, Gala, Fuji, Stark, mele locali da montagna e possibili varietà antiche.",
+profilo:"Mela gialla, mela rossa, acidità fresca, profilo nitido, possibile maggiore rotondità rispetto all'Alto Adige.",
+cercare:"Sidro alpino, ancestrale, varietà antiche, co-fermentazioni con frutta o botaniche.",
+abbinamento:"Polenta, formaggi semi-stagionati, tortel di patate, piatti di montagna.",
+note:"Area ideale per creare una scuola XA dei sidri alpini italiani.",
 abv:"4–8%",
 acid:60,
-tan:22,
-spark:55,
-tags:["Alpi","Trentino","ancestrale","moderno"],
+tan:25,
+sweet:35,
+bolla:55,
+corpo:48,
+tags:["Alpi","Trentino","mele","ancestrale","sperimentale"],
 map:"https://www.google.com/maps/search/Trentino+sidro"
 },
 {
-id:"most",
+id:"mostviertel",
 paese:"Austria",
 zona:"Mostviertel",
-tipo:"Most / Perry austriaco",
-desc:"Territorio storico del Most, spesso da pere o blend mela-pera.",
-dove:"Mostviertel, Bassa Austria.",
-metodo:"Fermentazione di pere da Most, mele o blend.",
-profilo:"Secco, acidulo, rurale o moderno; pera, fieno, agrume.",
-cerca:"Birnenmost, Apfelmost, Most, perry austriaco.",
+stile:"Most / Perry austriaco",
+famiglia:"Most di pera e mela",
+descrizione:"Territorio storico del Most, spesso basato su pere o blend mela-pera. Più agricolo, secco e acidulo.",
+dove:"Mostviertel, Bassa Austria, area a ovest di Vienna.",
+metodo:"Fermentazione di pere da Most, mele o blend mela-pera. Può essere rustico o moderno filtrato.",
+mele:"Mele locali da Most e soprattutto pere da Most. Importante la componente pera, spesso più tannica e verticale.",
+profilo:"Secco, acidulo, pera, fieno, agrume, mandorla leggera, struttura agricola.",
+cercare:"Birnenmost, Apfelmost, Most, perry austriaco, produttori rurali.",
+abbinamento:"Carni fredde, formaggi alpini, pane nero, piatti rustici.",
+note:"Interessante per XA se vuoi studiare il confine fra sidro, perry e vino di frutta agricolo.",
 abv:"4–8%",
 acid:78,
 tan:55,
-spark:30,
-tags:["Alpi","Austria","Most","Perry"],
+sweet:20,
+bolla:30,
+corpo:58,
+tags:["Alpi","Austria","Most","Perry","pera","mele"],
 map:"https://www.google.com/maps/search/Mostviertel+Most+cider"
-},
-{
-id:"slovenia",
-paese:"Slovenia / Croazia",
-zona:"Alpi orientali",
-tipo:"Fermentati di mela emergenti",
-desc:"Area da monitorare: frutta, vino naturale e fermentazioni piccole, non ancora molto codificate.",
-dove:"Slovenia alpina, Prekmurje, Croazia settentrionale.",
-metodo:"Piccoli produttori agricoli, fermentazioni naturali o controllate.",
-profilo:"Variabile: fresco, fruttato, naturale o funky.",
-cerca:"Jabolcnik, natural cider, craft cider, farmhouse cider.",
-abv:"4–8%",
-acid:66,
-tan:42,
-spark:45,
-tags:["Alpi","Slovenia","naturale","emergente"],
-map:"https://www.google.com/maps/search/Slovenia+craft+cider"
 },
 {
 id:"asturias",
 paese:"Spagna",
 zona:"Asturie",
-tipo:"Sidra Natural Asturiana",
-desc:"Cuore mondiale della sidra naturale: secca, viva, acida, gastronomica.",
-dove:"Gijón, Villaviciosa, Nava, Oviedo.",
-metodo:"Mele locali, sidra tranquilla, servizio con escanciado.",
-profilo:"Secca, acida, leggermente volatile, molto gastronomica.",
-cerca:"Sidra natural, llagares, sidrerías, DOP Sidra de Asturias.",
+stile:"Sidra Natural Asturiana",
+famiglia:"Sidra naturale",
+descrizione:"Uno dei centri mondiali del sidro. Sidra secca, viva, acida, gastronomica, servita tradizionalmente con escanciado.",
+dove:"Gijón, Villaviciosa, Nava, Oviedo e zona centrale asturiana.",
+metodo:"Fermentazione di mele asturiane, spesso sidra ferma. Il servizio dall'alto ossigena la bevanda e libera aroma.",
+mele:"Raxao, Regona, Durona de Tresali, Verdialona, Perico, De la Riega e altre varietà asturiane dolci, acide e amare.",
+profilo:"Secca, acida, viva, leggermente volatile, molto gastronomica, poco dolce.",
+cercare:"Sidra natural, llagares, sidrerías, DOP Sidra de Asturias, escanciado.",
+abbinamento:"Fabada, formaggi asturiani, pesce, carne alla griglia, piatti grassi.",
+note:"Territorio chiave per XA Cider School: cultura, servizio, acidità, gastronomia.",
 abv:"5–7%",
 acid:88,
 tan:32,
-spark:18,
-tags:["Spagna","Asturie","sidra natural","acido"],
+sweet:12,
+bolla:18,
+corpo:46,
+tags:["Spagna","Asturie","mele","sidra natural","acido","classico"],
 map:"https://www.google.com/maps/search/Asturias+sidreria"
 },
 {
 id:"basque",
 paese:"Spagna / Francia",
 zona:"Paesi Baschi",
-tipo:"Sagardoa",
-desc:"Sidro asciutto, tagliente, spesso salino e funky.",
-dove:"Gipuzkoa, San Sebastián, Hernani, Astigarraga.",
-metodo:"Fermentazione secca, servizio da botte, consumo gastronomico.",
-profilo:"Molto secco, acido, rustico, salino, funk leggero.",
-cerca:"Sagardoa, sagarno, sagardotegi, kupela.",
+stile:"Sagardoa",
+famiglia:"Sidro basco",
+descrizione:"Sidro asciutto, tagliente, spesso salino e funky. Cultura legata alla botte, alla sidreria e alla cucina basca.",
+dove:"Gipuzkoa, San Sebastián, Hernani, Astigarraga e Paese Basco francese.",
+metodo:"Fermentazione secca di mele locali, servizio da botte, consumo gastronomico in sagardotegi.",
+mele:"Mele locali basche: spesso blend di mele acide, amare e dolci. La struttura viene dal taglio e dalla fermentazione secca.",
+profilo:"Molto secco, acido, rustico, salino, funk leggero, diretto.",
+cercare:"Sagardoa, sagarno, sagardotegi, kupela, sidrerie basche.",
+abbinamento:"Baccalà, tortilla, carne alla brace, formaggi di pecora.",
+note:"Molto utile per studiare sidro secco, radicale e gastronomico.",
 abv:"5–7%",
 acid:94,
 tan:40,
-spark:15,
-tags:["Paesi Baschi","sagardoa","funky","acido"],
+sweet:8,
+bolla:15,
+corpo:48,
+tags:["Paesi Baschi","mele","sagardoa","funky","acido"],
 map:"https://www.google.com/maps/search/Basque+sidreria+sagardotegi"
 },
 {
 id:"normandy",
 paese:"Francia",
 zona:"Normandia",
-tipo:"Cidre bouché",
-desc:"Sidri eleganti, spesso demi-sec, con mele dolci-amare e keeving.",
+stile:"Cidre Bouché",
+famiglia:"Cidre francese",
+descrizione:"Sidri eleganti, spesso demi-sec, con mele dolci-amare, tannino morbido e tecnica del keeving.",
 dove:"Pays d’Auge, Calvados, Manche, Orne.",
-metodo:"Blend di mele da sidro, keeving, presa di spuma naturale.",
-profilo:"Mela cotta, buccia, tannino morbido, dolcezza naturale.",
-cerca:"Cidre bouché, AOP Pays d’Auge, keeving, brut, demi-sec.",
+metodo:"Blend di mele da sidro, maturazione lenta, presa di spuma naturale. Spesso keeving per conservare dolcezza naturale.",
+mele:"Mele dolci, dolci-amare, amare e acidule. Esempi: Douce Moën, Bedan, Bisquet, Binet Rouge e altre mele da cidre.",
+profilo:"Mela cotta, buccia, miele leggero, tannino morbido, dolcezza naturale, bollicina fine.",
+cercare:"Cidre bouché, AOP Pays d’Auge, keeving, cidre doux, demi-sec, brut.",
+abbinamento:"Crêpes, camembert, formaggi francesi, maiale, dolci di mela.",
+note:"Base fondamentale per studiare equilibrio fra tannino, dolcezza e bolla.",
 abv:"3–6%",
 acid:52,
 tan:72,
-spark:72,
-tags:["Francia","Normandia","keeving","tannico"],
+sweet:68,
+bolla:74,
+corpo:62,
+tags:["Francia","Normandia","mele","keeving","tannico","classico"],
 map:"https://www.google.com/maps/search/Normandy+cider+route"
 },
 {
 id:"brittany",
 paese:"Francia",
 zona:"Bretagna",
-tipo:"Cidre bretone",
-desc:"Sidri gastronomici, rustici o eleganti, spesso marini e secchi.",
-dove:"Finistère, Cornouaille, Morbihan.",
-metodo:"Mele bretoni, fermentazioni lente, versioni brut e demi-sec.",
-profilo:"Fruttato maturo, tannino, acidità media, nota rustica.",
-cerca:"Cidre de Bretagne, Cornouaille, brut, demi-sec.",
+stile:"Cidre Bretone",
+famiglia:"Cidre francese",
+descrizione:"Sidri gastronomici, rustici o eleganti, spesso più marini, secchi e nervosi rispetto alla Normandia.",
+dove:"Finistère, Cornouaille, Morbihan, Ille-et-Vilaine.",
+metodo:"Mele bretoni, fermentazioni lente, versioni brut, demi-sec o doux.",
+mele:"Mele bretoni da cidre: dolci, amare, acide e dolci-amare, spesso con buona materia tannica.",
+profilo:"Fruttato maturo, tannino, acidità media, nota rustica e minerale.",
+cercare:"Cidre de Bretagne, Cornouaille, brut, demi-sec, produttori agricoli.",
+abbinamento:"Galette bretoni, pesce, frutti di mare, formaggi, piatti con burro salato.",
+note:"Molto utile per XA se vuoi una linea più marina, gastronomica e artigianale.",
 abv:"4–6%",
 acid:57,
 tan:66,
-spark:60,
-tags:["Francia","Bretagna","Cornouaille","classico"],
+sweet:50,
+bolla:60,
+corpo:58,
+tags:["Francia","Bretagna","mele","Cornouaille","classico"],
 map:"https://www.google.com/maps/search/Brittany+cider"
 },
 {
-id:"uk",
+id:"ukwest",
 paese:"Regno Unito",
 zona:"West Country",
-tipo:"Farmhouse / Scrumpy",
-desc:"Sidri tannici da mele bittersweet e bittersharp: struttura importante.",
-dove:"Somerset, Devon, Herefordshire, Gloucestershire.",
-metodo:"Mele da sidro ricche di tannino; secco, farmhouse, scrumpy o keeved.",
-profilo:"Tannico, pieno, mela matura, fieno, cuoio leggero.",
-cerca:"Scrumpy, farmhouse cider, keeved cider, bittersweet apples.",
+stile:"Farmhouse / Scrumpy",
+famiglia:"English Cider",
+descrizione:"Sidri strutturati, tannici, profondi, spesso da mele bittersweet e bittersharp.",
+dove:"Somerset, Devon, Dorset, Herefordshire, Gloucestershire.",
+metodo:"Mele da sidro ricche di tannino, fermentazione secca, farmhouse, scrumpy, keeved o bottle conditioned.",
+mele:"Dabinett, Yarlington Mill, Kingston Black, Michelin, Harry Masters Jersey, Brown Snout e altre mele bittersweet/bittersharp.",
+profilo:"Tannico, pieno, secco o medium, mela matura, fieno, cuoio leggero, struttura importante.",
+cercare:"Scrumpy, farmhouse cider, keeved cider, bittersweet apples, traditional cider.",
+abbinamento:"Cheddar, pork pie, arrosti, barbecue, formaggi stagionati.",
+note:"Territorio essenziale per capire il tannino nel sidro.",
 abv:"5–8%",
 acid:55,
 tan:90,
-spark:40,
-tags:["UK","Somerset","scrumpy","tannico"],
+sweet:38,
+bolla:40,
+corpo:82,
+tags:["UK","Somerset","mele","scrumpy","tannico","classico"],
 map:"https://www.google.com/maps/search/Somerset+cider"
 },
 {
 id:"perry",
 paese:"Regno Unito",
 zona:"Three Counties / Galles",
-tipo:"Perry tradizionale",
-desc:"Pere da perry, alberi antichi, profili floreali e tannici.",
-dove:"Herefordshire, Worcestershire, Gloucestershire, Galles.",
-metodo:"Fermentazione di pere da perry, spesso varietà locali rare.",
-profilo:"Pera, fiori, agrume, tannino fine, acidità.",
-cerca:"Traditional perry, single variety perry, old orchard perry pears.",
+stile:"Perry tradizionale",
+famiglia:"Perry",
+descrizione:"Fermentato di pere da perry. Fine, floreale, tannico e spesso molto complesso.",
+dove:"Herefordshire, Worcestershire, Gloucestershire e Galles di confine.",
+metodo:"Fermentazione di pere da perry, spesso varietà locali rare e alberi antichi.",
+mele:"Qui non si usano mele: si usano pere da perry. Esempi noti: Blakeney Red, Hendre Huffcap, Thorn, Gin, Barland.",
+profilo:"Pera, fiori, agrume, tannino fine, acidità, possibile dolcezza residua.",
+cercare:"Traditional perry, single variety perry, old orchard perry pears.",
+abbinamento:"Formaggi erborinati, caprini, piatti delicati, dessert non troppo dolci.",
+note:"Modulo separato da trattare bene in XA: non è sidro di mela, ma parente tecnico importantissimo.",
 abv:"5–8%",
 acid:68,
 tan:74,
-spark:45,
-tags:["UK","Perry","pera","Galles"],
+sweet:42,
+bolla:45,
+corpo:60,
+tags:["UK","Perry","pera","Galles","tannico"],
 map:"https://www.google.com/maps/search/traditional+perry+Herefordshire"
 },
 {
 id:"germany",
 paese:"Germania",
 zona:"Hessen / Frankfurt",
-tipo:"Apfelwein",
-desc:"Sidro tedesco secco e acidulo, beverino e diretto.",
+stile:"Apfelwein",
+famiglia:"Sidro tedesco",
+descrizione:"Sidro tedesco secco, acidulo, diretto, molto beverino. Cultura forte intorno a Francoforte.",
 dove:"Frankfurt, Sachsenhausen, Wetterau, Odenwald.",
-metodo:"Fermentazione di mele acide; fermo o leggermente mosso.",
-profilo:"Secco, aspro, mela verde, acidità pulita.",
-cerca:"Apfelwein, Ebbelwoi, Viez, Speierling.",
+metodo:"Fermentazione di mele acide. Spesso fermo o leggermente mosso.",
+mele:"Mele acide e robuste da trasformazione; a volte aggiunta di Speierling nella tradizione.",
+profilo:"Secco, aspro, mela verde, acidità pulita, corpo leggero.",
+cercare:"Apfelwein, Ebbelwoi, Viez, Speierling, Apfelweinlokal.",
+abbinamento:"Salsicce, crauti, formaggi freschi, cucina tedesca rustica.",
+note:"Ottimo riferimento per sidro secco, semplice e popolare.",
 abv:"4.8–7%",
 acid:82,
 tan:28,
-spark:20,
-tags:["Germania","Apfelwein","acido"],
+sweet:10,
+bolla:20,
+corpo:38,
+tags:["Germania","mele","Apfelwein","acido","secco"],
 map:"https://www.google.com/maps/search/Frankfurt+Apfelwein"
 },
 {
 id:"quebec",
 paese:"Canada",
 zona:"Québec",
-tipo:"Ice Cider",
-desc:"Concentrazione naturale dal gelo: dolcezza intensa e acidità alta.",
-dove:"Québec, zone fredde con frutteti.",
-metodo:"Crioconcentrazione o crioestrazione.",
-profilo:"Mela candita, miele, albicocca, dolcezza e acidità alta.",
-cerca:"Ice cider, cidre de glace, dessert cider.",
+stile:"Ice Cider",
+famiglia:"Cidre de glace",
+descrizione:"Stile moderno nordamericano basato sulla concentrazione naturale dal gelo. Dolcezza intensa e acidità alta.",
+dove:"Québec, zone fredde con frutteti e inverno rigido.",
+metodo:"Crioconcentrazione o crioestrazione: il freddo concentra zuccheri e aromi prima della fermentazione.",
+mele:"Mele aromatiche e acide resistenti al freddo; spesso blend per mantenere acidità e profumo.",
+profilo:"Mela candita, miele, albicocca, caramello leggero, dolcezza alta, acidità bilanciante.",
+cercare:"Ice cider, cidre de glace, dessert cider.",
+abbinamento:"Foie gras, formaggi erborinati, dessert di mela, pasticceria secca.",
+note:"Stile da studiare per una linea XA da meditazione o dessert.",
 abv:"7–13%",
 acid:76,
 tan:18,
-spark:12,
-tags:["Canada","Québec","ice cider","dolce"],
+sweet:94,
+bolla:12,
+corpo:90,
+tags:["Canada","Québec","mele","ice cider","dolce"],
 map:"https://www.google.com/maps/search/Quebec+ice+cider"
 },
 {
 id:"usa",
 paese:"USA",
 zona:"Pacific Northwest",
-tipo:"New World Craft Cider",
-desc:"Area molto moderna: sidri secchi, luppolati, barrel-aged, con botaniche e frutta.",
+stile:"New World Craft Cider",
+famiglia:"Craft moderno",
+descrizione:"Area moderna e sperimentale: sidri secchi, luppolati, barrel-aged, con frutta, botaniche e lieviti diversi.",
 dove:"Washington, Oregon, California del nord.",
-metodo:"Fermentazioni controllate, mele da sidro e da dessert, botte, frutta, luppolo, lieviti.",
+metodo:"Fermentazioni controllate, mele da sidro e da dessert, botte, frutta, luppolo, lieviti selezionati o selvaggi.",
+mele:"Mele da dessert, mele da sidro, crab apples e blend sperimentali. Molta libertà tecnica.",
 profilo:"Da pulito e fruttato a funky; spesso secco, creativo, gastronomico.",
-cerca:"Dry cider, hopped cider, barrel-aged cider, wild fermentation cider.",
+cercare:"Dry cider, hopped cider, barrel-aged cider, wild fermentation cider.",
+abbinamento:"Cucina fusion, barbecue, tacos, piatti speziati, formaggi.",
+note:"Grande riferimento per XA moderno: botaniche, dry hopping, botte, frutta, co-fermentazioni.",
 abv:"5–9%",
 acid:64,
 tan:48,
-spark:62,
-tags:["USA","craft","moderno","botaniche"],
+sweet:30,
+bolla:62,
+corpo:55,
+tags:["USA","mele","craft","moderno","botaniche"],
 map:"https://www.google.com/maps/search/Pacific+Northwest+craft+cider"
 },
 {
 id:"nordic",
 paese:"Nord Europa",
 zona:"Danimarca / Svezia / Norvegia",
-tipo:"Nordic Cider",
-desc:"Nuova scuola fredda: sidri secchi, acidi, eleganti e naturali.",
+stile:"Nordic Cider",
+famiglia:"Naturale moderno",
+descrizione:"Nuova scuola fredda: sidri secchi, acidi, eleganti, spesso naturali e molto gastronomici.",
 dove:"Danimarca, Svezia meridionale, Norvegia frutticola.",
-metodo:"Piccoli produttori, fermentazioni secche, pet-nat e rifermentazioni.",
-profilo:"Mela verde, agrume, mineralità, acidità verticale.",
-cerca:"Nordic cider, natural cider, pét-nat cider, dry cider.",
+metodo:"Piccoli produttori, fermentazioni secche, talvolta selvagge, pet-nat e rifermentazioni.",
+mele:"Mele nordiche acide e aromatiche, varietà locali, mele da frutteti freddi.",
+profilo:"Mela verde, agrume, mineralità, acidità verticale, pulizia o funk leggero.",
+cercare:"Nordic cider, natural cider, pét-nat cider, dry cider.",
+abbinamento:"Pesce, cucina nordica, formaggi freschi, piatti vegetali.",
+note:"Perfetto per collegare XA a sidri moderni, naturali e gastronomici.",
 abv:"5–8%",
 acid:86,
 tan:34,
-spark:58,
-tags:["Nord Europa","naturale","moderno"],
+sweet:20,
+bolla:58,
+corpo:48,
+tags:["Nord Europa","mele","naturale","moderno","pet-nat"],
 map:"https://www.google.com/maps/search/Nordic+craft+cider"
 }
 ];
 
-let current="atlas";
-const favs=new Set(JSON.parse(localStorage.getItem("xa_atlas_daw_favs")||"[]"));
-const q=document.getElementById("q");
+const favs = new Set(JSON.parse(localStorage.getItem("xa_cider_atlas_pro_favs") || "[]"));
+const q = document.getElementById("q");
 
-function n(s){
-  return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+function normalizza(s){
+  return String(s || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"");
 }
 
-function hay(x){
-  return n([
+function testoRicerca(x){
+  return normalizza([
     x.paese,
     x.zona,
-    x.tipo,
-    x.desc,
+    x.stile,
+    x.famiglia,
+    x.descrizione,
     x.dove,
     x.metodo,
+    x.mele,
     x.profilo,
-    x.cerca,
+    x.cercare,
+    x.abbinamento,
+    x.note,
     ...x.tags
   ].join(" "));
 }
 
-function level(v){
-  return v<35 ? "Bassa" : v<70 ? "Media" : "Alta";
+function livello(v){
+  if(v < 25) return "LOW";
+  if(v < 55) return "MID";
+  if(v < 80) return "HIGH";
+  return "MAX";
 }
 
-function fill(v){
-  return `<div class="bar"><div class="fill" style="height:${v}%"></div></div>`;
+function fill(v, cls){
+  return `<div class="bar"><div class="fill ${cls}" style="height:${v}%"></div></div>`;
 }
 
-function card(x){
-return `
-<article class="card">
-  <div class="cardHead">
-    <div class="row">
-      <div>
-        <div class="country">${x.paese} · ${x.tipo}</div>
-        <div class="zone">${x.zona}</div>
-      </div>
-      <button class="star" onclick="toggleFav('${x.id}')">${favs.has(x.id)?"★":"☆"}</button>
-    </div>
-
-    <div class="desc">${x.desc}</div>
-
-    <div class="pills">
-      ${x.tags.map(t=>`<span class="pill">${t}</span>`).join("")}
-    </div>
-  </div>
-
-  <div class="meters">
-    <div class="meter">
-      <b>ACID</b>
-      ${fill(x.acid)}
-      <span>${level(x.acid)}</span>
-    </div>
-    <div class="meter">
-      <b>TANNIN</b>
-      ${fill(x.tan)}
-      <span>${level(x.tan)}</span>
-    </div>
-    <div class="meter">
-      <b>SPARK</b>
-      ${fill(x.spark)}
-      <span>${level(x.spark)}</span>
-    </div>
-    <div class="meter">
-      <b>ABV</b>
-      ${fill(Math.min(100,parseFloat(x.abv)*12))}
-      <span>${x.abv}</span>
-    </div>
-  </div>
-
-  <details>
-    <summary>APRI PATCH SHEET</summary>
-    <div class="body">
-      <h3>Dove si fanno</h3>
-      <div>${x.dove}</div>
-
-      <h3>Come sono fatti</h3>
-      <div>${x.metodo}</div>
-
-      <h3>Caratteristiche</h3>
-      <div>${x.profilo}</div>
-
-      <h3>Cosa cercare</h3>
-      <div>${x.cerca}</div>
-
-      <div class="actions">
-        <a class="action" href="${x.map}" target="_blank">MAPPA</a>
-        <a class="action dark" href="javascript:copyCard('${x.id}')">COPIA</a>
-      </div>
-    </div>
-  </details>
-</article>`;
+function risultati(){
+  const term = normalizza(q.value.trim());
+  return DATA.filter(x => !term || testoRicerca(x).includes(term));
 }
 
-function strip(x){
-  let vu=Math.round((x.acid+x.tan+x.spark)/30);
+function scheda(x){
   return `
-  <div class="strip">
-    <div class="stripName">${x.zona}</div>
+  <article class="card">
+
+    <div class="cardTop">
+      <div class="cardRow">
+        <div>
+          <div class="country">${x.paese} · ${x.famiglia}</div>
+          <div class="zone">${x.zona}</div>
+          <div class="style">${x.stile}</div>
+        </div>
+        <button class="star" onclick="toggleFav('${x.id}')">${favs.has(x.id) ? "★" : "☆"}</button>
+      </div>
+
+      <div class="desc">${x.descrizione}</div>
+
+      <div class="pills">
+        ${x.tags.map(t => `<span class="pill">${t}</span>`).join("")}
+      </div>
+    </div>
+
+    <div class="lcd">
+      <div class="lcdTitle">APPLE BUS / MELE USATE</div>
+      <div class="lcdText">${x.mele}</div>
+    </div>
+
+    <div class="digitalGrid">
+      <div class="digital"><b>ACID</b><span>${x.acid}</span><small>${livello(x.acid)}</small></div>
+      <div class="digital"><b>TAN</b><span>${x.tan}</span><small>${livello(x.tan)}</small></div>
+      <div class="digital"><b>DOLCE</b><span>${x.sweet}</span><small>${livello(x.sweet)}</small></div>
+      <div class="digital"><b>BOLLA</b><span>${x.bolla}</span><small>${livello(x.bolla)}</small></div>
+      <div class="digital"><b>ABV</b><span>${x.abv}</span><small>VOL</small></div>
+    </div>
+
+    <div class="meterGrid">
+      <div class="meter"><b>ACID</b>${fill(x.acid,"acid")}<span>${livello(x.acid)}</span></div>
+      <div class="meter"><b>TANNIN</b>${fill(x.tan,"tan")}<span>${livello(x.tan)}</span></div>
+      <div class="meter"><b>DOLCE</b>${fill(x.sweet,"sweet")}<span>${livello(x.sweet)}</span></div>
+      <div class="meter"><b>BOLLA</b>${fill(x.bolla,"bolla")}<span>${livello(x.bolla)}</span></div>
+      <div class="meter"><b>CORPO</b>${fill(x.corpo,"body")}<span>${livello(x.corpo)}</span></div>
+    </div>
+
+    <details>
+      <summary>APRI SCHEDA STILE</summary>
+
+      <div class="sheet">
+        <h3>Dove si fa</h3>
+        <div>${x.dove}</div>
+
+        <h3>Come è fatto</h3>
+        <div>${x.metodo}</div>
+
+        <h3>Tipi di mele / frutta</h3>
+        <div>${x.mele}</div>
+
+        <h3>Profilo sensoriale</h3>
+        <div>${x.profilo}</div>
+
+        <h3>Cosa cercare</h3>
+        <div>${x.cercare}</div>
+
+        <h3>Abbinamento</h3>
+        <div>${x.abbinamento}</div>
+
+        <h3>Note XA</h3>
+        <div>${x.note}</div>
+
+        <div class="actions">
+          <a class="action" href="${x.map}" target="_blank">APRI MAPPA</a>
+          <a class="action dark" href="javascript:copiaScheda('${x.id}')">COPIA SCHEDA</a>
+        </div>
+      </div>
+    </details>
+
+  </article>`;
+}
+
+function canale(x){
+  const vu = Math.round((x.acid + x.tan + x.bolla + x.corpo) / 38);
+  return `
+  <div class="channel">
+    <div class="chName">${x.zona}</div>
+    <div class="chType">${x.stile}</div>
 
     <div class="vu">
-      ${Array.from({length:8},(_,k)=>`<i class="${k<vu?(k>5?'on3':k>3?'on2':'on1'):''}"></i>`).join("")}
+      ${Array.from({length:10},(_,i)=>{
+        let cls = "";
+        if(i < vu){
+          cls = i > 7 ? "r" : i > 5 ? "y" : "g";
+        }
+        return `<i class="${cls}"></i>`;
+      }).join("")}
     </div>
 
-    <small>${x.tipo}</small>
+    <div class="faderSet">
+      <div class="fader">
+        <label>ACID</label>
+        <div class="track"></div>
+        <div class="knob" style="bottom:${12 + x.acid * .82}px"></div>
+      </div>
 
-    <div class="faderBox">
-      <div class="track"></div>
-      <div class="knob" style="bottom:${12+(x.tan*.82)}px"></div>
+      <div class="fader">
+        <label>TAN</label>
+        <div class="track"></div>
+        <div class="knob" style="bottom:${12 + x.tan * .82}px"></div>
+      </div>
+
+      <div class="fader">
+        <label>BOLLA</label>
+        <div class="track"></div>
+        <div class="knob" style="bottom:${12 + x.bolla * .82}px"></div>
+      </div>
     </div>
-
-    <small>ACID ${x.acid} · TAN ${x.tan} · SPK ${x.spark}</small>
   </div>`;
 }
 
-function results(){
-  const term=n(q.value.trim());
-  return DATA.filter(x=>!term||hay(x).includes(term));
-}
-
-function scene(s){
-  current=s;
-
-  document.querySelectorAll(".scene").forEach(e=>e.classList.remove("on"));
-  document.getElementById(s).classList.add("on");
-
-  document.querySelectorAll(".tab").forEach(e=>e.classList.remove("on"));
-  document.getElementById("t_"+s).classList.add("on");
-
-  document.getElementById("sceneTitle").textContent=
-    s==="atlas" ? "Territory deck" :
-    s==="mixer" ? "Style channel mixer" :
-    s==="rack" ? "Technical rack" :
-    "Preferiti";
-
-  render();
+function matrixCard(x){
+  return `
+  <div class="matrixCard">
+    <h2>${x.zona}</h2>
+    <div class="infoLine"><b>Stile</b><span>${x.stile}</span></div>
+    <div class="infoLine"><b>Mele</b><span>${x.mele}</span></div>
+    <div class="infoLine"><b>Metodo</b><span>${x.metodo}</span></div>
+    <div class="infoLine"><b>Profilo</b><span>${x.profilo}</span></div>
+    <div class="infoLine"><b>XA</b><span>${x.note}</span></div>
+  </div>`;
 }
 
 function render(){
-  const out=results();
+  const out = risultati();
 
-  document.getElementById("count").textContent=out.length+" schede";
-  document.getElementById("cards").innerHTML=out.map(card).join("");
-  document.getElementById("empty").style.display=out.length?"none":"block";
-  document.getElementById("mixerDeck").innerHTML=out.map(strip).join("");
+  document.getElementById("liveCount").textContent = String(out.length).padStart(2,"0");
+  document.getElementById("countText").textContent = out.length + " schede";
 
-  const favOut=DATA.filter(x=>favs.has(x.id));
-  document.getElementById("favDeck").innerHTML=favOut.map(card).join("");
-  document.getElementById("favEmpty").style.display=favOut.length?"none":"block";
+  document.getElementById("cards").innerHTML = out.map(scheda).join("");
+  document.getElementById("empty").style.display = out.length ? "none" : "block";
+
+  document.getElementById("mixerDeck").innerHTML = out.map(canale).join("");
+  document.getElementById("matrixDeck").innerHTML = out.map(matrixCard).join("");
+
+  const preferiti = DATA.filter(x => favs.has(x.id));
+  document.getElementById("favDeck").innerHTML = preferiti.map(scheda).join("");
+  document.getElementById("favEmpty").style.display = preferiti.length ? "none" : "block";
 }
 
-function quick(t){
-  q.value=t;
+function scene(id){
+  document.querySelectorAll(".scene").forEach(s => s.classList.remove("on"));
+  document.getElementById(id).classList.add("on");
+
+  document.querySelectorAll(".tab").forEach(t => t.classList.remove("on"));
+  document.getElementById("t_" + id).classList.add("on");
+
+  const title =
+    id === "atlas" ? "Territory Digital Deck" :
+    id === "mixer" ? "Style Channel Mixer" :
+    id === "matrix" ? "Apple / Fruit Matrix" :
+    id === "rack" ? "XA Technical Rack" :
+    "Preferiti";
+
+  document.getElementById("sceneTitle").textContent = title;
+  render();
+}
+
+function quick(term){
+  q.value = term;
   scene("atlas");
   window.scrollTo({top:0,behavior:"smooth"});
   render();
 }
 
 function clearQ(){
-  q.value="";
+  q.value = "";
   render();
 }
 
@@ -1144,26 +1426,32 @@ function toggleFav(id){
   }else{
     favs.add(id);
   }
-  localStorage.setItem("xa_atlas_daw_favs",JSON.stringify([...favs]));
+  localStorage.setItem("xa_cider_atlas_pro_favs", JSON.stringify([...favs]));
   render();
 }
 
-function copyCard(id){
-  const x=DATA.find(a=>a.id===id);
-  const text=
+function copiaScheda(id){
+  const x = DATA.find(item => item.id === id);
+  const text =
 `${x.zona} - ${x.paese}
-Tipo: ${x.tipo}
+Stile: ${x.stile}
+Famiglia: ${x.famiglia}
 Dove: ${x.dove}
 Metodo: ${x.metodo}
+Mele/frutta: ${x.mele}
 Profilo: ${x.profilo}
-Cosa cercare: ${x.cerca}`;
+Cosa cercare: ${x.cercare}
+Abbinamento: ${x.abbinamento}
+Note XA: ${x.note}`;
+
   if(navigator.clipboard){
     navigator.clipboard.writeText(text);
   }
-  alert("Patch sheet copiata");
+
+  alert("Scheda copiata.");
 }
 
-q.addEventListener("input",render);
+q.addEventListener("input", render);
 render();
 </script>
 
