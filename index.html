@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#06111f">
-<title>XA Cider Atlas Pro V4</title>
+<title>XA Cider Atlas Pro V5</title>
 
 <style>
 :root{
-  --bg:#06111f;--p1:#101b2b;--p2:#17283c;--metal:#263849;
+  --bg:#06111f;--p1:#101b2b;--p2:#17283c;--p3:#22364b;
   --cream:#f6ecd2;--muted:#aebdcc;--cyan:#52d9ff;--green:#42f28a;
   --red:#ff3b55;--amber:#ffc44f;--violet:#b58cff;--orange:#ff8d3d;
   --line:rgba(246,236,210,.18);--glow:0 0 18px rgba(82,217,255,.28);
@@ -16,7 +16,7 @@
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{
-  margin:0;padding:10px 10px 100px;color:var(--cream);
+  margin:0;padding:10px 10px 104px;color:var(--cream);
   font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:
     radial-gradient(circle at 15% 0%,rgba(82,217,255,.16),transparent 30%),
@@ -49,6 +49,7 @@ h1{margin:0;font-size:21px;line-height:1}
 }
 .livebox b{display:block;color:var(--green);font-size:20px;line-height:1;text-shadow:0 0 10px rgba(66,242,138,.55)}
 .livebox span{display:block;color:var(--muted);font-size:9px;font-weight:1000;letter-spacing:.12em;margin-top:4px}
+
 .transport{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:12px}
 .tr{
   border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:10px 3px;color:var(--cream);
@@ -59,6 +60,7 @@ h1{margin:0;font-size:21px;line-height:1}
 .play{background:linear-gradient(180deg,#45f58b,#11602d)!important;color:#031108!important}
 .blue{background:linear-gradient(180deg,#52d9ff,#165e8d)!important}
 .stop{background:linear-gradient(180deg,#ffd36a,#6b4b12)!important;color:#171006!important}
+
 .searchline{display:grid;grid-template-columns:1fr 54px;gap:8px;margin-top:10px}
 #q{
   border:1px solid rgba(82,217,255,.35);border-radius:16px;padding:14px;font-size:16px;font-weight:850;
@@ -68,20 +70,26 @@ h1{margin:0;font-size:21px;line-height:1}
   border:1px solid rgba(82,217,255,.35);border-radius:16px;background:linear-gradient(180deg,#52d9ff,#0c5d89);
   color:white;font-weight:1000;font-size:20px
 }
-.tabs,.chips{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none}
+
+.tabs,.chips,.subtools{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none}
 .tabs{padding:0 0 3px;margin:10px 0}
 .chips{padding:0 0 8px}
-.tabs::-webkit-scrollbar,.chips::-webkit-scrollbar{display:none}
+.subtools{padding:0 0 9px}
+.tabs::-webkit-scrollbar,.chips::-webkit-scrollbar,.subtools::-webkit-scrollbar{display:none}
 .tab{
   min-width:84px;border:1px solid var(--line);border-radius:14px;padding:11px 8px;color:var(--muted);
   background:linear-gradient(180deg,#1d2a37,#101923);font-size:11px;font-weight:1000
 }
 .tab.on{color:#061018;background:linear-gradient(180deg,#e9fbff,#52d9ff);box-shadow:var(--glow)}
-.chip{
+.chip,.toolbtn{
   white-space:nowrap;border:1px solid rgba(82,217,255,.23);border-radius:999px;padding:9px 11px;
   color:#dffbff;background:rgba(82,217,255,.08);font-size:11px;font-weight:1000
 }
-.chip.on{background:linear-gradient(180deg,#ffc44f,#a56510);color:#061018}
+.chip.on,.toolbtn.on{background:linear-gradient(180deg,#ffc44f,#a56510);color:#061018}
+select{
+  border:1px solid rgba(82,217,255,.30);border-radius:14px;background:#e9fbff;color:#061018;
+  padding:10px 12px;font-size:13px;font-weight:850
+}
 .boardTitle{
   display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:11px;font-weight:1000;
   letter-spacing:.12em;text-transform:uppercase;margin:10px 3px 8px
@@ -89,11 +97,27 @@ h1{margin:0;font-size:21px;line-height:1}
 .boardTitle strong{color:var(--cyan);text-shadow:0 0 10px rgba(82,217,255,.35)}
 .scene{display:none}.scene.on{display:block}
 .grid,.list{display:grid;gap:12px}
-.card,.listCard,.rack,.compareBox{
+
+.card,.listCard,.rack,.compareBox,.homePanel,.loadedPanel{
   border:1px solid rgba(82,217,255,.22);border-radius:24px;overflow:hidden;
   background:linear-gradient(180deg,rgba(40,54,66,.96),rgba(13,22,31,.98));
   box-shadow:var(--shadow)
 }
+.homePanel,.loadedPanel,.listCard,.rack,.compareBox{padding:12px}
+.homeGrid{display:grid;gap:12px}
+.homePanel h2,.loadedPanel h2,.listCard h2,.rack h2,.compareBox h2{
+  margin:0 0 10px;color:var(--cyan);font-size:14px;letter-spacing:.08em;text-transform:uppercase
+}
+.bigLoaded{
+  border:1px solid rgba(66,242,138,.26);border-radius:18px;background:#061018;padding:12px;
+  box-shadow:inset 0 0 22px rgba(66,242,138,.08)
+}
+.bigLoaded .name{font-size:21px;font-weight:1000;color:var(--green);text-shadow:0 0 12px rgba(66,242,138,.34)}
+.bigLoaded .meta{font-size:12px;color:#d8e5ee;margin-top:5px;line-height:1.35}
+.quickStats{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}
+.quickStat{border:1px solid rgba(82,217,255,.18);background:#071018;border-radius:14px;padding:8px 4px;text-align:center}
+.quickStat b{display:block;font-size:9px;color:var(--muted)}
+.quickStat span{display:block;font-size:16px;font-weight:1000;color:var(--green);text-shadow:0 0 8px rgba(66,242,138,.35)}
 .cardTop{
   padding:12px;background:radial-gradient(circle at 100% 0%,rgba(82,217,255,.12),transparent 35%),linear-gradient(180deg,#263747,#16232f);
   border-bottom:1px solid rgba(246,236,210,.12)
@@ -150,13 +174,10 @@ summary::-webkit-details-marker{display:none}
   color:#061018;background:linear-gradient(180deg,#e9fbff,#52d9ff)
 }
 .action.dark{color:var(--cream);background:linear-gradient(180deg,#253746,#121c27);border:1px solid rgba(82,217,255,.25)}
-.listCard,.rack,.compareBox{padding:12px}
-.listCard h2,.rack h2,.compareBox h2{
-  margin:0 0 10px;color:var(--cyan);font-size:14px;letter-spacing:.08em;text-transform:uppercase
-}
 .infoLine{display:grid;grid-template-columns:110px 1fr;gap:8px;padding:8px 0;border-top:1px solid rgba(246,236,210,.10);font-size:13px;line-height:1.35}
 .infoLine b{color:var(--amber);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
 .infoLine span{color:#d8e5ee}
+
 .mixerDeck{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 12px;scrollbar-width:none}
 .mixerDeck::-webkit-scrollbar{display:none}
 .channel{
@@ -178,14 +199,11 @@ summary::-webkit-details-marker{display:none}
   position:absolute;left:50%;width:28px;height:16px;border-radius:7px;transform:translateX(-50%);
   background:linear-gradient(180deg,#f9edcf,#8f9cad);box-shadow:0 4px 8px rgba(0,0,0,.55)
 }
-select{
-  width:100%;border:1px solid rgba(82,217,255,.30);border-radius:15px;background:#e9fbff;
-  color:#061018;padding:13px;font-size:15px;font-weight:850;margin-bottom:9px
-}
+
 .compareGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .compareMini{border:1px solid rgba(82,217,255,.20);border-radius:18px;padding:10px;background:#081018}
 .compareMini h3{margin:0;color:var(--amber);font-size:13px}
-.crow{display:grid;grid-template-columns:80px 1fr;gap:6px;border-top:1px solid rgba(246,236,210,.10);padding:7px 0;font-size:12px}
+.crow{display:grid;grid-template-columns:76px 1fr;gap:6px;border-top:1px solid rgba(246,236,210,.10);padding:7px 0;font-size:12px}
 .crow b{color:var(--cyan)}
 .knobGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
 .knobModule{border:1px solid rgba(255,255,255,.10);background:#081018;border-radius:16px;padding:10px 6px;text-align:center}
@@ -210,16 +228,18 @@ select{
   border:1px solid rgba(246,236,210,.14);border-radius:14px;padding:10px 3px;color:#e8f8ff;
   font-size:10px;font-weight:1000;background:linear-gradient(180deg,#233546,#101b26)
 }
+.compact .lcd,.compact .meterGrid,.compact details{display:none}
 @media(min-width:760px){
   .grid{grid-template-columns:1fr 1fr}
   .list{grid-template-columns:1fr 1fr}
+  .homeGrid{grid-template-columns:1fr 1fr}
   .knobGrid{grid-template-columns:repeat(6,1fr)}
 }
 </style>
 </head>
 
 <body>
-<div class="app">
+<div class="app" id="app">
 
   <div class="topbar">
     <div class="master">
@@ -227,8 +247,8 @@ select{
         <div style="display:flex;gap:11px;align-items:center">
           <div class="logo">XA</div>
           <div>
-            <h1>Cider Atlas Pro V4</h1>
-            <div class="sub">Mobile DAW · atlante sidri · stili · mele · confronto · XA School</div>
+            <h1>Cider Atlas Pro V5</h1>
+            <div class="sub">Mobile DAW · atlante sidri · carica stile · confronto · ricette XA</div>
           </div>
         </div>
         <div class="livebox"><b id="liveCount">00</b><span>STYLE</span></div>
@@ -236,9 +256,9 @@ select{
 
       <div class="transport">
         <button class="tr rec" onclick="quick('Asturie')">● REC</button>
-        <button class="tr play" onclick="quick('Alpi')">▶ PLAY</button>
+        <button class="tr play" onclick="loadTop()">▶ LOAD</button>
         <button class="tr blue" onclick="quick('mele')">MELE</button>
-        <button class="tr" onclick="quick('moderno')">LOOP</button>
+        <button class="tr" onclick="copyFiltered()">COPY</button>
         <button class="tr stop" onclick="clearQ()">STOP</button>
       </div>
 
@@ -250,7 +270,8 @@ select{
   </div>
 
   <div class="tabs">
-    <button id="t_atlas" class="tab on" onclick="scene('atlas')">ATLAS</button>
+    <button id="t_home" class="tab on" onclick="scene('home')">HOME</button>
+    <button id="t_atlas" class="tab" onclick="scene('atlas')">ATLAS</button>
     <button id="t_paesi" class="tab" onclick="scene('paesi')">PAESI</button>
     <button id="t_stili" class="tab" onclick="scene('stili')">STILI</button>
     <button id="t_mele" class="tab" onclick="scene('mele')">MELE</button>
@@ -261,14 +282,53 @@ select{
     <button id="t_fav" class="tab" onclick="scene('fav')">FAV</button>
   </div>
 
+  <div class="subtools">
+    <select id="sorter" onchange="render()">
+      <option value="xa">Ordina: interesse XA</option>
+      <option value="acid">Ordina: acidità</option>
+      <option value="tan">Ordina: tannino</option>
+      <option value="sweet">Ordina: dolcezza</option>
+      <option value="bolla">Ordina: bolla</option>
+      <option value="az">Ordina: A-Z</option>
+    </select>
+    <button class="toolbtn" id="compactBtn" onclick="toggleCompact()">Compatto</button>
+    <button class="toolbtn" onclick="copyFiltered()">Copia filtro</button>
+  </div>
+
   <div class="chips" id="chips"></div>
 
   <div class="boardTitle">
-    <span id="sceneTitle">Territory Digital Deck</span>
+    <span id="sceneTitle">Master Control</span>
     <strong id="countText">0 schede</strong>
   </div>
 
-  <section id="atlas" class="scene on">
+  <section id="home" class="scene on">
+    <div class="homeGrid">
+      <div class="loadedPanel">
+        <h2>Style Loaded</h2>
+        <div id="loadedBox" class="bigLoaded"></div>
+      </div>
+      <div class="homePanel">
+        <h2>Top XA Styles</h2>
+        <div id="topDeck"></div>
+      </div>
+      <div class="homePanel">
+        <h2>Filtro attivo</h2>
+        <div id="filterInfo"></div>
+      </div>
+      <div class="homePanel">
+        <h2>Azioni rapide</h2>
+        <div class="actions">
+          <a class="action" href="javascript:scene('atlas')">APRI ATLAS</a>
+          <a class="action dark" href="javascript:scene('compare')">CONFRONTA</a>
+          <a class="action" href="javascript:scene('school')">XA SCHOOL</a>
+          <a class="action dark" href="javascript:copyLoadedRecipe()">COPIA LOADED</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="atlas" class="scene">
     <div id="cards" class="grid"></div>
     <div id="empty" class="empty">Nessun risultato.</div>
   </section>
@@ -304,7 +364,7 @@ select{
     <div class="rack">
       <h2>Recipe Send FX</h2>
       <div class="infoLine"><b>Funzione</b><span>Copia una base ricetta XA ispirata allo stile selezionato.</span></div>
-      <div class="infoLine"><b>Uso</b><span>Apri una scheda e premi COPIA RICETTA XA.</span></div>
+      <div class="infoLine"><b>Uso</b><span>Apri una scheda, carica lo stile e premi COPIA RICETTA XA.</span></div>
       <div class="infoLine"><b>Futuro</b><span>Collegamento a XA Cider School, ricette, lotti e atlante PC.</span></div>
     </div>
   </section>
@@ -317,9 +377,9 @@ select{
 </div>
 
 <div class="bottomNav">
+  <button onclick="scene('home')">HOME</button>
   <button onclick="quick('Alpi')">ALPI</button>
   <button onclick="quick('Asturie')">ASTURIE</button>
-  <button onclick="quick('Francia')">FRANCIA</button>
   <button onclick="quick('Perry')">PERRY</button>
   <button onclick="quick('moderno')">MODERN</button>
 </div>
@@ -396,7 +456,9 @@ const SCHOOL=[
 
 const CHIPS=["Classici","Moderni","Alpini","Perry","Poiré","Ice Cider","Naturali","Tannici","Dolci","Secchi","Botanici","Asturie","Francia","UK","USA","Canada","Giappone","mele","pera","keeving","Most","Apfelwein"];
 let activeChip="";
-const favs=new Set(JSON.parse(localStorage.getItem("xa_cider_atlas_v4_favs")||"[]"));
+let loadedId=localStorage.getItem("xa_cider_atlas_v5_loaded") || "asturias";
+let compact=false;
+const favs=new Set(JSON.parse(localStorage.getItem("xa_cider_atlas_v5_favs")||"[]"));
 const q=document.getElementById("q");
 
 function norm(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
@@ -415,10 +477,22 @@ function chipMatch(x,c){
   if(k==="botanici")return h.includes("botaniche")||h.includes("hopped");
   return h.includes(k);
 }
+function sorted(arr){
+  const mode=document.getElementById("sorter")?.value || "xa";
+  const a=[...arr];
+  if(mode==="xa")a.sort((x,y)=>y.xa-x.xa);
+  if(mode==="acid")a.sort((x,y)=>y.a-x.a);
+  if(mode==="tan")a.sort((x,y)=>y.t-x.t);
+  if(mode==="sweet")a.sort((x,y)=>y.s-x.s);
+  if(mode==="bolla")a.sort((x,y)=>y.b-x.b);
+  if(mode==="az")a.sort((x,y)=>x.z.localeCompare(y.z));
+  return a;
+}
 function results(){
   const term=norm(q.value.trim());
-  return DATA.filter(x=>(!term||txt(x).includes(term))&&(!activeChip||chipMatch(x,activeChip)));
+  return sorted(DATA.filter(x=>(!term||txt(x).includes(term))&&(!activeChip||chipMatch(x,activeChip))));
 }
+function byId(id){return DATA.find(x=>x.id===id)||DATA[0]}
 function scheda(x){
 return `<article class="card">
   <div class="cardTop">
@@ -454,10 +528,10 @@ return `<article class="card">
       <h3>Cosa cercare</h3><div>${x.lk}</div>
       <h3>Note XA</h3><div>Interesse XA ${x.xa}/100. Ottimo riferimento per ricerca, scuola, ricetta e atlante.</div>
       <div class="actions">
-        <a class="action" href="${x.map}" target="_blank">APRI MAPPA</a>
-        <a class="action dark" href="javascript:copiaScheda('${x.id}')">COPIA SCHEDA</a>
+        <a class="action" href="javascript:loadStyle('${x.id}')">CARICA STILE</a>
+        <a class="action dark" href="${x.map}" target="_blank">MAPPA</a>
         <a class="action" href="javascript:copiaRicetta('${x.id}')">COPIA RICETTA XA</a>
-        <a class="action dark" href="javascript:quick('${x.st}')">CERCA SIMILI</a>
+        <a class="action dark" href="javascript:copiaScheda('${x.id}')">COPIA SCHEDA</a>
       </div>
     </div>
   </details>
@@ -483,6 +557,32 @@ function paesiView(out){
 function stiliView(){return STYLE_GUIDE.map(s=>listCard(s[0],[["Area",s[1]],["Descrizione",s[2]],["Parametri",s[3]]])).join("")}
 function meleView(){return FRUIT_GUIDE.map(s=>listCard(s[0],[["Dove",s[1]],["Funzione",s[2]]])).join("")}
 function schoolView(){return SCHOOL.map(s=>listCard(s[0],[["Lezione",s[1]]])).join("")}
+function loadedBox(){
+  const x=byId(loadedId);
+  return `<div class="name">${x.z}</div>
+  <div class="meta">${x.p} · ${x.st}<br>${x.pr}</div>
+  <div class="quickStats">
+    <div class="quickStat"><b>ACID</b><span>${x.a}</span></div>
+    <div class="quickStat"><b>TAN</b><span>${x.t}</span></div>
+    <div class="quickStat"><b>DOLCE</b><span>${x.s}</span></div>
+    <div class="quickStat"><b>BOLLA</b><span>${x.b}</span></div>
+    <div class="quickStat"><b>XA</b><span>${x.xa}</span></div>
+  </div>
+  <div class="actions">
+    <a class="action" href="javascript:copiaRicetta('${x.id}')">COPIA RICETTA XA</a>
+    <a class="action dark" href="javascript:quick('${x.st}')">CERCA SIMILI</a>
+  </div>`;
+}
+function homeTop(){
+  return DATA.slice().sort((a,b)=>b.xa-a.xa).slice(0,5).map(x=>`<div class="infoLine"><b>${x.xa}/100</b><span><a style="color:#d8e5ee;text-decoration:none" href="javascript:loadStyle('${x.id}')">${x.z} · ${x.st}</a></span></div>`).join("");
+}
+function filterInfo(){
+  const term=q.value.trim()||"nessuna ricerca";
+  return `<div class="infoLine"><b>Ricerca</b><span>${term}</span></div>
+  <div class="infoLine"><b>Filtro</b><span>${activeChip||"nessun chip"}</span></div>
+  <div class="infoLine"><b>Ordine</b><span>${document.getElementById("sorter").value}</span></div>
+  <div class="infoLine"><b>Risultati</b><span>${results().length} schede filtrate</span></div>`;
+}
 function renderChips(){
   document.getElementById("chips").innerHTML=CHIPS.map(c=>`<button class="chip ${activeChip===c?"on":""}" onclick="setChip('${c}')">${c}</button>`).join("")
 }
@@ -490,14 +590,13 @@ function renderOptions(){
   const opts=DATA.map(x=>`<option value="${x.id}">${x.z} — ${x.st}</option>`).join("");
   document.getElementById("cmpA").innerHTML=opts;
   document.getElementById("cmpB").innerHTML=opts;
-  document.getElementById("cmpB").value=DATA[6]?.id||DATA[1].id;
+  document.getElementById("cmpA").value=loadedId;
+  document.getElementById("cmpB").value="normandy";
 }
 function renderCompare(){
-  const a=DATA.find(x=>x.id===document.getElementById("cmpA").value)||DATA[0];
-  const b=DATA.find(x=>x.id===document.getElementById("cmpB").value)||DATA[1];
-  document.getElementById("compareResult").innerHTML=`<div class="compareGrid">
-    ${compareMini(a)}${compareMini(b)}
-  </div>`;
+  const a=byId(document.getElementById("cmpA").value);
+  const b=byId(document.getElementById("cmpB").value);
+  document.getElementById("compareResult").innerHTML=`<div class="compareGrid">${compareMini(a)}${compareMini(b)}</div>`;
 }
 function compareMini(x){
   return `<div class="compareMini"><h3>${x.z}</h3>
@@ -515,6 +614,9 @@ function render(){
   const out=results();
   document.getElementById("liveCount").textContent=String(out.length).padStart(2,"0");
   document.getElementById("countText").textContent=out.length+" schede";
+  document.getElementById("loadedBox").innerHTML=loadedBox();
+  document.getElementById("topDeck").innerHTML=homeTop();
+  document.getElementById("filterInfo").innerHTML=filterInfo();
   document.getElementById("cards").innerHTML=out.map(scheda).join("");
   document.getElementById("empty").style.display=out.length?"none":"block";
   document.getElementById("mixerDeck").innerHTML=out.map(channel).join("");
@@ -533,16 +635,31 @@ function scene(id){
   document.getElementById(id).classList.add("on");
   document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));
   document.getElementById("t_"+id).classList.add("on");
-  const title={atlas:"Territory Digital Deck",paesi:"Country Browser",stili:"Style Families",mele:"Apple / Fruit Matrix",mixer:"Style Channel Mixer",compare:"Compare Mode",school:"XA Cider School",rack:"XA Technical Rack",fav:"Preferiti"}[id];
+  const title={home:"Master Control",atlas:"Territory Digital Deck",paesi:"Country Browser",stili:"Style Families",mele:"Apple / Fruit Matrix",mixer:"Style Channel Mixer",compare:"Compare Mode",school:"XA Cider School",rack:"XA Technical Rack",fav:"Preferiti"}[id];
   document.getElementById("sceneTitle").textContent=title;
   render();
 }
 function setChip(c){activeChip=activeChip===c?"":c;render();scene("atlas")}
 function quick(term){q.value=term;activeChip="";scene("atlas");window.scrollTo({top:0,behavior:"smooth"});render()}
 function clearQ(){q.value="";activeChip="";render()}
-function toggleFav(id){favs.has(id)?favs.delete(id):favs.add(id);localStorage.setItem("xa_cider_atlas_v4_favs",JSON.stringify([...favs]));render()}
+function toggleCompact(){
+  compact=!compact;
+  document.getElementById("app").classList.toggle("compact",compact);
+  document.getElementById("compactBtn").classList.toggle("on",compact);
+}
+function toggleFav(id){favs.has(id)?favs.delete(id):favs.add(id);localStorage.setItem("xa_cider_atlas_v5_favs",JSON.stringify([...favs]));render()}
+function loadStyle(id){
+  loadedId=id;
+  localStorage.setItem("xa_cider_atlas_v5_loaded",id);
+  document.getElementById("cmpA").value=id;
+  scene("home");
+}
+function loadTop(){
+  const top=results()[0]||DATA[0];
+  loadStyle(top.id);
+}
 function copiaScheda(id){
-  const x=DATA.find(i=>i.id===id);
+  const x=byId(id);
   const text=`${x.z} - ${x.p}
 Stile: ${x.st}
 Famiglia: ${x.f}
@@ -561,9 +678,8 @@ Interesse XA: ${x.xa}/100`;
   if(navigator.clipboard)navigator.clipboard.writeText(text);
   alert("Scheda copiata.");
 }
-function copiaRicetta(id){
-  const x=DATA.find(i=>i.id===id);
-  const text=`RICETTA XA ISPIRATA A: ${x.z}
+function ricettaText(x){
+  return `RICETTA XA ISPIRATA A: ${x.z}
 Paese: ${x.p}
 Stile guida: ${x.st}
 Famiglia: ${x.f}
@@ -578,8 +694,17 @@ Metodo di riferimento: ${x.m}
 Profilo desiderato: ${x.pr}
 Parole chiave ricerca: ${x.lk}
 Nota XA: interesse ${x.xa}/100. Usare come base per scheda ricetta, scuola e lotto sperimentale.`;
+}
+function copiaRicetta(id){
+  const text=ricettaText(byId(id));
   if(navigator.clipboard)navigator.clipboard.writeText(text);
   alert("Ricetta XA copiata.");
+}
+function copyLoadedRecipe(){copiaRicetta(loadedId)}
+function copyFiltered(){
+  const text=results().map(x=>`${x.z} | ${x.p} | ${x.st} | XA ${x.xa}/100 | ${x.fr}`).join("\n");
+  if(navigator.clipboard)navigator.clipboard.writeText(text);
+  alert("Filtro copiato.");
 }
 q.addEventListener("input",render);
 renderOptions();
