@@ -4,107 +4,62 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#06111f">
-<title>XA Cider Atlas Pro V6</title>
+<title>XA Cider Atlas Pro V7</title>
 
 <style>
 :root{
-  --bg:#06111f;
-  --p1:#101b2b;
-  --p2:#17283c;
-  --p3:#25384c;
-  --cream:#f6ecd2;
-  --muted:#aebdcc;
-  --cyan:#52d9ff;
-  --green:#42f28a;
-  --red:#ff3b55;
-  --amber:#ffc44f;
-  --violet:#b58cff;
-  --orange:#ff8d3d;
-  --line:rgba(246,236,210,.18);
-  --shadow:0 18px 44px rgba(0,0,0,.55);
+  --bg:#06111f;--p1:#101b2b;--p2:#17283c;--p3:#25384c;
+  --cream:#f6ecd2;--muted:#aebdcc;--cyan:#52d9ff;--green:#42f28a;
+  --red:#ff3b55;--amber:#ffc44f;--violet:#b58cff;--orange:#ff8d3d;
+  --line:rgba(246,236,210,.18);--shadow:0 18px 44px rgba(0,0,0,.55);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{
-  margin:0;
-  padding:10px 10px 104px;
-  color:var(--cream);
+  margin:0;padding:10px 10px 106px;color:var(--cream);
   font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:
-    radial-gradient(circle at 15% 0%,rgba(82,217,255,.16),transparent 30%),
+    radial-gradient(circle at 15% 0%,rgba(82,217,255,.17),transparent 30%),
     radial-gradient(circle at 85% 0%,rgba(255,59,85,.14),transparent 32%),
     linear-gradient(180deg,#06111f,#0b1624 45%,#05080d);
 }
 .app{max-width:980px;margin:auto}
 .topbar{
-  position:sticky;
-  top:0;
-  z-index:50;
-  margin:-10px -10px 10px;
-  padding:10px;
+  position:sticky;top:0;z-index:50;margin:-10px -10px 10px;padding:10px;
   background:linear-gradient(180deg,rgba(6,17,31,.98),rgba(6,17,31,.90),rgba(6,17,31,0));
   backdrop-filter:blur(14px);
 }
-.master{
-  border:1px solid rgba(82,217,255,.25);
+.master,.card,.panel,.rack,.fruitCard,.lessonCard,.bizCard,.areaCard{
+  border:1px solid rgba(82,217,255,.22);
   border-radius:24px;
+  background:linear-gradient(180deg,rgba(40,54,66,.96),rgba(13,22,31,.98));
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.master{
   padding:12px;
   background:linear-gradient(180deg,#263849,#101b2b);
   box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.10);
 }
 .brand{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .logo{
-  width:58px;
-  height:58px;
-  border-radius:17px;
-  display:grid;
-  place-items:center;
-  color:#07101a;
-  font-size:25px;
-  font-weight:1000;
-  letter-spacing:-2px;
-  background:linear-gradient(180deg,#fff2ce,#c99d3f);
-  border:2px solid #ffe8a5;
+  width:58px;height:58px;border-radius:17px;display:grid;place-items:center;
+  color:#07101a;font-size:25px;font-weight:1000;letter-spacing:-2px;
+  background:linear-gradient(180deg,#fff2ce,#c99d3f);border:2px solid #ffe8a5;
   box-shadow:0 0 22px rgba(255,196,79,.38),inset 0 0 10px rgba(255,255,255,.45);
 }
 h1{margin:0;font-size:21px;line-height:1}
 .sub{margin-top:5px;color:var(--muted);font-size:12px;line-height:1.25}
 .livebox{
-  min-width:82px;
-  border:1px solid rgba(82,217,255,.30);
-  border-radius:15px;
-  background:#061018;
-  padding:8px 7px;
-  text-align:center;
-  box-shadow:inset 0 0 18px rgba(82,217,255,.10);
+  min-width:82px;border:1px solid rgba(82,217,255,.30);border-radius:15px;
+  background:#061018;padding:8px 7px;text-align:center;box-shadow:inset 0 0 18px rgba(82,217,255,.10);
 }
-.livebox b{
-  display:block;
-  color:var(--green);
-  font-size:20px;
-  line-height:1;
-  text-shadow:0 0 10px rgba(66,242,138,.55);
-}
-.livebox span{
-  display:block;
-  color:var(--muted);
-  font-size:9px;
-  font-weight:1000;
-  letter-spacing:.12em;
-  margin-top:4px;
-}
-.transport{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:7px;
-  margin-top:12px;
-}
+.livebox b{display:block;color:var(--green);font-size:20px;line-height:1;text-shadow:0 0 10px rgba(66,242,138,.55)}
+.livebox span{display:block;color:var(--muted);font-size:9px;font-weight:1000;letter-spacing:.12em;margin-top:4px}
+
+.transport{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:12px}
 .tr{
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:13px;
-  padding:10px 3px;
-  color:var(--cream);
-  font-weight:1000;
-  font-size:11px;
+  border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:10px 3px;
+  color:var(--cream);font-weight:1000;font-size:11px;
   background:linear-gradient(180deg,#344454,#14202d);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 6px 14px rgba(0,0,0,.25);
 }
@@ -112,155 +67,57 @@ h1{margin:0;font-size:21px;line-height:1}
 .play{background:linear-gradient(180deg,#45f58b,#11602d)!important;color:#031108!important}
 .blue{background:linear-gradient(180deg,#52d9ff,#165e8d)!important}
 .stop{background:linear-gradient(180deg,#ffd36a,#6b4b12)!important;color:#171006!important}
-.searchline{
-  display:grid;
-  grid-template-columns:1fr 54px;
-  gap:8px;
-  margin-top:10px;
-}
+
+.searchline{display:grid;grid-template-columns:1fr 54px;gap:8px;margin-top:10px}
 #q{
-  border:1px solid rgba(82,217,255,.35);
-  border-radius:16px;
-  padding:14px;
-  font-size:16px;
-  font-weight:850;
-  color:#061018;
-  background:#e9fbff;
-  outline:0;
-  box-shadow:0 0 14px rgba(82,217,255,.12);
+  border:1px solid rgba(82,217,255,.35);border-radius:16px;padding:14px;
+  font-size:16px;font-weight:850;color:#061018;background:#e9fbff;outline:0;
 }
 .scan{
-  border:1px solid rgba(82,217,255,.35);
-  border-radius:16px;
-  background:linear-gradient(180deg,#52d9ff,#0c5d89);
-  color:white;
-  font-weight:1000;
-  font-size:20px;
+  border:1px solid rgba(82,217,255,.35);border-radius:16px;
+  background:linear-gradient(180deg,#52d9ff,#0c5d89);color:white;font-weight:1000;font-size:20px;
 }
-.tabs,.chips,.subtools{
-  display:flex;
-  gap:7px;
-  overflow-x:auto;
-  scrollbar-width:none;
-}
+.tabs,.chips,.tools{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none}
 .tabs{padding:0 0 3px;margin:10px 0}
-.chips{padding:0 0 8px}
-.subtools{padding:0 0 9px}
-.tabs::-webkit-scrollbar,.chips::-webkit-scrollbar,.subtools::-webkit-scrollbar{display:none}
-.tab{
-  min-width:86px;
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:11px 8px;
-  color:var(--muted);
-  background:linear-gradient(180deg,#1d2a37,#101923);
-  font-size:11px;
-  font-weight:1000;
+.chips,.tools{padding:0 0 8px}
+.tabs::-webkit-scrollbar,.chips::-webkit-scrollbar,.tools::-webkit-scrollbar{display:none}
+.tab,.chip,.toolbtn{
+  white-space:nowrap;border:1px solid var(--line);border-radius:14px;padding:10px 10px;
+  color:var(--muted);background:linear-gradient(180deg,#1d2a37,#101923);
+  font-size:11px;font-weight:1000;
 }
-.tab.on{
-  color:#061018;
-  background:linear-gradient(180deg,#e9fbff,#52d9ff);
-  box-shadow:0 0 18px rgba(82,217,255,.28);
-}
-.chip,.toolbtn{
-  white-space:nowrap;
-  border:1px solid rgba(82,217,255,.23);
-  border-radius:999px;
-  padding:9px 11px;
-  color:#dffbff;
-  background:rgba(82,217,255,.08);
-  font-size:11px;
-  font-weight:1000;
-}
-.chip.on,.toolbtn.on{
-  background:linear-gradient(180deg,#ffc44f,#a56510);
-  color:#061018;
+.tab.on,.chip.on,.toolbtn.on{
+  color:#061018;background:linear-gradient(180deg,#e9fbff,#52d9ff);
+  box-shadow:0 0 18px rgba(82,217,255,.26);
 }
 select{
-  border:1px solid rgba(82,217,255,.30);
-  border-radius:14px;
-  background:#e9fbff;
-  color:#061018;
-  padding:10px 12px;
-  font-size:13px;
-  font-weight:850;
+  border:1px solid rgba(82,217,255,.30);border-radius:14px;background:#e9fbff;color:#061018;
+  padding:10px 12px;font-size:13px;font-weight:850;
 }
 .boardTitle{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  color:var(--muted);
-  font-size:11px;
-  font-weight:1000;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  margin:10px 3px 8px;
+  display:flex;justify-content:space-between;align-items:center;color:var(--muted);
+  font-size:11px;font-weight:1000;letter-spacing:.12em;text-transform:uppercase;margin:10px 3px 8px;
 }
 .boardTitle strong{color:var(--cyan);text-shadow:0 0 10px rgba(82,217,255,.35)}
-.scene{display:none}
-.scene.on{display:block}
-.grid,.list{display:grid;gap:12px}
-.card,.listCard,.rack,.compareBox,.homePanel,.loadedPanel,.fruitCard,.lessonCard{
-  border:1px solid rgba(82,217,255,.22);
-  border-radius:24px;
-  overflow:hidden;
-  background:linear-gradient(180deg,rgba(40,54,66,.96),rgba(13,22,31,.98));
-  box-shadow:var(--shadow);
-}
-.homePanel,.loadedPanel,.listCard,.rack,.compareBox,.fruitCard,.lessonCard{padding:12px}
-.homeGrid{display:grid;gap:12px}
-.homePanel h2,.loadedPanel h2,.listCard h2,.rack h2,.compareBox h2,.fruitCard h2,.lessonCard h2{
-  margin:0 0 10px;
-  color:var(--cyan);
-  font-size:14px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
+.scene{display:none}.scene.on{display:block}
+.grid,.list,.homeGrid{display:grid;gap:12px}
+.panel,.rack,.fruitCard,.lessonCard,.bizCard,.areaCard{padding:12px}
+.panel h2,.rack h2,.fruitCard h2,.lessonCard h2,.bizCard h2,.areaCard h2{
+  margin:0 0 10px;color:var(--cyan);font-size:14px;letter-spacing:.08em;text-transform:uppercase;
 }
 .bigLoaded{
-  border:1px solid rgba(66,242,138,.26);
-  border-radius:18px;
-  background:#061018;
-  padding:12px;
+  border:1px solid rgba(66,242,138,.26);border-radius:18px;background:#061018;padding:12px;
   box-shadow:inset 0 0 22px rgba(66,242,138,.08);
 }
-.bigLoaded .name{
-  font-size:21px;
-  font-weight:1000;
-  color:var(--green);
-  text-shadow:0 0 12px rgba(66,242,138,.34);
-}
-.bigLoaded .meta{
-  font-size:12px;
-  color:#d8e5ee;
-  margin-top:5px;
-  line-height:1.35;
-}
-.quickStats{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:6px;
-  margin-top:10px;
-}
-.quickStat{
-  border:1px solid rgba(82,217,255,.18);
-  background:#071018;
-  border-radius:14px;
-  padding:8px 4px;
-  text-align:center;
-}
+.bigLoaded .name{font-size:21px;font-weight:1000;color:var(--green);text-shadow:0 0 12px rgba(66,242,138,.34)}
+.bigLoaded .meta{font-size:12px;color:#d8e5ee;margin-top:5px;line-height:1.35}
+.quickStats{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}
+.quickStat{border:1px solid rgba(82,217,255,.18);background:#071018;border-radius:14px;padding:8px 4px;text-align:center}
 .quickStat b{display:block;font-size:9px;color:var(--muted)}
-.quickStat span{
-  display:block;
-  font-size:16px;
-  font-weight:1000;
-  color:var(--green);
-  text-shadow:0 0 8px rgba(66,242,138,.35);
-}
+.quickStat span{display:block;font-size:16px;font-weight:1000;color:var(--green);text-shadow:0 0 8px rgba(66,242,138,.35)}
+
 .cardTop{
-  padding:12px;
-  background:
-    radial-gradient(circle at 100% 0%,rgba(82,217,255,.12),transparent 35%),
-    linear-gradient(180deg,#263747,#16232f);
+  padding:12px;background:radial-gradient(circle at 100% 0%,rgba(82,217,255,.12),transparent 35%),linear-gradient(180deg,#263747,#16232f);
   border-bottom:1px solid rgba(246,236,210,.12);
 }
 .cardRow{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
@@ -269,78 +126,32 @@ select{
 .style{margin-top:7px;color:var(--cyan);font-size:13px;font-weight:950}
 .desc{margin-top:8px;color:#cfdae4;font-size:13px;line-height:1.38}
 .star{
-  border:1px solid rgba(255,196,79,.38);
-  border-radius:13px;
-  color:var(--amber);
-  background:#0a1119;
-  padding:8px 10px;
-  font-size:19px;
+  border:1px solid rgba(255,196,79,.38);border-radius:13px;color:var(--amber);
+  background:#0a1119;padding:8px 10px;font-size:19px;
 }
 .pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .pill{
-  border:1px solid rgba(82,217,255,.28);
-  background:rgba(82,217,255,.08);
-  color:#dffbff;
-  border-radius:999px;
-  padding:6px 8px;
-  font-size:10px;
-  font-weight:950;
+  border:1px solid rgba(82,217,255,.28);background:rgba(82,217,255,.08);color:#dffbff;
+  border-radius:999px;padding:6px 8px;font-size:10px;font-weight:950;
 }
 .lcd{
-  margin:12px;
-  border:1px solid rgba(82,217,255,.28);
-  border-radius:18px;
-  padding:11px;
+  margin:12px;border:1px solid rgba(82,217,255,.28);border-radius:18px;padding:11px;
   background:linear-gradient(180deg,#071a25,#031016);
   box-shadow:inset 0 0 20px rgba(82,217,255,.10),0 0 14px rgba(82,217,255,.08);
 }
 .lcdTitle{
-  color:var(--green);
-  font-size:11px;
-  font-weight:1000;
-  letter-spacing:.12em;
-  text-transform:uppercase;
+  color:var(--green);font-size:11px;font-weight:1000;letter-spacing:.12em;text-transform:uppercase;
   text-shadow:0 0 10px rgba(66,242,138,.45);
 }
 .lcdText{margin-top:6px;color:#dffbff;font-size:13px;line-height:1.35}
-.digitalGrid,.meterGrid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:6px;
-  padding:0 12px 12px;
-}
-.digital{
-  background:#071018;
-  border:1px solid rgba(82,217,255,.19);
-  border-radius:14px;
-  padding:8px 5px;
-  text-align:center;
-}
+.digitalGrid,.meterGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:0 12px 12px}
+.digital{background:#071018;border:1px solid rgba(82,217,255,.19);border-radius:14px;padding:8px 5px;text-align:center}
 .digital b{display:block;color:var(--muted);font-size:9px;font-weight:1000;letter-spacing:.08em}
-.digital span{
-  display:block;
-  color:var(--green);
-  font-size:17px;
-  font-weight:1000;
-  margin-top:3px;
-  text-shadow:0 0 10px rgba(66,242,138,.38);
-}
+.digital span{display:block;color:var(--green);font-size:17px;font-weight:1000;margin-top:3px;text-shadow:0 0 10px rgba(66,242,138,.38)}
 .digital small{display:block;color:#d6e7f4;font-size:10px;font-weight:900;margin-top:2px}
-.meter{
-  background:#090d12;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:14px;
-  padding:7px 5px;
-}
+.meter{background:#090d12;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:7px 5px}
 .meter b{display:block;text-align:center;color:#aab8c6;font-size:9px;font-weight:1000;margin-bottom:6px}
-.bar{
-  height:50px;
-  border-radius:10px;
-  background:linear-gradient(180deg,#1e2832,#080b0e);
-  border:1px solid rgba(255,255,255,.08);
-  overflow:hidden;
-  position:relative;
-}
+.bar{height:50px;border-radius:10px;background:linear-gradient(180deg,#1e2832,#080b0e);border:1px solid rgba(255,255,255,.08);overflow:hidden;position:relative}
 .fill{position:absolute;left:0;right:0;bottom:0;box-shadow:0 0 14px rgba(82,217,255,.35)}
 .acid{background:linear-gradient(180deg,#42f28a,#158a43)}
 .tan{background:linear-gradient(180deg,#ffc44f,#b46a12)}
@@ -350,90 +161,49 @@ select{
 .meter span{display:block;margin-top:5px;text-align:center;color:#eaf8ff;font-size:10px;font-weight:1000}
 details{border-top:1px solid rgba(246,236,210,.12)}
 summary{
-  list-style:none;
-  padding:13px 12px;
-  font-size:13px;
-  font-weight:1000;
-  color:#f9f2df;
-  cursor:pointer;
+  list-style:none;padding:13px 12px;font-size:13px;font-weight:1000;color:#f9f2df;cursor:pointer;
   background:linear-gradient(180deg,#1c2c3a,#12202d);
 }
 summary::-webkit-details-marker{display:none}
 .sheet{padding:0 12px 13px;color:#cbd7e0;font-size:14px;line-height:1.45}
 .sheet h3{margin:14px 0 5px;color:var(--cyan);font-size:11px;letter-spacing:.11em;text-transform:uppercase}
-.actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:14px;
-}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
 .action{
-  display:block;
-  text-align:center;
-  text-decoration:none;
-  border-radius:14px;
-  padding:12px 8px;
-  font-size:12px;
-  font-weight:1000;
-  color:#061018;
-  background:linear-gradient(180deg,#e9fbff,#52d9ff);
+  display:block;text-align:center;text-decoration:none;border-radius:14px;padding:12px 8px;font-size:12px;font-weight:1000;
+  color:#061018;background:linear-gradient(180deg,#e9fbff,#52d9ff);
 }
-.action.dark{
-  color:var(--cream);
-  background:linear-gradient(180deg,#253746,#121c27);
-  border:1px solid rgba(82,217,255,.25);
-}
+.action.dark{color:var(--cream);background:linear-gradient(180deg,#253746,#121c27);border:1px solid rgba(82,217,255,.25)}
 .infoLine{
-  display:grid;
-  grid-template-columns:112px 1fr;
-  gap:8px;
-  padding:8px 0;
-  border-top:1px solid rgba(246,236,210,.10);
-  font-size:13px;
-  line-height:1.35;
+  display:grid;grid-template-columns:112px 1fr;gap:8px;padding:8px 0;
+  border-top:1px solid rgba(246,236,210,.10);font-size:13px;line-height:1.35;
 }
-.infoLine b{
-  color:var(--amber);
-  font-size:11px;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-}
+.infoLine b{color:var(--amber);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
 .infoLine span{color:#d8e5ee}
-.fruitImg{
-  height:128px;
-  border-radius:18px;
-  border:1px solid rgba(82,217,255,.22);
+.mapBox{
+  margin-top:10px;border:1px solid rgba(82,217,255,.22);border-radius:18px;padding:12px;
   background:
-    radial-gradient(circle at 38% 42%,rgba(255,255,255,.35),transparent 8%),
+    radial-gradient(circle at 50% 50%,rgba(82,217,255,.18),transparent 22%),
+    linear-gradient(135deg,rgba(82,217,255,.08),rgba(255,196,79,.06)),
+    #071018;
+}
+.mapBox b{display:block;color:var(--green);font-size:12px;letter-spacing:.1em}
+.mapBox span{display:block;color:#d8e5ee;font-size:13px;margin-top:5px}
+
+.fruitImg{
+  height:138px;border-radius:18px;border:1px solid rgba(82,217,255,.22);
+  background:
+    radial-gradient(circle at 35% 38%,rgba(255,255,255,.35),transparent 8%),
     radial-gradient(circle at 50% 50%,var(--fruit1),var(--fruit2) 46%,transparent 47%),
-    radial-gradient(circle at 62% 50%,var(--fruit1),var(--fruit2) 46%,transparent 47%),
+    radial-gradient(circle at 63% 52%,var(--fruit1),var(--fruit2) 46%,transparent 47%),
     linear-gradient(180deg,#071018,#111c28);
-  position:relative;
-  overflow:hidden;
-  margin-bottom:10px;
+  position:relative;overflow:hidden;margin-bottom:10px;
 }
 .fruitImg:before{
-  content:"";
-  position:absolute;
-  width:34px;
-  height:18px;
-  border-radius:100% 0 100% 0;
-  background:#4ee08a;
-  left:50%;
-  top:22px;
-  transform:rotate(-28deg);
-  box-shadow:0 0 14px rgba(66,242,138,.35);
+  content:"";position:absolute;width:36px;height:18px;border-radius:100% 0 100% 0;background:#4ee08a;
+  left:50%;top:20px;transform:rotate(-28deg);box-shadow:0 0 14px rgba(66,242,138,.35);
 }
 .fruitImg:after{
-  content:"";
-  position:absolute;
-  width:9px;
-  height:30px;
-  border-radius:9px;
-  background:#6b3b18;
-  left:49%;
-  top:22px;
-  transform:rotate(12deg);
+  content:"";position:absolute;width:9px;height:30px;border-radius:9px;background:#6b3b18;left:49%;top:21px;transform:rotate(12deg);
 }
 .appleRed{--fruit1:#ff5969;--fruit2:#8d1427}
 .appleGreen{--fruit1:#95ff70;--fruit2:#267a2a}
@@ -441,27 +211,25 @@ summary::-webkit-details-marker{display:none}
 .appleDark{--fruit1:#7c2f18;--fruit2:#38160e}
 .pear{--fruit1:#d7ff7a;--fruit2:#7d8f2b}
 .crab{--fruit1:#ff4055;--fruit2:#5c1120}
-.lessonCard{
-  background:
-    radial-gradient(circle at 100% 0%,rgba(82,217,255,.10),transparent 28%),
-    linear-gradient(180deg,rgba(40,54,66,.96),rgba(13,22,31,.98));
+
+.lessonNum{color:var(--green);font-size:12px;font-weight:1000;letter-spacing:.12em}
+.quizBox{margin-top:10px;border:1px solid rgba(255,196,79,.25);border-radius:18px;padding:10px;background:#071018}
+.quizBox button{
+  width:100%;margin-top:7px;border:1px solid rgba(82,217,255,.22);border-radius:13px;padding:10px;
+  background:linear-gradient(180deg,#24364a,#111b26);color:#e8f8ff;font-weight:900;text-align:left;
 }
-.lessonNum{
-  color:var(--green);
-  font-size:12px;
-  font-weight:1000;
-  letter-spacing:.12em;
+.quizAnswer{display:none;margin-top:8px;color:var(--green);font-size:13px;line-height:1.35}
+.bizScore{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px;
 }
-.lessonCard p{color:#d8e5ee;font-size:13px;line-height:1.42}
+.bizScore div{background:#071018;border:1px solid rgba(82,217,255,.17);border-radius:12px;padding:7px 3px;text-align:center}
+.bizScore b{display:block;color:var(--muted);font-size:8px}
+.bizScore span{display:block;color:var(--green);font-size:15px;font-weight:1000}
 .mixerDeck{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 12px;scrollbar-width:none}
 .mixerDeck::-webkit-scrollbar{display:none}
 .channel{
-  min-width:164px;
-  border:1px solid rgba(82,217,255,.22);
-  border-radius:22px;
-  background:linear-gradient(180deg,#263747,#111b26);
-  box-shadow:var(--shadow);
-  padding:10px;
+  min-width:164px;border:1px solid rgba(82,217,255,.22);border-radius:22px;background:linear-gradient(180deg,#263747,#111b26);
+  box-shadow:var(--shadow);padding:10px;
 }
 .chName{color:var(--amber);font-size:12px;font-weight:1000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .chType{color:#d7e8f2;font-size:11px;margin-top:4px;line-height:1.28;min-height:30px}
@@ -471,126 +239,32 @@ summary::-webkit-details-marker{display:none}
 .vu i.y{background:var(--amber);box-shadow:0 0 8px rgba(255,196,79,.48)}
 .vu i.r{background:var(--red);box-shadow:0 0 8px rgba(255,59,85,.48)}
 .faderSet{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
-.fader{
-  height:126px;
-  background:#081018;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:13px;
-  position:relative;
-  padding-top:5px;
-}
+.fader{height:126px;background:#081018;border:1px solid rgba(255,255,255,.08);border-radius:13px;position:relative;padding-top:5px}
 .fader label{display:block;text-align:center;font-size:8px;color:var(--muted);font-weight:1000}
-.track{
-  position:absolute;
-  left:50%;
-  top:24px;
-  bottom:12px;
-  width:5px;
-  transform:translateX(-50%);
-  border-radius:99px;
-  background:#2a3642;
-}
+.track{position:absolute;left:50%;top:24px;bottom:12px;width:5px;transform:translateX(-50%);border-radius:99px;background:#2a3642}
 .knob{
-  position:absolute;
-  left:50%;
-  width:28px;
-  height:16px;
-  border-radius:7px;
-  transform:translateX(-50%);
-  background:linear-gradient(180deg,#f9edcf,#8f9cad);
-  box-shadow:0 4px 8px rgba(0,0,0,.55);
+  position:absolute;left:50%;width:28px;height:16px;border-radius:7px;transform:translateX(-50%);
+  background:linear-gradient(180deg,#f9edcf,#8f9cad);box-shadow:0 4px 8px rgba(0,0,0,.55);
 }
 .compareGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.compareMini{
-  border:1px solid rgba(82,217,255,.20);
-  border-radius:18px;
-  padding:10px;
-  background:#081018;
-}
+.compareMini{border:1px solid rgba(82,217,255,.20);border-radius:18px;padding:10px;background:#081018}
 .compareMini h3{margin:0;color:var(--amber);font-size:13px}
-.crow{
-  display:grid;
-  grid-template-columns:76px 1fr;
-  gap:6px;
-  border-top:1px solid rgba(246,236,210,.10);
-  padding:7px 0;
-  font-size:12px;
-}
+.crow{display:grid;grid-template-columns:76px 1fr;gap:6px;border-top:1px solid rgba(246,236,210,.10);padding:7px 0;font-size:12px}
 .crow b{color:var(--cyan)}
-.knobGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
-.knobModule{
-  border:1px solid rgba(255,255,255,.10);
-  background:#081018;
-  border-radius:16px;
-  padding:10px 6px;
-  text-align:center;
-}
-.dial{
-  width:52px;
-  height:52px;
-  margin:0 auto 7px;
-  border-radius:50%;
-  background:radial-gradient(circle,#e6edf2 0 18%,#233241 20% 56%,#080d12 58%);
-  border:2px solid rgba(82,217,255,.42);
-  position:relative;
-  box-shadow:0 0 16px rgba(82,217,255,.18);
-}
-.dial:after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:5px;
-  width:4px;
-  height:21px;
-  border-radius:6px;
-  background:var(--green);
-  transform:translateX(-50%) rotate(35deg);
-  transform-origin:bottom;
-  box-shadow:0 0 8px rgba(66,242,138,.65);
-}
-.knobModule b{display:block;color:#eff9ff;font-size:11px;font-weight:1000}
-.knobModule span{display:block;color:var(--muted);font-size:10px;margin-top:2px}
-.empty{
-  display:none;
-  border:1px dashed rgba(82,217,255,.30);
-  border-radius:20px;
-  padding:24px;
-  text-align:center;
-  color:var(--muted);
-}
+.empty{display:none;border:1px dashed rgba(82,217,255,.30);border-radius:20px;padding:24px;text-align:center;color:var(--muted)}
 .bottomNav{
-  position:fixed;
-  left:10px;
-  right:10px;
-  bottom:10px;
-  max-width:980px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:7px;
-  padding:8px;
-  border:1px solid rgba(82,217,255,.25);
-  border-radius:22px;
-  background:rgba(7,16,26,.88);
-  backdrop-filter:blur(14px);
-  box-shadow:var(--shadow);
-  z-index:60;
+  position:fixed;left:10px;right:10px;bottom:10px;max-width:980px;margin:auto;
+  display:grid;grid-template-columns:repeat(5,1fr);gap:7px;padding:8px;
+  border:1px solid rgba(82,217,255,.25);border-radius:22px;background:rgba(7,16,26,.88);
+  backdrop-filter:blur(14px);box-shadow:var(--shadow);z-index:60;
 }
 .bottomNav button{
-  border:1px solid rgba(246,236,210,.14);
-  border-radius:14px;
-  padding:10px 3px;
-  color:#e8f8ff;
-  font-size:10px;
-  font-weight:1000;
-  background:linear-gradient(180deg,#233546,#101b26);
+  border:1px solid rgba(246,236,210,.14);border-radius:14px;padding:10px 3px;
+  color:#e8f8ff;font-size:10px;font-weight:1000;background:linear-gradient(180deg,#233546,#101b26);
 }
 .compact .lcd,.compact .meterGrid,.compact details{display:none}
 @media(min-width:760px){
-  .grid{grid-template-columns:1fr 1fr}
-  .list{grid-template-columns:1fr 1fr}
-  .homeGrid{grid-template-columns:1fr 1fr}
-  .knobGrid{grid-template-columns:repeat(6,1fr)}
+  .grid,.list,.homeGrid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -600,13 +274,12 @@ summary::-webkit-details-marker{display:none}
 
   <div class="topbar">
     <div class="master">
-
       <div class="brand">
         <div style="display:flex;gap:11px;align-items:center">
           <div class="logo">XA</div>
           <div>
-            <h1>Cider Atlas Pro V6</h1>
-            <div class="sub">Mobile DAW · più paesi · mele illustrate · lezioni strutturate</div>
+            <h1>Cider Atlas Pro V7</h1>
+            <div class="sub">Atlante · scuola · business · mele · ricette XA</div>
           </div>
         </div>
         <div class="livebox"><b id="liveCount">00</b><span>STYLE</span></div>
@@ -624,26 +297,27 @@ summary::-webkit-details-marker{display:none}
         <input id="q" type="search" placeholder="Cerca: Estonia, Lituania, Russia, Bulgaria, Alpi, perry...">
         <button class="scan" onclick="render()">⌕</button>
       </div>
-
     </div>
   </div>
 
   <div class="tabs">
     <button id="t_home" class="tab on" onclick="scene('home')">HOME</button>
     <button id="t_atlas" class="tab" onclick="scene('atlas')">ATLAS</button>
+    <button id="t_aree" class="tab" onclick="scene('aree')">AREE</button>
     <button id="t_paesi" class="tab" onclick="scene('paesi')">PAESI</button>
     <button id="t_stili" class="tab" onclick="scene('stili')">STILI</button>
     <button id="t_mele" class="tab" onclick="scene('mele')">MELE</button>
     <button id="t_school" class="tab" onclick="scene('school')">SCHOOL</button>
+    <button id="t_business" class="tab" onclick="scene('business')">BUSINESS</button>
     <button id="t_mixer" class="tab" onclick="scene('mixer')">MIXER</button>
     <button id="t_compare" class="tab" onclick="scene('compare')">CONFR.</button>
-    <button id="t_rack" class="tab" onclick="scene('rack')">RACK</button>
     <button id="t_fav" class="tab" onclick="scene('fav')">FAV</button>
   </div>
 
-  <div class="subtools">
+  <div class="tools">
     <select id="sorter" onchange="render()">
       <option value="xa">Ordina: interesse XA</option>
+      <option value="business">Ordina: business</option>
       <option value="acid">Ordina: acidità</option>
       <option value="tan">Ordina: tannino</option>
       <option value="sweet">Ordina: dolcezza</option>
@@ -663,26 +337,23 @@ summary::-webkit-details-marker{display:none}
 
   <section id="home" class="scene on">
     <div class="homeGrid">
-      <div class="loadedPanel">
+      <div class="panel">
         <h2>Style Loaded</h2>
         <div id="loadedBox" class="bigLoaded"></div>
       </div>
-
-      <div class="homePanel">
+      <div class="panel">
         <h2>Top XA Styles</h2>
         <div id="topDeck"></div>
       </div>
-
-      <div class="homePanel">
+      <div class="panel">
         <h2>Filtro attivo</h2>
         <div id="filterInfo"></div>
       </div>
-
-      <div class="homePanel">
+      <div class="panel">
         <h2>Azioni rapide</h2>
         <div class="actions">
           <a class="action" href="javascript:scene('atlas')">APRI ATLAS</a>
-          <a class="action dark" href="javascript:scene('compare')">CONFRONTA</a>
+          <a class="action dark" href="javascript:scene('business')">BUSINESS</a>
           <a class="action" href="javascript:scene('school')">XA SCHOOL</a>
           <a class="action dark" href="javascript:copyLoadedRecipe()">COPIA LOADED</a>
         </div>
@@ -690,44 +361,21 @@ summary::-webkit-details-marker{display:none}
     </div>
   </section>
 
-  <section id="atlas" class="scene">
-    <div id="cards" class="grid"></div>
-    <div id="empty" class="empty">Nessun risultato.</div>
-  </section>
-
+  <section id="atlas" class="scene"><div id="cards" class="grid"></div><div id="empty" class="empty">Nessun risultato.</div></section>
+  <section id="aree" class="scene"><div id="areeDeck" class="list"></div></section>
   <section id="paesi" class="scene"><div id="paesiDeck" class="list"></div></section>
   <section id="stili" class="scene"><div id="stiliDeck" class="list"></div></section>
   <section id="mele" class="scene"><div id="meleDeck" class="list"></div></section>
   <section id="school" class="scene"><div id="schoolDeck" class="list"></div></section>
+  <section id="business" class="scene"><div id="businessDeck" class="list"></div></section>
   <section id="mixer" class="scene"><div id="mixerDeck" class="mixerDeck"></div></section>
 
   <section id="compare" class="scene">
-    <div class="compareBox">
+    <div class="panel">
       <h2>Confronta due stili</h2>
       <select id="cmpA" onchange="renderCompare()"></select>
       <select id="cmpB" onchange="renderCompare()"></select>
       <div id="compareResult"></div>
-    </div>
-  </section>
-
-  <section id="rack" class="scene">
-    <div class="rack">
-      <h2>XA Territory Processor</h2>
-      <div class="knobGrid">
-        <div class="knobModule"><div class="dial"></div><b>ACID</b><span>acidità</span></div>
-        <div class="knobModule"><div class="dial"></div><b>TANNIN</b><span>tannino</span></div>
-        <div class="knobModule"><div class="dial"></div><b>DOLCE</b><span>dolcezza</span></div>
-        <div class="knobModule"><div class="dial"></div><b>BOLLA</b><span>frizzantezza</span></div>
-        <div class="knobModule"><div class="dial"></div><b>CORPO</b><span>struttura</span></div>
-        <div class="knobModule"><div class="dial"></div><b>APPLE</b><span>mele/pere</span></div>
-      </div>
-    </div>
-
-    <div class="rack">
-      <h2>Recipe Send FX</h2>
-      <div class="infoLine"><b>Funzione</b><span>Copia una base ricetta XA ispirata allo stile selezionato.</span></div>
-      <div class="infoLine"><b>Uso</b><span>Apri una scheda, carica lo stile e premi COPIA RICETTA XA.</span></div>
-      <div class="infoLine"><b>Futuro</b><span>Collegamento a XA Cider School, ricette, lotti e atlante PC.</span></div>
     </div>
   </section>
 
@@ -743,58 +391,46 @@ summary::-webkit-details-marker{display:none}
   <button onclick="quick('Baltici')">BALTICI</button>
   <button onclick="quick('Alpi')">ALPI</button>
   <button onclick="quick('Perry')">PERRY</button>
-  <button onclick="quick('moderno')">MODERN</button>
+  <button onclick="scene('business')">BIZ</button>
 </div>
 
 <script>
 const DATA=[
-{id:"altoadige",p:"Italia",z:"Alpi / Alto Adige",st:"Sidro alpino moderno",f:"Alpino pulito",d:"Sidri freschi, moderni e precisi da mele di montagna.",w:"Alto Adige, Val Venosta, Merano, Bolzano.",m:"Fermentazione controllata di succo di mela locale, spesso frizzante, secco o semi-secco.",fr:"Golden Delicious, Gala, Fuji, Granny Smith, mele alpine aromatiche.",pr:"Mela fresca, acidità elegante, pulizia aromatica, corpo leggero.",lk:"Sidro secco altoatesino, rifermentati, metodo classico, produttori agricoli.",ab:"4–7%",a:62,t:24,s:32,b:66,c:44,xa:86,tags:["Italia","Alpi","mele","moderno","fresco","pulito"],map:"https://www.google.com/maps/search/Alto+Adige+cider"},
-{id:"trentino",p:"Italia",z:"Trentino / Val di Non",st:"Sidro alpino sperimentale",f:"Alpino moderno",d:"Zona enorme per la mela, interessante per sidri secchi, ancestrali e sperimentali.",w:"Val di Non, Val di Sole, frutteti trentini.",m:"Fermentazioni controllate, rifermentazioni, metodo ancestrale e varietà antiche.",fr:"Golden Delicious, Renetta, Gala, Fuji, mele locali da montagna.",pr:"Mela gialla, acidità fresca, profilo nitido.",lk:"Sidro alpino, ancestrale, varietà antiche, botaniche.",ab:"4–8%",a:60,t:25,s:35,b:55,c:48,xa:88,tags:["Italia","Alpi","Trentino","mele","ancestrale"],map:"https://www.google.com/maps/search/Trentino+sidro"},
-{id:"valledaosta",p:"Italia",z:"Valle d’Aosta / Piemonte alpino",st:"Sidro alpino di confine",f:"Alpino raro",d:"Area piccola ma interessante per mele di montagna e produzioni artigianali di nicchia.",w:"Valle d’Aosta, Canavese, valli piemontesi.",m:"Fermentazione di mele locali in piccoli lotti agricoli.",fr:"Renette, mele antiche locali, mele acide di montagna.",pr:"Fresco, secco, acidità netta, profilo montano.",lk:"Sidro Valle d’Aosta, sidro piemontese, mele antiche.",ab:"4–7%",a:68,t:32,s:24,b:42,c:46,xa:80,tags:["Italia","Alpi","Piemonte","Valle d’Aosta","mele"],map:"https://www.google.com/maps/search/Valle+d'Aosta+sidro"},
+{id:"asturias",area:"CLASSICI",p:"Spagna",z:"Asturie",st:"Sidra Natural Asturiana",f:"Sidra naturale",d:"Centro mondiale del sidro: sidra secca, viva, acida, gastronomica, servita con escanciado.",w:"Gijón, Villaviciosa, Nava, Oviedo.",m:"Fermentazione di mele asturiane, spesso sidra ferma, ossigenata al servizio.",fr:"Raxao, Regona, Durona de Tresali, Verdialona, Perico, De la Riega.",pr:"Secca, acida, viva, leggermente volatile, gastronomica.",lk:"sidra natural, llagares, sidrerías, DOP Sidra de Asturias, escanciado",ab:"5–7%",a:88,t:32,s:12,b:18,c:46,xa:96,hist:96,biz:86,orig:94,import:78,tags:["Spagna","Asturie","mele","sidra natural","acido","classico"],map:"https://www.google.com/maps/search/Asturias+sidreria"},
+{id:"basque",area:"CLASSICI",p:"Spagna / Francia",z:"Paesi Baschi",st:"Sagardoa",f:"Sidro basco",d:"Sidro asciutto, tagliente, salino e spesso funky, legato a botte e cucina basca.",w:"Gipuzkoa, San Sebastián, Hernani, Astigarraga.",m:"Fermentazione secca, servizio da botte, consumo in sagardotegi.",fr:"Mele locali basche, blend di acide, amare e dolci.",pr:"Molto secco, acido, rustico, salino, funk leggero.",lk:"Sagardoa, sagarno, sagardotegi, kupela",ab:"5–7%",a:94,t:40,s:8,b:15,c:48,xa:94,hist:94,biz:82,orig:92,import:76,tags:["Spagna","Paesi Baschi","mele","sagardoa","funky"],map:"https://www.google.com/maps/search/Basque+sidreria+sagardotegi"},
+{id:"normandy",area:"CLASSICI",p:"Francia",z:"Normandia",st:"Cidre Bouché",f:"Cidre francese",d:"Sidri eleganti, spesso demi-sec, con mele dolci-amare, tannino morbido e keeving.",w:"Normandia, Calvados, Manche, Orne.",m:"Blend di mele da cidre, maturazione lenta, presa di spuma naturale, spesso keeving.",fr:"Douce Moën, Bedan, Bisquet, Binet Rouge, mele dolci-amare e amare.",pr:"Mela cotta, buccia, miele leggero, tannino morbido, bollicina fine.",lk:"cidre bouché, cidre doux, demi-sec, brut, keeving",ab:"3–6%",a:52,t:72,s:68,b:74,c:62,xa:95,hist:95,biz:90,orig:90,import:86,tags:["Francia","Normandia","mele","keeving","tannico"],map:"https://www.google.com/maps/search/Normandy+cider+route"},
+{id:"paysdauge",area:"CLASSICI",p:"Francia",z:"Pays d’Auge",st:"Cidre AOP Pays d’Auge",f:"Cidre normanno premium",d:"Sottozona prestigiosa della Normandia, più strutturata e tradizionale.",w:"Pays d’Auge, fra Calvados e aree vicine.",m:"Mele da cidre, fermentazione lenta, presa di spuma naturale.",fr:"Mele dolci-amare e amare normanne, blend per tannino e struttura.",pr:"Elegante, maturo, tannico, fruttato, con bollicina fine.",lk:"AOP Pays d’Auge, cidre bouché, cidre brut, demi-sec",ab:"3–6%",a:50,t:78,s:62,b:76,c:68,xa:94,hist:94,biz:88,orig:88,import:84,tags:["Francia","Pays d’Auge","mele","AOP","premium"],map:"https://www.google.com/maps/search/Pays+d'Auge+cidre"},
+{id:"brittany",area:"CLASSICI",p:"Francia",z:"Bretagna / Cornouaille",st:"Cidre Bretone",f:"Cidre francese",d:"Sidri gastronomici, rustici o eleganti, spesso più marini e secchi della Normandia.",w:"Finistère, Cornouaille, Morbihan.",m:"Mele bretoni, fermentazioni lente, versioni brut, demi-sec o doux.",fr:"Mele bretoni da cidre, dolci, amare, acide e dolci-amare.",pr:"Fruttato maturo, tannino, acidità media, nota rustica e minerale.",lk:"Cidre de Bretagne, Cornouaille, brut, demi-sec",ab:"4–6%",a:57,t:66,s:50,b:60,c:58,xa:92,hist:90,biz:84,orig:86,import:82,tags:["Francia","Bretagna","mele","Cornouaille"],map:"https://www.google.com/maps/search/Brittany+cider"},
+{id:"domfront",area:"CLASSICI",p:"Francia",z:"Domfront / Normandia",st:"Poiré Domfront",f:"Poiré",d:"Grande territorio francese del perry, basato su pere da poiré. Elegante e floreale.",w:"Domfrontais, Normandia meridionale.",m:"Fermentazione di pere da poiré con presa di spuma naturale.",fr:"Pere da poiré, soprattutto Plant de Blanc e varietà locali.",pr:"Pera, fiori bianchi, agrume, delicatezza, bollicina fine.",lk:"Poiré Domfront, poiré normand, perry francese",ab:"3–5%",a:66,t:48,s:45,b:72,c:46,xa:90,hist:88,biz:78,orig:90,import:78,tags:["Francia","Poiré","pera","Domfront"],map:"https://www.google.com/maps/search/Poiré+Domfront"},
+{id:"ukwest",area:"CLASSICI",p:"Regno Unito",z:"West Country",st:"Farmhouse / Scrumpy",f:"English Cider",d:"Sidri strutturati, tannici, profondi, spesso da mele bittersweet e bittersharp.",w:"Somerset, Devon, Dorset, Herefordshire, Gloucestershire.",m:"Mele da sidro ricche di tannino, fermentazione secca, farmhouse, scrumpy o keeved.",fr:"Dabinett, Yarlington Mill, Kingston Black, Michelin, Harry Masters Jersey.",pr:"Tannico, pieno, mela matura, fieno, cuoio leggero.",lk:"scrumpy, farmhouse cider, keeved cider, bittersweet apples",ab:"5–8%",a:55,t:90,s:38,b:40,c:82,xa:94,hist:94,biz:84,orig:88,import:75,tags:["UK","Somerset","mele","scrumpy","tannico"],map:"https://www.google.com/maps/search/Somerset+cider"},
+{id:"perryuk",area:"CLASSICI",p:"Regno Unito",z:"Three Counties / Galles",st:"Perry tradizionale",f:"Perry",d:"Fermentato di pere da perry. Fine, floreale, tannico e spesso molto complesso.",w:"Herefordshire, Worcestershire, Gloucestershire e Galles.",m:"Fermentazione di pere da perry, spesso varietà locali rare e alberi antichi.",fr:"Blakeney Red, Hendre Huffcap, Thorn, Gin, Barland.",pr:"Pera, fiori, agrume, tannino fine, acidità, possibile dolcezza residua.",lk:"traditional perry, single variety perry, old orchard perry pears",ab:"5–8%",a:68,t:74,s:42,b:45,c:60,xa:92,hist:90,biz:78,orig:94,import:72,tags:["UK","Perry","pera","Galles"],map:"https://www.google.com/maps/search/traditional+perry+Herefordshire"},
 
-{id:"asturias",p:"Spagna",z:"Asturie",st:"Sidra Natural Asturiana",f:"Sidra naturale",d:"Centro mondiale del sidro: sidra secca, viva, acida, gastronomica, servita con escanciado.",w:"Gijón, Villaviciosa, Nava, Oviedo.",m:"Fermentazione di mele asturiane, spesso sidra ferma, ossigenata al servizio.",fr:"Raxao, Regona, Durona de Tresali, Verdialona, Perico, De la Riega.",pr:"Secca, acida, viva, leggermente volatile, gastronomica.",lk:"Sidra natural, llagares, sidrerías, DOP Sidra de Asturias, escanciado.",ab:"5–7%",a:88,t:32,s:12,b:18,c:46,xa:96,tags:["Spagna","Asturie","mele","sidra natural","acido","classico"],map:"https://www.google.com/maps/search/Asturias+sidreria"},
-{id:"basque",p:"Spagna / Francia",z:"Paesi Baschi",st:"Sagardoa",f:"Sidro basco",d:"Sidro asciutto, tagliente, salino e spesso funky, legato a botte e cucina basca.",w:"Gipuzkoa, San Sebastián, Hernani, Astigarraga.",m:"Fermentazione secca, servizio da botte, consumo in sagardotegi.",fr:"Mele locali basche, blend di acide, amare e dolci.",pr:"Molto secco, acido, rustico, salino, funk leggero.",lk:"Sagardoa, sagarno, sagardotegi, kupela.",ab:"5–7%",a:94,t:40,s:8,b:15,c:48,xa:94,tags:["Spagna","Paesi Baschi","mele","sagardoa","funky"],map:"https://www.google.com/maps/search/Basque+sidreria+sagardotegi"},
-{id:"galicia",p:"Spagna",z:"Galizia",st:"Sidra galiziana",f:"Sidra atlantica",d:"Area atlantica umida, meno famosa ma interessante per mele locali e prodotti agricoli.",w:"Galizia, nord-ovest spagnolo.",m:"Fermentazione di mele locali, spesso piccole produzioni o sidra artigianale.",fr:"Mele galiziane locali, varietà acide e aromatiche.",pr:"Fresco, acido, rurale, possibile vena rustica.",lk:"Sidra gallega, sidra artesana Galicia, mele atlantiche.",ab:"4–7%",a:80,t:34,s:18,b:28,c:42,xa:82,tags:["Spagna","Galizia","mele","atlantico"],map:"https://www.google.com/maps/search/Galicia+sidra+artesana"},
+{id:"altoadige",area:"ALPINI",p:"Italia",z:"Alpi / Alto Adige",st:"Sidro alpino moderno",f:"Alpino pulito",d:"Sidri freschi, moderni e precisi da mele di montagna.",w:"Alto Adige, Val Venosta, Merano, Bolzano.",m:"Fermentazione controllata di succo di mela locale, spesso frizzante, secco o semi-secco.",fr:"Golden Delicious, Gala, Fuji, Granny Smith, mele alpine aromatiche.",pr:"Mela fresca, acidità elegante, pulizia aromatica, corpo leggero.",lk:"sidro secco altoatesino, rifermentati, metodo classico",ab:"4–7%",a:62,t:24,s:32,b:66,c:44,xa:86,hist:55,biz:82,orig:76,import:92,tags:["Italia","Alpi","mele","moderno","fresco","pulito"],map:"https://www.google.com/maps/search/Alto+Adige+cider"},
+{id:"trentino",area:"ALPINI",p:"Italia",z:"Trentino / Val di Non",st:"Sidro alpino sperimentale",f:"Alpino moderno",d:"Zona enorme per la mela, interessante per sidri secchi, ancestrali e sperimentali.",w:"Val di Non, Val di Sole, frutteti trentini.",m:"Fermentazioni controllate, rifermentazioni, metodo ancestrale e varietà antiche.",fr:"Golden Delicious, Renetta, Gala, Fuji, mele locali da montagna.",pr:"Mela gialla, acidità fresca, profilo nitido.",lk:"sidro alpino, ancestrale, varietà antiche, botaniche",ab:"4–8%",a:60,t:25,s:35,b:55,c:48,xa:88,hist:58,biz:84,orig:78,import:92,tags:["Italia","Alpi","Trentino","mele","ancestrale"],map:"https://www.google.com/maps/search/Trentino+sidro"},
+{id:"most",area:"ALPINI",p:"Austria",z:"Mostviertel",st:"Most / Perry austriaco",f:"Most di pera e mela",d:"Territorio storico del Most, spesso basato su pere o blend mela-pera.",w:"Mostviertel, Bassa Austria.",m:"Fermentazione di pere da Most, mele o blend mela-pera.",fr:"Mele locali da Most e soprattutto pere da Most.",pr:"Secco, acidulo, pera, fieno, agrume, mandorla leggera.",lk:"Birnenmost, Apfelmost, Most, perry austriaco",ab:"4–8%",a:78,t:55,s:20,b:30,c:58,xa:86,hist:80,biz:76,orig:84,import:86,tags:["Austria","Alpi","Most","Perry","pera"],map:"https://www.google.com/maps/search/Mostviertel+Most+cider"},
+{id:"switzerland",area:"ALPINI",p:"Svizzera",z:"Svizzera tedesca / Romandia",st:"Most / Cidre svizzero",f:"Alpino centro-europeo",d:"Tradizione di succo fermentato e prodotti da mela in aree agricole e alpine.",w:"Svizzera tedesca, cantoni agricoli, aree alpine.",m:"Fermentazione di mele locali, stile pulito, secco o semi-secco.",fr:"Mele svizzere da frutteto, varietà da tavola e trasformazione.",pr:"Pulito, fresco, acidità media, corpo leggero.",lk:"Swiss cider, Most Switzerland, cidre suisse",ab:"4–7%",a:62,t:28,s:28,b:45,c:44,xa:78,hist:58,biz:70,orig:65,import:82,tags:["Svizzera","Alpi","mele","Most"],map:"https://www.google.com/maps/search/Swiss+cider+Most"},
 
-{id:"normandy",p:"Francia",z:"Normandia",st:"Cidre Bouché",f:"Cidre francese",d:"Sidri eleganti, spesso demi-sec, con mele dolci-amare, tannino morbido e keeving.",w:"Normandia, Calvados, Manche, Orne.",m:"Blend di mele da cidre, maturazione lenta, presa di spuma naturale, spesso keeving.",fr:"Douce Moën, Bedan, Bisquet, Binet Rouge, mele dolci-amare e amare.",pr:"Mela cotta, buccia, miele leggero, tannino morbido, bollicina fine.",lk:"Cidre bouché, cidre doux, demi-sec, brut, keeving.",ab:"3–6%",a:52,t:72,s:68,b:74,c:62,xa:95,tags:["Francia","Normandia","mele","keeving","tannico"],map:"https://www.google.com/maps/search/Normandy+cider+route"},
-{id:"paysdauge",p:"Francia",z:"Pays d’Auge",st:"Cidre AOP Pays d’Auge",f:"Cidre normanno premium",d:"Sottozona prestigiosa della Normandia, più strutturata e tradizionale.",w:"Pays d’Auge, fra Calvados e aree vicine.",m:"Mele da cidre, fermentazione lenta, presa di spuma naturale.",fr:"Mele dolci-amare e amare normanne, blend per tannino e struttura.",pr:"Elegante, maturo, tannico, fruttato, con bollicina fine.",lk:"AOP Pays d’Auge, cidre bouché, cidre brut, demi-sec.",ab:"3–6%",a:50,t:78,s:62,b:76,c:68,xa:94,tags:["Francia","Pays d’Auge","mele","AOP","premium"],map:"https://www.google.com/maps/search/Pays+d'Auge+cidre"},
-{id:"brittany",p:"Francia",z:"Bretagna / Cornouaille",st:"Cidre Bretone",f:"Cidre francese",d:"Sidri gastronomici, rustici o eleganti, spesso più marini e secchi della Normandia.",w:"Finistère, Cornouaille, Morbihan.",m:"Mele bretoni, fermentazioni lente, versioni brut, demi-sec o doux.",fr:"Mele bretoni da cidre, dolci, amare, acide e dolci-amare.",pr:"Fruttato maturo, tannino, acidità media, nota rustica e minerale.",lk:"Cidre de Bretagne, Cornouaille, brut, demi-sec.",ab:"4–6%",a:57,t:66,s:50,b:60,c:58,xa:92,tags:["Francia","Bretagna","mele","Cornouaille"],map:"https://www.google.com/maps/search/Brittany+cider"},
-{id:"domfront",p:"Francia",z:"Domfront / Normandia",st:"Poiré Domfront",f:"Poiré",d:"Grande territorio francese del perry, basato su pere da poiré. Elegante e floreale.",w:"Domfrontais, Normandia meridionale.",m:"Fermentazione di pere da poiré con presa di spuma naturale.",fr:"Pere da poiré, soprattutto Plant de Blanc e varietà locali.",pr:"Pera, fiori bianchi, agrume, delicatezza, bollicina fine.",lk:"Poiré Domfront, poiré normand, perry francese.",ab:"3–5%",a:66,t:48,s:45,b:72,c:46,xa:90,tags:["Francia","Poiré","pera","Domfront"],map:"https://www.google.com/maps/search/Poiré+Domfront"},
+{id:"denmark",area:"NORDICI / BALTICI",p:"Danimarca",z:"Danimarca",st:"Nordic Natural Cider",f:"Nordico moderno",d:"Nuova scuola fredda: sidri secchi, acidi, eleganti e spesso naturali.",w:"Danimarca, isole e aree agricole con frutteti.",m:"Piccoli produttori, fermentazioni secche, pet-nat e rifermentazioni.",fr:"Mele nordiche acide e aromatiche, varietà locali.",pr:"Mela verde, agrume, mineralità, acidità verticale.",lk:"Danish cider, Nordic cider, natural cider, pét-nat cider",ab:"5–8%",a:86,t:34,s:20,b:58,c:48,xa:88,hist:60,biz:78,orig:82,import:78,tags:["Danimarca","Nord Europa","mele","naturale","moderno"],map:"https://www.google.com/maps/search/Danish+craft+cider"},
+{id:"norway",area:"NORDICI / BALTICI",p:"Norvegia",z:"Hardanger / Norvegia occidentale",st:"Norwegian Sider",f:"Nordico premium",d:"Sidro norvegese moderno, molto interessante per clima freddo, acidità e immagine premium.",w:"Hardanger e aree frutticole norvegesi.",m:"Mele locali, fermentazioni precise, prodotti eleganti e gastronomici.",fr:"Mele norvegesi da clima freddo, varietà locali aromatiche e acide.",pr:"Acidità alta, mela pulita, agrume, eleganza, bollicina fine.",lk:"Hardanger sider, Norwegian cider, Nordic cider",ab:"5–8%",a:88,t:30,s:24,b:62,c:50,xa:90,hist:64,biz:82,orig:86,import:76,tags:["Norvegia","Hardanger","Nord Europa","mele","premium"],map:"https://www.google.com/maps/search/Hardanger+sider"},
+{id:"finland",area:"NORDICI / BALTICI",p:"Finlandia",z:"Finlandia",st:"Nordic Apple Cider",f:"Nordico freddo",d:"Territorio freddo da monitorare per mele resistenti, piccoli frutteti e fermentazioni moderne.",w:"Finlandia meridionale e zone agricole adatte alla mela.",m:"Fermentazione di mele locali o blend, stile moderno, fresco e secco.",fr:"Mele finlandesi resistenti al freddo, mele acide, possibili varietà locali.",pr:"Acidità alta, mela verde, corpo leggero, pulizia aromatica.",lk:"Finnish cider, Nordic cider Finland, craft cider",ab:"4–8%",a:84,t:28,s:18,b:56,c:42,xa:78,hist:42,biz:65,orig:76,import:68,tags:["Finlandia","Nord Europa","mele","freddo","moderno"],map:"https://www.google.com/maps/search/Finnish+craft+cider"},
+{id:"estonia",area:"NORDICI / BALTICI",p:"Estonia",z:"Estonia",st:"Baltic Craft Cider",f:"Baltico moderno",d:"Area baltica fredda e interessante: frutteti, acidità, piccoli produttori e approccio naturale.",w:"Estonia, aree rurali e frutticole.",m:"Fermentazione di mele locali, spesso piccoli lotti, stile secco o naturale.",fr:"Mele baltiche acide, mele rustiche da clima freddo, varietà locali.",pr:"Fresco, acido, pulito o leggermente naturale, mela verde.",lk:"Estonian cider, craft cider Estonia, Baltic cider",ab:"4–8%",a:82,t:32,s:18,b:52,c:44,xa:82,hist:45,biz:68,orig:82,import:70,tags:["Estonia","Baltici","mele","naturale","freddo"],map:"https://www.google.com/maps/search/Estonian+craft+cider"},
+{id:"latvia",area:"NORDICI / BALTICI",p:"Lettonia",z:"Lettonia",st:"Latvian Apple Cider",f:"Baltico emergente",d:"Paese baltico da monitorare per sidri da mele fredde, acide e rustiche.",w:"Lettonia, zone agricole e frutticole.",m:"Fermentazioni di mele locali, stili piccoli, naturali o moderni.",fr:"Mele lettoni acide e aromatiche, varietà rustiche da clima freddo.",pr:"Acidità alta, frutta fresca, possibile rusticità.",lk:"Latvian cider, craft cider Latvia, Baltic cider",ab:"4–8%",a:80,t:34,s:20,b:50,c:44,xa:78,hist:42,biz:62,orig:78,import:68,tags:["Lettonia","Baltici","mele","emergente"],map:"https://www.google.com/maps/search/Latvian+craft+cider"},
+{id:"lithuania",area:"NORDICI / BALTICI",p:"Lituania",z:"Lituania",st:"Lithuanian Craft Cider",f:"Baltico emergente",d:"Area fredda con potenziale su mele locali, fermentazioni naturali e piccoli lotti.",w:"Lituania, frutteti e aree agricole.",m:"Fermentazione di mele locali, possibili stili secchi e naturali.",fr:"Mele lituane rustiche, acide e aromatiche da clima freddo.",pr:"Fresco, acido, secco, profilo agricolo o moderno.",lk:"Lithuanian cider, craft cider Lithuania, Baltic cider",ab:"4–8%",a:79,t:33,s:20,b:50,c:43,xa:78,hist:42,biz:62,orig:78,import:68,tags:["Lituania","Baltici","mele","naturale","emergente"],map:"https://www.google.com/maps/search/Lithuanian+craft+cider"},
 
-{id:"ukwest",p:"Regno Unito",z:"West Country",st:"Farmhouse / Scrumpy",f:"English Cider",d:"Sidri strutturati, tannici, profondi, spesso da mele bittersweet e bittersharp.",w:"Somerset, Devon, Dorset, Herefordshire, Gloucestershire.",m:"Mele da sidro ricche di tannino, fermentazione secca, farmhouse, scrumpy o keeved.",fr:"Dabinett, Yarlington Mill, Kingston Black, Michelin, Harry Masters Jersey.",pr:"Tannico, pieno, mela matura, fieno, cuoio leggero.",lk:"Scrumpy, farmhouse cider, keeved cider, bittersweet apples.",ab:"5–8%",a:55,t:90,s:38,b:40,c:82,xa:94,tags:["UK","Somerset","mele","scrumpy","tannico"],map:"https://www.google.com/maps/search/Somerset+cider"},
-{id:"herefordshire",p:"Regno Unito",z:"Herefordshire",st:"Traditional Cider / Perry",f:"English Cider e Perry",d:"Area chiave sia per sidro di mela sia per perry di pera.",w:"Herefordshire e contee limitrofe.",m:"Mele da sidro e pere da perry, fermentazioni tradizionali, talvolta single variety.",fr:"Kingston Black, Dabinett, Yarlington Mill, Blakeney Red, Hendre Huffcap.",pr:"Tannico, fruttato, complesso, con acidità e struttura.",lk:"Herefordshire cider, traditional perry, single variety cider.",ab:"5–8%",a:62,t:84,s:38,b:42,c:76,xa:93,tags:["UK","Herefordshire","mele","Perry","tannico"],map:"https://www.google.com/maps/search/Herefordshire+cider+perry"},
-{id:"perryuk",p:"Regno Unito",z:"Three Counties / Galles",st:"Perry tradizionale",f:"Perry",d:"Fermentato di pere da perry. Fine, floreale, tannico e spesso molto complesso.",w:"Herefordshire, Worcestershire, Gloucestershire e Galles.",m:"Fermentazione di pere da perry, spesso varietà locali rare e alberi antichi.",fr:"Blakeney Red, Hendre Huffcap, Thorn, Gin, Barland.",pr:"Pera, fiori, agrume, tannino fine, acidità, possibile dolcezza residua.",lk:"Traditional perry, single variety perry, old orchard perry pears.",ab:"5–8%",a:68,t:74,s:42,b:45,c:60,xa:92,tags:["UK","Perry","pera","Galles"],map:"https://www.google.com/maps/search/traditional+perry+Herefordshire"},
+{id:"poland",area:"EUROPA EST",p:"Polonia",z:"Polonia",st:"Cydr polacco",f:"Europa centro-orientale",d:"Paese con molte mele e produzione crescente di cydr moderno e commerciale.",w:"Polonia centrale e orientale, aree frutticole.",m:"Fermentazione di mele locali, stili secchi, semi-secchi o fruttati.",fr:"Mele polacche da frutteto, varietà da tavola e trasformazione.",pr:"Mela fresca, acidità media, profilo pulito o commerciale.",lk:"Cydr polski, Polish cider, cydr rzemieślniczy",ab:"4–7%",a:60,t:24,s:36,b:58,c:42,xa:78,hist:45,biz:74,orig:68,import:80,tags:["Polonia","mele","Europa orientale","craft","moderno"],map:"https://www.google.com/maps/search/Polish+cider+cydr"},
+{id:"russia",area:"EUROPA EST",p:"Russia",z:"Russia europea",st:"Cider russo moderno",f:"Area emergente",d:"Mercato e produzione moderna da monitorare, con frutteti in aree temperate e fredde.",w:"Russia europea, aree frutticole e mercati urbani.",m:"Fermentazioni moderne di mele locali o blend; stile ancora molto variabile.",fr:"Mele russe da frutteto, varietà da clima freddo, mele acide e da tavola.",pr:"Variabile: da dolce/fruttato a secco moderno.",lk:"Russian cider, craft cider Russia, cider Moscow",ab:"4–8%",a:60,t:24,s:42,b:58,c:44,xa:70,hist:35,biz:55,orig:70,import:35,tags:["Russia","mele","emergente","freddo"],map:"https://www.google.com/maps/search/Russian+craft+cider"},
+{id:"czech",area:"EUROPA EST",p:"Repubblica Ceca",z:"Boemia / Moravia",st:"Cider ceco moderno",f:"Europa centrale emergente",d:"Area birraria e frutticola con produttori moderni di cider in crescita.",w:"Boemia, Moravia, aree agricole ceche.",m:"Fermentazioni controllate, mele locali, stili moderni e talvolta naturali.",fr:"Mele ceche da frutteto, mele da tavola e trasformazione.",pr:"Pulito, fresco, secco o semi-secco, profilo moderno.",lk:"Czech cider, cider Moravia, craft cider Czech Republic",ab:"4–7%",a:58,t:25,s:34,b:58,c:42,xa:76,hist:38,biz:68,orig:65,import:78,tags:["Repubblica Ceca","mele","craft","Europa centrale"],map:"https://www.google.com/maps/search/Czech+craft+cider"},
+{id:"hungary",area:"EUROPA EST",p:"Ungheria",z:"Ungheria",st:"Almabor / cider ungherese",f:"Area emergente",d:"Paese con frutta e tradizione fermentativa, ma sidro moderno ancora da monitorare.",w:"Ungheria, aree agricole e frutticole.",m:"Fermentazione di mele locali, potenziale craft moderno e agricolo.",fr:"Mele ungheresi da frutteto, possibili varietà locali e da tavola.",pr:"Fruttato, fresco, acidità media, stile da sviluppare.",lk:"Hungarian cider, almabor, craft cider Hungary",ab:"4–7%",a:54,t:22,s:38,b:55,c:40,xa:72,hist:35,biz:62,orig:64,import:78,tags:["Ungheria","mele","almabor","emergente"],map:"https://www.google.com/maps/search/Hungarian+craft+cider"},
+{id:"romania",area:"EUROPA EST",p:"Romania",z:"Transilvania / Romania",st:"Cider rumeno emergente",f:"Europa orientale",d:"Paese con frutta, mele e prugne: interessante per fermentazioni agricole e sidro moderno.",w:"Transilvania, aree frutticole rumene.",m:"Fermentazione di mele locali, possibili piccoli lotti agricoli.",fr:"Mele rumene locali, mele da tavola e trasformazione.",pr:"Fresco, fruttato, acidità media, profilo rurale o moderno.",lk:"Romanian cider, craft cider Romania, Transylvania cider",ab:"4–7%",a:58,t:24,s:36,b:54,c:42,xa:72,hist:38,biz:64,orig:66,import:76,tags:["Romania","Transilvania","mele","emergente"],map:"https://www.google.com/maps/search/Romanian+craft+cider"},
 
-{id:"germany",p:"Germania",z:"Hessen / Frankfurt",st:"Apfelwein",f:"Sidro tedesco",d:"Sidro tedesco secco, acidulo, diretto, molto beverino.",w:"Frankfurt, Sachsenhausen, Wetterau, Odenwald.",m:"Fermentazione di mele acide. Spesso fermo o leggermente mosso.",fr:"Mele acide e robuste da trasformazione; a volte Speierling.",pr:"Secco, aspro, mela verde, acidità pulita, corpo leggero.",lk:"Apfelwein, Ebbelwoi, Viez, Speierling, Apfelweinlokal.",ab:"4.8–7%",a:82,t:28,s:10,b:20,c:38,xa:84,tags:["Germania","mele","Apfelwein","acido","secco"],map:"https://www.google.com/maps/search/Frankfurt+Apfelwein"},
-{id:"viez",p:"Germania / Lussemburgo",z:"Saarland / Trier / Luxembourg",st:"Viez",f:"Sidro mosellano",d:"Cultura del vino di mela nel bacino Saar-Mosella-Lussemburgo.",w:"Saarland, Trier, Mosella, Lussemburgo.",m:"Fermentazione di mele locali, stile secco e popolare.",fr:"Mele acide e da trasformazione, frutteti locali.",pr:"Secco, acidulo, diretto, leggero, rustico.",lk:"Viez, Apfelwein Saarland, Luxembourg Viez.",ab:"4–7%",a:84,t:30,s:8,b:18,c:38,xa:78,tags:["Germania","Lussemburgo","Viez","mele"],map:"https://www.google.com/maps/search/Viez+Saarland"},
-{id:"most",p:"Austria",z:"Mostviertel",st:"Most / Perry austriaco",f:"Most di pera e mela",d:"Territorio storico del Most, spesso basato su pere o blend mela-pera.",w:"Mostviertel, Bassa Austria.",m:"Fermentazione di pere da Most, mele o blend mela-pera.",fr:"Mele locali da Most e soprattutto pere da Most.",pr:"Secco, acidulo, pera, fieno, agrume, mandorla leggera.",lk:"Birnenmost, Apfelmost, Most, perry austriaco.",ab:"4–8%",a:78,t:55,s:20,b:30,c:58,xa:86,tags:["Austria","Alpi","Most","Perry","pera"],map:"https://www.google.com/maps/search/Mostviertel+Most+cider"},
-{id:"switzerland",p:"Svizzera",z:"Svizzera tedesca / Romandia",st:"Most / Cidre svizzero",f:"Alpino centro-europeo",d:"Tradizione di succo fermentato e prodotti da mela in aree agricole e alpine.",w:"Svizzera tedesca, cantoni agricoli, aree alpine.",m:"Fermentazione di mele locali, stile pulito, secco o semi-secco.",fr:"Mele svizzere da frutteto, varietà da tavola e trasformazione.",pr:"Pulito, fresco, acidità media, corpo leggero.",lk:"Swiss cider, Most Switzerland, cidre suisse.",ab:"4–7%",a:62,t:28,s:28,b:45,c:44,xa:78,tags:["Svizzera","Alpi","mele","Most"],map:"https://www.google.com/maps/search/Swiss+cider+Most"},
+{id:"bulgaria",area:"BALCANI",p:"Bulgaria",z:"Bulgaria",st:"Bulgarian Apple Cider",f:"Balcani emergenti",d:"Area non storica per il sidro classico, ma interessante per frutta e possibili produttori moderni.",w:"Bulgaria, aree agricole e frutticole.",m:"Fermentazione di mele locali, stili commerciali o craft da sviluppare.",fr:"Mele bulgare da frutteto, varietà da tavola e trasformazione.",pr:"Fruttato, fresco, dolcezza variabile, tannino basso.",lk:"Bulgarian cider, craft cider Bulgaria",ab:"4–7%",a:52,t:20,s:42,b:58,c:40,xa:68,hist:30,biz:58,orig:62,import:72,tags:["Bulgaria","Balcani","mele","emergente"],map:"https://www.google.com/maps/search/Bulgarian+craft+cider"},
+{id:"croatiaserbia",area:"BALCANI",p:"Croazia / Serbia",z:"Balcani settentrionali",st:"Balkan Apple Cider",f:"Balcani emergenti",d:"Zona da monitorare: frutta, mele, piccoli produttori e cultura fermentativa agricola.",w:"Croazia settentrionale, Serbia settentrionale, zone agricole balcaniche.",m:"Fermentazione di mele locali, potenziale craft moderno o agricolo.",fr:"Mele balcaniche locali, varietà da frutteto e trasformazione.",pr:"Fruttato, fresco, acidità media, possibile rusticità.",lk:"Croatian cider, Serbian cider, Balkan cider, craft cider",ab:"4–7%",a:56,t:24,s:38,b:54,c:42,xa:70,hist:35,biz:60,orig:66,import:72,tags:["Croazia","Serbia","Balcani","mele","emergente"],map:"https://www.google.com/maps/search/Balkan+craft+cider"},
 
-{id:"poland",p:"Polonia",z:"Polonia",st:"Cydr polacco",f:"Europa centro-orientale",d:"Paese con molte mele e produzione crescente di cydr moderno e commerciale.",w:"Polonia centrale e orientale, aree frutticole.",m:"Fermentazione di mele locali, stili secchi, semi-secchi o fruttati.",fr:"Mele polacche da frutteto, varietà da tavola e trasformazione.",pr:"Mela fresca, acidità media, profilo pulito o commerciale.",lk:"Cydr polski, Polish cider, cydr rzemieślniczy.",ab:"4–7%",a:60,t:24,s:36,b:58,c:42,xa:78,tags:["Polonia","mele","Europa orientale","craft","moderno"],map:"https://www.google.com/maps/search/Polish+cider+cydr"},
-{id:"czech",p:"Repubblica Ceca",z:"Boemia / Moravia",st:"Cider ceco moderno",f:"Europa centrale emergente",d:"Area birraria e frutticola con produttori moderni di cider in crescita.",w:"Boemia, Moravia, aree agricole ceche.",m:"Fermentazioni controllate, mele locali, stili moderni e talvolta naturali.",fr:"Mele ceche da frutteto, mele da tavola e trasformazione.",pr:"Pulito, fresco, secco o semi-secco, profilo moderno.",lk:"Czech cider, cider Moravia, craft cider Czech Republic.",ab:"4–7%",a:58,t:25,s:34,b:58,c:42,xa:76,tags:["Repubblica Ceca","mele","craft","Europa centrale"],map:"https://www.google.com/maps/search/Czech+craft+cider"},
-{id:"slovakia",p:"Slovacchia",z:"Slovacchia",st:"Cider slovacco emergente",f:"Europa centrale emergente",d:"Area da monitorare: frutteti, piccoli produttori e possibile crescita del cider craft.",w:"Slovacchia occidentale e centrale, aree agricole.",m:"Fermentazione di mele locali, piccoli lotti, stile moderno.",fr:"Mele slovacche da frutteto, varietà locali e da tavola.",pr:"Fresco, fruttato, acidità media, tannino basso.",lk:"Slovak cider, craft cider Slovakia.",ab:"4–7%",a:56,t:22,s:36,b:55,c:40,xa:72,tags:["Slovacchia","mele","emergente","Europa centrale"],map:"https://www.google.com/maps/search/Slovak+craft+cider"},
-{id:"hungary",p:"Ungheria",z:"Ungheria",st:"Almabor / cider ungherese",f:"Area emergente",d:"Paese con frutta e tradizione fermentativa, ma sidro moderno ancora da monitorare.",w:"Ungheria, aree agricole e frutticole.",m:"Fermentazione di mele locali, potenziale craft moderno e agricolo.",fr:"Mele ungheresi da frutteto, possibili varietà locali e da tavola.",pr:"Fruttato, fresco, acidità media, stile da sviluppare.",lk:"Hungarian cider, almabor, craft cider Hungary.",ab:"4–7%",a:54,t:22,s:38,b:55,c:40,xa:72,tags:["Ungheria","mele","almabor","emergente"],map:"https://www.google.com/maps/search/Hungarian+craft+cider"},
-
-{id:"estonia",p:"Estonia",z:"Estonia",st:"Baltic Craft Cider",f:"Baltico moderno",d:"Area baltica fredda e interessante: frutteti, acidità, piccoli produttori e approccio naturale.",w:"Estonia, aree rurali e frutticole.",m:"Fermentazione di mele locali, spesso piccoli lotti, stile secco o naturale.",fr:"Mele baltiche acide, mele rustiche da clima freddo, varietà locali.",pr:"Fresco, acido, pulito o leggermente naturale, mela verde.",lk:"Estonian cider, craft cider Estonia, Baltic cider.",ab:"4–8%",a:82,t:32,s:18,b:52,c:44,xa:82,tags:["Estonia","Baltici","mele","naturale","freddo"],map:"https://www.google.com/maps/search/Estonian+craft+cider"},
-{id:"latvia",p:"Lettonia",z:"Lettonia",st:"Latvian Apple Cider",f:"Baltico emergente",d:"Paese baltico da monitorare per sidri da mele fredde, acide e rustiche.",w:"Lettonia, zone agricole e frutticole.",m:"Fermentazioni di mele locali, stili piccoli, naturali o moderni.",fr:"Mele lettoni acide e aromatiche, varietà rustiche da clima freddo.",pr:"Acidità alta, frutta fresca, possibile rusticità.",lk:"Latvian cider, craft cider Latvia, Baltic cider.",ab:"4–8%",a:80,t:34,s:20,b:50,c:44,xa:78,tags:["Lettonia","Baltici","mele","emergente"],map:"https://www.google.com/maps/search/Latvian+craft+cider"},
-{id:"lithuania",p:"Lituania",z:"Lituania",st:"Lithuanian Craft Cider",f:"Baltico emergente",d:"Area fredda con potenziale su mele locali, fermentazioni naturali e piccoli lotti.",w:"Lituania, frutteti e aree agricole.",m:"Fermentazione di mele locali, possibili stili secchi e naturali.",fr:"Mele lituane rustiche, acide e aromatiche da clima freddo.",pr:"Fresco, acido, secco, profilo agricolo o moderno.",lk:"Lithuanian cider, craft cider Lithuania, Baltic cider.",ab:"4–8%",a:79,t:33,s:20,b:50,c:43,xa:78,tags:["Lituania","Baltici","mele","naturale","emergente"],map:"https://www.google.com/maps/search/Lithuanian+craft+cider"},
-{id:"finland",p:"Finlandia",z:"Finlandia",st:"Nordic Apple Cider",f:"Nordico freddo",d:"Territorio freddo da monitorare per mele resistenti, piccoli frutteti e fermentazioni moderne.",w:"Finlandia meridionale e zone agricole adatte alla mela.",m:"Fermentazione di mele locali o blend, stile moderno, fresco e secco.",fr:"Mele finlandesi resistenti al freddo, mele acide, possibili varietà locali.",pr:"Acidità alta, mela verde, corpo leggero, pulizia aromatica.",lk:"Finnish cider, Nordic cider Finland, craft cider.",ab:"4–8%",a:84,t:28,s:18,b:56,c:42,xa:78,tags:["Finlandia","Nord Europa","mele","freddo","moderno"],map:"https://www.google.com/maps/search/Finnish+craft+cider"},
-
-{id:"russia",p:"Russia",z:"Russia europea",st:"Cider russo moderno",f:"Area emergente",d:"Mercato e produzione moderna da monitorare, con frutteti in aree temperate e fredde.",w:"Russia europea, aree frutticole e mercati urbani.",m:"Fermentazioni moderne di mele locali o blend; stile ancora molto variabile.",fr:"Mele russe da frutteto, varietà da clima freddo, mele acide e da tavola.",pr:"Variabile: da dolce/fruttato a secco moderno.",lk:"Russian cider, craft cider Russia, cider Moscow.",ab:"4–8%",a:60,t:24,s:42,b:58,c:44,xa:70,tags:["Russia","mele","emergente","freddo"],map:"https://www.google.com/maps/search/Russian+craft+cider"},
-{id:"bulgaria",p:"Bulgaria",z:"Bulgaria",st:"Bulgarian Apple Cider",f:"Balcani emergenti",d:"Area non storica per il sidro classico, ma interessante per frutta e possibili produttori moderni.",w:"Bulgaria, aree agricole e frutticole.",m:"Fermentazione di mele locali, stili commerciali o craft da sviluppare.",fr:"Mele bulgare da frutteto, varietà da tavola e trasformazione.",pr:"Fruttato, fresco, dolcezza variabile, tannino basso.",lk:"Bulgarian cider, craft cider Bulgaria.",ab:"4–7%",a:52,t:20,s:42,b:58,c:40,xa:68,tags:["Bulgaria","Balcani","mele","emergente"],map:"https://www.google.com/maps/search/Bulgarian+craft+cider"},
-{id:"romania",p:"Romania",z:"Transilvania / Romania",st:"Cider rumeno emergente",f:"Europa orientale",d:"Paese con frutta, mele e prugne: interessante per fermentazioni agricole e sidro moderno.",w:"Transilvania, aree frutticole rumene.",m:"Fermentazione di mele locali, possibili piccoli lotti agricoli.",fr:"Mele rumene locali, mele da tavola e trasformazione.",pr:"Fresco, fruttato, acidità media, profilo rurale o moderno.",lk:"Romanian cider, craft cider Romania, Transylvania cider.",ab:"4–7%",a:58,t:24,s:36,b:54,c:42,xa:72,tags:["Romania","Transilvania","mele","emergente"],map:"https://www.google.com/maps/search/Romanian+craft+cider"},
-{id:"croatiaserbia",p:"Croazia / Serbia",z:"Balcani settentrionali",st:"Balkan Apple Cider",f:"Balcani emergenti",d:"Zona da monitorare: frutta, mele, piccoli produttori e cultura fermentativa agricola.",w:"Croazia settentrionale, Serbia settentrionale, zone agricole balcaniche.",m:"Fermentazione di mele locali, potenziale craft moderno o agricolo.",fr:"Mele balcaniche locali, varietà da frutteto e trasformazione.",pr:"Fruttato, fresco, acidità media, possibile rusticità.",lk:"Croatian cider, Serbian cider, Balkan cider, craft cider.",ab:"4–7%",a:56,t:24,s:38,b:54,c:42,xa:70,tags:["Croazia","Serbia","Balcani","mele","emergente"],map:"https://www.google.com/maps/search/Balkan+craft+cider"},
-
-{id:"denmark",p:"Danimarca",z:"Danimarca",st:"Nordic Natural Cider",f:"Nordico moderno",d:"Nuova scuola fredda: sidri secchi, acidi, eleganti e spesso naturali.",w:"Danimarca, isole e aree agricole con frutteti.",m:"Piccoli produttori, fermentazioni secche, pet-nat e rifermentazioni.",fr:"Mele nordiche acide e aromatiche, varietà locali.",pr:"Mela verde, agrume, mineralità, acidità verticale.",lk:"Danish cider, Nordic cider, natural cider, pét-nat cider.",ab:"5–8%",a:86,t:34,s:20,b:58,c:48,xa:88,tags:["Danimarca","Nord Europa","mele","naturale","moderno"],map:"https://www.google.com/maps/search/Danish+craft+cider"},
-{id:"norway",p:"Norvegia",z:"Hardanger / Norvegia occidentale",st:"Norwegian Sider",f:"Nordico premium",d:"Sidro norvegese moderno, molto interessante per clima freddo, acidità e immagine premium.",w:"Hardanger e aree frutticole norvegesi.",m:"Mele locali, fermentazioni precise, prodotti eleganti e gastronomici.",fr:"Mele norvegesi da clima freddo, varietà locali aromatiche e acide.",pr:"Acidità alta, mela pulita, agrume, eleganza, bollicina fine.",lk:"Hardanger sider, Norwegian cider, Nordic cider.",ab:"5–8%",a:88,t:30,s:24,b:62,c:50,xa:90,tags:["Norvegia","Hardanger","Nord Europa","mele","premium"],map:"https://www.google.com/maps/search/Hardanger+sider"},
-
-{id:"quebec",p:"Canada",z:"Québec",st:"Ice Cider",f:"Cidre de glace",d:"Stile moderno basato sulla concentrazione naturale dal gelo. Dolcezza intensa e acidità alta.",w:"Québec, zone fredde con frutteti.",m:"Crioconcentrazione o crioestrazione: il freddo concentra zuccheri e aromi.",fr:"Mele aromatiche e acide resistenti al freddo.",pr:"Mela candita, miele, albicocca, dolcezza alta, acidità bilanciante.",lk:"Ice cider, cidre de glace, dessert cider.",ab:"7–13%",a:76,t:18,s:94,b:12,c:90,xa:91,tags:["Canada","Québec","mele","ice cider","dolce"],map:"https://www.google.com/maps/search/Quebec+ice+cider"},
-{id:"newengland",p:"USA",z:"New England / Vermont",st:"Heritage Cider",f:"Craft heritage",d:"Area importante per sidri da mele storiche, fermentazioni selvagge e identità agricola.",w:"Vermont, Massachusetts, New Hampshire, Maine.",m:"Mele heritage, wild fermentation, bottle conditioning, sidri secchi e complessi.",fr:"Mele heritage americane, crab apples, seedling apples.",pr:"Secco, acido, complesso, talvolta funky, molto agricolo.",lk:"New England cider, Vermont cider, heritage cider, wild cider.",ab:"5–9%",a:76,t:54,s:20,b:52,c:60,xa:89,tags:["USA","New England","Vermont","mele","heritage"],map:"https://www.google.com/maps/search/Vermont+heritage+cider"},
-{id:"pacific",p:"USA",z:"Pacific Northwest",st:"New World Craft Cider",f:"Craft moderno",d:"Area moderna e sperimentale: sidri secchi, luppolati, barrel-aged, con frutta e botaniche.",w:"Washington, Oregon, California del nord.",m:"Fermentazioni controllate, botte, frutta, luppolo, lieviti selezionati o selvaggi.",fr:"Mele da dessert, mele da sidro, crab apples, blend sperimentali.",pr:"Da pulito e fruttato a funky; secco, creativo, gastronomico.",lk:"Dry cider, hopped cider, barrel-aged cider, wild fermentation cider.",ab:"5–9%",a:64,t:48,s:30,b:62,c:55,xa:92,tags:["USA","Pacific Northwest","mele","craft","moderno"],map:"https://www.google.com/maps/search/Pacific+Northwest+craft+cider"},
-
-{id:"japan",p:"Giappone",z:"Aomori / Nagano",st:"Japanese Craft Cider",f:"Craft asiatico",d:"Sidri moderni da territori famosi per mele di alta qualità, precisi e puliti.",w:"Aomori, Nagano e zone frutticole giapponesi.",m:"Fermentazioni controllate, mele aromatiche, stile pulito e moderno.",fr:"Fuji, Shinano Gold, Orin, Tsugaru e mele giapponesi aromatiche.",pr:"Pulito, elegante, mela fresca, acidità controllata, grande precisione.",lk:"Japanese cider, Aomori cider, Nagano cider.",ab:"4–8%",a:58,t:20,s:34,b:62,c:42,xa:84,tags:["Giappone","Aomori","Nagano","mele","moderno"],map:"https://www.google.com/maps/search/Japanese+craft+cider"},
-{id:"australia",p:"Australia",z:"Tasmania / Victoria",st:"Australian Craft Cider",f:"Nuovo Mondo",d:"Sidri moderni da regioni frutticole, freschi, accessibili e ben fatti.",w:"Tasmania, Victoria, South Australia.",m:"Fermentazione di mele locali, stili dry, semi-dry, fruttati o craft.",fr:"Mele australiane da frutteto, dessert apples, blend aciduli.",pr:"Fruttato, pulito, fresco, talvolta tropicale o moderno.",lk:"Tasmanian cider, Australian craft cider.",ab:"4–8%",a:56,t:26,s:38,b:62,c:44,xa:77,tags:["Australia","Tasmania","mele","Nuovo Mondo"],map:"https://www.google.com/maps/search/Tasmanian+craft+cider"},
-{id:"chile",p:"Cile",z:"Patagonia / Sud del Cile",st:"Chilean Apple Cider",f:"Andino-patagonico",d:"Area interessante per mele, clima fresco e possibili sidri di territorio.",w:"Sud del Cile, Patagonia cilena, zone frutticole fredde.",m:"Mele locali, fermentazioni agricole o moderne.",fr:"Mele da clima fresco, varietà locali e da frutteto.",pr:"Fresco, acidulo, fruttato, potenzialmente rustico.",lk:"Chilean cider, Patagonia cider, sidra Chile.",ab:"4–8%",a:68,t:34,s:28,b:46,c:50,xa:80,tags:["Cile","Patagonia","mele","Sud America"],map:"https://www.google.com/maps/search/Chilean+cider+Patagonia"}
+{id:"quebec",area:"NUOVO MONDO",p:"Canada",z:"Québec",st:"Ice Cider",f:"Cidre de glace",d:"Stile moderno basato sulla concentrazione naturale dal gelo. Dolcezza intensa e acidità alta.",w:"Québec, zone fredde con frutteti.",m:"Crioconcentrazione o crioestrazione: il freddo concentra zuccheri e aromi.",fr:"Mele aromatiche e acide resistenti al freddo.",pr:"Mela candita, miele, albicocca, dolcezza alta, acidità bilanciante.",lk:"Ice cider, cidre de glace, dessert cider",ab:"7–13%",a:76,t:18,s:94,b:12,c:90,xa:91,hist:70,biz:82,orig:92,import:65,tags:["Canada","Québec","mele","ice cider","dolce"],map:"https://www.google.com/maps/search/Quebec+ice+cider"},
+{id:"pacific",area:"NUOVO MONDO",p:"USA",z:"Pacific Northwest",st:"New World Craft Cider",f:"Craft moderno",d:"Area moderna e sperimentale: sidri secchi, luppolati, barrel-aged, con frutta e botaniche.",w:"Washington, Oregon, California del nord.",m:"Fermentazioni controllate, botte, frutta, luppolo, lieviti selezionati o selvaggi.",fr:"Mele da dessert, mele da sidro, crab apples, blend sperimentali.",pr:"Da pulito e fruttato a funky; secco, creativo, gastronomico.",lk:"Dry cider, hopped cider, barrel-aged cider, wild fermentation cider",ab:"5–9%",a:64,t:48,s:30,b:62,c:55,xa:92,hist:60,biz:82,orig:94,import:55,tags:["USA","Pacific Northwest","mele","craft","moderno"],map:"https://www.google.com/maps/search/Pacific+Northwest+craft+cider"},
+{id:"japan",area:"NUOVO MONDO",p:"Giappone",z:"Aomori / Nagano",st:"Japanese Craft Cider",f:"Craft asiatico",d:"Sidri moderni da territori famosi per mele di alta qualità, precisi e puliti.",w:"Aomori, Nagano e zone frutticole giapponesi.",m:"Fermentazioni controllate, mele aromatiche, stile pulito e moderno.",fr:"Fuji, Shinano Gold, Orin, Tsugaru e mele giapponesi aromatiche.",pr:"Pulito, elegante, mela fresca, acidità controllata, grande precisione.",lk:"Japanese cider, Aomori cider, Nagano cider",ab:"4–8%",a:58,t:20,s:34,b:62,c:42,xa:84,hist:50,biz:76,orig:82,import:50,tags:["Giappone","Aomori","Nagano","mele","moderno"],map:"https://www.google.com/maps/search/Japanese+craft+cider"},
+{id:"australia",area:"NUOVO MONDO",p:"Australia",z:"Tasmania / Victoria",st:"Australian Craft Cider",f:"Nuovo Mondo",d:"Sidri moderni da regioni frutticole, freschi, accessibili e ben fatti.",w:"Tasmania, Victoria, South Australia.",m:"Fermentazione di mele locali, stili dry, semi-dry, fruttati o craft.",fr:"Mele australiane da frutteto, dessert apples, blend aciduli.",pr:"Fruttato, pulito, fresco, talvolta tropicale o moderno.",lk:"Tasmanian cider, Australian craft cider",ab:"4–8%",a:56,t:26,s:38,b:62,c:44,xa:77,hist:45,biz:70,orig:70,import:48,tags:["Australia","Tasmania","mele","Nuovo Mondo"],map:"https://www.google.com/maps/search/Tasmanian+craft+cider"},
+{id:"chile",area:"NUOVO MONDO",p:"Cile",z:"Patagonia / Sud del Cile",st:"Chilean Apple Cider",f:"Andino-patagonico",d:"Area interessante per mele, clima fresco e possibili sidri di territorio.",w:"Sud del Cile, Patagonia cilena, zone frutticole fredde.",m:"Mele locali, fermentazioni agricole o moderne.",fr:"Mele da clima fresco, varietà locali e da frutteto.",pr:"Fresco, acidulo, fruttato, potenzialmente rustico.",lk:"Chilean cider, Patagonia cider, sidra Chile",ab:"4–8%",a:68,t:34,s:28,b:46,c:50,xa:80,hist:45,biz:62,orig:84,import:45,tags:["Cile","Patagonia","mele","Sud America"],map:"https://www.google.com/maps/search/Chilean+cider+Patagonia"}
 ];
 
 const STYLE_GUIDE=[
@@ -827,128 +463,42 @@ const FRUIT_GUIDE=[
 {t:"Pere da Poiré",img:"pear",dove:"Domfront / Francia",fun:"Pere per poiré fine, frizzante e floreale.",note:"Eleganza, bollicina, profilo delicato."}
 ];
 
-const SCHOOL=[
-{
-n:"LEZIONE 01",
-t:"Cos’è davvero il sidro",
-obj:"Capire che il sidro non è solo succo di mela fermentato, ma un sistema tecnico fatto di frutta, territorio, acidità, tannino, dolcezza, bolla e metodo.",
-arg:"Differenza fra sidro moderno, sidro tradizionale, perry, poiré, most e ice cider.",
-tec:"Parametri base: acidità, tannino, dolcezza, bollicina, corpo, ABV, stile di servizio.",
-pr:"Scegli tre schede: Asturie, Normandia, UK. Confronta acidità, tannino e dolcezza.",
-link:"Asturie · Normandia · West Country"
-},
-{
-n:"LEZIONE 02",
-t:"Sidra Natural Asturiana",
-obj:"Capire la sidra asturiana come cultura gastronomica, non come semplice bevanda frizzante.",
-arg:"Llagar, sidrería, escanciado, acidità, servizio, mele asturiane.",
-tec:"Acidità alta, bolla bassa, dolcezza quasi nulla, profilo vivo e leggermente volatile.",
-pr:"Copia una ricetta XA ispirata alle Asturie e imposta acidità alta, bolla bassa, corpo medio.",
-link:"Asturie"
-},
-{
-n:"LEZIONE 03",
-t:"Sagardoa basca",
-obj:"Studiare il sidro basco come stile secco, radicale e da cucina.",
-arg:"Sagardotegi, kupela, servizio da botte, cucina basca, profilo salino.",
-tec:"Acidità estrema, dolcezza bassissima, bolla molto bassa, funk leggero.",
-pr:"Confronta Paesi Baschi vs Asturie e osserva differenze di secchezza e rusticità.",
-link:"Paesi Baschi · Asturie"
-},
-{
-n:"LEZIONE 04",
-t:"Normandia e keeving",
-obj:"Capire perché il cidre normanno può essere dolce senza essere banale.",
-arg:"Mele dolci-amare, mele amare, fermentazione lenta, keeving, presa di spuma naturale.",
-tec:"Tannino medio-alto, dolcezza naturale, bolla fine, corpo rotondo.",
-pr:"Crea una ricetta XA con dolcezza media, tannino alto e bolla fine.",
-link:"Normandia · Pays d’Auge"
-},
-{
-n:"LEZIONE 05",
-t:"Sidro inglese tannico",
-obj:"Capire il ruolo delle mele bittersweet e bittersharp.",
-arg:"West Country, scrumpy, farmhouse cider, Dabinett, Kingston Black, Yarlington Mill.",
-tec:"Tannino alto, corpo alto, acidità media, dolcezza variabile.",
-pr:"Confronta West Country vs Normandia: entrambi tannici, ma con filosofie diverse.",
-link:"West Country · Herefordshire"
-},
-{
-n:"LEZIONE 06",
-t:"Perry e Poiré",
-obj:"Separare il mondo della pera dal sidro di mela.",
-arg:"Pere da perry, poiré Domfront, tannino fine, profilo floreale.",
-tec:"Acidità media, tannino fine, bolla variabile, profilo delicato.",
-pr:"Confronta Three Counties Perry e Poiré Domfront.",
-link:"Perry UK · Poiré Domfront"
-},
-{
-n:"LEZIONE 07",
-t:"Ice Cider del Québec",
-obj:"Capire la concentrazione tramite freddo e il ruolo dell’acidità nei sidri dolci.",
-arg:"Crioconcentrazione, crioestrazione, mele fredde, dolcezza alta, dessert cider.",
-tec:"Dolcezza altissima, acidità alta, bolla bassa, corpo pieno.",
-pr:"Progetta una ricetta XA da meditazione con dolcezza alta e acidità alta.",
-link:"Québec"
-},
-{
-n:"LEZIONE 08",
-t:"Nord Europa e Baltici",
-obj:"Studiare sidri freddi, acidi, naturali e moderni.",
-arg:"Danimarca, Norvegia, Finlandia, Estonia, Lettonia, Lituania.",
-tec:"Acidità alta, corpo leggero/medio, dolcezza bassa, profilo fresco.",
-pr:"Confronta Norvegia, Estonia e Finlandia.",
-link:"Nord Europa · Baltici"
-},
-{
-n:"LEZIONE 09",
-t:"Aree emergenti: Russia, Balcani, Europa orientale",
-obj:"Capire come leggere aree non storiche senza inventare tradizioni inesistenti.",
-arg:"Polonia, Russia, Bulgaria, Romania, Ungheria, Croazia/Serbia.",
-tec:"Valutare frutteti, clima, mele locali, produttori craft e potenziale commerciale.",
-pr:"Cerca le parole chiave locali e salva le schede più interessanti nei preferiti.",
-link:"Polonia · Russia · Bulgaria · Romania"
-},
-{
-n:"LEZIONE 10",
-t:"XA Recipe Lab",
-obj:"Trasformare uno stile in una ricetta sperimentale XA.",
-arg:"Scelta frutta, target acidità, tannino, dolcezza, bolla, corpo, lievito e metodo.",
-tec:"Usare le schede come preset tecnici: non copiare, ma progettare.",
-pr:"Carica uno stile, premi COPIA RICETTA XA, poi modifica la ricetta nel tuo laboratorio.",
-link:"Tutti gli stili"
-}
+const LESSONS=[
+{n:"LEZIONE 01",t:"Cos’è davvero il sidro",obj:"Capire che il sidro non è solo succo fermentato, ma un sistema tecnico fatto di frutta, territorio, acidità, tannino, dolcezza, bolla e metodo.",teo:"Sidro, perry, poiré, most e ice cider sono famiglie diverse. La frutta non è neutra: costruisce corpo, acidità, aroma e tannino.",tec:"Parametri base: acidità, tannino, dolcezza, bollicina, corpo, ABV, metodo.",pr:"Confronta Asturie, Normandia e West Country.",q:"Quale parametro separa più chiaramente Asturie e Normandia?",a:"La dolcezza e il tannino: Asturie è secca e acida; Normandia può essere più tannica e più dolce."},
+{n:"LEZIONE 02",t:"Sidra Natural Asturiana",obj:"Capire la sidra asturiana come cultura gastronomica.",teo:"La sidra natural vive di acidità, servizio e ossigenazione. L’escanciado non è scena: cambia la percezione aromatica.",tec:"Acidità alta, bolla bassa, dolcezza minima, profilo vivo.",pr:"Copia una ricetta XA ispirata alle Asturie.",q:"Perché la sidra asturiana non deve essere troppo dolce?",a:"Perché è pensata come bevanda gastronomica acida, secca e viva."},
+{n:"LEZIONE 03",t:"Sagardoa basca",obj:"Studiare il sidro basco come stile secco, radicale e da cucina.",teo:"Il mondo basco lavora su botte, acidità, secchezza e servizio sociale in sagardotegi.",tec:"Acidità estrema, dolcezza bassissima, bolla bassa, funk leggero.",pr:"Confronta Paesi Baschi vs Asturie.",q:"Quale carattere rende la Sagardoa molto gastronomica?",a:"La combinazione di secchezza, acidità e leggera rusticità."},
+{n:"LEZIONE 04",t:"Normandia e keeving",obj:"Capire perché il cidre normanno può essere dolce senza essere banale.",teo:"Il keeving riduce nutrienti e rallenta la fermentazione, favorendo residuo zuccherino naturale.",tec:"Tannino medio-alto, dolcezza naturale, bolla fine, corpo rotondo.",pr:"Crea una ricetta XA con tannino alto e bolla fine.",q:"A cosa serve il keeving?",a:"A ottenere fermentazioni lente e cidre con residuo zuccherino naturale."},
+{n:"LEZIONE 05",t:"Sidro inglese tannico",obj:"Capire il ruolo delle mele bittersweet e bittersharp.",teo:"Nel West Country il tannino non è difetto: è struttura.",tec:"Tannino alto, corpo alto, acidità media, dolcezza variabile.",pr:"Confronta West Country vs Normandia.",q:"Cosa danno le mele bittersweet?",a:"Tannino, corpo, profondità e struttura."},
+{n:"LEZIONE 06",t:"Perry e Poiré",obj:"Separare il mondo della pera dal sidro di mela.",teo:"Perry e poiré non sono sidri aromatizzati alla pera: sono fermentati di pere tecniche.",tec:"Tannino fine, profilo floreale, acidità, delicatezza.",pr:"Confronta Perry UK e Poiré Domfront.",q:"Perché le pere da perry non sono semplici pere da tavola?",a:"Perché hanno tannini, acidità e caratteristiche tecniche specifiche."},
+{n:"LEZIONE 07",t:"Ice Cider",obj:"Capire concentrazione col freddo e acidità nei sidri dolci.",teo:"Nel Québec il gelo concentra zuccheri e aromi. L’acidità impedisce alla dolcezza di diventare pesante.",tec:"Dolcezza alta, acidità alta, corpo pieno, bolla bassa.",pr:"Progetta una ricetta XA da meditazione.",q:"Quale parametro bilancia l’Ice Cider?",a:"L’acidità alta."},
+{n:"LEZIONE 08",t:"Nord Europa e Baltici",obj:"Studiare sidri freddi, acidi, naturali e moderni.",teo:"Clima freddo, mele acide e piccoli produttori possono creare sidri molto verticali.",tec:"Acidità alta, dolcezza bassa, corpo medio-leggero.",pr:"Confronta Norvegia, Estonia e Finlandia.",q:"Perché i Baltici sono interessanti per XA?",a:"Perché uniscono clima freddo, acidità e potenziale moderno/naturale."},
+{n:"LEZIONE 09",t:"Aree emergenti",obj:"Leggere Russia, Balcani ed Europa Est senza inventare tradizioni inesistenti.",teo:"Alcune aree hanno frutta e potenziale, ma non sempre una tradizione storica forte di sidro.",tec:"Valutare frutteti, clima, produttori craft, facilità importazione.",pr:"Apri Business e guarda i punteggi.",q:"Che errore bisogna evitare con le aree emergenti?",a:"Presentarle come territori storici consolidati quando sono soprattutto aree da monitorare."},
+{n:"LEZIONE 10",t:"XA Recipe Lab",obj:"Trasformare uno stile in una ricetta sperimentale XA.",teo:"Una scheda stile diventa un preset: frutta, acidità, tannino, dolcezza, bolla, corpo e metodo.",tec:"Costruire target tecnici e poi scegliere lievito, nutrienti, temperatura e rifermentazione.",pr:"Carica uno stile e premi COPIA RICETTA XA.",q:"Perché non bisogna copiare uno stile alla lettera?",a:"Perché XA deve usare lo stile come base tecnica, poi creare una ricetta originale."}
 ];
 
-const CHIPS=["Classici","Moderni","Alpini","Baltici","Nordici","Balcani","Europa Est","Perry","Poiré","Ice Cider","Naturali","Tannici","Dolci","Secchi","Asturie","Francia","UK","USA","Canada","Giappone","Estonia","Lituania","Russia","Bulgaria","mele","pera","keeving","Most","Apfelwein"];
+const CHIPS=["Classici","Alpini","Nordici","Baltici","Europa Est","Balcani","Nuovo Mondo","Perry","Poiré","Ice Cider","Naturali","Tannici","Dolci","Secchi","Business","Asturie","Francia","UK","Estonia","Lituania","Russia","Bulgaria","mele","pera","keeving","Most"];
 
 let activeChip="";
-let loadedId=localStorage.getItem("xa_cider_atlas_v6_loaded") || "asturias";
+let loadedId=localStorage.getItem("xa_cider_atlas_v7_loaded") || "asturias";
 let compact=false;
-const favs=new Set(JSON.parse(localStorage.getItem("xa_cider_atlas_v6_favs")||"[]"));
+const favs=new Set(JSON.parse(localStorage.getItem("xa_cider_atlas_v7_favs")||"[]"));
 const q=document.getElementById("q");
 
-function norm(s){
-  return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
-}
-function txt(x){
-  return norm([x.p,x.z,x.st,x.f,x.d,x.w,x.m,x.fr,x.pr,x.lk,x.ab,...x.tags].join(" "));
-}
-function lvl(v){
-  return v<25?"LOW":v<55?"MID":v<80?"HIGH":"MAX";
-}
-function fill(v,cls){
-  return `<div class="bar"><div class="fill ${cls}" style="height:${v}%"></div></div>`;
-}
+function norm(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
+function txt(x){return norm([x.area,x.p,x.z,x.st,x.f,x.d,x.w,x.m,x.fr,x.pr,x.lk,x.ab,...x.tags].join(" "))}
+function lvl(v){return v<25?"LOW":v<55?"MID":v<80?"HIGH":"MAX"}
+function fill(v,cls){return `<div class="bar"><div class="fill ${cls}" style="height:${v}%"></div></div>`}
+function bizTotal(x){return Math.round((x.hist+x.biz+x.orig+x.import+x.xa)/5)}
 function chipMatch(x,c){
   const h=txt(x), k=norm(c);
-  if(k==="classici")return x.xa>=90 || h.includes("classico") || h.includes("traditional");
-  if(k==="moderni")return h.includes("moderno")||h.includes("craft")||h.includes("nuovo mondo");
-  if(k==="alpini")return h.includes("alpi")||h.includes("austria")||h.includes("svizzera");
+  if(k==="classici")return x.area==="CLASSICI";
+  if(k==="alpini")return x.area==="ALPINI";
+  if(k==="nordici")return h.includes("nord");
   if(k==="baltici")return h.includes("baltici")||h.includes("estonia")||h.includes("lettonia")||h.includes("lituania");
-  if(k==="nordici")return h.includes("nord")||h.includes("finlandia")||h.includes("norvegia")||h.includes("danimarca");
-  if(k==="balcani")return h.includes("balcani")||h.includes("bulgaria")||h.includes("croazia")||h.includes("serbia");
-  if(k==="europa est")return h.includes("polonia")||h.includes("russia")||h.includes("romania")||h.includes("ungheria")||h.includes("slovacchia")||h.includes("lituania")||h.includes("estonia");
+  if(k==="europa est")return x.area==="EUROPA EST";
+  if(k==="balcani")return x.area==="BALCANI";
+  if(k==="nuovo mondo")return x.area==="NUOVO MONDO";
+  if(k==="business")return bizTotal(x)>=80;
   if(k==="naturali")return h.includes("natural")||h.includes("naturale")||h.includes("pet-nat");
   if(k==="tannici")return x.t>=65;
   if(k==="dolci")return x.s>=55;
@@ -959,6 +509,7 @@ function sorted(arr){
   const mode=document.getElementById("sorter")?.value || "xa";
   const a=[...arr];
   if(mode==="xa")a.sort((x,y)=>y.xa-x.xa);
+  if(mode==="business")a.sort((x,y)=>bizTotal(y)-bizTotal(x));
   if(mode==="acid")a.sort((x,y)=>y.a-x.a);
   if(mode==="tan")a.sort((x,y)=>y.t-x.t);
   if(mode==="sweet")a.sort((x,y)=>y.s-x.s);
@@ -970,28 +521,25 @@ function results(){
   const term=norm(q.value.trim());
   return sorted(DATA.filter(x=>(!term||txt(x).includes(term))&&(!activeChip||chipMatch(x,activeChip))));
 }
-function byId(id){
-  return DATA.find(x=>x.id===id)||DATA[0];
-}
+function byId(id){return DATA.find(x=>x.id===id)||DATA[0]}
+
 function scheda(x){
 return `<article class="card">
   <div class="cardTop">
     <div class="cardRow">
       <div>
-        <div class="country">${x.p} · ${x.f}</div>
+        <div class="country">${x.area} · ${x.p} · ${x.f}</div>
         <div class="zone">${x.z}</div>
         <div class="style">${x.st}</div>
       </div>
       <button class="star" onclick="toggleFav('${x.id}')">${favs.has(x.id)?"★":"☆"}</button>
     </div>
     <div class="desc">${x.d}</div>
-    <div class="pills">${x.tags.map(t=>`<span class="pill">${t}</span>`).join("")}<span class="pill">XA ${x.xa}/100</span></div>
+    <div class="pills">${x.tags.map(t=>`<span class="pill">${t}</span>`).join("")}<span class="pill">XA ${x.xa}/100</span><span class="pill">BIZ ${bizTotal(x)}/100</span></div>
+    <div class="mapBox"><b>MAP AREA</b><span>${x.w}</span></div>
   </div>
 
-  <div class="lcd">
-    <div class="lcdTitle">APPLE / FRUIT BUS</div>
-    <div class="lcdText">${x.fr}</div>
-  </div>
+  <div class="lcd"><div class="lcdTitle">APPLE / FRUIT BUS</div><div class="lcdText">${x.fr}</div></div>
 
   <div class="digitalGrid">
     <div class="digital"><b>ACID</b><span>${x.a}</span><small>${lvl(x.a)}</small></div>
@@ -1017,8 +565,7 @@ return `<article class="card">
       <h3>Mele / pere / frutta</h3><div>${x.fr}</div>
       <h3>Profilo sensoriale</h3><div>${x.pr}</div>
       <h3>Cosa cercare</h3><div>${x.lk}</div>
-      <h3>Note XA</h3><div>Interesse XA ${x.xa}/100. Usare come riferimento per ricerca, scuola, ricetta e atlante.</div>
-
+      <h3>Note XA</h3><div>Interesse XA ${x.xa}/100. Business ${bizTotal(x)}/100. Usare come riferimento per ricerca, scuola, ricetta e import.</div>
       <div class="actions">
         <a class="action" href="javascript:loadStyle('${x.id}')">CARICA STILE</a>
         <a class="action dark" href="${x.map}" target="_blank">MAPPA</a>
@@ -1029,70 +576,7 @@ return `<article class="card">
   </details>
 </article>`;
 }
-function channel(x){
-  const vu=Math.round((x.a+x.t+x.b+x.c)/38);
-  return `<div class="channel">
-    <div class="chName">${x.z}</div>
-    <div class="chType">${x.st}</div>
-    <div class="vu">${Array.from({length:10},(_,i)=>{
-      let cls="";
-      if(i<vu)cls=i>7?"r":i>5?"y":"g";
-      return `<i class="${cls}"></i>`;
-    }).join("")}</div>
-    <div class="faderSet">
-      <div class="fader"><label>ACID</label><div class="track"></div><div class="knob" style="bottom:${12+x.a*.82}px"></div></div>
-      <div class="fader"><label>TAN</label><div class="track"></div><div class="knob" style="bottom:${12+x.t*.82}px"></div></div>
-      <div class="fader"><label>BOLLA</label><div class="track"></div><div class="knob" style="bottom:${12+x.b*.82}px"></div></div>
-    </div>
-  </div>`;
-}
-function listCard(title,lines){
-  return `<div class="listCard"><h2>${title}</h2>${lines.map(l=>`<div class="infoLine"><b>${l[0]}</b><span>${l[1]}</span></div>`).join("")}</div>`;
-}
-function paesiView(out){
-  const g={};
-  out.forEach(x=>{
-    if(!g[x.p])g[x.p]=[];
-    g[x.p].push(x);
-  });
-  return Object.keys(g).sort().map(p=>listCard(p,[
-    ["Schede",g[p].length+" territori/stili"],
-    ["Zone",g[p].map(i=>i.z).join(" · ")],
-    ["Stili",g[p].map(i=>i.st).join(" · ")],
-    ["XA max",Math.max(...g[p].map(i=>i.xa))+"/100"]
-  ])).join("");
-}
-function stiliView(){
-  return STYLE_GUIDE.map(s=>listCard(s[0],[
-    ["Area",s[1]],
-    ["Descrizione",s[2]],
-    ["Parametri",s[3]]
-  ])).join("");
-}
-function meleView(){
-  return FRUIT_GUIDE.map(f=>`
-    <div class="fruitCard">
-      <div class="fruitImg ${f.img}"></div>
-      <h2>${f.t}</h2>
-      <div class="infoLine"><b>Dove</b><span>${f.dove}</span></div>
-      <div class="infoLine"><b>Funzione</b><span>${f.fun}</span></div>
-      <div class="infoLine"><b>Nota</b><span>${f.note}</span></div>
-    </div>
-  `).join("");
-}
-function schoolView(){
-  return SCHOOL.map(l=>`
-    <div class="lessonCard">
-      <div class="lessonNum">${l.n}</div>
-      <h2>${l.t}</h2>
-      <div class="infoLine"><b>Obiettivo</b><span>${l.obj}</span></div>
-      <div class="infoLine"><b>Argomenti</b><span>${l.arg}</span></div>
-      <div class="infoLine"><b>Tecnica</b><span>${l.tec}</span></div>
-      <div class="infoLine"><b>Pratica</b><span>${l.pr}</span></div>
-      <div class="infoLine"><b>Collegato</b><span>${l.link}</span></div>
-    </div>
-  `).join("");
-}
+
 function loadedBox(){
   const x=byId(loadedId);
   return `<div class="name">${x.z}</div>
@@ -1109,35 +593,46 @@ function loadedBox(){
     <a class="action dark" href="javascript:quick('${x.st}')">CERCA SIMILI</a>
   </div>`;
 }
-function homeTop(){
-  return DATA.slice().sort((a,b)=>b.xa-a.xa).slice(0,7).map(x=>`
-    <div class="infoLine">
-      <b>${x.xa}/100</b>
-      <span><a style="color:#d8e5ee;text-decoration:none" href="javascript:loadStyle('${x.id}')">${x.z} · ${x.st}</a></span>
+function infoLine(k,v){return `<div class="infoLine"><b>${k}</b><span>${v}</span></div>`}
+function topDeck(){return DATA.slice().sort((a,b)=>b.xa-a.xa).slice(0,7).map(x=>infoLine(x.xa+"/100",`<a style="color:#d8e5ee;text-decoration:none" href="javascript:loadStyle('${x.id}')">${x.z} · ${x.st}</a>`)).join("")}
+function filterInfo(){return infoLine("Ricerca",q.value.trim()||"nessuna")+infoLine("Filtro",activeChip||"nessun chip")+infoLine("Ordine",document.getElementById("sorter").value)+infoLine("Risultati",results().length+" schede")}
+function paesiView(out){
+  const g={};out.forEach(x=>{if(!g[x.p])g[x.p]=[];g[x.p].push(x)});
+  return Object.keys(g).sort().map(p=>`<div class="areaCard"><h2>${p}</h2>${infoLine("Schede",g[p].length+" territori/stili")}${infoLine("Area",Array.from(new Set(g[p].map(i=>i.area))).join(" · "))}${infoLine("Zone",g[p].map(i=>i.z).join(" · "))}${infoLine("XA max",Math.max(...g[p].map(i=>i.xa))+"/100")}</div>`).join("");
+}
+function areeView(out){
+  const g={};out.forEach(x=>{if(!g[x.area])g[x.area]=[];g[x.area].push(x)});
+  return Object.keys(g).sort().map(a=>`<div class="areaCard"><h2>${a}</h2>${infoLine("Schede",g[a].length)}${infoLine("Paesi",Array.from(new Set(g[a].map(i=>i.p))).join(" · "))}${infoLine("Stili",g[a].map(i=>i.st).join(" · "))}</div>`).join("");
+}
+function stiliView(){return STYLE_GUIDE.map(s=>`<div class="areaCard"><h2>${s[0]}</h2>${infoLine("Area",s[1])}${infoLine("Descrizione",s[2])}${infoLine("Parametri",s[3])}</div>`).join("")}
+function meleView(){
+  return FRUIT_GUIDE.map(f=>`<div class="fruitCard"><div class="fruitImg ${f.img}"></div><h2>${f.t}</h2>${infoLine("Dove",f.dove)}${infoLine("Funzione",f.fun)}${infoLine("Nota",f.note)}</div>`).join("");
+}
+function schoolView(){
+  return LESSONS.map((l,i)=>`<div class="lessonCard">
+    <div class="lessonNum">${l.n}</div><h2>${l.t}</h2>
+    ${infoLine("Obiettivo",l.obj)}${infoLine("Teoria",l.teo)}${infoLine("Tecnica",l.tec)}${infoLine("Pratica",l.pr)}
+    <div class="quizBox"><b style="color:var(--amber)">QUIZ</b><p>${l.q}</p><button onclick="showQuiz(${i})">Mostra risposta</button><div class="quizAnswer" id="quiz${i}">${l.a}</div></div>
+  </div>`).join("");
+}
+function businessView(out){
+  return out.slice().sort((a,b)=>bizTotal(b)-bizTotal(a)).map(x=>`<div class="bizCard">
+    <h2>${x.z}</h2>
+    ${infoLine("Paese",x.p)}${infoLine("Stile",x.st)}${infoLine("Ricerca",x.lk)}
+    <div class="bizScore">
+      <div><b>STORIA</b><span>${x.hist}</span></div>
+      <div><b>BIZ</b><span>${x.biz}</span></div>
+      <div><b>ORIG.</b><span>${x.orig}</span></div>
+      <div><b>IMPORT</b><span>${x.import}</span></div>
     </div>
-  `).join("");
+    <div class="actions"><a class="action" href="javascript:loadStyle('${x.id}')">CARICA</a><a class="action dark" href="${x.map}" target="_blank">MAPPA</a></div>
+  </div>`).join("");
 }
-function filterInfo(){
-  const term=q.value.trim()||"nessuna ricerca";
-  return `<div class="infoLine"><b>Ricerca</b><span>${term}</span></div>
-  <div class="infoLine"><b>Filtro</b><span>${activeChip||"nessun chip"}</span></div>
-  <div class="infoLine"><b>Ordine</b><span>${document.getElementById("sorter").value}</span></div>
-  <div class="infoLine"><b>Risultati</b><span>${results().length} schede filtrate</span></div>`;
-}
-function renderChips(){
-  document.getElementById("chips").innerHTML=CHIPS.map(c=>`<button class="chip ${activeChip===c?"on":""}" onclick="setChip('${c}')">${c}</button>`).join("");
-}
-function renderOptions(){
-  const opts=DATA.map(x=>`<option value="${x.id}">${x.z} — ${x.st}</option>`).join("");
-  document.getElementById("cmpA").innerHTML=opts;
-  document.getElementById("cmpB").innerHTML=opts;
-  document.getElementById("cmpA").value=loadedId;
-  document.getElementById("cmpB").value="normandy";
-}
-function renderCompare(){
-  const a=byId(document.getElementById("cmpA").value);
-  const b=byId(document.getElementById("cmpB").value);
-  document.getElementById("compareResult").innerHTML=`<div class="compareGrid">${compareMini(a)}${compareMini(b)}</div>`;
+function channel(x){
+  const vu=Math.round((x.a+x.t+x.b+x.c)/38);
+  return `<div class="channel"><div class="chName">${x.z}</div><div class="chType">${x.st}</div>
+  <div class="vu">${Array.from({length:10},(_,i)=>{let cls="";if(i<vu)cls=i>7?"r":i>5?"y":"g";return `<i class="${cls}"></i>`}).join("")}</div>
+  <div class="faderSet"><div class="fader"><label>ACID</label><div class="track"></div><div class="knob" style="bottom:${12+x.a*.82}px"></div></div><div class="fader"><label>TAN</label><div class="track"></div><div class="knob" style="bottom:${12+x.t*.82}px"></div></div><div class="fader"><label>BOLLA</label><div class="track"></div><div class="knob" style="bottom:${12+x.b*.82}px"></div></div></div></div>`;
 }
 function compareMini(x){
   return `<div class="compareMini"><h3>${x.z}</h3>
@@ -1146,99 +641,69 @@ function compareMini(x){
     <div class="crow"><b>Tannino</b><span>${x.t} / ${lvl(x.t)}</span></div>
     <div class="crow"><b>Dolce</b><span>${x.s} / ${lvl(x.s)}</span></div>
     <div class="crow"><b>Bolla</b><span>${x.b} / ${lvl(x.b)}</span></div>
-    <div class="crow"><b>Mele</b><span>${x.fr}</span></div>
+    <div class="crow"><b>Frutta</b><span>${x.fr}</span></div>
     <div class="crow"><b>Metodo</b><span>${x.m}</span></div>
-    <div class="crow"><b>XA</b><span>${x.xa}/100</span></div>
+    <div class="crow"><b>Biz</b><span>${bizTotal(x)}/100</span></div>
   </div>`;
+}
+function renderCompare(){
+  const a=byId(document.getElementById("cmpA").value);
+  const b=byId(document.getElementById("cmpB").value);
+  document.getElementById("compareResult").innerHTML=`<div class="compareGrid">${compareMini(a)}${compareMini(b)}</div>`;
+}
+function renderOptions(){
+  const opts=DATA.map(x=>`<option value="${x.id}">${x.z} — ${x.st}</option>`).join("");
+  document.getElementById("cmpA").innerHTML=opts;
+  document.getElementById("cmpB").innerHTML=opts;
+  document.getElementById("cmpA").value=loadedId;
+  document.getElementById("cmpB").value="normandy";
+}
+function renderChips(){
+  document.getElementById("chips").innerHTML=CHIPS.map(c=>`<button class="chip ${activeChip===c?"on":""}" onclick="setChip('${c}')">${c}</button>`).join("");
 }
 function render(){
   const out=results();
-
   document.getElementById("liveCount").textContent=String(out.length).padStart(2,"0");
   document.getElementById("countText").textContent=out.length+" schede";
   document.getElementById("loadedBox").innerHTML=loadedBox();
-  document.getElementById("topDeck").innerHTML=homeTop();
+  document.getElementById("topDeck").innerHTML=topDeck();
   document.getElementById("filterInfo").innerHTML=filterInfo();
-
   document.getElementById("cards").innerHTML=out.map(scheda).join("");
   document.getElementById("empty").style.display=out.length?"none":"block";
-
-  document.getElementById("mixerDeck").innerHTML=out.map(channel).join("");
+  document.getElementById("areeDeck").innerHTML=areeView(out);
   document.getElementById("paesiDeck").innerHTML=paesiView(out);
   document.getElementById("stiliDeck").innerHTML=stiliView();
   document.getElementById("meleDeck").innerHTML=meleView();
   document.getElementById("schoolDeck").innerHTML=schoolView();
-
+  document.getElementById("businessDeck").innerHTML=businessView(out);
+  document.getElementById("mixerDeck").innerHTML=out.map(channel).join("");
   const f=DATA.filter(x=>favs.has(x.id));
   document.getElementById("favDeck").innerHTML=f.map(scheda).join("");
   document.getElementById("favEmpty").style.display=f.length?"none":"block";
-
   renderChips();
   renderCompare();
 }
 function scene(id){
   document.querySelectorAll(".scene").forEach(s=>s.classList.remove("on"));
   document.getElementById(id).classList.add("on");
-
   document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));
   document.getElementById("t_"+id).classList.add("on");
-
-  const title={
-    home:"Master Control",
-    atlas:"Territory Digital Deck",
-    paesi:"Country Browser",
-    stili:"Style Families",
-    mele:"Apple / Fruit Matrix",
-    school:"XA Cider School",
-    mixer:"Style Channel Mixer",
-    compare:"Compare Mode",
-    rack:"XA Technical Rack",
-    fav:"Preferiti"
-  }[id];
-
+  const title={home:"Master Control",atlas:"Territory Digital Deck",aree:"Macro Aree",paesi:"Country Browser",stili:"Style Families",mele:"Apple / Fruit Matrix",school:"XA Cider School",business:"Import / Business",mixer:"Style Channel Mixer",compare:"Compare Mode",fav:"Preferiti"}[id];
   document.getElementById("sceneTitle").textContent=title;
   render();
 }
-function setChip(c){
-  activeChip=activeChip===c?"":c;
-  render();
-  scene("atlas");
-}
-function quick(term){
-  q.value=term;
-  activeChip="";
-  scene("atlas");
-  window.scrollTo({top:0,behavior:"smooth"});
-  render();
-}
-function clearQ(){
-  q.value="";
-  activeChip="";
-  render();
-}
-function toggleCompact(){
-  compact=!compact;
-  document.getElementById("app").classList.toggle("compact",compact);
-  document.getElementById("compactBtn").classList.toggle("on",compact);
-}
-function toggleFav(id){
-  favs.has(id)?favs.delete(id):favs.add(id);
-  localStorage.setItem("xa_cider_atlas_v6_favs",JSON.stringify([...favs]));
-  render();
-}
-function loadStyle(id){
-  loadedId=id;
-  localStorage.setItem("xa_cider_atlas_v6_loaded",id);
-  document.getElementById("cmpA").value=id;
-  scene("home");
-}
-function loadTop(){
-  const top=results()[0]||DATA[0];
-  loadStyle(top.id);
-}
+function setChip(c){activeChip=activeChip===c?"":c;scene("atlas")}
+function quick(term){q.value=term;activeChip="";scene("atlas");window.scrollTo({top:0,behavior:"smooth"})}
+function clearQ(){q.value="";activeChip="";render()}
+function toggleCompact(){compact=!compact;document.getElementById("app").classList.toggle("compact",compact);document.getElementById("compactBtn").classList.toggle("on",compact)}
+function toggleFav(id){favs.has(id)?favs.delete(id):favs.add(id);localStorage.setItem("xa_cider_atlas_v7_favs",JSON.stringify([...favs]));render()}
+function loadStyle(id){loadedId=id;localStorage.setItem("xa_cider_atlas_v7_loaded",id);document.getElementById("cmpA").value=id;scene("home")}
+function loadTop(){const top=results()[0]||DATA[0];loadStyle(top.id)}
+function showQuiz(i){document.getElementById("quiz"+i).style.display="block"}
 function copiaScheda(id){
   const x=byId(id);
   const text=`${x.z} - ${x.p}
+Area: ${x.area}
 Stile: ${x.st}
 Famiglia: ${x.f}
 Dove: ${x.w}
@@ -1252,37 +717,48 @@ Tannino: ${x.t}
 Dolcezza: ${x.s}
 Bolla: ${x.b}
 Corpo: ${x.c}
-Interesse XA: ${x.xa}/100`;
+Interesse XA: ${x.xa}/100
+Business: ${bizTotal(x)}/100`;
   if(navigator.clipboard)navigator.clipboard.writeText(text);
   alert("Scheda copiata.");
 }
 function ricettaText(x){
   return `RICETTA XA ISPIRATA A: ${x.z}
-Paese: ${x.p}
-Stile guida: ${x.st}
-Famiglia: ${x.f}
-Frutta base: ${x.fr}
+
+Paese / area:
+${x.p} — ${x.area}
+
+Stile guida:
+${x.st}
+
+Base frutta:
+${x.fr}
+
 Target tecnico:
 - Acidità: ${x.a}/100
 - Tannino: ${x.t}/100
 - Dolcezza: ${x.s}/100
 - Bolla: ${x.b}/100
 - Corpo: ${x.c}/100
-Metodo di riferimento: ${x.m}
-Profilo desiderato: ${x.pr}
-Parole chiave ricerca: ${x.lk}
-Nota XA: interesse ${x.xa}/100. Usare come base per scheda ricetta, scuola e lotto sperimentale.`;
+- ABV indicativo: ${x.ab}
+
+Metodo di riferimento:
+${x.m}
+
+Profilo desiderato:
+${x.pr}
+
+Parole chiave ricerca:
+${x.lk}
+
+Uso XA:
+Interesse XA ${x.xa}/100. Business ${bizTotal(x)}/100.
+Usare come base per scheda ricetta, scuola, lotto sperimentale e valutazione import.`;
 }
-function copiaRicetta(id){
-  const text=ricettaText(byId(id));
-  if(navigator.clipboard)navigator.clipboard.writeText(text);
-  alert("Ricetta XA copiata.");
-}
-function copyLoadedRecipe(){
-  copiaRicetta(loadedId);
-}
+function copiaRicetta(id){if(navigator.clipboard)navigator.clipboard.writeText(ricettaText(byId(id)));alert("Ricetta XA copiata.")}
+function copyLoadedRecipe(){copiaRicetta(loadedId)}
 function copyFiltered(){
-  const text=results().map(x=>`${x.z} | ${x.p} | ${x.st} | XA ${x.xa}/100 | ${x.fr}`).join("\n");
+  const text=results().map(x=>`${x.z} | ${x.p} | ${x.st} | XA ${x.xa}/100 | BIZ ${bizTotal(x)}/100 | ${x.lk}`).join("\n");
   if(navigator.clipboard)navigator.clipboard.writeText(text);
   alert("Filtro copiato.");
 }
@@ -1292,6 +768,5 @@ renderOptions();
 renderChips();
 render();
 </script>
-
 </body>
 </html>
