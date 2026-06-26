@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#06111f">
-<title>XA Cider Atlas Pro V7</title>
+<title>XA Cider Atlas Pro V8</title>
 
 <style>
 :root{
@@ -15,11 +15,11 @@
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{
-  margin:0;padding:10px 10px 106px;color:var(--cream);
+  margin:0;padding:10px 10px 112px;color:var(--cream);
   font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:
-    radial-gradient(circle at 15% 0%,rgba(82,217,255,.17),transparent 30%),
-    radial-gradient(circle at 85% 0%,rgba(255,59,85,.14),transparent 32%),
+    radial-gradient(circle at 15% 0%,rgba(82,217,255,.18),transparent 30%),
+    radial-gradient(circle at 85% 0%,rgba(255,59,85,.15),transparent 32%),
     linear-gradient(180deg,#06111f,#0b1624 45%,#05080d);
 }
 .app{max-width:980px;margin:auto}
@@ -28,7 +28,7 @@ body{
   background:linear-gradient(180deg,rgba(6,17,31,.98),rgba(6,17,31,.90),rgba(6,17,31,0));
   backdrop-filter:blur(14px);
 }
-.master,.card,.panel,.rack,.fruitCard,.lessonCard,.bizCard,.areaCard{
+.master,.card,.panel,.fruitCard,.lessonPanel,.bizCard,.searchCard,.consoleStrip{
   border:1px solid rgba(82,217,255,.22);
   border-radius:24px;
   background:linear-gradient(180deg,rgba(40,54,66,.96),rgba(13,22,31,.98));
@@ -36,24 +36,23 @@ body{
   overflow:hidden;
 }
 .master{
-  padding:12px;
-  background:linear-gradient(180deg,#263849,#101b2b);
+  padding:12px;background:linear-gradient(180deg,#263849,#101b2b);
   box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.10);
 }
 .brand{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .logo{
-  width:58px;height:58px;border-radius:17px;display:grid;place-items:center;
-  color:#07101a;font-size:25px;font-weight:1000;letter-spacing:-2px;
+  width:60px;height:60px;border-radius:18px;display:grid;place-items:center;
+  color:#07101a;font-size:27px;font-weight:1000;letter-spacing:-2px;
   background:linear-gradient(180deg,#fff2ce,#c99d3f);border:2px solid #ffe8a5;
   box-shadow:0 0 22px rgba(255,196,79,.38),inset 0 0 10px rgba(255,255,255,.45);
 }
-h1{margin:0;font-size:21px;line-height:1}
+h1{margin:0;font-size:22px;line-height:1}
 .sub{margin-top:5px;color:var(--muted);font-size:12px;line-height:1.25}
 .livebox{
-  min-width:82px;border:1px solid rgba(82,217,255,.30);border-radius:15px;
+  min-width:86px;border:1px solid rgba(82,217,255,.30);border-radius:15px;
   background:#061018;padding:8px 7px;text-align:center;box-shadow:inset 0 0 18px rgba(82,217,255,.10);
 }
-.livebox b{display:block;color:var(--green);font-size:20px;line-height:1;text-shadow:0 0 10px rgba(66,242,138,.55)}
+.livebox b{display:block;color:var(--green);font-size:21px;line-height:1;text-shadow:0 0 10px rgba(66,242,138,.55)}
 .livebox span{display:block;color:var(--muted);font-size:9px;font-weight:1000;letter-spacing:.12em;margin-top:4px}
 
 .transport{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:12px}
@@ -101,15 +100,15 @@ select{
 .boardTitle strong{color:var(--cyan);text-shadow:0 0 10px rgba(82,217,255,.35)}
 .scene{display:none}.scene.on{display:block}
 .grid,.list,.homeGrid{display:grid;gap:12px}
-.panel,.rack,.fruitCard,.lessonCard,.bizCard,.areaCard{padding:12px}
-.panel h2,.rack h2,.fruitCard h2,.lessonCard h2,.bizCard h2,.areaCard h2{
+.panel,.fruitCard,.lessonPanel,.bizCard,.searchCard,.consoleStrip{padding:12px}
+.panel h2,.fruitCard h2,.lessonPanel h2,.bizCard h2,.searchCard h2,.consoleStrip h2{
   margin:0 0 10px;color:var(--cyan);font-size:14px;letter-spacing:.08em;text-transform:uppercase;
 }
 .bigLoaded{
   border:1px solid rgba(66,242,138,.26);border-radius:18px;background:#061018;padding:12px;
   box-shadow:inset 0 0 22px rgba(66,242,138,.08);
 }
-.bigLoaded .name{font-size:21px;font-weight:1000;color:var(--green);text-shadow:0 0 12px rgba(66,242,138,.34)}
+.bigLoaded .name{font-size:22px;font-weight:1000;color:var(--green);text-shadow:0 0 12px rgba(66,242,138,.34)}
 .bigLoaded .meta{font-size:12px;color:#d8e5ee;margin-top:5px;line-height:1.35}
 .quickStats{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}
 .quickStat{border:1px solid rgba(82,217,255,.18);background:#071018;border-radius:14px;padding:8px 4px;text-align:center}
@@ -159,14 +158,6 @@ select{
 .bolla{background:linear-gradient(180deg,#52d9ff,#176aa0)}
 .bodyf{background:linear-gradient(180deg,#ff8d3d,#bb4315)}
 .meter span{display:block;margin-top:5px;text-align:center;color:#eaf8ff;font-size:10px;font-weight:1000}
-details{border-top:1px solid rgba(246,236,210,.12)}
-summary{
-  list-style:none;padding:13px 12px;font-size:13px;font-weight:1000;color:#f9f2df;cursor:pointer;
-  background:linear-gradient(180deg,#1c2c3a,#12202d);
-}
-summary::-webkit-details-marker{display:none}
-.sheet{padding:0 12px 13px;color:#cbd7e0;font-size:14px;line-height:1.45}
-.sheet h3{margin:14px 0 5px;color:var(--cyan);font-size:11px;letter-spacing:.11em;text-transform:uppercase}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
 .action{
   display:block;text-align:center;text-decoration:none;border-radius:14px;padding:12px 8px;font-size:12px;font-weight:1000;
@@ -179,15 +170,15 @@ summary::-webkit-details-marker{display:none}
 }
 .infoLine b{color:var(--amber);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
 .infoLine span{color:#d8e5ee}
-.mapBox{
-  margin-top:10px;border:1px solid rgba(82,217,255,.22);border-radius:18px;padding:12px;
-  background:
-    radial-gradient(circle at 50% 50%,rgba(82,217,255,.18),transparent 22%),
-    linear-gradient(135deg,rgba(82,217,255,.08),rgba(255,196,79,.06)),
-    #071018;
+
+.consoleGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.consoleBtn{
+  border:1px solid rgba(82,217,255,.20);border-radius:14px;padding:12px 8px;
+  background:linear-gradient(180deg,#24364a,#111b26);color:#e8f8ff;font-weight:1000;
 }
-.mapBox b{display:block;color:var(--green);font-size:12px;letter-spacing:.1em}
-.mapBox span{display:block;color:#d8e5ee;font-size:13px;margin-top:5px}
+.consoleBtn.on{background:linear-gradient(180deg,#42f28a,#11602d);color:#031108}
+.channelLine{height:10px;border-radius:999px;background:#0a1118;border:1px solid rgba(255,255,255,.08);overflow:hidden;margin:7px 0}
+.channelLine i{display:block;height:100%;width:60%;background:linear-gradient(90deg,#42f28a,#ffc44f,#ff3b55)}
 
 .fruitImg{
   height:138px;border-radius:18px;border:1px solid rgba(82,217,255,.22);
@@ -212,19 +203,24 @@ summary::-webkit-details-marker{display:none}
 .pear{--fruit1:#d7ff7a;--fruit2:#7d8f2b}
 .crab{--fruit1:#ff4055;--fruit2:#5c1120}
 
-.lessonNum{color:var(--green);font-size:12px;font-weight:1000;letter-spacing:.12em}
+.lessonTitle{font-size:20px;font-weight:1000;color:var(--green);text-shadow:0 0 10px rgba(66,242,138,.34)}
+.progressBar{height:12px;border-radius:999px;background:#071018;border:1px solid rgba(82,217,255,.18);overflow:hidden;margin:10px 0}
+.progressBar i{display:block;height:100%;background:linear-gradient(90deg,#52d9ff,#42f28a);width:0}
 .quizBox{margin-top:10px;border:1px solid rgba(255,196,79,.25);border-radius:18px;padding:10px;background:#071018}
-.quizBox button{
-  width:100%;margin-top:7px;border:1px solid rgba(82,217,255,.22);border-radius:13px;padding:10px;
+.quizQ{font-weight:1000;color:#f9f2df;font-size:14px;line-height:1.35}
+.quizOption{
+  width:100%;margin-top:7px;border:1px solid rgba(82,217,255,.22);border-radius:13px;padding:11px;
   background:linear-gradient(180deg,#24364a,#111b26);color:#e8f8ff;font-weight:900;text-align:left;
 }
-.quizAnswer{display:none;margin-top:8px;color:var(--green);font-size:13px;line-height:1.35}
-.bizScore{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px;
-}
+.quizOption.correct{background:linear-gradient(180deg,#42f28a,#11602d);color:#031108}
+.quizOption.wrong{background:linear-gradient(180deg,#ff4c66,#7b1725);color:white}
+.quizResult{margin-top:9px;color:var(--green);font-size:13px;line-height:1.35;display:none}
+
+.bizScore{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
 .bizScore div{background:#071018;border:1px solid rgba(82,217,255,.17);border-radius:12px;padding:7px 3px;text-align:center}
 .bizScore b{display:block;color:var(--muted);font-size:8px}
 .bizScore span{display:block;color:var(--green);font-size:15px;font-weight:1000}
+
 .mixerDeck{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 12px;scrollbar-width:none}
 .mixerDeck::-webkit-scrollbar{display:none}
 .channel{
@@ -262,9 +258,29 @@ summary::-webkit-details-marker{display:none}
   border:1px solid rgba(246,236,210,.14);border-radius:14px;padding:10px 3px;
   color:#e8f8ff;font-size:10px;font-weight:1000;background:linear-gradient(180deg,#233546,#101b26);
 }
-.compact .lcd,.compact .meterGrid,.compact details{display:none}
+.compact .lcd,.compact .meterGrid{display:none}
+
+.modal{
+  position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:100;display:none;
+  align-items:flex-end;justify-content:center;padding:12px;
+}
+.modal.on{display:flex}
+.modalBox{
+  width:100%;max-width:760px;max-height:86vh;overflow:auto;border-radius:24px;
+  border:1px solid rgba(82,217,255,.30);background:linear-gradient(180deg,#25384c,#071018);
+  box-shadow:0 24px 80px rgba(0,0,0,.75);
+}
+.modalHead{
+  position:sticky;top:0;background:linear-gradient(180deg,#263849,#101b2b);
+  display:flex;justify-content:space-between;align-items:center;padding:12px;border-bottom:1px solid rgba(246,236,210,.14);
+}
+.modalHead b{color:var(--cyan);font-size:14px;text-transform:uppercase;letter-spacing:.1em}
+.modalClose{border:0;border-radius:12px;background:#ff3b55;color:white;font-weight:1000;padding:9px 12px}
+.modalBody{padding:12px;color:#d8e5ee;font-size:14px;line-height:1.45}
+
 @media(min-width:760px){
   .grid,.list,.homeGrid{grid-template-columns:1fr 1fr}
+  .consoleWide{grid-template-columns:1.2fr .8fr}
 }
 </style>
 </head>
@@ -278,8 +294,8 @@ summary::-webkit-details-marker{display:none}
         <div style="display:flex;gap:11px;align-items:center">
           <div class="logo">XA</div>
           <div>
-            <h1>Cider Atlas Pro V7</h1>
-            <div class="sub">Atlante · scuola · business · mele · ricette XA</div>
+            <h1>Cider Atlas Pro V8</h1>
+            <div class="sub">DAW mobile · Atlante · School 40 lezioni · Quiz 400 domande · Ricette XA</div>
           </div>
         </div>
         <div class="livebox"><b id="liveCount">00</b><span>STYLE</span></div>
@@ -288,8 +304,8 @@ summary::-webkit-details-marker{display:none}
       <div class="transport">
         <button class="tr rec" onclick="quick('Asturie')">● REC</button>
         <button class="tr play" onclick="loadTop()">▶ LOAD</button>
-        <button class="tr blue" onclick="scene('mele')">MELE</button>
-        <button class="tr" onclick="copyFiltered()">COPY</button>
+        <button class="tr blue" onclick="scene('school')">SCHOOL</button>
+        <button class="tr" onclick="openLoadedModal()">POPUP</button>
         <button class="tr stop" onclick="clearQ()">STOP</button>
       </div>
 
@@ -303,12 +319,12 @@ summary::-webkit-details-marker{display:none}
   <div class="tabs">
     <button id="t_home" class="tab on" onclick="scene('home')">HOME</button>
     <button id="t_atlas" class="tab" onclick="scene('atlas')">ATLAS</button>
-    <button id="t_aree" class="tab" onclick="scene('aree')">AREE</button>
-    <button id="t_paesi" class="tab" onclick="scene('paesi')">PAESI</button>
-    <button id="t_stili" class="tab" onclick="scene('stili')">STILI</button>
+    <button id="t_console" class="tab" onclick="scene('console')">CONSOLE</button>
     <button id="t_mele" class="tab" onclick="scene('mele')">MELE</button>
     <button id="t_school" class="tab" onclick="scene('school')">SCHOOL</button>
+    <button id="t_quiz" class="tab" onclick="scene('quiz')">QUIZ</button>
     <button id="t_business" class="tab" onclick="scene('business')">BUSINESS</button>
+    <button id="t_search" class="tab" onclick="scene('search')">RICERCA</button>
     <button id="t_mixer" class="tab" onclick="scene('mixer')">MIXER</button>
     <button id="t_compare" class="tab" onclick="scene('compare')">CONFR.</button>
     <button id="t_fav" class="tab" onclick="scene('fav')">FAV</button>
@@ -338,36 +354,36 @@ summary::-webkit-details-marker{display:none}
   <section id="home" class="scene on">
     <div class="homeGrid">
       <div class="panel">
-        <h2>Style Loaded</h2>
+        <h2>Master Style Loaded</h2>
         <div id="loadedBox" class="bigLoaded"></div>
+      </div>
+      <div class="panel">
+        <h2>School Progress</h2>
+        <div id="progressBox"></div>
       </div>
       <div class="panel">
         <h2>Top XA Styles</h2>
         <div id="topDeck"></div>
       </div>
       <div class="panel">
-        <h2>Filtro attivo</h2>
-        <div id="filterInfo"></div>
-      </div>
-      <div class="panel">
         <h2>Azioni rapide</h2>
         <div class="actions">
-          <a class="action" href="javascript:scene('atlas')">APRI ATLAS</a>
-          <a class="action dark" href="javascript:scene('business')">BUSINESS</a>
-          <a class="action" href="javascript:scene('school')">XA SCHOOL</a>
-          <a class="action dark" href="javascript:copyLoadedRecipe()">COPIA LOADED</a>
+          <a class="action" href="javascript:scene('console')">CONSOLE DAW</a>
+          <a class="action dark" href="javascript:scene('quiz')">QUIZ MODE</a>
+          <a class="action" href="javascript:copyLoadedRecipe()">COPIA RICETTA</a>
+          <a class="action dark" href="javascript:openLoadedModal()">POPUP STILE</a>
         </div>
       </div>
     </div>
   </section>
 
   <section id="atlas" class="scene"><div id="cards" class="grid"></div><div id="empty" class="empty">Nessun risultato.</div></section>
-  <section id="aree" class="scene"><div id="areeDeck" class="list"></div></section>
-  <section id="paesi" class="scene"><div id="paesiDeck" class="list"></div></section>
-  <section id="stili" class="scene"><div id="stiliDeck" class="list"></div></section>
+  <section id="console" class="scene"><div id="consoleDeck" class="grid consoleWide"></div></section>
   <section id="mele" class="scene"><div id="meleDeck" class="list"></div></section>
-  <section id="school" class="scene"><div id="schoolDeck" class="list"></div></section>
+  <section id="school" class="scene"><div id="schoolDeck"></div></section>
+  <section id="quiz" class="scene"><div id="quizDeck"></div></section>
   <section id="business" class="scene"><div id="businessDeck" class="list"></div></section>
+  <section id="search" class="scene"><div id="searchDeck" class="list"></div></section>
   <section id="mixer" class="scene"><div id="mixerDeck" class="mixerDeck"></div></section>
 
   <section id="compare" class="scene">
@@ -388,107 +404,140 @@ summary::-webkit-details-marker{display:none}
 
 <div class="bottomNav">
   <button onclick="scene('home')">HOME</button>
-  <button onclick="quick('Baltici')">BALTICI</button>
-  <button onclick="quick('Alpi')">ALPI</button>
-  <button onclick="quick('Perry')">PERRY</button>
-  <button onclick="scene('business')">BIZ</button>
+  <button onclick="scene('console')">DAW</button>
+  <button onclick="scene('school')">SCHOOL</button>
+  <button onclick="scene('quiz')">QUIZ</button>
+  <button onclick="scene('mele')">MELE</button>
+</div>
+
+<div id="modal" class="modal" onclick="modalBg(event)">
+  <div class="modalBox">
+    <div class="modalHead"><b id="modalTitle">POPUP</b><button class="modalClose" onclick="closeModal()">CHIUDI</button></div>
+    <div id="modalBody" class="modalBody"></div>
+  </div>
 </div>
 
 <script>
 const DATA=[
-{id:"asturias",area:"CLASSICI",p:"Spagna",z:"Asturie",st:"Sidra Natural Asturiana",f:"Sidra naturale",d:"Centro mondiale del sidro: sidra secca, viva, acida, gastronomica, servita con escanciado.",w:"Gijón, Villaviciosa, Nava, Oviedo.",m:"Fermentazione di mele asturiane, spesso sidra ferma, ossigenata al servizio.",fr:"Raxao, Regona, Durona de Tresali, Verdialona, Perico, De la Riega.",pr:"Secca, acida, viva, leggermente volatile, gastronomica.",lk:"sidra natural, llagares, sidrerías, DOP Sidra de Asturias, escanciado",ab:"5–7%",a:88,t:32,s:12,b:18,c:46,xa:96,hist:96,biz:86,orig:94,import:78,tags:["Spagna","Asturie","mele","sidra natural","acido","classico"],map:"https://www.google.com/maps/search/Asturias+sidreria"},
-{id:"basque",area:"CLASSICI",p:"Spagna / Francia",z:"Paesi Baschi",st:"Sagardoa",f:"Sidro basco",d:"Sidro asciutto, tagliente, salino e spesso funky, legato a botte e cucina basca.",w:"Gipuzkoa, San Sebastián, Hernani, Astigarraga.",m:"Fermentazione secca, servizio da botte, consumo in sagardotegi.",fr:"Mele locali basche, blend di acide, amare e dolci.",pr:"Molto secco, acido, rustico, salino, funk leggero.",lk:"Sagardoa, sagarno, sagardotegi, kupela",ab:"5–7%",a:94,t:40,s:8,b:15,c:48,xa:94,hist:94,biz:82,orig:92,import:76,tags:["Spagna","Paesi Baschi","mele","sagardoa","funky"],map:"https://www.google.com/maps/search/Basque+sidreria+sagardotegi"},
-{id:"normandy",area:"CLASSICI",p:"Francia",z:"Normandia",st:"Cidre Bouché",f:"Cidre francese",d:"Sidri eleganti, spesso demi-sec, con mele dolci-amare, tannino morbido e keeving.",w:"Normandia, Calvados, Manche, Orne.",m:"Blend di mele da cidre, maturazione lenta, presa di spuma naturale, spesso keeving.",fr:"Douce Moën, Bedan, Bisquet, Binet Rouge, mele dolci-amare e amare.",pr:"Mela cotta, buccia, miele leggero, tannino morbido, bollicina fine.",lk:"cidre bouché, cidre doux, demi-sec, brut, keeving",ab:"3–6%",a:52,t:72,s:68,b:74,c:62,xa:95,hist:95,biz:90,orig:90,import:86,tags:["Francia","Normandia","mele","keeving","tannico"],map:"https://www.google.com/maps/search/Normandy+cider+route"},
-{id:"paysdauge",area:"CLASSICI",p:"Francia",z:"Pays d’Auge",st:"Cidre AOP Pays d’Auge",f:"Cidre normanno premium",d:"Sottozona prestigiosa della Normandia, più strutturata e tradizionale.",w:"Pays d’Auge, fra Calvados e aree vicine.",m:"Mele da cidre, fermentazione lenta, presa di spuma naturale.",fr:"Mele dolci-amare e amare normanne, blend per tannino e struttura.",pr:"Elegante, maturo, tannico, fruttato, con bollicina fine.",lk:"AOP Pays d’Auge, cidre bouché, cidre brut, demi-sec",ab:"3–6%",a:50,t:78,s:62,b:76,c:68,xa:94,hist:94,biz:88,orig:88,import:84,tags:["Francia","Pays d’Auge","mele","AOP","premium"],map:"https://www.google.com/maps/search/Pays+d'Auge+cidre"},
-{id:"brittany",area:"CLASSICI",p:"Francia",z:"Bretagna / Cornouaille",st:"Cidre Bretone",f:"Cidre francese",d:"Sidri gastronomici, rustici o eleganti, spesso più marini e secchi della Normandia.",w:"Finistère, Cornouaille, Morbihan.",m:"Mele bretoni, fermentazioni lente, versioni brut, demi-sec o doux.",fr:"Mele bretoni da cidre, dolci, amare, acide e dolci-amare.",pr:"Fruttato maturo, tannino, acidità media, nota rustica e minerale.",lk:"Cidre de Bretagne, Cornouaille, brut, demi-sec",ab:"4–6%",a:57,t:66,s:50,b:60,c:58,xa:92,hist:90,biz:84,orig:86,import:82,tags:["Francia","Bretagna","mele","Cornouaille"],map:"https://www.google.com/maps/search/Brittany+cider"},
-{id:"domfront",area:"CLASSICI",p:"Francia",z:"Domfront / Normandia",st:"Poiré Domfront",f:"Poiré",d:"Grande territorio francese del perry, basato su pere da poiré. Elegante e floreale.",w:"Domfrontais, Normandia meridionale.",m:"Fermentazione di pere da poiré con presa di spuma naturale.",fr:"Pere da poiré, soprattutto Plant de Blanc e varietà locali.",pr:"Pera, fiori bianchi, agrume, delicatezza, bollicina fine.",lk:"Poiré Domfront, poiré normand, perry francese",ab:"3–5%",a:66,t:48,s:45,b:72,c:46,xa:90,hist:88,biz:78,orig:90,import:78,tags:["Francia","Poiré","pera","Domfront"],map:"https://www.google.com/maps/search/Poiré+Domfront"},
-{id:"ukwest",area:"CLASSICI",p:"Regno Unito",z:"West Country",st:"Farmhouse / Scrumpy",f:"English Cider",d:"Sidri strutturati, tannici, profondi, spesso da mele bittersweet e bittersharp.",w:"Somerset, Devon, Dorset, Herefordshire, Gloucestershire.",m:"Mele da sidro ricche di tannino, fermentazione secca, farmhouse, scrumpy o keeved.",fr:"Dabinett, Yarlington Mill, Kingston Black, Michelin, Harry Masters Jersey.",pr:"Tannico, pieno, mela matura, fieno, cuoio leggero.",lk:"scrumpy, farmhouse cider, keeved cider, bittersweet apples",ab:"5–8%",a:55,t:90,s:38,b:40,c:82,xa:94,hist:94,biz:84,orig:88,import:75,tags:["UK","Somerset","mele","scrumpy","tannico"],map:"https://www.google.com/maps/search/Somerset+cider"},
-{id:"perryuk",area:"CLASSICI",p:"Regno Unito",z:"Three Counties / Galles",st:"Perry tradizionale",f:"Perry",d:"Fermentato di pere da perry. Fine, floreale, tannico e spesso molto complesso.",w:"Herefordshire, Worcestershire, Gloucestershire e Galles.",m:"Fermentazione di pere da perry, spesso varietà locali rare e alberi antichi.",fr:"Blakeney Red, Hendre Huffcap, Thorn, Gin, Barland.",pr:"Pera, fiori, agrume, tannino fine, acidità, possibile dolcezza residua.",lk:"traditional perry, single variety perry, old orchard perry pears",ab:"5–8%",a:68,t:74,s:42,b:45,c:60,xa:92,hist:90,biz:78,orig:94,import:72,tags:["UK","Perry","pera","Galles"],map:"https://www.google.com/maps/search/traditional+perry+Herefordshire"},
-
-{id:"altoadige",area:"ALPINI",p:"Italia",z:"Alpi / Alto Adige",st:"Sidro alpino moderno",f:"Alpino pulito",d:"Sidri freschi, moderni e precisi da mele di montagna.",w:"Alto Adige, Val Venosta, Merano, Bolzano.",m:"Fermentazione controllata di succo di mela locale, spesso frizzante, secco o semi-secco.",fr:"Golden Delicious, Gala, Fuji, Granny Smith, mele alpine aromatiche.",pr:"Mela fresca, acidità elegante, pulizia aromatica, corpo leggero.",lk:"sidro secco altoatesino, rifermentati, metodo classico",ab:"4–7%",a:62,t:24,s:32,b:66,c:44,xa:86,hist:55,biz:82,orig:76,import:92,tags:["Italia","Alpi","mele","moderno","fresco","pulito"],map:"https://www.google.com/maps/search/Alto+Adige+cider"},
-{id:"trentino",area:"ALPINI",p:"Italia",z:"Trentino / Val di Non",st:"Sidro alpino sperimentale",f:"Alpino moderno",d:"Zona enorme per la mela, interessante per sidri secchi, ancestrali e sperimentali.",w:"Val di Non, Val di Sole, frutteti trentini.",m:"Fermentazioni controllate, rifermentazioni, metodo ancestrale e varietà antiche.",fr:"Golden Delicious, Renetta, Gala, Fuji, mele locali da montagna.",pr:"Mela gialla, acidità fresca, profilo nitido.",lk:"sidro alpino, ancestrale, varietà antiche, botaniche",ab:"4–8%",a:60,t:25,s:35,b:55,c:48,xa:88,hist:58,biz:84,orig:78,import:92,tags:["Italia","Alpi","Trentino","mele","ancestrale"],map:"https://www.google.com/maps/search/Trentino+sidro"},
-{id:"most",area:"ALPINI",p:"Austria",z:"Mostviertel",st:"Most / Perry austriaco",f:"Most di pera e mela",d:"Territorio storico del Most, spesso basato su pere o blend mela-pera.",w:"Mostviertel, Bassa Austria.",m:"Fermentazione di pere da Most, mele o blend mela-pera.",fr:"Mele locali da Most e soprattutto pere da Most.",pr:"Secco, acidulo, pera, fieno, agrume, mandorla leggera.",lk:"Birnenmost, Apfelmost, Most, perry austriaco",ab:"4–8%",a:78,t:55,s:20,b:30,c:58,xa:86,hist:80,biz:76,orig:84,import:86,tags:["Austria","Alpi","Most","Perry","pera"],map:"https://www.google.com/maps/search/Mostviertel+Most+cider"},
-{id:"switzerland",area:"ALPINI",p:"Svizzera",z:"Svizzera tedesca / Romandia",st:"Most / Cidre svizzero",f:"Alpino centro-europeo",d:"Tradizione di succo fermentato e prodotti da mela in aree agricole e alpine.",w:"Svizzera tedesca, cantoni agricoli, aree alpine.",m:"Fermentazione di mele locali, stile pulito, secco o semi-secco.",fr:"Mele svizzere da frutteto, varietà da tavola e trasformazione.",pr:"Pulito, fresco, acidità media, corpo leggero.",lk:"Swiss cider, Most Switzerland, cidre suisse",ab:"4–7%",a:62,t:28,s:28,b:45,c:44,xa:78,hist:58,biz:70,orig:65,import:82,tags:["Svizzera","Alpi","mele","Most"],map:"https://www.google.com/maps/search/Swiss+cider+Most"},
-
-{id:"denmark",area:"NORDICI / BALTICI",p:"Danimarca",z:"Danimarca",st:"Nordic Natural Cider",f:"Nordico moderno",d:"Nuova scuola fredda: sidri secchi, acidi, eleganti e spesso naturali.",w:"Danimarca, isole e aree agricole con frutteti.",m:"Piccoli produttori, fermentazioni secche, pet-nat e rifermentazioni.",fr:"Mele nordiche acide e aromatiche, varietà locali.",pr:"Mela verde, agrume, mineralità, acidità verticale.",lk:"Danish cider, Nordic cider, natural cider, pét-nat cider",ab:"5–8%",a:86,t:34,s:20,b:58,c:48,xa:88,hist:60,biz:78,orig:82,import:78,tags:["Danimarca","Nord Europa","mele","naturale","moderno"],map:"https://www.google.com/maps/search/Danish+craft+cider"},
-{id:"norway",area:"NORDICI / BALTICI",p:"Norvegia",z:"Hardanger / Norvegia occidentale",st:"Norwegian Sider",f:"Nordico premium",d:"Sidro norvegese moderno, molto interessante per clima freddo, acidità e immagine premium.",w:"Hardanger e aree frutticole norvegesi.",m:"Mele locali, fermentazioni precise, prodotti eleganti e gastronomici.",fr:"Mele norvegesi da clima freddo, varietà locali aromatiche e acide.",pr:"Acidità alta, mela pulita, agrume, eleganza, bollicina fine.",lk:"Hardanger sider, Norwegian cider, Nordic cider",ab:"5–8%",a:88,t:30,s:24,b:62,c:50,xa:90,hist:64,biz:82,orig:86,import:76,tags:["Norvegia","Hardanger","Nord Europa","mele","premium"],map:"https://www.google.com/maps/search/Hardanger+sider"},
-{id:"finland",area:"NORDICI / BALTICI",p:"Finlandia",z:"Finlandia",st:"Nordic Apple Cider",f:"Nordico freddo",d:"Territorio freddo da monitorare per mele resistenti, piccoli frutteti e fermentazioni moderne.",w:"Finlandia meridionale e zone agricole adatte alla mela.",m:"Fermentazione di mele locali o blend, stile moderno, fresco e secco.",fr:"Mele finlandesi resistenti al freddo, mele acide, possibili varietà locali.",pr:"Acidità alta, mela verde, corpo leggero, pulizia aromatica.",lk:"Finnish cider, Nordic cider Finland, craft cider",ab:"4–8%",a:84,t:28,s:18,b:56,c:42,xa:78,hist:42,biz:65,orig:76,import:68,tags:["Finlandia","Nord Europa","mele","freddo","moderno"],map:"https://www.google.com/maps/search/Finnish+craft+cider"},
-{id:"estonia",area:"NORDICI / BALTICI",p:"Estonia",z:"Estonia",st:"Baltic Craft Cider",f:"Baltico moderno",d:"Area baltica fredda e interessante: frutteti, acidità, piccoli produttori e approccio naturale.",w:"Estonia, aree rurali e frutticole.",m:"Fermentazione di mele locali, spesso piccoli lotti, stile secco o naturale.",fr:"Mele baltiche acide, mele rustiche da clima freddo, varietà locali.",pr:"Fresco, acido, pulito o leggermente naturale, mela verde.",lk:"Estonian cider, craft cider Estonia, Baltic cider",ab:"4–8%",a:82,t:32,s:18,b:52,c:44,xa:82,hist:45,biz:68,orig:82,import:70,tags:["Estonia","Baltici","mele","naturale","freddo"],map:"https://www.google.com/maps/search/Estonian+craft+cider"},
-{id:"latvia",area:"NORDICI / BALTICI",p:"Lettonia",z:"Lettonia",st:"Latvian Apple Cider",f:"Baltico emergente",d:"Paese baltico da monitorare per sidri da mele fredde, acide e rustiche.",w:"Lettonia, zone agricole e frutticole.",m:"Fermentazioni di mele locali, stili piccoli, naturali o moderni.",fr:"Mele lettoni acide e aromatiche, varietà rustiche da clima freddo.",pr:"Acidità alta, frutta fresca, possibile rusticità.",lk:"Latvian cider, craft cider Latvia, Baltic cider",ab:"4–8%",a:80,t:34,s:20,b:50,c:44,xa:78,hist:42,biz:62,orig:78,import:68,tags:["Lettonia","Baltici","mele","emergente"],map:"https://www.google.com/maps/search/Latvian+craft+cider"},
-{id:"lithuania",area:"NORDICI / BALTICI",p:"Lituania",z:"Lituania",st:"Lithuanian Craft Cider",f:"Baltico emergente",d:"Area fredda con potenziale su mele locali, fermentazioni naturali e piccoli lotti.",w:"Lituania, frutteti e aree agricole.",m:"Fermentazione di mele locali, possibili stili secchi e naturali.",fr:"Mele lituane rustiche, acide e aromatiche da clima freddo.",pr:"Fresco, acido, secco, profilo agricolo o moderno.",lk:"Lithuanian cider, craft cider Lithuania, Baltic cider",ab:"4–8%",a:79,t:33,s:20,b:50,c:43,xa:78,hist:42,biz:62,orig:78,import:68,tags:["Lituania","Baltici","mele","naturale","emergente"],map:"https://www.google.com/maps/search/Lithuanian+craft+cider"},
-
-{id:"poland",area:"EUROPA EST",p:"Polonia",z:"Polonia",st:"Cydr polacco",f:"Europa centro-orientale",d:"Paese con molte mele e produzione crescente di cydr moderno e commerciale.",w:"Polonia centrale e orientale, aree frutticole.",m:"Fermentazione di mele locali, stili secchi, semi-secchi o fruttati.",fr:"Mele polacche da frutteto, varietà da tavola e trasformazione.",pr:"Mela fresca, acidità media, profilo pulito o commerciale.",lk:"Cydr polski, Polish cider, cydr rzemieślniczy",ab:"4–7%",a:60,t:24,s:36,b:58,c:42,xa:78,hist:45,biz:74,orig:68,import:80,tags:["Polonia","mele","Europa orientale","craft","moderno"],map:"https://www.google.com/maps/search/Polish+cider+cydr"},
-{id:"russia",area:"EUROPA EST",p:"Russia",z:"Russia europea",st:"Cider russo moderno",f:"Area emergente",d:"Mercato e produzione moderna da monitorare, con frutteti in aree temperate e fredde.",w:"Russia europea, aree frutticole e mercati urbani.",m:"Fermentazioni moderne di mele locali o blend; stile ancora molto variabile.",fr:"Mele russe da frutteto, varietà da clima freddo, mele acide e da tavola.",pr:"Variabile: da dolce/fruttato a secco moderno.",lk:"Russian cider, craft cider Russia, cider Moscow",ab:"4–8%",a:60,t:24,s:42,b:58,c:44,xa:70,hist:35,biz:55,orig:70,import:35,tags:["Russia","mele","emergente","freddo"],map:"https://www.google.com/maps/search/Russian+craft+cider"},
-{id:"czech",area:"EUROPA EST",p:"Repubblica Ceca",z:"Boemia / Moravia",st:"Cider ceco moderno",f:"Europa centrale emergente",d:"Area birraria e frutticola con produttori moderni di cider in crescita.",w:"Boemia, Moravia, aree agricole ceche.",m:"Fermentazioni controllate, mele locali, stili moderni e talvolta naturali.",fr:"Mele ceche da frutteto, mele da tavola e trasformazione.",pr:"Pulito, fresco, secco o semi-secco, profilo moderno.",lk:"Czech cider, cider Moravia, craft cider Czech Republic",ab:"4–7%",a:58,t:25,s:34,b:58,c:42,xa:76,hist:38,biz:68,orig:65,import:78,tags:["Repubblica Ceca","mele","craft","Europa centrale"],map:"https://www.google.com/maps/search/Czech+craft+cider"},
-{id:"hungary",area:"EUROPA EST",p:"Ungheria",z:"Ungheria",st:"Almabor / cider ungherese",f:"Area emergente",d:"Paese con frutta e tradizione fermentativa, ma sidro moderno ancora da monitorare.",w:"Ungheria, aree agricole e frutticole.",m:"Fermentazione di mele locali, potenziale craft moderno e agricolo.",fr:"Mele ungheresi da frutteto, possibili varietà locali e da tavola.",pr:"Fruttato, fresco, acidità media, stile da sviluppare.",lk:"Hungarian cider, almabor, craft cider Hungary",ab:"4–7%",a:54,t:22,s:38,b:55,c:40,xa:72,hist:35,biz:62,orig:64,import:78,tags:["Ungheria","mele","almabor","emergente"],map:"https://www.google.com/maps/search/Hungarian+craft+cider"},
-{id:"romania",area:"EUROPA EST",p:"Romania",z:"Transilvania / Romania",st:"Cider rumeno emergente",f:"Europa orientale",d:"Paese con frutta, mele e prugne: interessante per fermentazioni agricole e sidro moderno.",w:"Transilvania, aree frutticole rumene.",m:"Fermentazione di mele locali, possibili piccoli lotti agricoli.",fr:"Mele rumene locali, mele da tavola e trasformazione.",pr:"Fresco, fruttato, acidità media, profilo rurale o moderno.",lk:"Romanian cider, craft cider Romania, Transylvania cider",ab:"4–7%",a:58,t:24,s:36,b:54,c:42,xa:72,hist:38,biz:64,orig:66,import:76,tags:["Romania","Transilvania","mele","emergente"],map:"https://www.google.com/maps/search/Romanian+craft+cider"},
-
-{id:"bulgaria",area:"BALCANI",p:"Bulgaria",z:"Bulgaria",st:"Bulgarian Apple Cider",f:"Balcani emergenti",d:"Area non storica per il sidro classico, ma interessante per frutta e possibili produttori moderni.",w:"Bulgaria, aree agricole e frutticole.",m:"Fermentazione di mele locali, stili commerciali o craft da sviluppare.",fr:"Mele bulgare da frutteto, varietà da tavola e trasformazione.",pr:"Fruttato, fresco, dolcezza variabile, tannino basso.",lk:"Bulgarian cider, craft cider Bulgaria",ab:"4–7%",a:52,t:20,s:42,b:58,c:40,xa:68,hist:30,biz:58,orig:62,import:72,tags:["Bulgaria","Balcani","mele","emergente"],map:"https://www.google.com/maps/search/Bulgarian+craft+cider"},
-{id:"croatiaserbia",area:"BALCANI",p:"Croazia / Serbia",z:"Balcani settentrionali",st:"Balkan Apple Cider",f:"Balcani emergenti",d:"Zona da monitorare: frutta, mele, piccoli produttori e cultura fermentativa agricola.",w:"Croazia settentrionale, Serbia settentrionale, zone agricole balcaniche.",m:"Fermentazione di mele locali, potenziale craft moderno o agricolo.",fr:"Mele balcaniche locali, varietà da frutteto e trasformazione.",pr:"Fruttato, fresco, acidità media, possibile rusticità.",lk:"Croatian cider, Serbian cider, Balkan cider, craft cider",ab:"4–7%",a:56,t:24,s:38,b:54,c:42,xa:70,hist:35,biz:60,orig:66,import:72,tags:["Croazia","Serbia","Balcani","mele","emergente"],map:"https://www.google.com/maps/search/Balkan+craft+cider"},
-
-{id:"quebec",area:"NUOVO MONDO",p:"Canada",z:"Québec",st:"Ice Cider",f:"Cidre de glace",d:"Stile moderno basato sulla concentrazione naturale dal gelo. Dolcezza intensa e acidità alta.",w:"Québec, zone fredde con frutteti.",m:"Crioconcentrazione o crioestrazione: il freddo concentra zuccheri e aromi.",fr:"Mele aromatiche e acide resistenti al freddo.",pr:"Mela candita, miele, albicocca, dolcezza alta, acidità bilanciante.",lk:"Ice cider, cidre de glace, dessert cider",ab:"7–13%",a:76,t:18,s:94,b:12,c:90,xa:91,hist:70,biz:82,orig:92,import:65,tags:["Canada","Québec","mele","ice cider","dolce"],map:"https://www.google.com/maps/search/Quebec+ice+cider"},
-{id:"pacific",area:"NUOVO MONDO",p:"USA",z:"Pacific Northwest",st:"New World Craft Cider",f:"Craft moderno",d:"Area moderna e sperimentale: sidri secchi, luppolati, barrel-aged, con frutta e botaniche.",w:"Washington, Oregon, California del nord.",m:"Fermentazioni controllate, botte, frutta, luppolo, lieviti selezionati o selvaggi.",fr:"Mele da dessert, mele da sidro, crab apples, blend sperimentali.",pr:"Da pulito e fruttato a funky; secco, creativo, gastronomico.",lk:"Dry cider, hopped cider, barrel-aged cider, wild fermentation cider",ab:"5–9%",a:64,t:48,s:30,b:62,c:55,xa:92,hist:60,biz:82,orig:94,import:55,tags:["USA","Pacific Northwest","mele","craft","moderno"],map:"https://www.google.com/maps/search/Pacific+Northwest+craft+cider"},
-{id:"japan",area:"NUOVO MONDO",p:"Giappone",z:"Aomori / Nagano",st:"Japanese Craft Cider",f:"Craft asiatico",d:"Sidri moderni da territori famosi per mele di alta qualità, precisi e puliti.",w:"Aomori, Nagano e zone frutticole giapponesi.",m:"Fermentazioni controllate, mele aromatiche, stile pulito e moderno.",fr:"Fuji, Shinano Gold, Orin, Tsugaru e mele giapponesi aromatiche.",pr:"Pulito, elegante, mela fresca, acidità controllata, grande precisione.",lk:"Japanese cider, Aomori cider, Nagano cider",ab:"4–8%",a:58,t:20,s:34,b:62,c:42,xa:84,hist:50,biz:76,orig:82,import:50,tags:["Giappone","Aomori","Nagano","mele","moderno"],map:"https://www.google.com/maps/search/Japanese+craft+cider"},
-{id:"australia",area:"NUOVO MONDO",p:"Australia",z:"Tasmania / Victoria",st:"Australian Craft Cider",f:"Nuovo Mondo",d:"Sidri moderni da regioni frutticole, freschi, accessibili e ben fatti.",w:"Tasmania, Victoria, South Australia.",m:"Fermentazione di mele locali, stili dry, semi-dry, fruttati o craft.",fr:"Mele australiane da frutteto, dessert apples, blend aciduli.",pr:"Fruttato, pulito, fresco, talvolta tropicale o moderno.",lk:"Tasmanian cider, Australian craft cider",ab:"4–8%",a:56,t:26,s:38,b:62,c:44,xa:77,hist:45,biz:70,orig:70,import:48,tags:["Australia","Tasmania","mele","Nuovo Mondo"],map:"https://www.google.com/maps/search/Tasmanian+craft+cider"},
-{id:"chile",area:"NUOVO MONDO",p:"Cile",z:"Patagonia / Sud del Cile",st:"Chilean Apple Cider",f:"Andino-patagonico",d:"Area interessante per mele, clima fresco e possibili sidri di territorio.",w:"Sud del Cile, Patagonia cilena, zone frutticole fredde.",m:"Mele locali, fermentazioni agricole o moderne.",fr:"Mele da clima fresco, varietà locali e da frutteto.",pr:"Fresco, acidulo, fruttato, potenzialmente rustico.",lk:"Chilean cider, Patagonia cider, sidra Chile",ab:"4–8%",a:68,t:34,s:28,b:46,c:50,xa:80,hist:45,biz:62,orig:84,import:45,tags:["Cile","Patagonia","mele","Sud America"],map:"https://www.google.com/maps/search/Chilean+cider+Patagonia"}
-];
-
-const STYLE_GUIDE=[
-["Sidra Natural","Asturie","Sidra secca, acida, viva, servita con escanciado.","Acidità alta, bolla bassa, gastronomia."],
-["Sagardoa","Paesi Baschi","Sidro secco, salino, da botte e cucina basca.","Acidità estrema, funk leggero, servizio da kupela."],
-["Cidre Bouché","Normandia","Cidre con presa di spuma naturale, spesso demi-sec.","Tannino, dolcezza naturale, bolla fine."],
-["Keeved Cider","Francia / UK","Tecnica per mantenere dolcezza naturale tramite separazione nutrienti.","Fermentazione lenta, corpo, residuo zuccherino."],
-["Scrumpy","UK West Country","Sidro rurale, tannico, spesso rustico.","Tannino alto, corpo pieno, frutteto tradizionale."],
-["Perry","UK","Fermentato di pere da perry.","Pera, fiori, tannino fine, acidità."],
-["Poiré","Francia","Perry francese, spesso fine e frizzante.","Bolla fine, pera, eleganza."],
-["Apfelwein","Germania","Vino di mela secco, acidulo, popolare.","Secco, acido, spesso fermo."],
-["Most","Austria","Fermentato agricolo di mela, pera o blend.","Rustico, secco, acidulo, contadino."],
-["Ice Cider","Québec","Sidro dolce da concentrazione naturale col gelo.","Dolcezza alta, acidità alta, dessert."],
-["Nordic Cider","Nord Europa / Baltici","Sidri freddi, acidi, secchi, spesso naturali.","Mela verde, acidità, eleganza."],
-["Balkan Cider","Balcani emergenti","Aree da monitorare: frutta, mele, fermentazioni moderne.","Più ricerca che tradizione storica."],
-["Pet-Nat Cider","Moderno naturale","Rifermentazione naturale in bottiglia.","Bolla viva, profilo naturale."],
-["Botanical Cider","Craft moderno","Sidro con botaniche, erbe, spezie o fiori.","Sperimentale, gastronomico, molto XA."]
+{id:"asturias",area:"CLASSICI",p:"Spagna",z:"Asturie",st:"Sidra Natural Asturiana",f:"Sidra naturale",d:"Centro mondiale del sidro: sidra secca, viva, acida, gastronomica, servita con escanciado.",w:"Gijón, Villaviciosa, Nava, Oviedo.",m:"Fermentazione di mele asturiane, spesso sidra ferma, ossigenata al servizio.",fr:"Raxao, Regona, Durona de Tresali, Verdialona, Perico, De la Riega.",pr:"Secca, acida, viva, leggermente volatile, gastronomica.",kw:"sidra natural, llagares, sidrerías, DOP Sidra de Asturias, escanciado",ab:"5–7%",a:88,t:32,s:12,b:18,c:46,xa:96,hist:96,biz:86,orig:94,imp:78,tags:["Spagna","Asturie","mele","sidra natural","acido","classico"],map:"https://www.google.com/maps/search/Asturias+sidreria"},
+{id:"basque",area:"CLASSICI",p:"Spagna / Francia",z:"Paesi Baschi",st:"Sagardoa",f:"Sidro basco",d:"Sidro asciutto, tagliente, salino e spesso funky, legato a botte e cucina basca.",w:"Gipuzkoa, San Sebastián, Hernani, Astigarraga.",m:"Fermentazione secca, servizio da botte, consumo in sagardotegi.",fr:"Mele locali basche, blend di acide, amare e dolci.",pr:"Molto secco, acido, rustico, salino, funk leggero.",kw:"Sagardoa, sagarno, sagardotegi, kupela",ab:"5–7%",a:94,t:40,s:8,b:15,c:48,xa:94,hist:94,biz:82,orig:92,imp:76,tags:["Spagna","Paesi Baschi","mele","sagardoa","funky"],map:"https://www.google.com/maps/search/Basque+sidreria+sagardotegi"},
+{id:"normandy",area:"CLASSICI",p:"Francia",z:"Normandia",st:"Cidre Bouché",f:"Cidre francese",d:"Sidri eleganti, spesso demi-sec, con mele dolci-amare, tannino morbido e keeving.",w:"Normandia, Calvados, Manche, Orne.",m:"Blend di mele da cidre, maturazione lenta, presa di spuma naturale, spesso keeving.",fr:"Douce Moën, Bedan, Bisquet, Binet Rouge, mele dolci-amare e amare.",pr:"Mela cotta, buccia, miele leggero, tannino morbido, bollicina fine.",kw:"cidre bouché, cidre doux, demi-sec, brut, keeving",ab:"3–6%",a:52,t:72,s:68,b:74,c:62,xa:95,hist:95,biz:90,orig:90,imp:86,tags:["Francia","Normandia","mele","keeving","tannico"],map:"https://www.google.com/maps/search/Normandy+cider+route"},
+{id:"paysdauge",area:"CLASSICI",p:"Francia",z:"Pays d’Auge",st:"Cidre AOP Pays d’Auge",f:"Cidre normanno premium",d:"Sottozona prestigiosa della Normandia, più strutturata e tradizionale.",w:"Pays d’Auge, Calvados e aree vicine.",m:"Mele da cidre, fermentazione lenta, presa di spuma naturale.",fr:"Mele dolci-amare e amare normanne, blend per tannino e struttura.",pr:"Elegante, maturo, tannico, fruttato, con bollicina fine.",kw:"AOP Pays d’Auge, cidre bouché, cidre brut, demi-sec",ab:"3–6%",a:50,t:78,s:62,b:76,c:68,xa:94,hist:94,biz:88,orig:88,imp:84,tags:["Francia","Pays d’Auge","mele","AOP","premium"],map:"https://www.google.com/maps/search/Pays+d'Auge+cidre"},
+{id:"brittany",area:"CLASSICI",p:"Francia",z:"Bretagna / Cornouaille",st:"Cidre Bretone",f:"Cidre francese",d:"Sidri gastronomici, rustici o eleganti, spesso più marini e secchi della Normandia.",w:"Finistère, Cornouaille, Morbihan.",m:"Mele bretoni, fermentazioni lente, versioni brut, demi-sec o doux.",fr:"Mele bretoni da cidre, dolci, amare, acide e dolci-amare.",pr:"Fruttato maturo, tannino, acidità media, nota rustica e minerale.",kw:"Cidre de Bretagne, Cornouaille, brut, demi-sec",ab:"4–6%",a:57,t:66,s:50,b:60,c:58,xa:92,hist:90,biz:84,orig:86,imp:82,tags:["Francia","Bretagna","mele","Cornouaille"],map:"https://www.google.com/maps/search/Brittany+cider"},
+{id:"domfront",area:"CLASSICI",p:"Francia",z:"Domfront / Normandia",st:"Poiré Domfront",f:"Poiré",d:"Grande territorio francese del perry, basato su pere da poiré. Elegante e floreale.",w:"Domfrontais, Normandia meridionale.",m:"Fermentazione di pere da poiré con presa di spuma naturale.",fr:"Pere da poiré, soprattutto Plant de Blanc e varietà locali.",pr:"Pera, fiori bianchi, agrume, delicatezza, bollicina fine.",kw:"Poiré Domfront, poiré normand, perry francese",ab:"3–5%",a:66,t:48,s:45,b:72,c:46,xa:90,hist:88,biz:78,orig:90,imp:78,tags:["Francia","Poiré","pera","Domfront"],map:"https://www.google.com/maps/search/Poiré+Domfront"},
+{id:"ukwest",area:"CLASSICI",p:"Regno Unito",z:"West Country",st:"Farmhouse / Scrumpy",f:"English Cider",d:"Sidri strutturati, tannici, profondi, spesso da mele bittersweet e bittersharp.",w:"Somerset, Devon, Dorset, Herefordshire, Gloucestershire.",m:"Mele da sidro ricche di tannino, fermentazione secca, farmhouse, scrumpy o keeved.",fr:"Dabinett, Yarlington Mill, Kingston Black, Michelin, Harry Masters Jersey.",pr:"Tannico, pieno, mela matura, fieno, cuoio leggero.",kw:"scrumpy, farmhouse cider, keeved cider, bittersweet apples",ab:"5–8%",a:55,t:90,s:38,b:40,c:82,xa:94,hist:94,biz:84,orig:88,imp:75,tags:["UK","Somerset","mele","scrumpy","tannico"],map:"https://www.google.com/maps/search/Somerset+cider"},
+{id:"perryuk",area:"CLASSICI",p:"Regno Unito",z:"Three Counties / Galles",st:"Perry tradizionale",f:"Perry",d:"Fermentato di pere da perry. Fine, floreale, tannico e spesso molto complesso.",w:"Herefordshire, Worcestershire, Gloucestershire e Galles.",m:"Fermentazione di pere da perry, spesso varietà locali rare e alberi antichi.",fr:"Blakeney Red, Hendre Huffcap, Thorn, Gin, Barland.",pr:"Pera, fiori, agrume, tannino fine, acidità, possibile dolcezza residua.",kw:"traditional perry, single variety perry, old orchard perry pears",ab:"5–8%",a:68,t:74,s:42,b:45,c:60,xa:92,hist:90,biz:78,orig:94,imp:72,tags:["UK","Perry","pera","Galles"],map:"https://www.google.com/maps/search/traditional+perry+Herefordshire"},
+{id:"altoadige",area:"ALPINI",p:"Italia",z:"Alpi / Alto Adige",st:"Sidro alpino moderno",f:"Alpino pulito",d:"Sidri freschi, moderni e precisi da mele di montagna.",w:"Alto Adige, Val Venosta, Merano, Bolzano.",m:"Fermentazione controllata di succo di mela locale, spesso frizzante, secco o semi-secco.",fr:"Golden Delicious, Gala, Fuji, Granny Smith, mele alpine aromatiche.",pr:"Mela fresca, acidità elegante, pulizia aromatica, corpo leggero.",kw:"sidro altoatesino, cider Südtirol, mele alpine",ab:"4–7%",a:62,t:24,s:32,b:66,c:44,xa:86,hist:55,biz:82,orig:76,imp:92,tags:["Italia","Alpi","mele","moderno","fresco","pulito"],map:"https://www.google.com/maps/search/Alto+Adige+cider"},
+{id:"trentino",area:"ALPINI",p:"Italia",z:"Trentino / Val di Non",st:"Sidro alpino sperimentale",f:"Alpino moderno",d:"Zona enorme per la mela, interessante per sidri secchi, ancestrali e sperimentali.",w:"Val di Non, Val di Sole, frutteti trentini.",m:"Fermentazioni controllate, rifermentazioni, metodo ancestrale e varietà antiche.",fr:"Golden Delicious, Renetta, Gala, Fuji, mele locali da montagna.",pr:"Mela gialla, acidità fresca, profilo nitido.",kw:"sidro trentino, Val di Non cider, mele antiche Trentino",ab:"4–8%",a:60,t:25,s:35,b:55,c:48,xa:88,hist:58,biz:84,orig:78,imp:92,tags:["Italia","Alpi","Trentino","mele","ancestrale"],map:"https://www.google.com/maps/search/Trentino+sidro"},
+{id:"most",area:"ALPINI",p:"Austria",z:"Mostviertel",st:"Most / Perry austriaco",f:"Most di pera e mela",d:"Territorio storico del Most, spesso basato su pere o blend mela-pera.",w:"Mostviertel, Bassa Austria.",m:"Fermentazione di pere da Most, mele o blend mela-pera.",fr:"Mele locali da Most e soprattutto pere da Most.",pr:"Secco, acidulo, pera, fieno, agrume, mandorla leggera.",kw:"Birnenmost, Apfelmost, Mostviertel, perry Austria",ab:"4–8%",a:78,t:55,s:20,b:30,c:58,xa:86,hist:80,biz:76,orig:84,imp:86,tags:["Austria","Alpi","Most","Perry","pera"],map:"https://www.google.com/maps/search/Mostviertel+Most+cider"},
+{id:"germany",area:"CENTRO EUROPA",p:"Germania",z:"Hessen / Frankfurt",st:"Apfelwein",f:"Sidro tedesco",d:"Vino di mela secco, acidulo, diretto e molto gastronomico.",w:"Frankfurt, Sachsenhausen, Wetterau.",m:"Fermentazione di mele acide. Spesso fermo o leggermente mosso.",fr:"Mele acide e robuste da trasformazione; a volte Speierling.",pr:"Secco, aspro, mela verde, acidità pulita.",kw:"Apfelwein, Ebbelwoi, Speierling, Apfelwein Frankfurt",ab:"4.8–7%",a:82,t:28,s:10,b:20,c:38,xa:84,hist:82,biz:76,orig:80,imp:86,tags:["Germania","mele","Apfelwein","secco"],map:"https://www.google.com/maps/search/Frankfurt+Apfelwein"},
+{id:"viez",area:"CENTRO EUROPA",p:"Germania / Lussemburgo",z:"Saarland / Trier / Luxembourg",st:"Viez",f:"Sidro mosellano",d:"Cultura del vino di mela nel bacino Saar-Mosella-Lussemburgo.",w:"Saarland, Trier, Mosella, Lussemburgo.",m:"Fermentazione di mele locali, stile secco e popolare.",fr:"Mele acide e da trasformazione, frutteti locali.",pr:"Secco, acidulo, diretto, leggero, rustico.",kw:"Viez, Apfelwein Saarland, Luxembourg Viez",ab:"4–7%",a:84,t:30,s:8,b:18,c:38,xa:78,hist:70,biz:65,orig:72,imp:82,tags:["Germania","Lussemburgo","Viez","mele"],map:"https://www.google.com/maps/search/Viez+Saarland"},
+{id:"denmark",area:"NORDICI / BALTICI",p:"Danimarca",z:"Danimarca",st:"Nordic Natural Cider",f:"Nordico moderno",d:"Nuova scuola fredda: sidri secchi, acidi, eleganti e spesso naturali.",w:"Danimarca, isole e aree agricole con frutteti.",m:"Piccoli produttori, fermentazioni secche, pet-nat e rifermentazioni.",fr:"Mele nordiche acide e aromatiche, varietà locali.",pr:"Mela verde, agrume, mineralità, acidità verticale.",kw:"Danish cider, Nordic cider, natural cider, pét-nat cider",ab:"5–8%",a:86,t:34,s:20,b:58,c:48,xa:88,hist:60,biz:78,orig:82,imp:78,tags:["Danimarca","Nord Europa","mele","naturale","moderno"],map:"https://www.google.com/maps/search/Danish+craft+cider"},
+{id:"norway",area:"NORDICI / BALTICI",p:"Norvegia",z:"Hardanger / Norvegia occidentale",st:"Norwegian Sider",f:"Nordico premium",d:"Sidro norvegese moderno, molto interessante per clima freddo, acidità e immagine premium.",w:"Hardanger e aree frutticole norvegesi.",m:"Mele locali, fermentazioni precise, prodotti eleganti e gastronomici.",fr:"Mele norvegesi da clima freddo, varietà locali aromatiche e acide.",pr:"Acidità alta, mela pulita, agrume, eleganza, bollicina fine.",kw:"Hardanger sider, Norwegian cider, Nordic cider",ab:"5–8%",a:88,t:30,s:24,b:62,c:50,xa:90,hist:64,biz:82,orig:86,imp:76,tags:["Norvegia","Hardanger","Nord Europa","mele","premium"],map:"https://www.google.com/maps/search/Hardanger+sider"},
+{id:"finland",area:"NORDICI / BALTICI",p:"Finlandia",z:"Finlandia",st:"Nordic Apple Cider",f:"Nordico freddo",d:"Territorio freddo da monitorare per mele resistenti, piccoli frutteti e fermentazioni moderne.",w:"Finlandia meridionale e zone agricole adatte alla mela.",m:"Fermentazione di mele locali o blend, stile moderno, fresco e secco.",fr:"Mele finlandesi resistenti al freddo, mele acide, possibili varietà locali.",pr:"Acidità alta, mela verde, corpo leggero, pulizia aromatica.",kw:"Finnish cider, Nordic cider Finland, craft cider",ab:"4–8%",a:84,t:28,s:18,b:56,c:42,xa:78,hist:42,biz:65,orig:76,imp:68,tags:["Finlandia","Nord Europa","mele","freddo","moderno"],map:"https://www.google.com/maps/search/Finnish+craft+cider"},
+{id:"estonia",area:"NORDICI / BALTICI",p:"Estonia",z:"Estonia",st:"Baltic Craft Cider",f:"Baltico moderno",d:"Area baltica fredda e interessante: frutteti, acidità, piccoli produttori e approccio naturale.",w:"Estonia, aree rurali e frutticole.",m:"Fermentazione di mele locali, spesso piccoli lotti, stile secco o naturale.",fr:"Mele baltiche acide, mele rustiche da clima freddo, varietà locali.",pr:"Fresco, acido, pulito o leggermente naturale, mela verde.",kw:"Estonian cider, craft cider Estonia, Baltic cider",ab:"4–8%",a:82,t:32,s:18,b:52,c:44,xa:82,hist:45,biz:68,orig:82,imp:70,tags:["Estonia","Baltici","mele","naturale","freddo"],map:"https://www.google.com/maps/search/Estonian+craft+cider"},
+{id:"latvia",area:"NORDICI / BALTICI",p:"Lettonia",z:"Lettonia",st:"Latvian Apple Cider",f:"Baltico emergente",d:"Paese baltico da monitorare per sidri da mele fredde, acide e rustiche.",w:"Lettonia, zone agricole e frutticole.",m:"Fermentazioni di mele locali, stili piccoli, naturali o moderni.",fr:"Mele lettoni acide e aromatiche, varietà rustiche da clima freddo.",pr:"Acidità alta, frutta fresca, possibile rusticità.",kw:"Latvian cider, craft cider Latvia, Baltic cider",ab:"4–8%",a:80,t:34,s:20,b:50,c:44,xa:78,hist:42,biz:62,orig:78,imp:68,tags:["Lettonia","Baltici","mele","emergente"],map:"https://www.google.com/maps/search/Latvian+craft+cider"},
+{id:"lithuania",area:"NORDICI / BALTICI",p:"Lituania",z:"Lituania",st:"Lithuanian Craft Cider",f:"Baltico emergente",d:"Area fredda con potenziale su mele locali, fermentazioni naturali e piccoli lotti.",w:"Lituania, frutteti e aree agricole.",m:"Fermentazione di mele locali, possibili stili secchi e naturali.",fr:"Mele lituane rustiche, acide e aromatiche da clima freddo.",pr:"Fresco, acido, secco, profilo agricolo o moderno.",kw:"Lithuanian cider, craft cider Lithuania, Baltic cider",ab:"4–8%",a:79,t:33,s:20,b:50,c:43,xa:78,hist:42,biz:62,orig:78,imp:68,tags:["Lituania","Baltici","mele","naturale","emergente"],map:"https://www.google.com/maps/search/Lithuanian+craft+cider"},
+{id:"poland",area:"EUROPA EST",p:"Polonia",z:"Polonia",st:"Cydr polacco",f:"Europa centro-orientale",d:"Paese con molte mele e produzione crescente di cydr moderno e commerciale.",w:"Polonia centrale e orientale, aree frutticole.",m:"Fermentazione di mele locali, stili secchi, semi-secchi o fruttati.",fr:"Mele polacche da frutteto, varietà da tavola e trasformazione.",pr:"Mela fresca, acidità media, profilo pulito o commerciale.",kw:"Cydr polski, Polish cider, cydr rzemieślniczy",ab:"4–7%",a:60,t:24,s:36,b:58,c:42,xa:78,hist:45,biz:74,orig:68,imp:80,tags:["Polonia","mele","Europa orientale","craft","moderno"],map:"https://www.google.com/maps/search/Polish+cider+cydr"},
+{id:"russia",area:"EUROPA EST",p:"Russia",z:"Russia europea",st:"Cider russo moderno",f:"Area emergente",d:"Mercato e produzione moderna da monitorare, con frutteti in aree temperate e fredde.",w:"Russia europea, aree frutticole e mercati urbani.",m:"Fermentazioni moderne di mele locali o blend; stile ancora molto variabile.",fr:"Mele russe da frutteto, varietà da clima freddo, mele acide e da tavola.",pr:"Variabile: da dolce/fruttato a secco moderno.",kw:"Russian cider, craft cider Russia, cider Moscow",ab:"4–8%",a:60,t:24,s:42,b:58,c:44,xa:70,hist:35,biz:55,orig:70,imp:35,tags:["Russia","mele","emergente","freddo"],map:"https://www.google.com/maps/search/Russian+craft+cider"},
+{id:"czech",area:"EUROPA EST",p:"Repubblica Ceca",z:"Boemia / Moravia",st:"Cider ceco moderno",f:"Europa centrale emergente",d:"Area birraria e frutticola con produttori moderni di cider in crescita.",w:"Boemia, Moravia, aree agricole ceche.",m:"Fermentazioni controllate, mele locali, stili moderni e talvolta naturali.",fr:"Mele ceche da frutteto, mele da tavola e trasformazione.",pr:"Pulito, fresco, secco o semi-secco, profilo moderno.",kw:"Czech cider, cider Moravia, craft cider Czech Republic",ab:"4–7%",a:58,t:25,s:34,b:58,c:42,xa:76,hist:38,biz:68,orig:65,imp:78,tags:["Repubblica Ceca","mele","craft","Europa centrale"],map:"https://www.google.com/maps/search/Czech+craft+cider"},
+{id:"hungary",area:"EUROPA EST",p:"Ungheria",z:"Ungheria",st:"Almabor / cider ungherese",f:"Area emergente",d:"Paese con frutta e tradizione fermentativa, ma sidro moderno ancora da monitorare.",w:"Ungheria, aree agricole e frutticole.",m:"Fermentazione di mele locali, potenziale craft moderno e agricolo.",fr:"Mele ungheresi da frutteto, possibili varietà locali e da tavola.",pr:"Fruttato, fresco, acidità media, stile da sviluppare.",kw:"Hungarian cider, almabor, craft cider Hungary",ab:"4–7%",a:54,t:22,s:38,b:55,c:40,xa:72,hist:35,biz:62,orig:64,imp:78,tags:["Ungheria","mele","almabor","emergente"],map:"https://www.google.com/maps/search/Hungarian+craft+cider"},
+{id:"romania",area:"EUROPA EST",p:"Romania",z:"Transilvania / Romania",st:"Cider rumeno emergente",f:"Europa orientale",d:"Paese con frutta, mele e prugne: interessante per fermentazioni agricole e sidro moderno.",w:"Transilvania, aree frutticole rumene.",m:"Fermentazione di mele locali, possibili piccoli lotti agricoli.",fr:"Mele rumene locali, mele da tavola e trasformazione.",pr:"Fresco, fruttato, acidità media, profilo rurale o moderno.",kw:"Romanian cider, craft cider Romania, Transylvania cider",ab:"4–7%",a:58,t:24,s:36,b:54,c:42,xa:72,hist:38,biz:64,orig:66,imp:76,tags:["Romania","Transilvania","mele","emergente"],map:"https://www.google.com/maps/search/Romanian+craft+cider"},
+{id:"bulgaria",area:"BALCANI",p:"Bulgaria",z:"Bulgaria",st:"Bulgarian Apple Cider",f:"Balcani emergenti",d:"Area non storica per il sidro classico, ma interessante per frutta e possibili produttori moderni.",w:"Bulgaria, aree agricole e frutticole.",m:"Fermentazione di mele locali, stili commerciali o craft da sviluppare.",fr:"Mele bulgare da frutteto, varietà da tavola e trasformazione.",pr:"Fruttato, fresco, dolcezza variabile, tannino basso.",kw:"Bulgarian cider, craft cider Bulgaria",ab:"4–7%",a:52,t:20,s:42,b:58,c:40,xa:68,hist:30,biz:58,orig:62,imp:72,tags:["Bulgaria","Balcani","mele","emergente"],map:"https://www.google.com/maps/search/Bulgarian+craft+cider"},
+{id:"croatiaserbia",area:"BALCANI",p:"Croazia / Serbia",z:"Balcani settentrionali",st:"Balkan Apple Cider",f:"Balcani emergenti",d:"Zona da monitorare: frutta, mele, piccoli produttori e cultura fermentativa agricola.",w:"Croazia settentrionale, Serbia settentrionale, zone agricole balcaniche.",m:"Fermentazione di mele locali, potenziale craft moderno o agricolo.",fr:"Mele balcaniche locali, varietà da frutteto e trasformazione.",pr:"Fruttato, fresco, acidità media, possibile rusticità.",kw:"Croatian cider, Serbian cider, Balkan cider, craft cider",ab:"4–7%",a:56,t:24,s:38,b:54,c:42,xa:70,hist:35,biz:60,orig:66,imp:72,tags:["Croazia","Serbia","Balcani","mele","emergente"],map:"https://www.google.com/maps/search/Balkan+craft+cider"},
+{id:"quebec",area:"NUOVO MONDO",p:"Canada",z:"Québec",st:"Ice Cider",f:"Cidre de glace",d:"Stile moderno basato sulla concentrazione naturale dal gelo. Dolcezza intensa e acidità alta.",w:"Québec, zone fredde con frutteti.",m:"Crioconcentrazione o crioestrazione: il freddo concentra zuccheri e aromi.",fr:"Mele aromatiche e acide resistenti al freddo.",pr:"Mela candita, miele, albicocca, dolcezza alta, acidità bilanciante.",kw:"Ice cider, cidre de glace, dessert cider",ab:"7–13%",a:76,t:18,s:94,b:12,c:90,xa:91,hist:70,biz:82,orig:92,imp:65,tags:["Canada","Québec","mele","ice cider","dolce"],map:"https://www.google.com/maps/search/Quebec+ice+cider"},
+{id:"pacific",area:"NUOVO MONDO",p:"USA",z:"Pacific Northwest",st:"New World Craft Cider",f:"Craft moderno",d:"Area moderna e sperimentale: sidri secchi, luppolati, barrel-aged, con frutta e botaniche.",w:"Washington, Oregon, California del nord.",m:"Fermentazioni controllate, botte, frutta, luppolo, lieviti selezionati o selvaggi.",fr:"Mele da dessert, mele da sidro, crab apples, blend sperimentali.",pr:"Da pulito e fruttato a funky; secco, creativo, gastronomico.",kw:"Dry cider, hopped cider, barrel-aged cider, wild fermentation cider",ab:"5–9%",a:64,t:48,s:30,b:62,c:55,xa:92,hist:60,biz:82,orig:94,imp:55,tags:["USA","Pacific Northwest","mele","craft","moderno"],map:"https://www.google.com/maps/search/Pacific+Northwest+craft+cider"},
+{id:"japan",area:"NUOVO MONDO",p:"Giappone",z:"Aomori / Nagano",st:"Japanese Craft Cider",f:"Craft asiatico",d:"Sidri moderni da territori famosi per mele di alta qualità, precisi e puliti.",w:"Aomori, Nagano e zone frutticole giapponesi.",m:"Fermentazioni controllate, mele aromatiche, stile pulito e moderno.",fr:"Fuji, Shinano Gold, Orin, Tsugaru e mele giapponesi aromatiche.",pr:"Pulito, elegante, mela fresca, acidità controllata, grande precisione.",kw:"Japanese cider, Aomori cider, Nagano cider",ab:"4–8%",a:58,t:20,s:34,b:62,c:42,xa:84,hist:50,biz:76,orig:82,imp:50,tags:["Giappone","Aomori","Nagano","mele","moderno"],map:"https://www.google.com/maps/search/Japanese+craft+cider"},
+{id:"australia",area:"NUOVO MONDO",p:"Australia",z:"Tasmania / Victoria",st:"Australian Craft Cider",f:"Nuovo Mondo",d:"Sidri moderni da regioni frutticole, freschi, accessibili e ben fatti.",w:"Tasmania, Victoria, South Australia.",m:"Fermentazione di mele locali, stili dry, semi-dry, fruttati o craft.",fr:"Mele australiane da frutteto, dessert apples, blend aciduli.",pr:"Fruttato, pulito, fresco, talvolta tropicale o moderno.",kw:"Tasmanian cider, Australian craft cider",ab:"4–8%",a:56,t:26,s:38,b:62,c:44,xa:77,hist:45,biz:70,orig:70,imp:48,tags:["Australia","Tasmania","mele","Nuovo Mondo"],map:"https://www.google.com/maps/search/Tasmanian+craft+cider"},
+{id:"chile",area:"NUOVO MONDO",p:"Cile",z:"Patagonia / Sud del Cile",st:"Chilean Apple Cider",f:"Andino-patagonico",d:"Area interessante per mele, clima fresco e possibili sidri di territorio.",w:"Sud del Cile, Patagonia cilena, zone frutticole fredde.",m:"Mele locali, fermentazioni agricole o moderne.",fr:"Mele da clima fresco, varietà locali e da frutteto.",pr:"Fresco, acidulo, fruttato, potenzialmente rustico.",kw:"Chilean cider, Patagonia cider, sidra Chile",ab:"4–8%",a:68,t:34,s:28,b:46,c:50,xa:80,hist:45,biz:62,orig:84,imp:45,tags:["Cile","Patagonia","mele","Sud America"],map:"https://www.google.com/maps/search/Chilean+cider+Patagonia"}
 ];
 
 const FRUIT_GUIDE=[
-{t:"Mele dolci",img:"appleGold",dove:"Normandia, Bretagna, blend moderni",fun:"Portano zucchero, rotondità, profumo e morbidezza.",note:"Utili per cidre doux, demi-sec e per bilanciare mele acide."},
-{t:"Mele acide",img:"appleGreen",dove:"Asturie, Baschi, Germania, Baltici, Nord Europa",fun:"Portano tensione, freschezza e taglio gastronomico.",note:"Fondamentali nei sidri secchi e nei climi freddi."},
-{t:"Mele amare",img:"appleDark",dove:"Francia, UK, blend tannici",fun:"Portano struttura, asciuttezza e profondità.",note:"Da dosare bene: troppe rendono il sidro duro."},
-{t:"Mele dolci-amare",img:"appleRed",dove:"Normandia, Bretagna, UK",fun:"Base dei sidri eleganti, tannici e rotondi.",note:"Sono centrali per cidre bouché e keeving."},
-{t:"Bittersweet",img:"appleDark",dove:"West Country, Herefordshire",fun:"Mele ricche di tannino e corpo.",note:"Costruiscono la spina dorsale del sidro inglese."},
-{t:"Bittersharp",img:"appleGreen",dove:"UK, blend tradizionali",fun:"Acidità più tannino: grande complessità.",note:"Ottime per dare nervo e struttura insieme."},
-{t:"Mele da tavola",img:"appleGold",dove:"Alpi, Giappone, Nuovo Mondo",fun:"Profumo, pulizia, immediatezza.",note:"Spesso meno tanniche: serve compensare con blending o tannino."},
-{t:"Crab apples",img:"crab",dove:"USA / Canada / frutteti freddi",fun:"Piccole mele acide e tanniche, utili nei blend.",note:"Danno spalla tecnica a sidri troppo semplici."},
-{t:"Pere da Perry",img:"pear",dove:"UK Three Counties",fun:"Pere tanniche e floreali per perry tradizionale.",note:"Non sono pere da tavola: hanno funzione tecnica."},
-{t:"Pere da Poiré",img:"pear",dove:"Domfront / Francia",fun:"Pere per poiré fine, frizzante e floreale.",note:"Eleganza, bollicina, profilo delicato."}
+{t:"Mele dolci",img:"appleGold",varieta:"Golden Delicious, Fuji, Gala, Red Delicious, Honeycrisp, Ambrosia",dove:"Normandia, Bretagna, Alpi, Nuovo Mondo",fun:"Portano zucchero, rotondità, profumo e morbidezza.",uso:"Sidri morbidi, demi-sec, aromatici, facili da bere.",note:"Da sole possono dare sidri semplici: meglio abbinarle a mele acide o tanniche."},
+{t:"Mele acide",img:"appleGreen",varieta:"Granny Smith, Bramley, Boskoop, Renetta, Tom Putt, Antonovka",dove:"Asturie, Baschi, Germania, Baltici, Nord Europa",fun:"Portano tensione, freschezza, taglio gastronomico e bevibilità.",uso:"Sidri secchi, asturiani, baltici, nordici, gastronomici.",note:"Fondamentali quando il sidro rischia di essere piatto o troppo dolce."},
+{t:"Mele amare / tanniche",img:"appleDark",varieta:"Dabinett, Michelin, Harry Masters Jersey, Chisel Jersey, Ashton Bitter, Tremlett's Bitter",dove:"West Country, Herefordshire, Normandia, Bretagna",fun:"Portano tannino, struttura, asciuttezza e profondità.",uso:"Farmhouse, scrumpy, cidre strutturati e ricette serie.",note:"Da dosare bene: troppe mele tanniche rendono il sidro duro."},
+{t:"Mele dolci-amare",img:"appleRed",varieta:"Yarlington Mill, Dabinett, Douce Moën, Bedan, Binet Rouge, Kermerrien",dove:"Normandia, Bretagna, UK",fun:"Uniscono zucchero, rotondità e tannino morbido.",uso:"Cidre bouché, keeving, sidri demi-sec ed eleganti.",note:"Sono tra le mele più importanti per costruire corpo e bevibilità."},
+{t:"Bittersharp",img:"appleGreen",varieta:"Kingston Black, Foxwhelp, Stoke Red, Brown's Apple, Porter’s Perfection, Improved Foxwhelp",dove:"UK, Herefordshire, West Country",fun:"Portano insieme acidità e tannino: grande complessità.",uso:"Ricette intense, secche, complesse, naturali o inglesi.",note:"Categoria preziosa: dà nervo, struttura e profondità."},
+{t:"Mele da tavola",img:"appleGold",varieta:"Golden Delicious, Gala, Fuji, Pink Lady, Jonagold, Braeburn, Elstar",dove:"Alpi, Italia, Giappone, Australia, Nuovo Mondo",fun:"Portano aroma immediato, pulizia e facilità di lettura.",uso:"Sidri moderni, puliti, frizzanti, aromatici o sperimentali.",note:"Spesso hanno poco tannino: serve correggere con blend o tannino."},
+{t:"Mele heritage",img:"appleRed",varieta:"Ashmead's Kernel, Cox's Orange Pippin, Roxbury Russet, Gravenstein, Egremont Russet, Ribston Pippin",dove:"USA, UK, Nuovo Mondo, frutteti storici",fun:"Portano complessità aromatica, rusticità elegante e identità.",uso:"Sidri premium, single variety, wild fermentation, botte.",note:"Ottime per dare racconto, valore culturale e identità alla ricetta."},
+{t:"Crab apples",img:"crab",varieta:"Dolgo Crab, Wickson Crab, Hewes Crab, Hyslop Crab, Geneva Crab, Manchurian Crab",dove:"USA, Canada, frutteti freddi",fun:"Piccole mele molto acide o tanniche, utili come correttivo.",uso:"Aumentare acidità, tannino, tensione e complessità.",note:"Si usano in percentuali moderate: sono potenti."},
+{t:"Pere da Perry",img:"pear",varieta:"Blakeney Red, Hendre Huffcap, Thorn, Gin, Barland, Moorcroft",dove:"Herefordshire, Worcestershire, Gloucestershire, Galles",fun:"Pere tecniche tanniche e floreali per perry tradizionale.",uso:"Perry seri, floreali, secchi o semi-secchi.",note:"Non sono pere da tavola: hanno funzione tecnica."},
+{t:"Pere da Poiré",img:"pear",varieta:"Plant de Blanc, De Cloche, Gros Blot, Fausset, Gaubert, varietà del Domfrontais",dove:"Domfront, Normandia meridionale, Francia",fun:"Pere per poiré fine, elegante, frizzante e floreale.",uso:"Ricette leggere, fini, con bollicina e profilo delicato.",note:"Più eleganti che potenti: lavorano su finezza e freschezza."}
 ];
 
 const LESSONS=[
-{n:"LEZIONE 01",t:"Cos’è davvero il sidro",obj:"Capire che il sidro non è solo succo fermentato, ma un sistema tecnico fatto di frutta, territorio, acidità, tannino, dolcezza, bolla e metodo.",teo:"Sidro, perry, poiré, most e ice cider sono famiglie diverse. La frutta non è neutra: costruisce corpo, acidità, aroma e tannino.",tec:"Parametri base: acidità, tannino, dolcezza, bollicina, corpo, ABV, metodo.",pr:"Confronta Asturie, Normandia e West Country.",q:"Quale parametro separa più chiaramente Asturie e Normandia?",a:"La dolcezza e il tannino: Asturie è secca e acida; Normandia può essere più tannica e più dolce."},
-{n:"LEZIONE 02",t:"Sidra Natural Asturiana",obj:"Capire la sidra asturiana come cultura gastronomica.",teo:"La sidra natural vive di acidità, servizio e ossigenazione. L’escanciado non è scena: cambia la percezione aromatica.",tec:"Acidità alta, bolla bassa, dolcezza minima, profilo vivo.",pr:"Copia una ricetta XA ispirata alle Asturie.",q:"Perché la sidra asturiana non deve essere troppo dolce?",a:"Perché è pensata come bevanda gastronomica acida, secca e viva."},
-{n:"LEZIONE 03",t:"Sagardoa basca",obj:"Studiare il sidro basco come stile secco, radicale e da cucina.",teo:"Il mondo basco lavora su botte, acidità, secchezza e servizio sociale in sagardotegi.",tec:"Acidità estrema, dolcezza bassissima, bolla bassa, funk leggero.",pr:"Confronta Paesi Baschi vs Asturie.",q:"Quale carattere rende la Sagardoa molto gastronomica?",a:"La combinazione di secchezza, acidità e leggera rusticità."},
-{n:"LEZIONE 04",t:"Normandia e keeving",obj:"Capire perché il cidre normanno può essere dolce senza essere banale.",teo:"Il keeving riduce nutrienti e rallenta la fermentazione, favorendo residuo zuccherino naturale.",tec:"Tannino medio-alto, dolcezza naturale, bolla fine, corpo rotondo.",pr:"Crea una ricetta XA con tannino alto e bolla fine.",q:"A cosa serve il keeving?",a:"A ottenere fermentazioni lente e cidre con residuo zuccherino naturale."},
-{n:"LEZIONE 05",t:"Sidro inglese tannico",obj:"Capire il ruolo delle mele bittersweet e bittersharp.",teo:"Nel West Country il tannino non è difetto: è struttura.",tec:"Tannino alto, corpo alto, acidità media, dolcezza variabile.",pr:"Confronta West Country vs Normandia.",q:"Cosa danno le mele bittersweet?",a:"Tannino, corpo, profondità e struttura."},
-{n:"LEZIONE 06",t:"Perry e Poiré",obj:"Separare il mondo della pera dal sidro di mela.",teo:"Perry e poiré non sono sidri aromatizzati alla pera: sono fermentati di pere tecniche.",tec:"Tannino fine, profilo floreale, acidità, delicatezza.",pr:"Confronta Perry UK e Poiré Domfront.",q:"Perché le pere da perry non sono semplici pere da tavola?",a:"Perché hanno tannini, acidità e caratteristiche tecniche specifiche."},
-{n:"LEZIONE 07",t:"Ice Cider",obj:"Capire concentrazione col freddo e acidità nei sidri dolci.",teo:"Nel Québec il gelo concentra zuccheri e aromi. L’acidità impedisce alla dolcezza di diventare pesante.",tec:"Dolcezza alta, acidità alta, corpo pieno, bolla bassa.",pr:"Progetta una ricetta XA da meditazione.",q:"Quale parametro bilancia l’Ice Cider?",a:"L’acidità alta."},
-{n:"LEZIONE 08",t:"Nord Europa e Baltici",obj:"Studiare sidri freddi, acidi, naturali e moderni.",teo:"Clima freddo, mele acide e piccoli produttori possono creare sidri molto verticali.",tec:"Acidità alta, dolcezza bassa, corpo medio-leggero.",pr:"Confronta Norvegia, Estonia e Finlandia.",q:"Perché i Baltici sono interessanti per XA?",a:"Perché uniscono clima freddo, acidità e potenziale moderno/naturale."},
-{n:"LEZIONE 09",t:"Aree emergenti",obj:"Leggere Russia, Balcani ed Europa Est senza inventare tradizioni inesistenti.",teo:"Alcune aree hanno frutta e potenziale, ma non sempre una tradizione storica forte di sidro.",tec:"Valutare frutteti, clima, produttori craft, facilità importazione.",pr:"Apri Business e guarda i punteggi.",q:"Che errore bisogna evitare con le aree emergenti?",a:"Presentarle come territori storici consolidati quando sono soprattutto aree da monitorare."},
-{n:"LEZIONE 10",t:"XA Recipe Lab",obj:"Trasformare uno stile in una ricetta sperimentale XA.",teo:"Una scheda stile diventa un preset: frutta, acidità, tannino, dolcezza, bolla, corpo e metodo.",tec:"Costruire target tecnici e poi scegliere lievito, nutrienti, temperatura e rifermentazione.",pr:"Carica uno stile e premi COPIA RICETTA XA.",q:"Perché non bisogna copiare uno stile alla lettera?",a:"Perché XA deve usare lo stile come base tecnica, poi creare una ricetta originale."}
+["Cos’è davvero il sidro","Fondamentali","Il sidro è un sistema tecnico fatto di frutta, territorio, acidità, tannino, dolcezza, bolla e metodo.","mele tecniche","acidità/tannino","fermentazione alcolica","tutti gli stili","Pensare che sia solo succo fermentato"],
+["Sidro, perry, poiré e most","Fondamentali","Imparare a distinguere fermentati di mela, pera e blend agricoli.","mela e pera","materia prima","classificazione dello stile","UK, Francia, Austria","Confondere perry e sidro alla pera"],
+["Mele da sidro vs mele da tavola","Fondamentali","Capire perché non tutte le mele sono uguali per fermentare.","mele dolci, acide, tanniche","struttura frutta","blending","UK, Francia, Alpi","Usare solo mele da tavola senza correzione"],
+["Acidità, tannino, dolcezza, corpo e bolla","Fondamentali","Leggere un sidro come una console di parametri.","profilo tecnico","bilanciamento","degustazione tecnica","tutti gli stili","Guardare solo la dolcezza"],
+["Fermentazione base del sidro","Fondamentali","Capire cosa succede dal succo al sidro finito.","succo di mela","OG/FG","fermentazione primaria","laboratorio XA","Ignorare densità e temperatura"],
+["Lieviti selezionati, selvaggi e indigeni","Fondamentali","Capire come il lievito cambia profilo e rischio.","lievito","aroma e sicurezza","inoculo controllato","moderno/naturale","Confondere selvaggio con sempre migliore"],
+["Nutrienti e ossigenazione","Fondamentali","Prevenire fermentazioni stressate e odori sgradevoli.","mosto povero","nutrienti","gestione fermentazione","laboratorio XA","Sottovalutare nutrienti nel succo"],
+["pH e stabilità","Fondamentali","Capire acidità reale, pH e sicurezza del prodotto.","acidità","pH","misura tecnica","tutti gli stili","Confondere pH con gusto acido"],
+["Rifermentazione e bollicina","Fondamentali","Gestire CO2, presa di spuma e rischio bottiglia.","zucchero residuo","CO2","rifermentazione","pet-nat, bouché","Imbottigliare senza controllo"],
+["Difetti comuni del sidro","Fondamentali","Riconoscere zolfo, volatile, ossidazione e piattezza.","sidro finito","difetti","analisi sensoriale","tutti gli stili","Coprire i difetti con zucchero"],
+
+["Sidra Natural Asturiana","Classici","Studiare la sidra asturiana come cultura gastronomica.","mele asturiane","acidità alta","escanciado","Asturie","Renderla troppo dolce"],
+["Sagardoa basca","Classici","Capire il sidro basco secco, acido e da botte.","mele basche","secchezza","servizio da kupela","Paesi Baschi","Cercare morbidezza dove serve taglio"],
+["Cidre Bouché normanno","Classici","Capire cidre frizzante, tannico e spesso demi-sec.","mele dolci-amare","tannino/dolcezza","presa di spuma","Normandia","Fare solo succo dolce frizzante"],
+["Keeving francese","Classici","Capire la tecnica che rallenta fermentazione e mantiene dolcezza naturale.","mele da cidre","nutrienti bassi","défécation/keeving","Normandia","Pensare che sia solo zucchero aggiunto"],
+["Cidre bretone","Classici","Studiare il cidre marino, rustico ed elegante della Bretagna.","mele bretoni","tannino medio","fermentazione lenta","Bretagna","Confonderlo con Normandia"],
+["Scrumpy inglese","Classici","Capire lo stile rustico, agricolo e tannico del West Country.","bittersweet","corpo/tannino","farmhouse fermentation","UK","Renderlo troppo pulito e neutro"],
+["Farmhouse cider","Classici","Analizzare il sidro agricolo tradizionale e territoriale.","mele da frutteto","identità agricola","fermentazione rurale","UK/USA","Togliere tutto il carattere"],
+["Perry inglese","Classici","Separare il perry dai sidri di mela.","pere da perry","tannino fine","fermentazione pera","Three Counties","Usare pere da tavola comuni"],
+["Poiré Domfront","Classici","Capire il poiré francese elegante e floreale.","pere da poiré","finezza","presa di spuma","Domfront","Renderlo pesante"],
+["Apfelwein tedesco","Classici","Capire il vino di mela secco e acidulo tedesco.","mele acide","secchezza","fermentazione pulita","Hessen","Addolcirlo troppo"],
+["Most austriaco","Classici","Studiare fermentati agricoli di mela e pera austriaci.","mele e pere da most","acidità/rusticità","fermentazione agricola","Mostviertel","Ignorare la pera"],
+["Ice Cider del Québec","Classici","Capire concentrazione col freddo, dolcezza e acidità.","mele fredde","dolcezza alta","crioestrazione","Québec","Fare un dolce senza acidità"],
+
+["Sidro ancestrale","Moderno","Capire rifermentazione naturale e gestione del rischio.","mosto in fermentazione","CO2 naturale","imbottigliamento controllato","moderno","Imbottigliare a caso"],
+["Pet-Nat Cider","Moderno","Studiare il pet-nat applicato al sidro.","mele acide","bolla viva","metodo ancestrale","Nord Europa/USA","Cercare limpidezza industriale"],
+["Sidro luppolato","Moderno","Usare il luppolo senza trasformare il sidro in birra.","mele neutre/acide","aroma","dry hopping","USA","Coprire completamente la mela"],
+["Sidro con botaniche","Moderno","Progettare sidri XA con erbe, spezie e fiori.","mele pulite","aroma gastronomico","infusione/tintura","XA","Mettere botaniche a caso"],
+["Sidro con frutta","Moderno","Bilanciare mela e frutti aggiunti.","base mela","aroma/colore","blend post o cofermentazione","craft","Fare una bibita dolce"],
+["Barrel-aged cider","Moderno","Usare botte, ossidazione controllata e complessità.","sidro strutturato","corpo/legno","affinamento","USA/UK/Francia","Usare legno su sidro fragile"],
+["Sidro naturale contemporaneo","Moderno","Capire naturale, spontaneo, pet-nat e rischio tecnico.","mele acide","energia fermentativa","fermentazione spontanea","Nordici","Confondere difetto e naturalità"],
+["Sidri nordici","Moderno","Analizzare acidità, precisione e clima freddo.","mele nordiche","acidità alta","fermentazione pulita","Danimarca/Norvegia","Renderli troppo dolci"],
+["Sidri baltici","Emergenti","Studiare Estonia, Lettonia e Lituania come territori freddi emergenti.","mele baltiche","acidità/freschezza","piccoli lotti","Baltici","Inventare tradizioni inesistenti"],
+["Europa Est","Emergenti","Leggere Polonia, Romania, Ungheria e Russia come aree da monitorare.","mele locali","potenziale business","ricerca produttori","Europa Est","Trattarle come Normandia"],
+["Balcani","Emergenti","Studiare Bulgaria, Croazia e Serbia come potenziale frutticolo.","mele balcaniche","frutta/mercato","analisi import","Balcani","Confondere potenziale e tradizione"],
+["Nuovo Mondo","Emergenti","Analizzare USA, Canada, Giappone, Australia e Cile.","mele moderne","creatività","craft cider","Nuovo Mondo","Ignorare identità locale"],
+
+["Costruire una ricetta XA","Laboratorio XA","Trasformare uno stile in una ricetta tecnica.","frutta scelta","target tecnico","recipe design","XA","Copiare senza progettare"],
+["Scegliere mele dolci, acide e tanniche","Laboratorio XA","Costruire un blend bilanciato.","blend mele","equilibrio","blending","XA","Usare una sola mela senza motivo"],
+["Correggere un sidro piatto","Laboratorio XA","Aggiungere tensione, acidità o tannino.","mele acide/crab","acidità/tannino","correzione blend","XA","Aggiungere solo zucchero"],
+["Correggere un sidro troppo acido","Laboratorio XA","Ammorbidire senza perdere carattere.","mele dolci","bilanciamento","blend/glicerina/dolcezza","XA","Neutralizzare tutto"],
+["Gestire bollicina e servizio","Laboratorio XA","Decidere secco, frizzante, fermo o spumante.","zucchero/CO2","bolla","rifermentazione","XA","Creare sovrapressione"],
+["Sidro gastronomico","Laboratorio XA","Progettare un sidro da abbinamento cibo.","mele acide/tanniche","secchezza","profilo food pairing","XA","Renderlo stucchevole"],
+["Sidro dolce da dessert","Laboratorio XA","Progettare dolcezza con acidità e corpo.","mele aromatiche","dolcezza/acido","concentrazione/stabilizzazione","XA","Dolce senza acidità"],
+["Sidro moderno con botaniche","Laboratorio XA","Creare un fermentato XA originale con botaniche.","base pulita","aroma","tintura/infusione","XA","Dosaggio eccessivo"],
+["Scheda degustazione professionale","Laboratorio XA","Descrivere sidro in modo tecnico e commerciale.","sidro finito","analisi sensoriale","scheda degustazione","XA","Scrivere solo buono/non buono"],
+["Valutare per importazione","Laboratorio XA","Capire se un sidro ha valore commerciale e didattico.","prodotto finito","business score","analisi import","XA","Comprare solo perché raro"]
 ];
 
 const CHIPS=["Classici","Alpini","Nordici","Baltici","Europa Est","Balcani","Nuovo Mondo","Perry","Poiré","Ice Cider","Naturali","Tannici","Dolci","Secchi","Business","Asturie","Francia","UK","Estonia","Lituania","Russia","Bulgaria","mele","pera","keeving","Most"];
 
 let activeChip="";
-let loadedId=localStorage.getItem("xa_cider_atlas_v7_loaded") || "asturias";
+let loadedId=localStorage.getItem("xa_v8_loaded") || "asturias";
+let lessonIndex=Number(localStorage.getItem("xa_v8_lesson")||0);
+let quizIndex=0;
+let quizAnswered=false;
 let compact=false;
-const favs=new Set(JSON.parse(localStorage.getItem("xa_cider_atlas_v7_favs")||"[]"));
+let solo=false;
+let mute=false;
+const favs=new Set(JSON.parse(localStorage.getItem("xa_v8_favs")||"[]"));
+const completed=new Set(JSON.parse(localStorage.getItem("xa_v8_completed")||"[]"));
+let scores=JSON.parse(localStorage.getItem("xa_v8_scores")||"{}");
 const q=document.getElementById("q");
 
 function norm(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
-function txt(x){return norm([x.area,x.p,x.z,x.st,x.f,x.d,x.w,x.m,x.fr,x.pr,x.lk,x.ab,...x.tags].join(" "))}
+function txt(x){return norm([x.area,x.p,x.z,x.st,x.f,x.d,x.w,x.m,x.fr,x.pr,x.kw,x.ab,...x.tags].join(" "))}
 function lvl(v){return v<25?"LOW":v<55?"MID":v<80?"HIGH":"MAX"}
 function fill(v,cls){return `<div class="bar"><div class="fill ${cls}" style="height:${v}%"></div></div>`}
-function bizTotal(x){return Math.round((x.hist+x.biz+x.orig+x.import+x.xa)/5)}
+function bizTotal(x){return Math.round((x.hist+x.biz+x.orig+x.imp+x.xa)/5)}
+function byId(id){return DATA.find(x=>x.id===id)||DATA[0]}
+function infoLine(k,v){return `<div class="infoLine"><b>${k}</b><span>${v}</span></div>`}
+function copyText(t,msg){if(navigator.clipboard)navigator.clipboard.writeText(t);openModal("COPIATO",`<p>${msg||"Testo copiato negli appunti."}</p>`)}
 function chipMatch(x,c){
   const h=txt(x), k=norm(c);
   if(k==="classici")return x.area==="CLASSICI";
@@ -506,7 +555,7 @@ function chipMatch(x,c){
   return h.includes(k);
 }
 function sorted(arr){
-  const mode=document.getElementById("sorter")?.value || "xa";
+  const mode=document.getElementById("sorter")?.value||"xa";
   const a=[...arr];
   if(mode==="xa")a.sort((x,y)=>y.xa-x.xa);
   if(mode==="business")a.sort((x,y)=>bizTotal(y)-bizTotal(x));
@@ -521,9 +570,8 @@ function results(){
   const term=norm(q.value.trim());
   return sorted(DATA.filter(x=>(!term||txt(x).includes(term))&&(!activeChip||chipMatch(x,activeChip))));
 }
-function byId(id){return DATA.find(x=>x.id===id)||DATA[0]}
 
-function scheda(x){
+function card(x){
 return `<article class="card">
   <div class="cardTop">
     <div class="cardRow">
@@ -536,7 +584,6 @@ return `<article class="card">
     </div>
     <div class="desc">${x.d}</div>
     <div class="pills">${x.tags.map(t=>`<span class="pill">${t}</span>`).join("")}<span class="pill">XA ${x.xa}/100</span><span class="pill">BIZ ${bizTotal(x)}/100</span></div>
-    <div class="mapBox"><b>MAP AREA</b><span>${x.w}</span></div>
   </div>
 
   <div class="lcd"><div class="lcdTitle">APPLE / FRUIT BUS</div><div class="lcdText">${x.fr}</div></div>
@@ -557,23 +604,12 @@ return `<article class="card">
     <div class="meter"><b>CORPO</b>${fill(x.c,"bodyf")}<span>${lvl(x.c)}</span></div>
   </div>
 
-  <details>
-    <summary>APRI SCHEDA STILE</summary>
-    <div class="sheet">
-      <h3>Dove si fa</h3><div>${x.w}</div>
-      <h3>Come è fatto</h3><div>${x.m}</div>
-      <h3>Mele / pere / frutta</h3><div>${x.fr}</div>
-      <h3>Profilo sensoriale</h3><div>${x.pr}</div>
-      <h3>Cosa cercare</h3><div>${x.lk}</div>
-      <h3>Note XA</h3><div>Interesse XA ${x.xa}/100. Business ${bizTotal(x)}/100. Usare come riferimento per ricerca, scuola, ricetta e import.</div>
-      <div class="actions">
-        <a class="action" href="javascript:loadStyle('${x.id}')">CARICA STILE</a>
-        <a class="action dark" href="${x.map}" target="_blank">MAPPA</a>
-        <a class="action" href="javascript:copiaRicetta('${x.id}')">COPIA RICETTA XA</a>
-        <a class="action dark" href="javascript:copiaScheda('${x.id}')">COPIA SCHEDA</a>
-      </div>
-    </div>
-  </details>
+  <div class="actions" style="padding:0 12px 12px">
+    <a class="action" href="javascript:loadStyle('${x.id}')">LOAD STYLE</a>
+    <a class="action dark" href="javascript:stylePopup('${x.id}')">POPUP</a>
+    <a class="action" href="javascript:copiaRicetta('${x.id}')">SEND RECIPE</a>
+    <a class="action dark" href="${x.map}" target="_blank">MAPPA</a>
+  </div>
 </article>`;
 }
 
@@ -589,51 +625,169 @@ function loadedBox(){
     <div class="quickStat"><b>XA</b><span>${x.xa}</span></div>
   </div>
   <div class="actions">
-    <a class="action" href="javascript:copiaRicetta('${x.id}')">COPIA RICETTA XA</a>
-    <a class="action dark" href="javascript:quick('${x.st}')">CERCA SIMILI</a>
+    <a class="action" href="javascript:copiaRicetta('${x.id}')">COPIA RICETTA</a>
+    <a class="action dark" href="javascript:stylePopup('${x.id}')">POPUP STILE</a>
   </div>`;
 }
-function infoLine(k,v){return `<div class="infoLine"><b>${k}</b><span>${v}</span></div>`}
-function topDeck(){return DATA.slice().sort((a,b)=>b.xa-a.xa).slice(0,7).map(x=>infoLine(x.xa+"/100",`<a style="color:#d8e5ee;text-decoration:none" href="javascript:loadStyle('${x.id}')">${x.z} · ${x.st}</a>`)).join("")}
-function filterInfo(){return infoLine("Ricerca",q.value.trim()||"nessuna")+infoLine("Filtro",activeChip||"nessun chip")+infoLine("Ordine",document.getElementById("sorter").value)+infoLine("Risultati",results().length+" schede")}
-function paesiView(out){
-  const g={};out.forEach(x=>{if(!g[x.p])g[x.p]=[];g[x.p].push(x)});
-  return Object.keys(g).sort().map(p=>`<div class="areaCard"><h2>${p}</h2>${infoLine("Schede",g[p].length+" territori/stili")}${infoLine("Area",Array.from(new Set(g[p].map(i=>i.area))).join(" · "))}${infoLine("Zone",g[p].map(i=>i.z).join(" · "))}${infoLine("XA max",Math.max(...g[p].map(i=>i.xa))+"/100")}</div>`).join("");
+
+function consoleView(){
+  const x=byId(loadedId);
+  return `<div class="consoleStrip">
+    <h2>XA Master Console</h2>
+    ${loadedBox()}
+    <div class="consoleGrid">
+      <button class="consoleBtn ${solo?'on':''}" onclick="solo=!solo;render()">SOLO</button>
+      <button class="consoleBtn ${mute?'on':''}" onclick="mute=!mute;render()">MUTE</button>
+      <button class="consoleBtn" onclick="stylePopup('${x.id}')">STYLE POPUP</button>
+      <button class="consoleBtn" onclick="businessPopup('${x.id}')">BIZ POPUP</button>
+      <button class="consoleBtn" onclick="copiaRicetta('${x.id}')">SEND RECIPE</button>
+      <button class="consoleBtn" onclick="scene('school')">SEND SCHOOL</button>
+    </div>
+  </div>
+  <div class="consoleStrip">
+    <h2>Channel Strip</h2>
+    ${infoLine("Status",mute?"MUTE attivo":solo?"SOLO attivo":"ONLINE")}
+    ${infoLine("Territory",x.z)}
+    ${infoLine("Style",x.st)}
+    ${infoLine("Fruit",x.fr)}
+    <div class="channelLine"><i style="width:${x.a}%"></i></div>${infoLine("Acid Route",x.a+" / "+lvl(x.a))}
+    <div class="channelLine"><i style="width:${x.t}%"></i></div>${infoLine("Tannin Route",x.t+" / "+lvl(x.t))}
+    <div class="channelLine"><i style="width:${x.b}%"></i></div>${infoLine("Spark Route",x.b+" / "+lvl(x.b))}
+  </div>`;
 }
-function areeView(out){
-  const g={};out.forEach(x=>{if(!g[x.area])g[x.area]=[];g[x.area].push(x)});
-  return Object.keys(g).sort().map(a=>`<div class="areaCard"><h2>${a}</h2>${infoLine("Schede",g[a].length)}${infoLine("Paesi",Array.from(new Set(g[a].map(i=>i.p))).join(" · "))}${infoLine("Stili",g[a].map(i=>i.st).join(" · "))}</div>`).join("");
-}
-function stiliView(){return STYLE_GUIDE.map(s=>`<div class="areaCard"><h2>${s[0]}</h2>${infoLine("Area",s[1])}${infoLine("Descrizione",s[2])}${infoLine("Parametri",s[3])}</div>`).join("")}
-function meleView(){
-  return FRUIT_GUIDE.map(f=>`<div class="fruitCard"><div class="fruitImg ${f.img}"></div><h2>${f.t}</h2>${infoLine("Dove",f.dove)}${infoLine("Funzione",f.fun)}${infoLine("Nota",f.note)}</div>`).join("");
-}
-function schoolView(){
-  return LESSONS.map((l,i)=>`<div class="lessonCard">
-    <div class="lessonNum">${l.n}</div><h2>${l.t}</h2>
-    ${infoLine("Obiettivo",l.obj)}${infoLine("Teoria",l.teo)}${infoLine("Tecnica",l.tec)}${infoLine("Pratica",l.pr)}
-    <div class="quizBox"><b style="color:var(--amber)">QUIZ</b><p>${l.q}</p><button onclick="showQuiz(${i})">Mostra risposta</button><div class="quizAnswer" id="quiz${i}">${l.a}</div></div>
+
+function fruitView(){
+  return FRUIT_GUIDE.map(f=>`<div class="fruitCard">
+    <div class="fruitImg ${f.img}"></div>
+    <h2>${f.t}</h2>
+    ${infoLine("Varietà",f.varieta)}
+    ${infoLine("Dove",f.dove)}
+    ${infoLine("Funzione",f.fun)}
+    ${infoLine("Uso XA",f.uso)}
+    ${infoLine("Nota",f.note)}
+    <div class="actions"><a class="action" href="javascript:fruitPopup('${f.t}')">POPUP MELA</a><a class="action dark" href="javascript:copyText('${f.t}: ${f.varieta}','Varietà copiate.')">COPIA VARIETÀ</a></div>
   </div>`).join("");
 }
+
+function schoolProgress(){
+  const done=completed.size;
+  const pct=Math.round(done/LESSONS.length*100);
+  return `${infoLine("Lezioni",done+" / "+LESSONS.length+" completate")}
+  <div class="progressBar"><i style="width:${pct}%"></i></div>
+  ${infoLine("Quiz",Object.keys(scores).length+" lezioni con punteggio")}
+  ${infoLine("Totale domande","40 lezioni × 10 domande = 400 domande")}`;
+}
+
+function lessonView(){
+  const l=LESSONS[lessonIndex];
+  return `<div class="lessonPanel">
+    <div class="lessonTitle">${lessonIndex+1}. ${l[0]}</div>
+    ${infoLine("Modulo",l[1])}
+    ${infoLine("Obiettivo",l[2])}
+    ${infoLine("Frutta",l[3])}
+    ${infoLine("Parametro",l[4])}
+    ${infoLine("Tecnica",l[5])}
+    ${infoLine("Collegato",l[6])}
+    ${infoLine("Errore",l[7])}
+    <div class="progressBar"><i style="width:${Math.round((lessonIndex+1)/LESSONS.length*100)}%"></i></div>
+    <div class="actions">
+      <a class="action dark" href="javascript:prevLesson()">◀ PRECEDENTE</a>
+      <a class="action" href="javascript:nextLesson()">SUCCESSIVA ▶</a>
+      <a class="action" href="javascript:completeLesson()">✓ COMPLETATA</a>
+      <a class="action dark" href="javascript:startQuiz()">QUIZ</a>
+      <a class="action" href="javascript:copyLesson()">COPIA APPUNTI</a>
+      <a class="action dark" href="javascript:linkLessonStyle()">COLLEGA STILE</a>
+    </div>
+  </div>
+  <div class="panel" style="margin-top:12px">
+    <h2>Progresso School</h2>
+    ${schoolProgress()}
+  </div>`;
+}
+
+function quizQuestions(){
+  const l=LESSONS[lessonIndex];
+  const title=l[0], fruit=l[3], param=l[4], tech=l[5], place=l[6], err=l[7];
+  return [
+    {q:`Qual è il punto centrale della lezione "${title}"?`,ok:l[2],bad:["Aumentare sempre lo zucchero","Eliminare l’acidità","Usare solo mele da tavola"]},
+    {q:`Quale frutta è più collegata a questa lezione?`,ok:fruit,bad:["Banana e mango","Solo uva da vino","Cereali maltati"]},
+    {q:`Quale parametro tecnico devi controllare?`,ok:param,bad:["Colore dell’etichetta","Prezzo del tappo","Forma del bicchiere"]},
+    {q:`Quale tecnica è più collegata?`,ok:tech,bad:["Pastorizzare tutto senza misurare","Aggiungere aromi a caso","Ignorare la fermentazione"]},
+    {q:`A quale territorio o famiglia è collegata?`,ok:place,bad:["Solo birra IPA","Solo vino rosso","Nessun territorio"]},
+    {q:`Qual è l’errore principale da evitare?`,ok:err,bad:["Misurare il pH","Studiare le mele","Confrontare gli stili"]},
+    {q:`In ottica XA, cosa devi fare con questa lezione?`,ok:"Trasformare lo stile in un preset tecnico per ricetta, scuola e laboratorio.",bad:["Copiarlo senza capirlo","Usarlo solo come decorazione","Eliminare tutti i parametri"]},
+    {q:`Perché questa lezione è utile commercialmente?`,ok:"Aiuta a capire cosa cercare, comprare, importare o raccontare.",bad:["Serve solo a riempire la pagina","Non ha valore pratico","Serve solo per fare grafica"]},
+    {q:`Come va letta nella console DAW?`,ok:"Come combinazione di acidità, tannino, dolcezza, bolla, corpo e metodo.",bad:["Come una foto statica","Come un semplice voto numerico","Come un colore casuale"]},
+    {q:`Quale azione pratica è più utile dopo la lezione?`,ok:"Copiare appunti o ricetta XA e confrontare uno stile collegato.",bad:["Chiudere l’app","Cancellare i dati","Cambiare nome alla mela"]}
+  ];
+}
+
+function quizView(){
+  const l=LESSONS[lessonIndex];
+  const qs=quizQuestions();
+  const qq=qs[quizIndex];
+  const current=scores[lessonIndex]||{right:0,total:0};
+  return `<div class="lessonPanel">
+    <h2>Quiz Player</h2>
+    <div class="lessonTitle">${lessonIndex+1}. ${l[0]}</div>
+    ${infoLine("Domanda",`${quizIndex+1} / ${qs.length}`)}
+    ${infoLine("Score",`${current.right||0} corrette su ${current.total||0} risposte registrate`)}
+    <div class="quizBox">
+      <div class="quizQ">${qq.q}</div>
+      ${shuffle([qq.ok,...qq.bad]).map(o=>`<button class="quizOption" onclick="answerQuiz(this,'${escapeJS(o)}','${escapeJS(qq.ok)}')">${o}</button>`).join("")}
+      <div class="quizResult" id="quizResult">Risposta corretta: <b>${qq.ok}</b></div>
+    </div>
+    <div class="actions">
+      <a class="action dark" href="javascript:prevQuiz()">◀ DOMANDA</a>
+      <a class="action" href="javascript:nextQuiz()">DOMANDA ▶</a>
+      <a class="action dark" href="javascript:scene('school')">TORNA SCHOOL</a>
+      <a class="action" href="javascript:completeLesson()">✓ COMPLETA</a>
+    </div>
+  </div>`;
+}
+
 function businessView(out){
   return out.slice().sort((a,b)=>bizTotal(b)-bizTotal(a)).map(x=>`<div class="bizCard">
     <h2>${x.z}</h2>
-    ${infoLine("Paese",x.p)}${infoLine("Stile",x.st)}${infoLine("Ricerca",x.lk)}
+    ${infoLine("Paese",x.p)}
+    ${infoLine("Stile",x.st)}
+    ${infoLine("Prima azione",firstAction(x))}
     <div class="bizScore">
       <div><b>STORIA</b><span>${x.hist}</span></div>
       <div><b>BIZ</b><span>${x.biz}</span></div>
       <div><b>ORIG.</b><span>${x.orig}</span></div>
-      <div><b>IMPORT</b><span>${x.import}</span></div>
+      <div><b>IMPORT</b><span>${x.imp}</span></div>
     </div>
-    <div class="actions"><a class="action" href="javascript:loadStyle('${x.id}')">CARICA</a><a class="action dark" href="${x.map}" target="_blank">MAPPA</a></div>
+    <div class="actions"><a class="action" href="javascript:businessPopup('${x.id}')">POPUP BIZ</a><a class="action dark" href="javascript:loadStyle('${x.id}')">LOAD</a></div>
   </div>`).join("");
 }
-function channel(x){
+
+function searchView(out){
+  return out.map(x=>`<div class="searchCard">
+    <h2>${x.z}</h2>
+    ${infoLine("Parole",x.kw)}
+    ${infoLine("Tipo",producerType(x))}
+    ${infoLine("Rischio",riskNote(x))}
+    <div class="actions">
+      <a class="action" href="https://www.google.com/search?q=${encodeURIComponent(x.kw+' '+x.z+' cider producer')}" target="_blank">GOOGLE</a>
+      <a class="action dark" href="${x.map}" target="_blank">MAPPA</a>
+      <a class="action" href="javascript:copyText('${escapeJS(x.kw)}','Parole chiave copiate.')">COPIA KEY</a>
+      <a class="action dark" href="javascript:searchPopup('${x.id}')">POPUP</a>
+    </div>
+  </div>`).join("");
+}
+
+function mixerChannel(x){
   const vu=Math.round((x.a+x.t+x.b+x.c)/38);
   return `<div class="channel"><div class="chName">${x.z}</div><div class="chType">${x.st}</div>
   <div class="vu">${Array.from({length:10},(_,i)=>{let cls="";if(i<vu)cls=i>7?"r":i>5?"y":"g";return `<i class="${cls}"></i>`}).join("")}</div>
-  <div class="faderSet"><div class="fader"><label>ACID</label><div class="track"></div><div class="knob" style="bottom:${12+x.a*.82}px"></div></div><div class="fader"><label>TAN</label><div class="track"></div><div class="knob" style="bottom:${12+x.t*.82}px"></div></div><div class="fader"><label>BOLLA</label><div class="track"></div><div class="knob" style="bottom:${12+x.b*.82}px"></div></div></div></div>`;
+  <div class="faderSet">
+    <div class="fader"><label>ACID</label><div class="track"></div><div class="knob" style="bottom:${12+x.a*.82}px"></div></div>
+    <div class="fader"><label>TAN</label><div class="track"></div><div class="knob" style="bottom:${12+x.t*.82}px"></div></div>
+    <div class="fader"><label>BOLLA</label><div class="track"></div><div class="knob" style="bottom:${12+x.b*.82}px"></div></div>
+  </div></div>`;
 }
+
 function compareMini(x){
   return `<div class="compareMini"><h3>${x.z}</h3>
     <div class="crow"><b>Stile</b><span>${x.st}</span></div>
@@ -642,10 +796,10 @@ function compareMini(x){
     <div class="crow"><b>Dolce</b><span>${x.s} / ${lvl(x.s)}</span></div>
     <div class="crow"><b>Bolla</b><span>${x.b} / ${lvl(x.b)}</span></div>
     <div class="crow"><b>Frutta</b><span>${x.fr}</span></div>
-    <div class="crow"><b>Metodo</b><span>${x.m}</span></div>
     <div class="crow"><b>Biz</b><span>${bizTotal(x)}/100</span></div>
   </div>`;
 }
+
 function renderCompare(){
   const a=byId(document.getElementById("cmpA").value);
   const b=byId(document.getElementById("cmpB").value);
@@ -666,19 +820,19 @@ function render(){
   document.getElementById("liveCount").textContent=String(out.length).padStart(2,"0");
   document.getElementById("countText").textContent=out.length+" schede";
   document.getElementById("loadedBox").innerHTML=loadedBox();
-  document.getElementById("topDeck").innerHTML=topDeck();
-  document.getElementById("filterInfo").innerHTML=filterInfo();
-  document.getElementById("cards").innerHTML=out.map(scheda).join("");
+  document.getElementById("progressBox").innerHTML=schoolProgress();
+  document.getElementById("topDeck").innerHTML=DATA.slice().sort((a,b)=>b.xa-a.xa).slice(0,7).map(x=>infoLine(x.xa+"/100",`<a style="color:#d8e5ee;text-decoration:none" href="javascript:loadStyle('${x.id}')">${x.z} · ${x.st}</a>`)).join("");
+  document.getElementById("cards").innerHTML=out.map(card).join("");
   document.getElementById("empty").style.display=out.length?"none":"block";
-  document.getElementById("areeDeck").innerHTML=areeView(out);
-  document.getElementById("paesiDeck").innerHTML=paesiView(out);
-  document.getElementById("stiliDeck").innerHTML=stiliView();
-  document.getElementById("meleDeck").innerHTML=meleView();
-  document.getElementById("schoolDeck").innerHTML=schoolView();
+  document.getElementById("consoleDeck").innerHTML=consoleView();
+  document.getElementById("meleDeck").innerHTML=fruitView();
+  document.getElementById("schoolDeck").innerHTML=lessonView();
+  document.getElementById("quizDeck").innerHTML=quizView();
   document.getElementById("businessDeck").innerHTML=businessView(out);
-  document.getElementById("mixerDeck").innerHTML=out.map(channel).join("");
+  document.getElementById("searchDeck").innerHTML=searchView(out);
+  document.getElementById("mixerDeck").innerHTML=out.map(mixerChannel).join("");
   const f=DATA.filter(x=>favs.has(x.id));
-  document.getElementById("favDeck").innerHTML=f.map(scheda).join("");
+  document.getElementById("favDeck").innerHTML=f.map(card).join("");
   document.getElementById("favEmpty").style.display=f.length?"none":"block";
   renderChips();
   renderCompare();
@@ -688,7 +842,7 @@ function scene(id){
   document.getElementById(id).classList.add("on");
   document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));
   document.getElementById("t_"+id).classList.add("on");
-  const title={home:"Master Control",atlas:"Territory Digital Deck",aree:"Macro Aree",paesi:"Country Browser",stili:"Style Families",mele:"Apple / Fruit Matrix",school:"XA Cider School",business:"Import / Business",mixer:"Style Channel Mixer",compare:"Compare Mode",fav:"Preferiti"}[id];
+  const title={home:"Master Control",atlas:"Territory Digital Deck",console:"DAW Console",mele:"Apple / Fruit Matrix",school:"XA Cider School",quiz:"Quiz Player",business:"Import / Business",search:"Producer Search",mixer:"Style Channel Mixer",compare:"Compare Mode",fav:"Preferiti"}[id];
   document.getElementById("sceneTitle").textContent=title;
   render();
 }
@@ -696,33 +850,46 @@ function setChip(c){activeChip=activeChip===c?"":c;scene("atlas")}
 function quick(term){q.value=term;activeChip="";scene("atlas");window.scrollTo({top:0,behavior:"smooth"})}
 function clearQ(){q.value="";activeChip="";render()}
 function toggleCompact(){compact=!compact;document.getElementById("app").classList.toggle("compact",compact);document.getElementById("compactBtn").classList.toggle("on",compact)}
-function toggleFav(id){favs.has(id)?favs.delete(id):favs.add(id);localStorage.setItem("xa_cider_atlas_v7_favs",JSON.stringify([...favs]));render()}
-function loadStyle(id){loadedId=id;localStorage.setItem("xa_cider_atlas_v7_loaded",id);document.getElementById("cmpA").value=id;scene("home")}
+function toggleFav(id){favs.has(id)?favs.delete(id):favs.add(id);localStorage.setItem("xa_v8_favs",JSON.stringify([...favs]));render()}
+function loadStyle(id){loadedId=id;localStorage.setItem("xa_v8_loaded",id);document.getElementById("cmpA").value=id;scene("home")}
 function loadTop(){const top=results()[0]||DATA[0];loadStyle(top.id)}
-function showQuiz(i){document.getElementById("quiz"+i).style.display="block"}
-function copiaScheda(id){
-  const x=byId(id);
-  const text=`${x.z} - ${x.p}
-Area: ${x.area}
-Stile: ${x.st}
-Famiglia: ${x.f}
-Dove: ${x.w}
-Metodo: ${x.m}
-Mele/pere/frutta: ${x.fr}
-Profilo: ${x.pr}
-Cosa cercare: ${x.lk}
-ABV: ${x.ab}
-Acidità: ${x.a}
-Tannino: ${x.t}
-Dolcezza: ${x.s}
-Bolla: ${x.b}
-Corpo: ${x.c}
-Interesse XA: ${x.xa}/100
-Business: ${bizTotal(x)}/100`;
-  if(navigator.clipboard)navigator.clipboard.writeText(text);
-  alert("Scheda copiata.");
+function prevLesson(){lessonIndex=(lessonIndex-1+LESSONS.length)%LESSONS.length;localStorage.setItem("xa_v8_lesson",lessonIndex);quizIndex=0;render()}
+function nextLesson(){lessonIndex=(lessonIndex+1)%LESSONS.length;localStorage.setItem("xa_v8_lesson",lessonIndex);quizIndex=0;render()}
+function completeLesson(){completed.add(String(lessonIndex));localStorage.setItem("xa_v8_completed",JSON.stringify([...completed]));openModal("LEZIONE COMPLETATA",`<p>Completata: <b>${LESSONS[lessonIndex][0]}</b></p>`);render()}
+function startQuiz(){quizIndex=0;quizAnswered=false;scene("quiz")}
+function nextQuiz(){quizIndex=(quizIndex+1)%10;quizAnswered=false;render()}
+function prevQuiz(){quizIndex=(quizIndex-1+10)%10;quizAnswered=false;render()}
+function answerQuiz(btn,ans,ok){
+  if(quizAnswered)return;
+  quizAnswered=true;
+  const right=ans===ok;
+  btn.classList.add(right?"correct":"wrong");
+  document.getElementById("quizResult").style.display="block";
+  if(!scores[lessonIndex])scores[lessonIndex]={right:0,total:0};
+  scores[lessonIndex].total++;
+  if(right)scores[lessonIndex].right++;
+  localStorage.setItem("xa_v8_scores",JSON.stringify(scores));
 }
-function ricettaText(x){
+function copyLesson(){
+  const l=LESSONS[lessonIndex];
+  copyText(`LEZIONE XA ${lessonIndex+1}: ${l[0]}
+Modulo: ${l[1]}
+Obiettivo: ${l[2]}
+Frutta: ${l[3]}
+Parametro: ${l[4]}
+Tecnica: ${l[5]}
+Collegato: ${l[6]}
+Errore da evitare: ${l[7]}`,"Appunti lezione copiati.");
+}
+function linkLessonStyle(){
+  const l=norm(LESSONS[lessonIndex][6]);
+  const found=DATA.find(x=>txt(x).includes(l.split(" ")[0]))||byId(loadedId);
+  loadStyle(found.id);
+}
+function shuffle(a){return a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1])}
+function escapeJS(s){return String(s).replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/"/g,"&quot;")}
+function targetPH(x){return x.a>85?"3.15–3.35":x.a>70?"3.25–3.50":x.a>55?"3.35–3.65":"3.55–3.85"}
+function recipeText(x){
   return `RICETTA XA ISPIRATA A: ${x.z}
 
 Paese / area:
@@ -735,6 +902,7 @@ Base frutta:
 ${x.fr}
 
 Target tecnico:
+- pH target: ${targetPH(x)}
 - Acidità: ${x.a}/100
 - Tannino: ${x.t}/100
 - Dolcezza: ${x.s}/100
@@ -742,25 +910,118 @@ Target tecnico:
 - Corpo: ${x.c}/100
 - ABV indicativo: ${x.ab}
 
-Metodo di riferimento:
+Metodo:
 ${x.m}
 
-Profilo desiderato:
+Lievito consigliato:
+Neutro da sidro per versione pulita; fermentazione controllata o wild controlled per versione XA moderna.
+
+Temperatura:
+14–18 °C per profilo pulito; più alta solo per sperimentazioni controllate.
+
+Profilo:
 ${x.pr}
 
-Parole chiave ricerca:
-${x.lk}
+Parole chiave:
+${x.kw}
 
 Uso XA:
 Interesse XA ${x.xa}/100. Business ${bizTotal(x)}/100.
-Usare come base per scheda ricetta, scuola, lotto sperimentale e valutazione import.`;
+Usare per ricetta, scuola, lotto sperimentale e valutazione import.`;
 }
-function copiaRicetta(id){if(navigator.clipboard)navigator.clipboard.writeText(ricettaText(byId(id)));alert("Ricetta XA copiata.")}
+function copiaRicetta(id){copyText(recipeText(byId(id)),"Ricetta XA copiata.")}
 function copyLoadedRecipe(){copiaRicetta(loadedId)}
+function copiaScheda(id){
+  const x=byId(id);
+  copyText(`${x.z} - ${x.p}
+Area: ${x.area}
+Stile: ${x.st}
+Dove: ${x.w}
+Metodo: ${x.m}
+Frutta: ${x.fr}
+Profilo: ${x.pr}
+Keyword: ${x.kw}
+XA: ${x.xa}/100
+Business: ${bizTotal(x)}/100`,"Scheda copiata.");
+}
 function copyFiltered(){
-  const text=results().map(x=>`${x.z} | ${x.p} | ${x.st} | XA ${x.xa}/100 | BIZ ${bizTotal(x)}/100 | ${x.lk}`).join("\n");
-  if(navigator.clipboard)navigator.clipboard.writeText(text);
-  alert("Filtro copiato.");
+  const text=results().map(x=>`${x.z} | ${x.p} | ${x.st} | XA ${x.xa}/100 | BIZ ${bizTotal(x)}/100 | ${x.kw}`).join("\n");
+  copyText(text,"Filtro copiato.");
+}
+function firstAction(x){
+  if(x.area==="CLASSICI")return "Cercare produttori storici, disciplinari, corsi e zone reali.";
+  if(x.area==="NORDICI / BALTICI")return "Cercare piccoli produttori craft e sidri naturali da clima freddo.";
+  if(x.area==="EUROPA EST"||x.area==="BALCANI")return "Verificare produttori reali, prezzi, logistica e qualità prima di importare.";
+  return "Cercare esempi moderni, produttori premiati e bottiglie didattiche.";
+}
+function producerType(x){
+  if(x.area==="CLASSICI")return "Produttore tradizionale, agricolo o storico.";
+  if(x.area==="NUOVO MONDO")return "Craft cidery moderna, sperimentale o premium.";
+  return "Piccolo produttore craft / azienda agricola da verificare.";
+}
+function riskNote(x){
+  if(x.imp<55)return "Import più complesso: verificare bene logistica, disponibilità e affidabilità.";
+  if(x.biz>80)return "Buon potenziale commerciale e didattico.";
+  return "Interessante, ma da testare con campioni piccoli.";
+}
+function openModal(title,html){
+  document.getElementById("modalTitle").textContent=title;
+  document.getElementById("modalBody").innerHTML=html;
+  document.getElementById("modal").classList.add("on");
+}
+function closeModal(){document.getElementById("modal").classList.remove("on")}
+function modalBg(e){if(e.target.id==="modal")closeModal()}
+function openLoadedModal(){stylePopup(loadedId)}
+function stylePopup(id){
+  const x=byId(id);
+  openModal("SCHEDA STILE",`
+    <h2 style="color:var(--green)">${x.z}</h2>
+    ${infoLine("Paese",x.p)}
+    ${infoLine("Area",x.area)}
+    ${infoLine("Stile",x.st)}
+    ${infoLine("Metodo",x.m)}
+    ${infoLine("Frutta",x.fr)}
+    ${infoLine("Profilo",x.pr)}
+    ${infoLine("Parole",x.kw)}
+    <div class="actions"><a class="action" href="javascript:copiaRicetta('${x.id}')">COPIA RICETTA</a><a class="action dark" href="${x.map}" target="_blank">MAPPA</a></div>
+  `);
+}
+function businessPopup(id){
+  const x=byId(id);
+  openModal("BUSINESS / IMPORT",`
+    <h2 style="color:var(--green)">${x.z}</h2>
+    ${infoLine("Prima azione",firstAction(x))}
+    ${infoLine("Tipo produttore",producerType(x))}
+    ${infoLine("Rischio",riskNote(x))}
+    <div class="bizScore">
+      <div><b>STORIA</b><span>${x.hist}</span></div>
+      <div><b>BIZ</b><span>${x.biz}</span></div>
+      <div><b>ORIG.</b><span>${x.orig}</span></div>
+      <div><b>IMPORT</b><span>${x.imp}</span></div>
+    </div>
+  `);
+}
+function searchPopup(id){
+  const x=byId(id);
+  openModal("RICERCA PRODUTTORI",`
+    <h2 style="color:var(--green)">${x.z}</h2>
+    ${infoLine("Keyword",x.kw)}
+    ${infoLine("Tipo",producerType(x))}
+    ${infoLine("Nota",riskNote(x))}
+    <div class="actions"><a class="action" href="https://www.google.com/search?q=${encodeURIComponent(x.kw+' '+x.z+' cider producer')}" target="_blank">GOOGLE</a><a class="action dark" href="javascript:copyText('${escapeJS(x.kw)}','Keyword copiate.')">COPIA</a></div>
+  `);
+}
+function fruitPopup(title){
+  const f=FRUIT_GUIDE.find(i=>i.t===title);
+  openModal("MELE / PERE",`
+    <h2 style="color:var(--green)">${f.t}</h2>
+    <div class="fruitImg ${f.img}"></div>
+    ${infoLine("Varietà",f.varieta)}
+    ${infoLine("Dove",f.dove)}
+    ${infoLine("Funzione",f.fun)}
+    ${infoLine("Uso XA",f.uso)}
+    ${infoLine("Nota",f.note)}
+  `);
 }
 
 q.addEventListener("input",render);
