@@ -3,718 +3,276 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>XA Cider Atlas Pro V9.2</title>
+  <title>XA Cider Atlas Pro V9.3</title>
   <style>
     :root{
-      --bg:#050608;
+      --bg:#050607;
       --ink:#f4ead8;
       --muted:#9aa6af;
       --panel:#111820;
-      --panel2:#19232d;
-      --panel3:#222d38;
-      --metalA:#3a4652;
-      --metalB:#10151b;
-      --line:#4a5967;
-      --line2:#687684;
+      --panel2:#1b2530;
+      --line:#4b5966;
       --red:#8b1e2d;
-      --red2:#d5394d;
+      --red2:#dc4054;
       --gold:#c89b52;
-      --gold2:#ffcc73;
+      --gold2:#ffd078;
       --green:#8cff9d;
-      --green2:#26d35b;
-      --lcd:#07160a;
+      --green2:#28d85e;
+      --blue:#58baff;
       --amber:#ffba4a;
-      --blue:#59baff;
-      --violet:#b785ff;
       --danger:#ff4b62;
-      --radius:18px;
+      --violet:#b985ff;
       --mono:"Roboto Mono","SFMono-Regular",Consolas,monospace;
       --sans:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       --shadow:0 18px 48px rgba(0,0,0,.55);
     }
 
     *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-    html,body{
-      margin:0;
-      padding:0;
-      background:var(--bg);
-      color:var(--ink);
-      font-family:var(--sans);
-      min-height:100%;
-      overflow-x:hidden;
-    }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--sans);overflow-x:hidden}
     body{
+      min-height:100vh;
       background:
-        radial-gradient(circle at 10% -5%,rgba(139,30,45,.40),transparent 32%),
-        radial-gradient(circle at 92% 7%,rgba(89,186,255,.16),transparent 26%),
-        radial-gradient(circle at 50% 100%,rgba(200,155,82,.13),transparent 36%),
-        linear-gradient(160deg,#040506,#10161c 46%,#050608);
+        radial-gradient(circle at 10% -5%,rgba(139,30,45,.42),transparent 32%),
+        radial-gradient(circle at 90% 5%,rgba(88,186,255,.16),transparent 28%),
+        radial-gradient(circle at 50% 100%,rgba(200,155,82,.12),transparent 38%),
+        linear-gradient(150deg,#040506,#111820 48%,#050607);
     }
-    button,input,select,textarea{font-family:inherit}
+    button,input,select{font-family:inherit}
     button{cursor:pointer}
-    .app{max-width:1040px;margin:0 auto;padding:10px 10px 118px}
+    .app{max-width:1080px;margin:0 auto;padding:10px 10px 120px}
+
+    .boot{
+      position:fixed;inset:0;z-index:200;background:#050607;
+      display:flex;align-items:center;justify-content:center;padding:22px;
+      transition:.35s ease;
+    }
+    .boot.hide{opacity:0;pointer-events:none}
+    .boot-box{
+      width:100%;max-width:460px;border:1px solid #4b5966;border-radius:24px;
+      background:linear-gradient(180deg,#202b35,#070a0d);
+      padding:18px;box-shadow:var(--shadow);
+    }
+    .boot-logo{
+      width:92px;height:92px;margin:0 auto 16px;border-radius:25px;
+      background:linear-gradient(145deg,#fff1d7,#d8c1a0);
+      color:#7b1725;border:2px solid #7b1725;
+      display:flex;align-items:center;justify-content:center;
+      font-family:Georgia,serif;font-size:40px;font-weight:900;letter-spacing:-2px;
+      box-shadow:inset 0 0 0 6px #eadac0,0 12px 28px rgba(0,0,0,.5);
+    }
+    .boot-line{font-family:var(--mono);font-size:12px;color:var(--green);margin:7px 0}
+    .boot-bar{height:10px;border-radius:999px;background:#050708;border:1px solid #284d31;overflow:hidden;margin-top:12px}
+    .boot-bar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--green2),var(--amber));animation:load 1.1s linear}
+    @keyframes load{from{width:0}to{width:100%}}
 
     .console{
-      border:1px solid var(--line);
-      border-radius:26px;
-      overflow:hidden;
+      border:1px solid var(--line);border-radius:26px;overflow:hidden;
       background:
         linear-gradient(135deg,rgba(255,255,255,.08),transparent 18%),
-        linear-gradient(180deg,#2d3742 0%,#151c23 47%,#07090c 100%);
+        linear-gradient(180deg,#2d3742,#151c23 48%,#07090c);
       box-shadow:var(--shadow),inset 0 1px rgba(255,255,255,.12);
       position:relative;
     }
     .console:before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 6px),
-        repeating-linear-gradient(0deg,rgba(0,0,0,.15) 0 2px,transparent 2px 7px);
-      opacity:.18;
-      pointer-events:none;
+      content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;
+      background:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 6px);
     }
-    .brand{
-      position:relative;
-      display:grid;
-      grid-template-columns:76px 1fr;
-      gap:12px;
-      align-items:center;
-      padding:14px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-    }
+    .brand{position:relative;display:grid;grid-template-columns:76px 1fr;gap:12px;align-items:center;padding:14px;border-bottom:1px solid rgba(255,255,255,.1)}
     .logo{
-      width:76px;
-      height:76px;
-      border-radius:22px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:#7d1725;
-      background:
-        radial-gradient(circle at 50% 18%,rgba(255,255,255,.38),transparent 18%),
-        linear-gradient(145deg,#fff2da,#d6c2a0);
-      border:2px solid #7d1725;
-      box-shadow:inset 0 0 0 5px #eadac0,0 12px 28px rgba(0,0,0,.52);
-      font-family:Georgia,serif;
-      font-size:33px;
-      font-weight:900;
-      letter-spacing:-2px;
+      width:76px;height:76px;border-radius:22px;display:flex;align-items:center;justify-content:center;
+      color:#7b1725;background:linear-gradient(145deg,#fff2da,#d7c19d);
+      border:2px solid #7b1725;box-shadow:inset 0 0 0 5px #eadac0,0 12px 28px rgba(0,0,0,.52);
+      font-family:Georgia,serif;font-size:33px;font-weight:900;letter-spacing:-2px;
     }
     h1,h2,h3,h4,p{margin-top:0}
-    .brand h1{margin:0;font-size:22px;line-height:1.02;letter-spacing:.02em}
+    .brand h1{margin:0;font-size:22px;line-height:1.02}
     .brand p{margin:5px 0 0;color:var(--muted);font-size:12px}
     .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
     .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      border:1px solid rgba(255,255,255,.13);
-      background:rgba(0,0,0,.28);
-      border-radius:999px;
-      padding:5px 8px;
-      font-family:var(--mono);
-      font-size:10px;
-      color:#dfecf2;
+      display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.13);
+      background:rgba(0,0,0,.28);border-radius:999px;padding:5px 8px;
+      font-family:var(--mono);font-size:10px;color:#dfecf2;
     }
     .led{
-      width:9px;height:9px;border-radius:50%;
-      background:#242c33;border:1px solid #5d6c78;
-      box-shadow:inset 0 0 5px rgba(0,0,0,.85);
-      flex:0 0 auto;
+      width:9px;height:9px;border-radius:50%;background:#242c33;border:1px solid #5d6c78;
+      box-shadow:inset 0 0 5px rgba(0,0,0,.85);flex:0 0 auto;
     }
-    .led.green{background:var(--green2);box-shadow:0 0 10px var(--green2),0 0 22px rgba(38,211,91,.42)}
-    .led.red{background:var(--red2);box-shadow:0 0 10px var(--red2),0 0 22px rgba(213,57,77,.42)}
+    .led.green{background:var(--green2);box-shadow:0 0 10px var(--green2),0 0 22px rgba(40,216,94,.42)}
+    .led.red{background:var(--red2);box-shadow:0 0 10px var(--red2),0 0 22px rgba(220,64,84,.42)}
     .led.amber{background:var(--amber);box-shadow:0 0 10px var(--amber),0 0 22px rgba(255,186,74,.42)}
-    .led.blue{background:var(--blue);box-shadow:0 0 10px var(--blue),0 0 22px rgba(89,186,255,.38)}
-    .led.violet{background:var(--violet);box-shadow:0 0 10px var(--violet),0 0 22px rgba(183,133,255,.38)}
+    .led.blue{background:var(--blue);box-shadow:0 0 10px var(--blue),0 0 22px rgba(88,186,255,.38)}
+    .led.violet{background:var(--violet);box-shadow:0 0 10px var(--violet),0 0 22px rgba(185,133,255,.38)}
 
-    .transport{
-      position:relative;
-      padding:12px;
-      display:grid;
-      gap:10px;
-      background:
-        linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.43)),
-        radial-gradient(circle at 15% 30%,rgba(200,155,82,.10),transparent 25%);
-    }
+    .transport{position:relative;padding:12px;display:grid;gap:10px;background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.43))}
     .lcd{
-      border:1px solid #31573a;
-      border-radius:15px;
-      background:
-        linear-gradient(180deg,rgba(140,255,157,.13),rgba(7,22,10,.90)),
-        var(--lcd);
-      color:var(--green);
-      padding:10px 12px;
-      font-family:var(--mono);
-      box-shadow:inset 0 0 18px rgba(140,255,157,.12),0 0 18px rgba(38,211,91,.09);
-      overflow:hidden;
+      border:1px solid #31573a;border-radius:15px;background:linear-gradient(180deg,rgba(140,255,157,.13),rgba(7,22,10,.9)),#07160a;
+      color:var(--green);padding:10px 12px;font-family:var(--mono);
+      box-shadow:inset 0 0 18px rgba(140,255,157,.12),0 0 18px rgba(40,216,94,.09);overflow:hidden;
     }
-    .lcd .label{
-      font-size:9px;
-      color:#bbffc4;
-      opacity:.82;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-    }
-    .lcd .value{
-      margin-top:4px;
-      font-size:13px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .transport-line{
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:8px;
-      align-items:center;
-    }
+    .lcd .label{font-size:9px;color:#bbffc4;opacity:.82;letter-spacing:.14em;text-transform:uppercase}
+    .lcd .value{margin-top:4px;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .transport-line{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
     .select,.input{
-      width:100%;
-      border:1px solid #4d5b68;
-      border-radius:14px;
-      outline:0;
-      color:#f4ead8;
-      padding:12px 11px;
-      background:linear-gradient(180deg,#19222a,#080b0e);
-      box-shadow:inset 0 1px 10px rgba(0,0,0,.55);
-      font-size:13px;
+      width:100%;border:1px solid #4d5b68;border-radius:14px;outline:0;color:#f4ead8;
+      padding:12px 11px;background:linear-gradient(180deg,#19222a,#080b0e);
+      box-shadow:inset 0 1px 10px rgba(0,0,0,.55);font-size:13px;
     }
-    .button-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:8px;
-    }
-    @media(max-width:650px){
-      .button-grid{grid-template-columns:repeat(2,1fr)}
-      .transport-line{grid-template-columns:1fr}
-    }
+    .button-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    @media(max-width:650px){.button-grid,.transport-line{grid-template-columns:1fr 1fr}.transport-line{grid-template-columns:1fr}}
 
     .hw{
-      border:1px solid #5a6773;
-      border-bottom-color:#11161b;
-      border-radius:14px;
-      background:
-        linear-gradient(180deg,rgba(255,255,255,.15),transparent 40%),
-        linear-gradient(180deg,#333f4b,#121820);
-      color:#f8ecd8;
-      padding:11px 8px;
-      text-transform:uppercase;
-      font-size:10.5px;
-      font-weight:900;
-      letter-spacing:.055em;
+      border:1px solid #5a6773;border-bottom-color:#11161b;border-radius:14px;
+      background:linear-gradient(180deg,rgba(255,255,255,.15),transparent 40%),linear-gradient(180deg,#333f4b,#121820);
+      color:#f8ecd8;padding:11px 8px;text-transform:uppercase;font-size:10.5px;font-weight:900;letter-spacing:.055em;
       box-shadow:inset 0 1px rgba(255,255,255,.15),0 5px 0 #030405,0 13px 18px rgba(0,0,0,.36);
     }
-    .hw:active,.hw.active{
-      transform:translateY(3px);
-      box-shadow:inset 0 1px rgba(255,255,255,.09),0 2px 0 #030405,0 7px 12px rgba(0,0,0,.44);
-    }
+    .hw:active,.hw.active{transform:translateY(3px);box-shadow:inset 0 1px rgba(255,255,255,.09),0 2px 0 #030405,0 7px 12px rgba(0,0,0,.44)}
     .hw.red.active{background:linear-gradient(180deg,#e14b5e,#5e0f1b)}
     .hw.amber.active{background:linear-gradient(180deg,#ffba4a,#6e420d)}
-    .hw.blue.active{background:linear-gradient(180deg,#59baff,#123e5d)}
-    .hw.green.active{background:linear-gradient(180deg,#26d35b,#0c4b24)}
+    .hw.blue.active{background:linear-gradient(180deg,#58baff,#123e5d)}
+    .hw.green.active{background:linear-gradient(180deg,#28d85e,#0c4b24)}
 
     .tabs{
-      position:sticky;
-      top:0;
-      z-index:30;
-      margin:12px -10px 8px;
-      padding:8px 10px;
-      display:flex;
-      gap:7px;
-      overflow-x:auto;
-      background:linear-gradient(180deg,rgba(5,6,8,.98),rgba(5,6,8,.88));
-      border-bottom:1px solid rgba(255,255,255,.08);
-      scrollbar-width:none;
+      position:sticky;top:0;z-index:30;margin:12px -10px 8px;padding:8px 10px;
+      display:flex;gap:7px;overflow-x:auto;background:linear-gradient(180deg,rgba(5,6,8,.98),rgba(5,6,8,.88));
+      border-bottom:1px solid rgba(255,255,255,.08);scrollbar-width:none;
     }
     .tabs::-webkit-scrollbar{display:none}
     .tab{
-      flex:0 0 auto;
-      border:1px solid #485562;
-      border-radius:999px;
-      padding:9px 12px;
-      color:#dfd2bf;
-      background:linear-gradient(180deg,#222c35,#0d1116);
-      font-weight:900;
-      font-size:10.5px;
-      letter-spacing:.04em;
-      box-shadow:inset 0 1px rgba(255,255,255,.10);
-      white-space:nowrap;
+      flex:0 0 auto;border:1px solid #485562;border-radius:999px;padding:9px 12px;color:#dfd2bf;
+      background:linear-gradient(180deg,#222c35,#0d1116);font-weight:900;font-size:10.5px;letter-spacing:.04em;
+      box-shadow:inset 0 1px rgba(255,255,255,.1);white-space:nowrap;
     }
-    .tab.active{
-      border-color:var(--gold2);
-      color:#fff0c9;
-      background:linear-gradient(180deg,#765522,#1e1409);
-      box-shadow:0 0 16px rgba(255,204,115,.20),inset 0 1px rgba(255,255,255,.13);
-    }
+    .tab.active{border-color:var(--gold2);color:#fff0c9;background:linear-gradient(180deg,#765522,#1e1409);box-shadow:0 0 16px rgba(255,204,115,.2)}
 
-    .view{display:none}
-    .view.active{display:block}
+    .view{display:none}.view.active{display:block}
     .rack{
-      position:relative;
-      margin:10px 0;
-      padding:12px;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background:
-        linear-gradient(135deg,rgba(255,255,255,.07),transparent 18%),
-        linear-gradient(180deg,#26313b,#121922 55%,#070a0d);
-      box-shadow:var(--shadow),inset 0 1px rgba(255,255,255,.09);
-      overflow:hidden;
+      position:relative;margin:10px 0;padding:12px;border:1px solid var(--line);border-radius:18px;
+      background:linear-gradient(135deg,rgba(255,255,255,.07),transparent 18%),linear-gradient(180deg,#26313b,#121922 55%,#070a0d);
+      box-shadow:var(--shadow),inset 0 1px rgba(255,255,255,.09);overflow:hidden;
     }
-    .rack:before{
-      content:"";
-      position:absolute;
-      left:0;right:0;top:0;height:20px;
-      background:linear-gradient(180deg,rgba(255,255,255,.08),transparent);
-      pointer-events:none;
-    }
-    .rack-title{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:10px;
-      position:relative;
-    }
-    .rack-title h2,.rack-title h3{
-      margin:0;
-      font-size:14px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-    }
+    .rack:before{content:"";position:absolute;left:0;right:0;top:0;height:20px;background:linear-gradient(180deg,rgba(255,255,255,.08),transparent);pointer-events:none}
+    .rack-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;position:relative}
+    .rack-title h2{margin:0;font-size:14px;text-transform:uppercase;letter-spacing:.08em}
     .rack-title span{font-family:var(--mono);font-size:10px;color:var(--muted)}
-    .screws{display:flex;gap:6px}
-    .screw{
-      width:12px;height:12px;border-radius:50%;
-      background:radial-gradient(circle at 35% 30%,#c8d0d7,#3d4852 45%,#050607 78%);
-      border:1px solid #111;
-    }
-    .grid{display:grid;gap:10px}
-    .two{grid-template-columns:1fr 1fr}
-    .three{grid-template-columns:repeat(3,1fr)}
-    .four{grid-template-columns:repeat(4,1fr)}
+    .grid{display:grid;gap:10px}.two{grid-template-columns:1fr 1fr}.three{grid-template-columns:repeat(3,1fr)}.four{grid-template-columns:repeat(4,1fr)}
     @media(max-width:720px){.two,.three,.four{grid-template-columns:1fr}}
-
-    .mini{font-size:12px;line-height:1.45;color:#d9cdbb}
-    .muted{color:var(--muted)}
-    .mono{font-family:var(--mono)}
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:5px;
-      border:1px solid rgba(255,255,255,.13);
-      background:rgba(0,0,0,.26);
-      color:#e8dcc8;
-      border-radius:999px;
-      padding:4px 7px;
-      font-family:var(--mono);
-      font-size:10px;
+    .mini{font-size:12px;line-height:1.45;color:#d9cdbb}.muted{color:var(--muted)}
+    .pill,.badge{
+      display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(255,255,255,.13);
+      background:rgba(0,0,0,.26);color:#e8dcc8;border-radius:999px;padding:4px 7px;
+      font-family:var(--mono);font-size:10px;
     }
+    .badge{font-size:9.5px;text-transform:uppercase;font-weight:900}
+    .badge.storico{border-color:#a77d35;color:#ffe3aa}.badge.moderno{border-color:#327da6;color:#b9eaff}
+    .badge.emergente{border-color:#2d9b52;color:#baffc7}.badge.monitorare{border-color:#9e3144;color:#ffc3cc}.badge.lab{border-color:#b985ff;color:#eadcff}
     .badges{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:5px;
-      border:1px solid rgba(255,255,255,.13);
-      background:rgba(0,0,0,.26);
-      color:#e8dcc8;
-      border-radius:999px;
-      padding:5px 7px;
-      font-family:var(--mono);
-      font-size:9.5px;
-      text-transform:uppercase;
-      font-weight:900;
-    }
-    .badge.storico{border-color:#a77d35;color:#ffe3aa}
-    .badge.moderno{border-color:#327da6;color:#b9eaff}
-    .badge.emergente{border-color:#2d9b52;color:#baffc7}
-    .badge.monitorare{border-color:#9e3144;color:#ffc3cc}
-    .badge.lab{border-color:#b785ff;color:#eadcff}
-
-    .meter{
-      border:1px solid #34414d;
-      border-radius:15px;
-      background:linear-gradient(180deg,#111820,#07090c);
-      padding:10px;
-    }
-    .meter label{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:7px;
-      font-family:var(--mono);
-      font-size:10px;
-      color:#b6c1ca;
-    }
-    .bar{
-      height:13px;
-      border:1px solid #26333d;
-      background:#050708;
-      border-radius:999px;
-      overflow:hidden;
-      box-shadow:inset 0 1px 8px rgba(0,0,0,.65);
-    }
-    .bar i{
-      display:block;
-      height:100%;
-      width:45%;
-      background:linear-gradient(90deg,var(--green2),var(--amber),var(--danger));
-      box-shadow:0 0 12px rgba(38,211,91,.38);
-    }
-    .vu{
-      display:grid;
-      grid-template-columns:repeat(16,1fr);
-      gap:3px;
-      padding:7px;
-      border:1px solid #34414d;
-      border-radius:15px;
-      background:#07090c;
-    }
-    .seg{
-      height:20px;
-      border-radius:4px;
-      background:#1d252d;
-      border:1px solid rgba(255,255,255,.04);
-    }
-    .seg.on.low{background:#26d35b;box-shadow:0 0 9px #26d35b}
-    .seg.on.mid{background:#ffba4a;box-shadow:0 0 9px #ffba4a}
-    .seg.on.high{background:#ff4b62;box-shadow:0 0 9px #ff4b62}
 
     .card{
-      border:1px solid #43515e;
-      border-radius:18px;
-      background:
-        linear-gradient(135deg,rgba(255,255,255,.065),transparent 22%),
-        linear-gradient(180deg,#1c2630,#0b0f14);
-      padding:12px;
-      box-shadow:inset 0 1px rgba(255,255,255,.08),0 12px 24px rgba(0,0,0,.28);
+      border:1px solid #43515e;border-radius:18px;background:linear-gradient(135deg,rgba(255,255,255,.065),transparent 22%),linear-gradient(180deg,#1c2630,#0b0f14);
+      padding:12px;box-shadow:inset 0 1px rgba(255,255,255,.08),0 12px 24px rgba(0,0,0,.28);
     }
-    .card.active{
-      border-color:var(--gold2);
-      box-shadow:0 0 20px rgba(255,204,115,.20),inset 0 1px rgba(255,255,255,.10);
-    }
-    .card-head{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:flex-start;
-      margin-bottom:7px;
-    }
+    .card.active{border-color:var(--gold2);box-shadow:0 0 20px rgba(255,204,115,.2),inset 0 1px rgba(255,255,255,.1)}
+    .card-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:7px}
     .card h3{font-size:15px;margin:0 0 3px;line-height:1.15}
-    .card-actions{
-      display:grid;
-      grid-template-columns:repeat(5,1fr);
-      gap:7px;
-      margin-top:10px;
-    }
-    @media(max-width:520px){.card-actions{grid-template-columns:repeat(2,1fr)}}
+    .card-actions{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:10px}
+    @media(max-width:540px){.card-actions{grid-template-columns:repeat(2,1fr)}}
     .small-btn{
-      border:1px solid #4f5d69;
-      border-radius:12px;
-      background:linear-gradient(180deg,#26313b,#0c1015);
-      color:#f0e3cf;
-      padding:8px 6px;
-      font-size:9.5px;
-      font-weight:900;
-      box-shadow:inset 0 1px rgba(255,255,255,.10),0 3px 0 #030405;
+      border:1px solid #4f5d69;border-radius:12px;background:linear-gradient(180deg,#26313b,#0c1015);
+      color:#f0e3cf;padding:8px 6px;font-size:9.5px;font-weight:900;
+      box-shadow:inset 0 1px rgba(255,255,255,.1),0 3px 0 #030405;
     }
-    .small-btn.active{background:linear-gradient(180deg,#852334,#31070e);border-color:#d5394d}
-    .small-btn:active{transform:translateY(2px);box-shadow:inset 0 1px rgba(255,255,255,.08),0 1px 0 #030405}
+    .small-btn.active{background:linear-gradient(180deg,#852334,#31070e);border-color:#dc4054}
+    .small-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #030405}
 
-    .matrix{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:8px;
-    }
-    @media(max-width:720px){.matrix{grid-template-columns:repeat(2,1fr)}}
-    .module{
-      border:1px solid #3d4955;
-      border-radius:16px;
-      background:linear-gradient(180deg,#1b242d,#0a0e12);
-      padding:10px;
-    }
-    .module h4{
-      margin:0 0 7px;
-      font-size:11px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      color:#fff0d4;
-    }
+    .meter{border:1px solid #34414d;border-radius:15px;background:linear-gradient(180deg,#111820,#07090c);padding:10px}
+    .meter label{display:flex;justify-content:space-between;gap:10px;margin-bottom:7px;font-family:var(--mono);font-size:10px;color:#b6c1ca}
+    .bar{height:13px;border:1px solid #26333d;background:#050708;border-radius:999px;overflow:hidden;box-shadow:inset 0 1px 8px rgba(0,0,0,.65)}
+    .bar i{display:block;height:100%;width:45%;background:linear-gradient(90deg,var(--green2),var(--amber),var(--danger));box-shadow:0 0 12px rgba(40,216,94,.38)}
+    .vu{display:grid;grid-template-columns:repeat(16,1fr);gap:3px;padding:7px;border:1px solid #34414d;border-radius:15px;background:#07090c}
+    .seg{height:20px;border-radius:4px;background:#1d252d;border:1px solid rgba(255,255,255,.04)}
+    .seg.on.low{background:#28d85e;box-shadow:0 0 9px #28d85e}.seg.on.mid{background:#ffba4a;box-shadow:0 0 9px #ffba4a}.seg.on.high{background:#ff4b62;box-shadow:0 0 9px #ff4b62}
 
-    .channel{
-      border:1px solid #43515e;
-      border-radius:19px;
-      background:
-        linear-gradient(90deg,rgba(255,255,255,.05),transparent 22%,rgba(255,255,255,.035) 48%,transparent),
-        linear-gradient(180deg,#28333e,#0b1015);
-      padding:11px;
-    }
-    .channel-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:9px;
-    }
-    .channel-title{font-family:var(--mono);font-size:12px;color:#fff0d4}
-    .state-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
-    .state{
-      border:1px solid #4f5c68;
-      border-radius:11px;
-      background:linear-gradient(180deg,#202933,#0b0f14);
-      color:#c7d0d7;
-      padding:8px 4px;
-      font-size:10px;
-      font-weight:900;
-    }
-    .state.solo.on{background:linear-gradient(180deg,#ffba4a,#68400d);color:white}
-    .state.mute.on{background:linear-gradient(180deg,#d5394d,#4d0d17);color:white}
-    .state.arm.on{background:linear-gradient(180deg,#26d35b,#0b4c23);color:white}
-    .faderbox{
-      min-height:196px;
-      display:grid;
-      grid-template-columns:50px 1fr 40px;
-      gap:9px;
-      align-items:center;
-      border:1px solid #323e49;
-      border-radius:15px;
-      background:linear-gradient(180deg,#0d1217,#06080b);
-      padding:10px;
-    }
-    input[type=range]{accent-color:var(--gold2)}
-    input.vertical{
-      writing-mode:bt-lr;
-      -webkit-appearance:slider-vertical;
-      width:44px;
-      height:162px;
-    }
-    .scale{
-      display:grid;
-      gap:7px;
-      font-family:var(--mono);
-      font-size:9px;
-      color:#75828e;
-    }
-    .knobs{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:10px;
-    }
-    .knob{
-      aspect-ratio:1;
-      border-radius:50%;
-      border:1px solid #687684;
-      background:
-        radial-gradient(circle at 34% 28%,rgba(255,255,255,.30),transparent 20%),
-        conic-gradient(from 25deg,#080a0c 0 22%,#7b8995 22% 28%,#171e25 28% 100%);
-      box-shadow:inset 0 -8px 14px rgba(0,0,0,.68),0 6px 13px rgba(0,0,0,.34);
-      position:relative;
-    }
-    .knob:after{
-      content:"";
-      position:absolute;
-      left:50%;top:10%;
-      width:3px;height:30%;
-      border-radius:99px;
-      background:#ffefc9;
-      transform:translateX(-50%);
-      box-shadow:0 0 9px rgba(255,255,255,.34);
-    }
-    .knob-label{
-      margin-top:5px;
-      text-align:center;
-      font-family:var(--mono);
-      font-size:9.5px;
-      color:#b6c2cb;
-    }
-
-    .apple-card{
-      display:grid;
-      grid-template-columns:86px 1fr;
-      gap:11px;
-      align-items:center;
-    }
+    .apple-card{display:grid;grid-template-columns:88px 1fr;gap:11px;align-items:center}
     .apple-art{
-      width:78px;height:78px;
-      border-radius:44% 48% 48% 43%;
-      background:
-        radial-gradient(circle at 31% 24%,rgba(255,255,255,.55),transparent 14%),
-        linear-gradient(135deg,#b91f33,#f2b15a 48%,#648f32);
-      border:2px solid rgba(255,255,255,.18);
-      box-shadow:inset -10px -12px 20px rgba(0,0,0,.25),0 10px 22px rgba(0,0,0,.32);
+      width:78px;height:78px;border-radius:44% 48% 48% 43%;
+      background:radial-gradient(circle at 31% 24%,rgba(255,255,255,.55),transparent 14%),linear-gradient(135deg,#b91f33,#f2b15a 48%,#648f32);
+      border:2px solid rgba(255,255,255,.18);box-shadow:inset -10px -12px 20px rgba(0,0,0,.25),0 10px 22px rgba(0,0,0,.32);
       position:relative;
     }
-    .apple-art:before{
-      content:"";
-      position:absolute;
-      left:38px;top:-13px;
-      width:8px;height:20px;
-      border-radius:8px;
-      background:#60371c;
-      transform:rotate(16deg);
-    }
-    .apple-art:after{
-      content:"";
-      position:absolute;
-      left:45px;top:-10px;
-      width:25px;height:13px;
-      border-radius:100% 0 100% 0;
-      background:#5f9b43;
-      transform:rotate(-18deg);
-    }
+    .apple-art:before{content:"";position:absolute;left:38px;top:-13px;width:8px;height:20px;border-radius:8px;background:#60371c;transform:rotate(16deg)}
+    .apple-art:after{content:"";position:absolute;left:45px;top:-10px;width:25px;height:13px;border-radius:100% 0 100% 0;background:#5f9b43;transform:rotate(-18deg)}
     .apple-art.green{background:radial-gradient(circle at 31% 24%,rgba(255,255,255,.58),transparent 14%),linear-gradient(135deg,#5e9239,#d4e98a 58%,#2e6425)}
     .apple-art.yellow{background:radial-gradient(circle at 31% 24%,rgba(255,255,255,.58),transparent 14%),linear-gradient(135deg,#e7b850,#fff0a8 56%,#b97a2b)}
     .apple-art.red{background:radial-gradient(circle at 31% 24%,rgba(255,255,255,.55),transparent 14%),linear-gradient(135deg,#701426,#d94c53 50%,#f0a14f)}
-    .apple-art.brown{background:radial-gradient(circle at 31% 24%,rgba(255,255,255,.50),transparent 14%),linear-gradient(135deg,#71401f,#b37a38 50%,#59361b)}
-    .apple-art.purple{background:radial-gradient(circle at 31% 24%,rgba(255,255,255,.50),transparent 14%),linear-gradient(135deg,#45142c,#9a2949 54%,#d58455)}
-    .apple-art.pear{height:88px;border-radius:48% 48% 58% 58%;background:radial-gradient(circle at 31% 24%,rgba(255,255,255,.50),transparent 14%),linear-gradient(135deg,#6e9838,#dfd36f 55%,#966b2e)}
+    .apple-art.brown{background:radial-gradient(circle at 31% 24%,rgba(255,255,255,.5),transparent 14%),linear-gradient(135deg,#71401f,#b37a38 50%,#59361b)}
+    .apple-art.purple{background:radial-gradient(circle at 31% 24%,rgba(255,255,255,.5),transparent 14%),linear-gradient(135deg,#45142c,#9a2949 54%,#d58455)}
+    .apple-art.pear{height:88px;border-radius:48% 48% 58% 58%;background:radial-gradient(circle at 31% 24%,rgba(255,255,255,.5),transparent 14%),linear-gradient(135deg,#6e9838,#dfd36f 55%,#966b2e)}
     .apple-big{width:170px;height:176px;margin:10px auto 18px}
 
-    .lesson-list{
-      max-height:430px;
-      overflow:auto;
-      display:grid;
-      gap:8px;
-      padding-right:3px;
-    }
-    .lesson-card.active{border-color:var(--blue);box-shadow:0 0 16px rgba(89,186,255,.19)}
-    .progress{
-      height:14px;
-      border:1px solid #31404b;
-      background:#07090c;
-      border-radius:999px;
-      overflow:hidden;
-      margin:8px 0;
-    }
-    .progress i{
-      display:block;
-      height:100%;
-      width:0;
-      background:linear-gradient(90deg,var(--green2),var(--amber));
-      box-shadow:0 0 12px rgba(38,211,91,.35);
-    }
-    .quiz-q{
-      border:1px solid #3d4955;
-      border-radius:16px;
-      background:linear-gradient(180deg,#151d25,#080b0f);
-      padding:11px;
-      margin:10px 0;
-    }
+    .lesson-list{max-height:440px;overflow:auto;display:grid;gap:8px;padding-right:3px}
+    .lesson-card.active{border-color:var(--blue);box-shadow:0 0 16px rgba(88,186,255,.2)}
+    .progress{height:15px;border:1px solid #31404b;background:#07090c;border-radius:999px;overflow:hidden;margin:8px 0}
+    .progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--green2),var(--amber));box-shadow:0 0 12px rgba(40,216,94,.35)}
+    .quiz-q{border:1px solid #3d4955;border-radius:16px;background:linear-gradient(180deg,#151d25,#080b0f);padding:11px;margin:10px 0}
     .quiz-q h4{margin:0 0 8px;font-size:13px}
     .answer{
-      width:100%;
-      display:block;
-      text-align:left;
-      margin:7px 0;
-      border:1px solid #46535f;
-      border-radius:12px;
-      background:linear-gradient(180deg,#212b35,#0c1015);
-      color:#efe2cc;
-      padding:10px;
+      width:100%;display:block;text-align:left;margin:7px 0;border:1px solid #46535f;border-radius:12px;
+      background:linear-gradient(180deg,#212b35,#0c1015);color:#efe2cc;padding:10px;font-size:12px;
     }
-    .answer.correct{border-color:#26d35b;background:linear-gradient(180deg,#184427,#07180c)}
-    .answer.wrong{border-color:#d5394d;background:linear-gradient(180deg,#50131d,#170609)}
-    .score{
-      font-family:var(--mono);
-      font-size:34px;
-      color:var(--green);
-      text-shadow:0 0 16px rgba(38,211,91,.45);
-    }
+    .answer.correct{border-color:#28d85e;background:linear-gradient(180deg,#184427,#07180c)}
+    .answer.wrong{border-color:#dc4054;background:linear-gradient(180deg,#50131d,#170609)}
+    .score{font-family:var(--mono);font-size:34px;color:var(--green);text-shadow:0 0 16px rgba(40,216,94,.45)}
 
     .modal{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.74);
-      z-index:100;
-      display:none;
-      align-items:flex-end;
-      justify-content:center;
-      padding:10px;
-      backdrop-filter:blur(6px);
+      position:fixed;inset:0;background:rgba(0,0,0,.74);z-index:100;display:none;align-items:flex-end;justify-content:center;padding:10px;backdrop-filter:blur(6px);
     }
     .modal.show{display:flex}
     .modal-window{
-      width:100%;
-      max-width:940px;
-      max-height:88vh;
-      overflow:hidden;
-      display:grid;
-      grid-template-rows:auto 1fr auto;
-      border:1px solid #63727f;
-      border-radius:24px;
-      background:
-        linear-gradient(135deg,rgba(255,255,255,.09),transparent 20%),
-        linear-gradient(180deg,#2b3742,#0b0f14);
+      width:100%;max-width:940px;max-height:88vh;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto;
+      border:1px solid #63727f;border-radius:24px;background:linear-gradient(135deg,rgba(255,255,255,.09),transparent 20%),linear-gradient(180deg,#2b3742,#0b0f14);
       box-shadow:0 26px 70px rgba(0,0,0,.76),inset 0 1px rgba(255,255,255,.11);
     }
-    .modal-head{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-      padding:12px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      background:linear-gradient(180deg,#34404b,#171f27);
-    }
+    .modal-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px;border-bottom:1px solid rgba(255,255,255,.1);background:linear-gradient(180deg,#34404b,#171f27)}
     .modal-head h2{margin:0;font-size:14px;text-transform:uppercase;letter-spacing:.07em}
-    .modal-body{padding:13px;overflow:auto}
-    .modal-foot{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:8px;
-      padding:12px;
-      border-top:1px solid rgba(255,255,255,.09);
-    }
-    pre.recipe{
-      white-space:pre-wrap;
-      font-family:var(--mono);
-      font-size:12px;
-      line-height:1.46;
-      color:#dcffd9;
-      background:#061009;
-      border:1px solid #285a31;
-      border-radius:15px;
-      padding:12px;
-    }
+    .modal-body{padding:13px;overflow:auto}.modal-foot{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px;border-top:1px solid rgba(255,255,255,.09)}
+    pre.recipe{white-space:pre-wrap;font-family:var(--mono);font-size:12px;line-height:1.46;color:#dcffd9;background:#061009;border:1px solid #285a31;border-radius:15px;padding:12px}
     .toast{
-      position:fixed;
-      left:50%;
-      bottom:86px;
-      transform:translateX(-50%);
-      z-index:120;
-      display:none;
-      border:1px solid var(--gold2);
-      border-radius:999px;
-      background:#10161c;
-      color:#fff0d3;
-      padding:10px 14px;
-      font-size:12px;
-      font-weight:900;
-      box-shadow:0 14px 30px rgba(0,0,0,.48);
+      position:fixed;left:50%;bottom:86px;transform:translateX(-50%);z-index:120;display:none;
+      border:1px solid var(--gold2);border-radius:999px;background:#10161c;color:#fff0d3;padding:10px 14px;font-size:12px;font-weight:900;box-shadow:0 14px 30px rgba(0,0,0,.48);
     }
     .toast.show{display:block}
-    .rec-mode .console{box-shadow:0 0 0 1px rgba(213,57,77,.75),0 0 36px rgba(213,57,77,.28),var(--shadow)}
-    .rec-mode .lcd{border-color:#d5394d;color:#ffd6dd;box-shadow:inset 0 0 18px rgba(213,57,77,.18),0 0 18px rgba(213,57,77,.18)}
+    .rec-mode .console{box-shadow:0 0 0 1px rgba(220,64,84,.75),0 0 36px rgba(220,64,84,.28),var(--shadow)}
+    .rec-mode .lcd{border-color:#dc4054;color:#ffd6dd;box-shadow:inset 0 0 18px rgba(220,64,84,.18),0 0 18px rgba(220,64,84,.18)}
   </style>
 </head>
 
 <body>
-<div class="app" id="app">
+<div class="boot" id="boot">
+  <div class="boot-box">
+    <div class="boot-logo">XA</div>
+    <div class="boot-line">INITIALIZING XA CIDER ATLAS ENGINE...</div>
+    <div class="boot-line">LOADING STYLE DATABASE...</div>
+    <div class="boot-line">LOADING APPLE MATRIX PRO...</div>
+    <div class="boot-line">LOADING TECHNICAL QUIZ BANK...</div>
+    <div class="boot-line">READY.</div>
+    <div class="boot-bar"><i></i></div>
+  </div>
+</div>
 
+<div class="app">
   <section class="console">
     <div class="brand">
       <div class="logo">XA</div>
       <div>
-        <h1>XA Cider Atlas Pro V9.2</h1>
-        <p>Mobile DAW Atlas · territori · mele · scuola · ricette tecniche · business rack</p>
+        <h1>XA Cider Atlas Pro V9.3</h1>
+        <p>Mobile DAW Atlas · quiz tecnico reale · apple matrix estesa · ricette professionali</p>
         <div class="chips">
-          <span class="chip"><i class="led green"></i>ONE FILE</span>
+          <span class="chip"><i class="led green"></i>ONE INDEX</span>
           <span class="chip"><i class="led" id="ledRec"></i>REC</span>
           <span class="chip"><i class="led" id="ledLoop"></i>LOOP</span>
           <span class="chip"><i class="led amber"></i>LOCAL SAVE</span>
-          <span class="chip"><i class="led blue"></i>V9.2 PRO</span>
+          <span class="chip"><i class="led violet"></i>V9.3 PRO</span>
         </div>
       </div>
     </div>
@@ -722,14 +280,12 @@
     <div class="transport">
       <div class="lcd">
         <div class="label">XA TRANSPORT / MAIN DISPLAY</div>
-        <div class="value" id="lcd">V9.2 pronta. Carica uno stile.</div>
+        <div class="value" id="lcd">V9.3 pronta. Carica uno stile.</div>
       </div>
-
       <div class="transport-line">
         <select class="select" id="styleSelect"></select>
         <button class="hw" id="loadBtn">LOAD STYLE</button>
       </div>
-
       <div class="button-grid">
         <button class="hw red" id="recBtn">REC</button>
         <button class="hw amber" id="loopBtn">LOOP</button>
@@ -748,17 +304,11 @@
   <main>
     <section class="view active" id="home">
       <div class="rack">
-        <div class="rack-title">
-          <h2>Master Control Room</h2>
-          <div class="screws"><i class="screw"></i><i class="screw"></i></div>
-        </div>
+        <div class="rack-title"><h2>Master Dashboard</h2><span>control room</span></div>
         <div class="grid">
-          <div class="lcd">
-            <div class="label">ACTIVE STYLE</div>
-            <div class="value" id="activeStyleName">---</div>
-          </div>
-          <div class="matrix">
-            <div class="meter"><label><span>BUSINESS</span><span id="mBusiness">--</span></label><div class="bar"><i id="barBusiness"></i></div></div>
+          <div class="lcd"><div class="label">ACTIVE STYLE</div><div class="value" id="activeStyleName">---</div></div>
+          <div class="grid four">
+            <div class="meter"><label><span>BUSINESS</span><span id="mFit">--</span></label><div class="bar"><i id="barFit"></i></div></div>
             <div class="meter"><label><span>TECNICA</span><span id="mTech">--</span></label><div class="bar"><i id="barTech"></i></div></div>
             <div class="meter"><label><span>ACIDITÀ</span><span id="mAcid">--</span></label><div class="bar"><i id="barAcid"></i></div></div>
             <div class="meter"><label><span>TANNINO</span><span id="mTannin">--</span></label><div class="bar"><i id="barTannin"></i></div></div>
@@ -768,15 +318,15 @@
       </div>
 
       <div class="rack">
-        <div class="rack-title"><h2>V9.2 Upgrade</h2><span>più professionale</span></div>
+        <div class="rack-title"><h2>V9.3 Technical Upgrade</h2><span>quiz + apple matrix</span></div>
         <div class="grid two">
-          <div class="module">
-            <h4>Nuovo</h4>
-            <p class="mini">Più rack metallici, display LCD, VU meter, transport più forte, schede stile più tecniche e export della scheda corrente.</p>
+          <div class="card">
+            <h3>Quiz tecnico reale</h3>
+            <p class="mini">Domande più pertinenti con tranelli plausibili: pH, tannino, rifermentazione, H2S, volatile, blend, nutrienti, ossidazione, servizio e business.</p>
           </div>
-          <div class="module">
-            <h4>Funzioni reali</h4>
-            <p class="mini">LOAD STYLE carica tutto, SEND RECIPE apre e copia, SEND SCHOOL collega la lezione, SOLO/MUTE/ARM cambiano stato, progresso e preferiti restano salvati.</p>
+          <div class="card">
+            <h3>Mele molto più complete</h3>
+            <p class="mini">Più varietà reali e frutti tecnici: categoria, acidità, tannino, zucchero, aroma, funzione nel blend, percentuale consigliata, stili compatibili ed errore da evitare.</p>
           </div>
         </div>
       </div>
@@ -784,24 +334,17 @@
 
     <section class="view" id="atlas">
       <div class="rack">
-        <div class="rack-title"><h2>Atlas Browser</h2><span>territori storici / moderni / emergenti</span></div>
-        <input class="input" id="atlasSearch" placeholder="Cerca: Asturie, Normandia, moderno, tannico, frutti rossi..." />
+        <div class="rack-title"><h2>Atlas Browser</h2><span>territori / stili</span></div>
+        <input class="input" id="atlasSearch" placeholder="Cerca: Asturie, Normandia, tannico, frutti rossi, ice cider..." />
         <div class="tabs" style="position:relative;margin:10px 0 0;padding:0;background:transparent;border:0" id="statusTabs"></div>
       </div>
       <div class="grid" id="styleGrid"></div>
     </section>
 
-    <section class="view" id="daw">
-      <div class="rack">
-        <div class="rack-title"><h2>DAW Channel Rack</h2><span>SOLO / MUTE / ARM / FADER</span></div>
-        <div class="grid two" id="channelGrid"></div>
-      </div>
-    </section>
-
     <section class="view" id="mele">
       <div class="rack">
-        <div class="rack-title"><h2>Mele / Pere Technical Rack</h2><span>disegnate, zero file esterni</span></div>
-        <input class="input" id="appleSearch" placeholder="Cerca varietà, funzione, percentuale, stile collegato..." />
+        <div class="rack-title"><h2>Apple / Pear Matrix Pro</h2><span>varietà reali + dati tecnici</span></div>
+        <input class="input" id="appleSearch" placeholder="Cerca: Raxao, tannino alto, Asturie, bittersweet, perry..." />
         <div class="tabs" style="position:relative;margin:10px 0 0;padding:0;background:transparent;border:0" id="appleTabs"></div>
       </div>
       <div class="grid" id="appleGrid"></div>
@@ -809,18 +352,17 @@
 
     <section class="view" id="school">
       <div class="rack">
-        <div class="rack-title"><h2>XA Cider School</h2><span>60 lezioni professionali</span></div>
+        <div class="rack-title"><h2>XA Cider School</h2><span>60 lezioni</span></div>
         <div class="grid two">
-          <div class="module">
-            <div class="lcd">
-              <div class="label">LESSON PLAYER</div>
-              <div class="value" id="lessonTitle">---</div>
-            </div>
+          <div class="card">
+            <div class="lcd"><div class="label">LESSON PLAYER</div><div class="value" id="lessonTitle">---</div></div>
             <div class="progress"><i id="lessonProgress"></i></div>
             <div class="mini" id="lessonBody"></div>
             <div class="grid two" style="margin-top:10px">
+              <button class="hw" id="prevLessonBtn">PREV</button>
+              <button class="hw" id="nextLessonBtn">NEXT</button>
               <button class="hw green" id="doneLessonBtn">COMPLETA</button>
-              <button class="hw blue" onclick="switchTab('quiz')">QUIZ</button>
+              <button class="hw blue" onclick="switchTab('quiz')">QUIZ TECNICO</button>
             </div>
           </div>
           <div class="lesson-list" id="lessonList"></div>
@@ -830,51 +372,34 @@
 
     <section class="view" id="quiz">
       <div class="rack">
-        <div class="rack-title"><h2>Quiz Engine</h2><span>10 domande per lezione</span></div>
+        <div class="rack-title"><h2>Technical Quiz Engine</h2><span>domande serie con tranelli</span></div>
         <div class="grid two">
-          <div class="lcd">
-            <div class="label">ACTIVE QUIZ</div>
-            <div class="value" id="quizTitle">---</div>
-          </div>
-          <div class="module">
-            <h4>Punteggio</h4>
-            <div class="score" id="score">0/0</div>
-          </div>
+          <div class="lcd"><div class="label">ACTIVE QUIZ</div><div class="value" id="quizTitle">---</div></div>
+          <div class="card"><h3>Punteggio</h3><div class="score" id="score">0/0</div><p class="mini">Le risposte sbagliate sono plausibili: leggi bene la domanda.</p></div>
         </div>
         <div id="quizBox"></div>
         <button class="hw" id="resetQuizBtn">RESET QUIZ</button>
       </div>
     </section>
 
-    <section class="view" id="business">
-      <div class="rack">
-        <div class="rack-title"><h2>Business Rack</h2><span>vendita / ristorazione / import</span></div>
-        <div class="grid two" id="businessGrid"></div>
-      </div>
-    </section>
-
-    <section class="view" id="ricerca">
-      <div class="rack">
-        <div class="rack-title"><h2>Producer Search</h2><span>motore interno</span></div>
-        <input class="input" id="producerSearch" placeholder="Cerca: ice cider, Asturie, moderno, ristorante, acidità..." />
-      </div>
-      <div class="grid" id="producerGrid"></div>
-    </section>
-
     <section class="view" id="mixer">
       <div class="rack">
-        <div class="rack-title"><h2>Blend Mixer</h2><span>simulazione fader ricetta XA</span></div>
+        <div class="rack-title"><h2>Blend Mixer</h2><span>calcolo rischio tecnico</span></div>
         <div class="grid" id="mixerGrid"></div>
-        <div class="lcd" style="margin-top:10px">
-          <div class="label">BLEND MONITOR</div>
-          <div class="value" id="blendMonitor">---</div>
-        </div>
+        <div class="lcd" style="margin-top:10px"><div class="label">BLEND MONITOR</div><div class="value" id="blendMonitor">---</div></div>
+      </div>
+    </section>
+
+    <section class="view" id="business">
+      <div class="rack">
+        <div class="rack-title"><h2>Business Rack</h2><span>strategia commerciale</span></div>
+        <div class="grid two" id="businessGrid"></div>
       </div>
     </section>
 
     <section class="view" id="confronto">
       <div class="rack">
-        <div class="rack-title"><h2>Confronto A/B</h2><span>due stili affiancati</span></div>
+        <div class="rack-title"><h2>Confronto A/B</h2><span>stili affiancati</span></div>
         <div class="grid two">
           <select class="select" id="compareA"></select>
           <select class="select" id="compareB"></select>
@@ -910,621 +435,282 @@
 
 <script>
 const STYLES=[
-{id:"xa-redrinks",country:"XA Lab",territory:"Laboratorio XA",style:"Fermented Redrinks Cider",status:"lab",method:"Sidro moderno con mela, frutti rossi, tannino fine e acidità calibrata.",history:"Stile proprietario XA: parte dalla tradizione del sidro ma la trasforma in una bevanda premium contemporanea.",varieties:"Mele acide, bittersweet, ribes, ciliegia, melograno, cotogna minima.",profile:"Rubino, secco/off-dry, frutto rosso, acidità viva, tannino fine.",business:"Stile bandiera XA: perfetto per bottiglia, vetrofania, ristorazione, aperitivo premium.",ph:"3.20–3.45",blend:"45% mela acida, 25% bittersweet, 20% frutti rossi, 10% aromatiche.",yeast:"QA23, Cider House Select o kveik controllato.",temp:"16–24°C secondo ceppo.",nutrients:"Organico + DAP basso in due step. Evitare stress azotato.",referm:"6 g/L per sparkling; stabilizzare se resta dolce.",service:"6–8°C, calice piccolo o tumbler premium.",risk:"Frutto rosso troppo invadente: deve restare sidro, non bibita.",lesson:20,fit:100,tech:96,acid:78,tannin:70},
-{id:"asturias-natural",country:"Spagna",territory:"Asturie",style:"Sidra Natural Asturiana",status:"storico",method:"Fermentazione tradizionale, secca, acidità alta, servizio escanciado.",history:"Territorio iconico iberico. La cultura della sidra è quotidiana, popolare e scenografica.",varieties:"Raxao, Regona, Durona de Tresali, Verdialona, Blanquina, Xuanina, Solarina.",profile:"Secco, vivo, acidulo, rustico pulito, gastronomico.",business:"Forte racconto culturale. Ottimo per eventi, mescita e degustazioni guidate.",ph:"3.25–3.55",blend:"55% acide, 25% dolci, 15% amare, 5% aromatiche.",yeast:"Indigeno controllato o lievito sidro neutro.",temp:"14–18°C.",nutrients:"Leggeri. Prevenire riduzione solforosa.",referm:"Ferma o CO2 leggera.",service:"10–12°C, bicchiere ampio, servizio alto.",risk:"Acetico eccessivo o acidità non bilanciata.",lesson:2,fit:90,tech:84,acid:92,tannin:42},
-{id:"asturias-newwave",country:"Spagna",territory:"Asturie",style:"Asturian New Wave",status:"moderno",method:"Interpretazione pulita, controllata e più gastronomica della sidra asturiana.",history:"La tradizione asturiana viene resa più leggibile per ristorazione moderna e pubblico internazionale.",varieties:"Raxao, Regona, Xuanina, Solarina, mele aromatiche da taglio.",profile:"Acido, agrumato, pulito, elegante, secco.",business:"Molto adatto a XA: tradizione + modernità premium.",ph:"3.20–3.45",blend:"45% acide, 20% dolci, 20% bittersweet, 15% aromatiche.",yeast:"QA23, Cider House Select o ceppo neutro pulito.",temp:"13–16°C.",nutrients:"Frazionati, molto controllati.",referm:"5.5–6 g/L, spuma fine.",service:"8–10°C, calice bianco.",risk:"Troppa pulizia può togliere identità.",lesson:13,fit:96,tech:92,acid:86,tannin:52},
-{id:"basque-sagardo",country:"Spagna",territory:"Paesi Baschi",style:"Sagardo",status:"storico",method:"Sidro secco, acido, gastronomico, servito spesso con rito txotx.",history:"Cultura basca da sidreria, conviviale, fortemente legata al cibo.",varieties:"Moko, Txalaka, Urtebi, Goikoetxe, Gezamina.",profile:"Secco, tagliente, minerale, acidità netta.",business:"Ottimo per format gastronomico: carne, formaggi, cucina diretta.",ph:"3.20–3.50",blend:"60% acide, 25% dolci, 10% tanniche, 5% aromatiche.",yeast:"Indigeno monitorato o lievito sidro robusto.",temp:"14–18°C.",nutrients:"Attenzione a fermentazioni lente.",referm:"Ferma o leggerissima presa di spuma.",service:"10–12°C.",risk:"Acetico alto e sensazione aspra.",lesson:3,fit:85,tech:82,acid:90,tannin:38},
-{id:"galicia",country:"Spagna",territory:"Galizia",style:"Sidra Gallega",status:"emergente",method:"Sidro fresco, acido, atlantico, meno noto delle Asturie.",history:"Territorio da monitorare, con potenziale agricolo e identità oceanica.",varieties:"Rabiosa, Marafonsa, Peros locali, varietà acide galiziane.",profile:"Acido, marino, fresco, diretto.",business:"Interessante per importazioni iberiche di nicchia.",ph:"3.20–3.50",blend:"60% acide, 25% dolci, 15% aromatiche.",yeast:"Neutro pulito o indigeno controllato.",temp:"13–17°C.",nutrients:"Leggeri ma necessari.",referm:"5 g/L o fermo.",service:"8–10°C.",risk:"Profilo troppo acerbo.",lesson:16,fit:78,tech:76,acid:88,tannin:35},
-{id:"normandy-brut",country:"Francia",territory:"Normandia",style:"Cidre Brut Normand",status:"storico",method:"Mele bittersweet, tannino, rotondità e presa di spuma naturale.",history:"Uno dei grandi territori mondiali del sidro, legato a fattorie, cucina e calvados.",varieties:"Frequin Rouge, Douce Moën, Bedan, Bisquet, Noël des Champs.",profile:"Tannico, ambrato, fruttato, secco/semisecco, pieno.",business:"Molto vendibile in ristorazione e pairing premium.",ph:"3.45–3.80",blend:"45% bittersweet, 20% dolci, 20% acide, 15% amare.",yeast:"Lievito sidro francese o fermentazione lenta controllata.",temp:"12–16°C.",nutrients:"Pochi nutrienti, evitare blocchi.",referm:"Metodo ancestrale, 2.5–3.0 vol CO2.",service:"8–10°C, calice tulipano.",risk:"Dolcezza senza tannino sufficiente.",lesson:4,fit:92,tech:88,acid:55,tannin:82},
-{id:"brittany",country:"Francia",territory:"Bretagna",style:"Cidre Fermier Breton",status:"storico",method:"Sidro agricolo, tannico, fruttato, con rusticità controllata.",history:"Regione storica francese con forte identità gastronomica e rurale.",varieties:"Guillevic, Douce Coëtligne, Marie Ménard, Kermerrien.",profile:"Fruttato, tannico, rotondo, facile ma serio.",business:"Ottimo prodotto artigianale autentico e accessibile.",ph:"3.40–3.75",blend:"35% dolci, 35% bittersweet, 20% acide, 10% amare.",yeast:"Lievito sidro lento o indigeno controllato.",temp:"12–15°C.",nutrients:"Moderati.",referm:"Naturale in bottiglia, CO2 medio-alta.",service:"7–9°C.",risk:"Ossidazione e perdita di freschezza.",lesson:5,fit:87,tech:82,acid:60,tannin:72},
+{id:"xa-redrinks",country:"XA Lab",territory:"Laboratorio XA",style:"Fermented Redrinks Cider",status:"lab",method:"Sidro moderno con mela, frutti rossi, tannino fine e acidità calibrata.",history:"Stile proprietario XA: non copia la tradizione, la trasforma in bevanda premium contemporanea.",varieties:"Mele acide, bittersweet, ribes, ciliegia acida, melograno, cotogna minima.",profile:"Rubino, secco/off-dry, frutto rosso, acidità viva, tannino fine.",business:"Stile bandiera XA: bottiglia, vetrofania, aperitivo premium, ristorazione.",ph:"3.20–3.45",blend:"45% mela acida, 25% bittersweet, 20% frutti rossi, 10% aromatiche.",yeast:"QA23, Cider House Select o kveik controllato.",temp:"16–24°C secondo ceppo.",nutrients:"Organico + DAP basso in due step; evitare stress azotato.",referm:"6 g/L per sparkling; stabilizzare se resta dolce.",service:"6–8°C, calice piccolo o tumbler premium.",risk:"Frutto rosso troppo invadente: deve restare sidro, non bibita.",lesson:20,fit:100,tech:96,acid:78,tannin:70},
+{id:"asturias-natural",country:"Spagna",territory:"Asturie",style:"Sidra Natural Asturiana",status:"storico",method:"Fermentazione tradizionale, secca, acidità alta, servizio escanciado.",history:"Territorio iconico iberico, con cultura popolare e servizio scenografico.",varieties:"Raxao, Regona, Durona de Tresali, Verdialona, Blanquina, Xuanina, Solarina.",profile:"Secco, vivo, acidulo, rustico pulito, gastronomico.",business:"Forte racconto culturale, ottimo per eventi e degustazioni guidate.",ph:"3.25–3.55",blend:"55% acide, 25% dolci, 15% amare, 5% aromatiche.",yeast:"Indigeno controllato o lievito sidro neutro.",temp:"14–18°C.",nutrients:"Leggeri; prevenire riduzione solforosa.",referm:"Ferma o CO2 leggera.",service:"10–12°C, bicchiere ampio, servizio alto.",risk:"Acetico eccessivo o acidità non bilanciata.",lesson:2,fit:90,tech:84,acid:92,tannin:42},
+{id:"asturias-newwave",country:"Spagna",territory:"Asturie",style:"Asturian New Wave",status:"moderno",method:"Versione più pulita, controllata e gastronomica della sidra asturiana.",history:"Tradizione asturiana resa più leggibile per ristorazione moderna.",varieties:"Raxao, Regona, Xuanina, Solarina, mele aromatiche da taglio.",profile:"Acido, agrumato, pulito, elegante, secco.",business:"Molto adatto a XA: tradizione più modernità premium.",ph:"3.20–3.45",blend:"45% acide, 20% dolci, 20% bittersweet, 15% aromatiche.",yeast:"QA23, Cider House Select o ceppo neutro pulito.",temp:"13–16°C.",nutrients:"Frazionati e controllati.",referm:"5.5–6 g/L, spuma fine.",service:"8–10°C, calice bianco.",risk:"Troppa pulizia può togliere identità.",lesson:13,fit:96,tech:92,acid:86,tannin:52},
+{id:"basque-sagardo",country:"Spagna",territory:"Paesi Baschi",style:"Sagardo",status:"storico",method:"Sidro secco, acido, gastronomico, spesso servito con rito txotx.",history:"Cultura basca da sidreria, conviviale, legata al cibo.",varieties:"Moko, Txalaka, Urtebi, Goikoetxe, Gezamina.",profile:"Secco, tagliente, minerale, acidità netta.",business:"Ottimo per format gastronomico: carne, formaggi, cucina diretta.",ph:"3.20–3.50",blend:"60% acide, 25% dolci, 10% tanniche, 5% aromatiche.",yeast:"Indigeno monitorato o lievito sidro robusto.",temp:"14–18°C.",nutrients:"Attenzione a fermentazioni lente.",referm:"Ferma o leggerissima presa di spuma.",service:"10–12°C.",risk:"Acetico alto e sensazione aspra.",lesson:3,fit:85,tech:82,acid:90,tannin:38},
+{id:"normandy-brut",country:"Francia",territory:"Normandia",style:"Cidre Brut Normand",status:"storico",method:"Mele bittersweet, tannino, rotondità e presa di spuma naturale.",history:"Grande territorio mondiale del sidro, legato a fattorie, cucina e calvados.",varieties:"Frequin Rouge, Douce Moën, Bedan, Bisquet, Noël des Champs.",profile:"Tannico, ambrato, fruttato, secco/semisecco, pieno.",business:"Molto vendibile in ristorazione e pairing premium.",ph:"3.45–3.80",blend:"45% bittersweet, 20% dolci, 20% acide, 15% amare.",yeast:"Lievito sidro francese o fermentazione lenta controllata.",temp:"12–16°C.",nutrients:"Pochi nutrienti, evitare blocchi.",referm:"Metodo ancestrale, 2.5–3.0 vol CO2.",service:"8–10°C, calice tulipano.",risk:"Dolcezza senza tannino sufficiente.",lesson:4,fit:92,tech:88,acid:55,tannin:82},
+{id:"brittany",country:"Francia",territory:"Bretagna",style:"Cidre Fermier Breton",status:"storico",method:"Sidro agricolo, tannico, fruttato, con rusticità controllata.",history:"Regione storica francese con identità gastronomica e rurale.",varieties:"Guillevic, Douce Coëtligne, Marie Ménard, Kermerrien.",profile:"Fruttato, tannico, rotondo, facile ma serio.",business:"Ottimo prodotto artigianale autentico e accessibile.",ph:"3.40–3.75",blend:"35% dolci, 35% bittersweet, 20% acide, 10% amare.",yeast:"Lievito sidro lento o indigeno controllato.",temp:"12–15°C.",nutrients:"Moderati.",referm:"Naturale in bottiglia, CO2 medio-alta.",service:"7–9°C.",risk:"Ossidazione e perdita di freschezza.",lesson:5,fit:87,tech:82,acid:60,tannin:72},
 {id:"somerset",country:"Regno Unito",territory:"Somerset",style:"Scrumpy / Farmhouse Cider",status:"storico",method:"Sidro agricolo inglese, spesso non filtrato, robusto e tannico.",history:"Cuore del West Country, legato a mele bittersweet e cultura da pub.",varieties:"Dabinett, Yarlington Mill, Kingston Black, Harry Masters Jersey.",profile:"Tannico, pieno, asciutto, mela matura, rustico.",business:"Forte per pubblico craft beer e fermentazioni vere.",ph:"3.45–3.85",blend:"55% bittersweet, 20% bittersharp, 15% dolci, 10% acide.",yeast:"Lievito sidro inglese, ale neutro o spontaneo monitorato.",temp:"13–18°C.",nutrients:"Minimi, controllare H2S.",referm:"Fermo, cask o 3–4 g/L.",service:"10–12°C.",risk:"Rusticità sporca invece di complessità.",lesson:6,fit:83,tech:80,acid:56,tannin:86},
 {id:"herefordshire",country:"Regno Unito",territory:"Herefordshire",style:"Bittersharp Cider",status:"storico",method:"Blend tecnico di acidità e tannino, struttura gastronomica.",history:"Territorio chiave del sidro inglese di qualità.",varieties:"Kingston Black, Foxwhelp, Brown Snout, Dabinett, Michelin.",profile:"Tannino, acidità, mela rossa, finale lungo.",business:"Molto adatto a posizionamento premium tecnico.",ph:"3.35–3.65",blend:"35% bittersharp, 35% bittersweet, 20% dolci, 10% acide.",yeast:"Cider House Select, M02 o neutro pulito.",temp:"13–16°C.",nutrients:"Organico a metà fermentazione.",referm:"5–6 g/L.",service:"9–11°C.",risk:"Tannino aggressivo non integrato.",lesson:7,fit:91,tech:93,acid:76,tannin:88},
-{id:"wales",country:"Regno Unito",territory:"Galles",style:"Welsh Craft Cider",status:"emergente",method:"Sidri artigianali da frutteti locali, spesso secchi e strutturati.",history:"Scena piccola ma interessante, con forte legame agricolo.",varieties:"Mele locali, Dabinett, Michelin, Yarlington Mill.",profile:"Secco, rustico elegante, fruttato, tannico medio.",business:"Buono per importazioni di micro produttori poco visti.",ph:"3.35–3.70",blend:"40% bittersweet, 30% acide, 20% dolci, 10% aromatiche.",yeast:"Lievito sidro neutro.",temp:"13–17°C.",nutrients:"Moderati.",referm:"Ferma o frizzante leggera.",service:"9–11°C.",risk:"Mancanza di riconoscibilità commerciale.",lesson:21,fit:76,tech:78,acid:65,tannin:70},
-{id:"ireland",country:"Irlanda",territory:"Irish Craft",style:"Irish Orchard Cider",status:"moderno",method:"Sidro moderno da mele da frutteto, spesso pulito e frizzante.",history:"Mercato influenzato da pub culture e nuova scena craft.",varieties:"Bramley, Dabinett, Michelin, mele locali.",profile:"Fruttato, fresco, secco/off-dry, facile.",business:"Buono per pubblico pub e beer shop.",ph:"3.30–3.65",blend:"35% acide, 25% bittersweet, 25% dolci, 15% aromatiche.",yeast:"Sidro neutro o vino bianco.",temp:"12–16°C.",nutrients:"Controllati.",referm:"5–6 g/L.",service:"6–8°C.",risk:"Diventare troppo commerciale e dolce.",lesson:22,fit:79,tech:75,acid:66,tannin:55},
-{id:"apfelwein",country:"Germania",territory:"Assia / Frankfurt",style:"Apfelwein",status:"storico",method:"Vino di mela secco, acido, urbano, poco dolce.",history:"Bevanda storica di Francoforte e dell'Assia.",varieties:"Boskoop, Rheinischer Bohnapfel, mele acide da prato.",profile:"Secco, acido, leggero, diretto.",business:"Interessante per locale urbano e pairing semplice.",ph:"3.10–3.45",blend:"70% acide, 20% dolci, 10% tanniche.",yeast:"Lievito vino bianco neutro.",temp:"12–16°C.",nutrients:"Moderati.",referm:"Di solito fermo.",service:"7–9°C.",risk:"Troppa magrezza e acidità senza corpo.",lesson:8,fit:74,tech:76,acid:94,tannin:30},
-{id:"austria-most",country:"Austria",territory:"Mostviertel",style:"Most / Perry-Cider",status:"storico",method:"Fermentati di pere e mele, secchi e gastronomici.",history:"Regione storica del most, con forte cultura rurale e pere dedicate.",varieties:"Pere da most, Speckbirne, Dorschbirne, mele acide.",profile:"Pera, erbaceo, secco, tannino variabile.",business:"Interessante per distinguersi dal solo mondo mela.",ph:"3.35–3.75",blend:"50% pere, 30% mele acide, 20% mele tanniche.",yeast:"Vino bianco robusto o sidro.",temp:"12–16°C.",nutrients:"Attenzione: pere lente e difficili.",referm:"5–6 g/L.",service:"7–9°C.",risk:"Note vegetali e fermentazione bloccata.",lesson:17,fit:82,tech:86,acid:62,tannin:66},
-{id:"quebec-ice",country:"Canada",territory:"Québec",style:"Ice Cider",status:"moderno",method:"Concentrazione del succo con freddo e fermentazione lenta.",history:"Stile moderno da clima freddo, oggi prodotto premium da dessert.",varieties:"McIntosh, Cortland, Spartan, Empire, mele acide/aromatiche.",profile:"Dolce, concentrato, mela cotta, miele, acidità alta.",business:"Alto valore: bottiglie piccole, fine dining, dessert e formaggi.",ph:"3.20–3.60",blend:"60% aromatiche/acide, 25% dolci, 15% tanniche leggere.",yeast:"Lievito resistente ad alti zuccheri e bassa temperatura.",temp:"8–12°C.",nutrients:"Frazionati obbligatori.",referm:"Non rifermentare.",service:"6–8°C, calice piccolo.",risk:"Fermentazione bloccata o dolcezza stucchevole.",lesson:9,fit:90,tech:94,acid:78,tannin:32},
+{id:"quebec-ice",country:"Canada",territory:"Québec",style:"Ice Cider",status:"moderno",method:"Concentrazione del succo con freddo e fermentazione lenta.",history:"Stile moderno da clima freddo, prodotto premium da dessert.",varieties:"McIntosh, Cortland, Spartan, Empire, mele acide/aromatiche.",profile:"Dolce, concentrato, mela cotta, miele, acidità alta.",business:"Alto valore: bottiglie piccole, fine dining, dessert e formaggi.",ph:"3.20–3.60",blend:"60% aromatiche/acide, 25% dolci, 15% tanniche leggere.",yeast:"Lievito resistente ad alti zuccheri e bassa temperatura.",temp:"8–12°C.",nutrients:"Frazionati obbligatori.",referm:"Non rifermentare.",service:"6–8°C, calice piccolo.",risk:"Fermentazione bloccata o dolcezza stucchevole.",lesson:9,fit:90,tech:94,acid:78,tannin:32},
 {id:"newengland",country:"USA",territory:"New England",style:"Modern American Cider",status:"moderno",method:"Sidro pulito, frizzante, adatto a frutta, luppolo e botaniche.",history:"Scena craft contemporanea, vicina a birra artigianale e fermentazioni moderne.",varieties:"McIntosh, Northern Spy, Baldwin, Golden Russet, crab apples.",profile:"Pulito, aromatico, frizzante, secco/off-dry.",business:"Molto utile per XA: elastico e sperimentale.",ph:"3.25–3.65",blend:"40% acide/aromatiche, 25% dolci, 20% tanniche, 15% frutta/botaniche.",yeast:"Sidro pulito, kveik selezionato, vino bianco.",temp:"14–20°C.",nutrients:"Importanti per profilo pulito.",referm:"5.5–7 g/L.",service:"6–8°C.",risk:"Diventare bibita aromatizzata.",lesson:10,fit:96,tech:88,acid:70,tannin:48},
 {id:"oregon-hopped",country:"USA",territory:"Oregon / Pacific NW",style:"Hopped Cider",status:"moderno",method:"Sidro secco con luppolo in dry hop o infusione controllata.",history:"Stile nato vicino alla cultura IPA e craft beer americana.",varieties:"Base pulita, mele aromatiche, crab apples.",profile:"Agrumato, resinoso, tropicale, secco, frizzante.",business:"Perfetto per beer shop e pubblico IPA.",ph:"3.25–3.55",blend:"65% base pulita, 20% acide, 10% tanniche, 5% aromatiche.",yeast:"Neutro pulito.",temp:"14–16°C.",nutrients:"Buona nutrizione per evitare difetti.",referm:"6–7 g/L.",service:"5–7°C.",risk:"Luppolo erbaceo e ossidazione.",lesson:14,fit:94,tech:90,acid:68,tannin:42},
-{id:"italia-alpino",country:"Italia",territory:"Trentino / Alto Adige",style:"Sidro Alpino Italiano",status:"emergente",method:"Mele alpine, fermentazione pulita, profilo fresco e moderno.",history:"Territorio melicolo enorme, sidro ancora emergente ma molto promettente.",varieties:"Renetta, Golden, Granny Smith, Pinova, Topaz.",profile:"Fresco, floreale, mela verde, acidità media.",business:"Ottimo per creare identità italiana premium.",ph:"3.25–3.55",blend:"45% acide, 35% aromatiche, 10% dolci, 10% tanniche aggiunte.",yeast:"Vino bianco aromatico o sidro neutro.",temp:"12–15°C.",nutrients:"Necessari se succo povero di azoto.",referm:"5.5–6 g/L.",service:"6–8°C.",risk:"Mela da tavola senza struttura.",lesson:11,fit:95,tech:85,acid:72,tannin:35},
 {id:"italia-collina",country:"Italia",territory:"Toscana / Appennino",style:"Sidro di Collina XA",status:"emergente",method:"Mele locali, frutti di collina, tannino, botaniche leggere.",history:"Territorio non classico, ma con grande potenziale narrativo e agricolo.",varieties:"Mele locali, renette, cotogne, pere, piccole mele acide.",profile:"Rustico elegante, floreale, acidità media, botanico.",business:"Molto adatto a XA: racconto locale, turismo, ristorazione.",ph:"3.30–3.65",blend:"40% mele locali, 25% acide, 20% aromatiche, 10% pere, 5% tannino.",yeast:"Sidro, vino bianco o kveik controllato.",temp:"15–20°C.",nutrients:"Frazionati.",referm:"6 g/L, stile pét-nat moderno.",service:"7–9°C.",risk:"Mancanza di struttura se non correggi il blend.",lesson:15,fit:98,tech:88,acid:68,tannin:50},
-{id:"sweden",country:"Svezia",territory:"Scania / Nordic",style:"Nordic Craft Cider",status:"moderno",method:"Sidro nordico pulito, teso, gastronomico, di design.",history:"Scena contemporanea interessante, più design e ristorazione che tradizione antica.",varieties:"Aroma, Ingrid Marie, mele nordiche acide e aromatiche.",profile:"Pulito, freddo, teso, acidità elegante.",business:"Ottimo per posizionamento premium minimal.",ph:"3.15–3.45",blend:"55% acide/aromatiche, 25% dolci, 20% tanniche leggere.",yeast:"Vino bianco o sidro pulito.",temp:"10–14°C.",nutrients:"Controllati.",referm:"6 g/L.",service:"6–8°C.",risk:"Prodotto troppo sottile.",lesson:18,fit:88,tech:90,acid:84,tannin:42},
-{id:"denmark",country:"Danimarca",territory:"Danish New Nordic",style:"New Nordic Cider",status:"da monitorare",method:"Sidro moderno, gastronomico, spesso sperimentale e molto asciutto.",history:"Scena collegata alla cucina nordica e a fermentazioni precise.",varieties:"Mele nordiche, selvatiche, crab apples, pere.",profile:"Secco, acido, elegante, talvolta funky controllato.",business:"Da monitorare per ristorazione alta e pairing.",ph:"3.15–3.50",blend:"50% acide, 25% aromatiche, 15% tanniche, 10% pere.",yeast:"Spontaneo controllato o vino bianco.",temp:"10–15°C.",nutrients:"Minimi ma monitorati.",referm:"Bottiglia fine, 5–6 g/L.",service:"6–8°C.",risk:"Troppo estremo per pubblico base.",lesson:23,fit:84,tech:91,acid:86,tannin:48},
-{id:"japan",country:"Giappone",territory:"Nagano / Aomori",style:"Japanese Clean Cider",status:"da monitorare",method:"Sidro preciso, aromatico, pulito, da mele da tavola di qualità.",history:"Scena piccola ma interessante, basata su frutticoltura tecnica.",varieties:"Fuji, Shinano Gold, Jonathan, mele aromatiche giapponesi.",profile:"Elegante, mela fresca, delicato, acidità media.",business:"Da monitorare per fascia luxury e racconto internazionale.",ph:"3.30–3.65",blend:"50% aromatiche, 25% acide, 15% dolci, 10% tanniche aggiunte.",yeast:"Vino bianco pulito.",temp:"11–14°C.",nutrients:"Controllati.",referm:"5.5–6 g/L.",service:"6–8°C.",risk:"Mancanza di tannino e carattere.",lesson:19,fit:84,tech:84,acid:58,tannin:30},
-{id:"poland",country:"Polonia",territory:"Polish Orchard",style:"Polish Modern Cider",status:"da monitorare",method:"Sidro da grande paese melicolo, potenziale alto ma identità ancora da definire.",history:"La Polonia è fortissima nella mela; il sidro moderno è un territorio da osservare.",varieties:"Antonovka, Idared, Szampion, Jonagold, mele acide locali.",profile:"Mela fresca, acidità media, possibile stile pulito moderno.",business:"Da monitorare per qualità/prezzo e importazioni future.",ph:"3.25–3.60",blend:"45% acide, 35% aromatiche, 10% dolci, 10% tanniche.",yeast:"Neutro pulito.",temp:"12–16°C.",nutrients:"Moderati.",referm:"5–6 g/L.",service:"6–8°C.",risk:"Prodotto industriale senza identità.",lesson:24,fit:77,tech:75,acid:66,tannin:34}
+{id:"sweden",country:"Svezia",territory:"Scania / Nordic",style:"Nordic Craft Cider",status:"moderno",method:"Sidro nordico pulito, teso, gastronomico, di design.",history:"Scena contemporanea interessante, più design e ristorazione che tradizione antica.",varieties:"Aroma, Ingrid Marie, mele nordiche acide e aromatiche.",profile:"Pulito, freddo, teso, acidità elegante.",business:"Ottimo per posizionamento premium minimal.",ph:"3.15–3.45",blend:"55% acide/aromatiche, 25% dolci, 20% tanniche leggere.",yeast:"Vino bianco o sidro pulito.",temp:"10–14°C.",nutrients:"Controllati.",referm:"6 g/L.",service:"6–8°C.",risk:"Prodotto troppo sottile.",lesson:18,fit:88,tech:90,acid:84,tannin:42}
 ];
 
 const APPLES=[
-{id:"raxao",name:"Raxao",type:"Asturie",cat:"acida",color:"green",fun:"Acidità verticale e nervo fresco.",pct:"15–35%",styles:"Asturie, Galizia, XA",avoid:"Non usarla da sola: può diventare tagliente."},
-{id:"regona",name:"Regona",type:"Asturie",cat:"amaro-acida",color:"red",fun:"Struttura, acidità, grip.",pct:"10–25%",styles:"Asturie, Sagardo, XA",avoid:"Troppa irrigidisce il finale."},
-{id:"durona",name:"Durona de Tresali",type:"Asturie",cat:"amaro-dolce",color:"brown",fun:"Tannino e corpo.",pct:"10–30%",styles:"Asturie moderne, XA",avoid:"Non ossidare il succo."},
-{id:"verdialona",name:"Verdialona",type:"Asturie",cat:"acida",color:"green",fun:"Freschezza e spalla acida.",pct:"10–25%",styles:"Sidra Natural",avoid:"Bilanciare con dolci o tanniche."},
-{id:"blanquina",name:"Blanquina",type:"Asturie",cat:"acida",color:"yellow",fun:"Precisione acida e pulizia.",pct:"5–20%",styles:"Asturie moderne",avoid:"Può rendere il blend magro."},
-{id:"xuanina",name:"Xuanina",type:"Asturie",cat:"aromatica",color:"yellow",fun:"Profumo e frutto chiaro.",pct:"5–18%",styles:"Asturian New Wave, XA",avoid:"Non coprire con frutti troppo forti."},
-{id:"solarina",name:"Solarina",type:"Asturie",cat:"dolce-acida",color:"red",fun:"Equilibrio tra zucchero e acidità.",pct:"10–25%",styles:"Asturie, blend moderni",avoid:"Non usarla per correggere tutto."},
-{id:"moko",name:"Moko",type:"Basca",cat:"acida",color:"green",fun:"Acidità da sagardo.",pct:"10–30%",styles:"Sagardo",avoid:"Tagliare con mele più morbide."},
-{id:"txalaka",name:"Txalaka",type:"Basca",cat:"acida",color:"green",fun:"Freschezza e tensione.",pct:"10–25%",styles:"Sagardo",avoid:"Evitare profilo troppo verde."},
-{id:"dabinett",name:"Dabinett",type:"Inghilterra",cat:"bittersweet",color:"brown",fun:"Tannino morbido, corpo, rotondità.",pct:"20–55%",styles:"Somerset, Herefordshire",avoid:"Da sola può essere piatta senza acidità."},
-{id:"yarlington",name:"Yarlington Mill",type:"Inghilterra",cat:"bittersweet",color:"red",fun:"Corpo, frutto maturo, tannino.",pct:"15–45%",styles:"Scrumpy, Farmhouse",avoid:"Non eccedere col residuo dolce."},
-{id:"kingston",name:"Kingston Black",type:"Inghilterra",cat:"bittersharp",color:"red",fun:"Acidità + tannino, mela completa.",pct:"10–35%",styles:"Herefordshire premium",avoid:"Troppa diventa dura."},
-{id:"foxwhelp",name:"Foxwhelp",type:"Inghilterra",cat:"bittersharp",color:"red",fun:"Acidità intensa e taglio nervoso.",pct:"5–18%",styles:"Bittersharp",avoid:"Usare come lama, non come base."},
-{id:"michelin",name:"Michelin",type:"Francia/UK",cat:"bittersweet",color:"yellow",fun:"Tannino morbido e mela matura.",pct:"15–40%",styles:"Normandia, Bretagna, UK",avoid:"Serve acidità di supporto."},
-{id:"frequin",name:"Frequin Rouge",type:"Francia",cat:"bittersweet",color:"red",fun:"Tannino, colore, struttura.",pct:"10–35%",styles:"Normandia",avoid:"Gestire astringenza."},
-{id:"douce",name:"Douce Moën",type:"Francia",cat:"dolce-amara",color:"yellow",fun:"Dolcezza, corpo, rotondità.",pct:"10–30%",styles:"Cidre Brut/Demi-sec",avoid:"Dolcezza slegata dal tannino."},
-{id:"guillevic",name:"Guillevic",type:"Bretagna",cat:"aromatica",color:"green",fun:"Floreale, finezza, profumo.",pct:"5–25%",styles:"Bretagna elegante",avoid:"Non coprire con tannino pesante."},
-{id:"renetta",name:"Renetta",type:"Italia",cat:"aromatica",color:"yellow",fun:"Aroma, corpo, nota rustica elegante.",pct:"10–35%",styles:"Italia alpina, collina",avoid:"Serve acidità di supporto."},
-{id:"granny",name:"Granny Smith",type:"Internazionale",cat:"acida",color:"green",fun:"Acidità netta e freschezza.",pct:"5–25%",styles:"Modern cider, XA",avoid:"Solo come taglio."},
-{id:"golden",name:"Golden Delicious",type:"Italia/internazionale",cat:"dolce",color:"yellow",fun:"Zucchero, base facile, frutto morbido.",pct:"10–40%",styles:"Italia, clean cider",avoid:"Da sola è poco strutturata."},
-{id:"topaz",name:"Topaz",type:"Moderna",cat:"acida-aromatica",color:"red",fun:"Frutto, acidità, precisione.",pct:"10–30%",styles:"Nordic, Italia alpina",avoid:"Non fermentare troppo caldo."},
-{id:"boskoop",name:"Boskoop",type:"Europa",cat:"acida",color:"brown",fun:"Acidità e corpo da mela cotta.",pct:"10–30%",styles:"Apfelwein",avoid:"Ossidazione pesante."},
-{id:"antonovka",name:"Antonovka",type:"Est Europa",cat:"acida",color:"green",fun:"Acidità forte e rusticità.",pct:"10–35%",styles:"Polonia, sidri secchi",avoid:"Bilanciare con mele dolci."},
-{id:"mela-locale",name:"Mela locale da collina",type:"Locale",cat:"mista",color:"red",fun:"Identità territoriale e racconto.",pct:"20–60%",styles:"Toscana, XA",avoid:"Misurare sempre pH e zuccheri."},
-{id:"cotogna",name:"Cotogna",type:"Frutto tecnico",cat:"tannica",color:"yellow",fun:"Aroma, tannino, struttura.",pct:"2–10%",styles:"XA, collina",avoid:"Troppa domina tutto."},
-{id:"ribes",name:"Ribes rosso",type:"Frutto rosso",cat:"acida",color:"purple",fun:"Acidità, colore, taglio rosso.",pct:"3–12%",styles:"XA Redrinks",avoid:"Non trasformare il sidro in succo rosso."},
-{id:"ciliegia",name:"Ciliegia acida",type:"Frutto rosso",cat:"acida-aromatica",color:"purple",fun:"Frutto scuro e acidità.",pct:"5–15%",styles:"XA Redrinks",avoid:"Rischio sciropposo."},
-{id:"melograno",name:"Melograno",type:"Frutto tecnico",cat:"tannica",color:"purple",fun:"Tannino, colore, acidità.",pct:"3–10%",styles:"XA, modern cider",avoid:"Amaro slegato."},
-{id:"blakeney",name:"Blakeney Red",type:"Pera da perry",cat:"pera",color:"pear",fun:"Base per perry, corpo e pera.",pct:"20–70%",styles:"Perry, Most",avoid:"Fermentazione lenta e instabilità."},
-{id:"thorn",name:"Thorn",type:"Pera da perry",cat:"pera",color:"pear",fun:"Tannino, acidità, profondità.",pct:"10–35%",styles:"Perry inglese, Most",avoid:"Gestire chiarifica e nutrienti."}
-];
+["Raxao","Asturie","acida","green",9,2,4,6,"Acidità verticale e nervo fresco.","15–35%","Asturie, Galizia, XA","Non usarla da sola: può diventare tagliente."],
+["Regona","Asturie","amaro-acida","red",8,6,4,5,"Struttura, acidità e grip.","10–25%","Asturie, Sagardo, XA","Troppa irrigidisce il finale."],
+["Durona de Tresali","Asturie","amaro-dolce","brown",5,7,6,5,"Tannino e corpo per blend seri.","10–30%","Asturie moderne, XA","Non ossidare il succo."],
+["Verdialona","Asturie","acida","green",9,2,4,5,"Freschezza e spalla acida.","10–25%","Sidra Natural","Bilanciare con dolci o tanniche."],
+["Blanquina","Asturie","acida","yellow",8,1,4,6,"Precisione acida e pulizia.","5–20%","Asturie moderne","Può rendere il blend magro."],
+["Xuanina","Asturie","aromatica","yellow",6,2,5,8,"Profumo e frutto chiaro.","5–18%","Asturian New Wave, XA","Non coprire con frutti troppo forti."],
+["Solarina","Asturie","dolce-acida","red",6,2,7,6,"Equilibrio tra zucchero e acidità.","10–25%","Asturie, blend moderni","Non usarla per correggere tutto."],
+["De la Riega","Asturie","acida","green",8,3,5,5,"Taglio acido e freschezza.","5–20%","Asturie","Può accentuare durezza."],
+["Clara","Asturie","dolce","yellow",3,1,8,5,"Morbidezza e volume zuccherino.","10–30%","Blend asturiani","Da sola manca struttura."],
+["Perico","Asturie","amaro-dolce","brown",4,6,6,4,"Quota tannica rustica.","5–18%","Sidra Natural","Attenzione ad astringenza."],
+["Moko","Paesi Baschi","acida","green",8,2,4,5,"Acidità da sagardo.","10–30%","Sagardo","Tagliare con mele più morbide."],
+["Txalaka","Paesi Baschi","acida","green",8,2,5,5,"Freschezza e tensione.","10–25%","Sagardo","Evitare profilo troppo verde."],
+["Urtebi Haundi","Paesi Baschi","dolce-acida","yellow",6,2,7,5,"Base equilibrante.","10–30%","Sagardo","Non basta per dare tannino."],
+["Gezamina","Paesi Baschi","amaro-acida","red",7,5,5,5,"Acidità più grip.","5–20%","Sagardo","Usare con controllo."],
+["Goikoetxe","Paesi Baschi","acida","green",8,3,4,4,"Acidità gastronomica.","5–20%","Sagardo","Può dare severità."],
+["Dabinett","Inghilterra","bittersweet","brown",3,7,6,5,"Tannino morbido, corpo, rotondità.","20–55%","Somerset, Herefordshire","Da sola può essere piatta senza acidità."],
+["Yarlington Mill","Inghilterra","bittersweet","red",3,7,7,6,"Corpo, frutto maturo, tannino.","15–45%","Scrumpy, Farmhouse","Non eccedere col residuo dolce."],
+["Kingston Black","Inghilterra","bittersharp","red",7,7,5,7,"Acidità più tannino, mela quasi completa.","10–35%","Herefordshire premium","Troppa diventa dura."],
+["Foxwhelp","Inghilterra","bittersharp","red",9,5,4,6,"Acidità intensa e taglio nervoso.","5–18%","Bittersharp","Usare come lama, non come base."],
+["Brown Snout","Inghilterra","bittersweet","brown",3,8,6,4,"Tannino ampio e struttura.","10–35%","Herefordshire","Può diventare ruvida."],
+["Harry Masters Jersey","Inghilterra","bittersweet","brown",3,8,6,5,"Tannino importante, corpo farmhouse.","10–40%","Somerset","Rischio astringenza."],
+["Chisel Jersey","Inghilterra","bittersweet","brown",2,9,6,4,"Tannino alto per struttura profonda.","5–25%","English dry cider","Non usarla senza acidità."],
+["Michelin","Francia/UK","bittersweet","yellow",3,6,6,5,"Tannino morbido e mela matura.","15–40%","Normandia, Bretagna, UK","Serve acidità di supporto."],
+["Frequin Rouge","Francia","bittersweet","red",3,8,6,5,"Tannino, colore, struttura.","10–35%","Normandia","Gestire astringenza."],
+["Douce Moën","Francia","dolce-amara","yellow",2,5,8,5,"Dolcezza, corpo, rotondità.","10–30%","Cidre Brut/Demi-sec","Dolcezza slegata dal tannino."],
+["Bedan","Francia","dolce-amara","brown",3,6,7,5,"Corpo e tannino morbido.","10–30%","Normandia","Può appesantire."],
+["Bisquet","Francia","amaro-dolce","brown",3,7,6,4,"Tannino e rusticità controllata.","5–25%","Normandia","Non esagerare con ossidazione."],
+["Noël des Champs","Francia","bittersweet","red",3,7,6,5,"Tannino e maturità.","5–25%","Normandia","Integrare con acide."],
+["Guillevic","Bretagna","aromatica","green",5,1,6,9,"Floreale, finezza, profumo.","5–25%","Bretagna elegante","Non coprire con tannino pesante."],
+["Kermerrien","Bretagna","bittersweet","brown",3,7,6,5,"Tannino bretone e profondità.","10–35%","Bretagna","Può essere severa."],
+["Marie Ménard","Bretagna","dolce-amara","yellow",3,5,7,5,"Morbidezza e frutto.","10–30%","Bretagna","Serve acidità."],
+["Renetta","Italia","aromatica","yellow",5,2,6,8,"Aroma, corpo, nota rustica elegante.","10–35%","Italia alpina, collina","Serve acidità di supporto."],
+["Renetta del Canada","Italia/Europa","aromatica","brown",5,2,6,8,"Aroma complesso, mela cotta, corpo.","10–35%","Italia, Apfelwein evoluto","Ossidazione facile."],
+["Granny Smith","Internazionale","acida","green",9,1,4,6,"Acidità netta e freschezza.","5–25%","Modern cider, XA","Solo come taglio."],
+["Golden Delicious","Italia/internazionale","dolce","yellow",3,1,8,5,"Zucchero, base facile, frutto morbido.","10–40%","Italia, clean cider","Da sola è poco strutturata."],
+["Topaz","Moderna","acida-aromatica","red",7,2,6,7,"Frutto, acidità, precisione.","10–30%","Nordic, Italia alpina","Non fermentare troppo caldo."],
+["Pinova","Moderna","aromatica","red",5,1,7,7,"Mela fresca e profumo.","10–30%","Italia alpina","Manca tannino."],
+["Braeburn","Internazionale","dolce-acida","red",6,1,7,7,"Base aromatica fresca.","10–35%","Modern clean cider","Manca struttura."],
+["Fuji","Giappone/internazionale","dolce","red",2,1,9,6,"Zucchero e mela dolce netta.","5–30%","Japanese clean cider","Può dare dolcezza piatta."],
+["Shinano Gold","Giappone","aromatica","yellow",5,1,7,8,"Aroma pulito e frutto chiaro.","5–25%","Japanese clean cider","Serve acidità o tannino."],
+["Boskoop","Europa","acida","brown",7,2,6,7,"Acidità e corpo da mela cotta.","10–30%","Apfelwein","Ossidazione pesante."],
+["Bramley","UK","acida","green",9,1,5,6,"Acidità forte e cucina inglese.","5–25%","Irish/English cider","Troppa acidità senza corpo."],
+["McIntosh","Canada/USA","aromatica","red",5,1,7,8,"Aroma intenso, mela rossa.","10–35%","Québec, New England","Struttura bassa."],
+["Northern Spy","USA","acida-aromatica","red",7,2,6,7,"Acidità e complessità americana.","10–30%","New England","Serve tannino."],
+["Golden Russet","USA","aromatica-tannica","brown",5,4,8,8,"Zucchero, aroma, leggera ruvidezza.","10–35%","American craft","Non appiattire con dolci."],
+["Baldwin","USA","dolce-acida","red",6,2,7,6,"Base americana equilibrata.","10–35%","New England","Manca tannino alto."],
+["Antonovka","Est Europa","acida","green",9,1,5,5,"Acidità forte e rusticità.","10–35%","Polonia, sidri secchi","Bilanciare con dolci."],
+["Idared","Est Europa","dolce-acida","red",5,1,7,5,"Base produttiva, colore, acidità media.","10–35%","Polonia","Può essere anonima."],
+["Jonagold","Internazionale","dolce-acida","red",5,1,8,6,"Zucchero e mela morbida.","10–35%","Clean cider","Manca nervo."],
+["Aroma","Svezia","aromatica","red",5,1,7,8,"Aroma nordico pulito.","10–30%","Nordic craft","Serve struttura."],
+["Ingrid Marie","Danimarca/Svezia","aromatica","red",5,1,7,7,"Mela rossa, profumo, morbidezza.","10–30%","Nordic cider","Può risultare sottile."],
+["Crab Apple","Selvatica","acida-tannica","red",9,5,3,6,"Acidità, tannino e complessità.","2–12%","American, Nordic, XA","Troppa rende il sidro aggressivo."],
+["Mela selvatica locale","Locale","acida-tannica","green",8,5,4,6,"Identità territoriale, nervo e grip.","2–15%","Collina, XA","Analizzare pH e maturazione."],
+["Mela locale da collina","Locale","mista","red",5,2,6,6,"Identità territoriale e racconto.","20–60%","Toscana, XA","Misurare sempre pH e zuccheri."],
+["Cotogna","Frutto tecnico","tannica","yellow",6,7,5,9,"Aroma, tannino, struttura.","2–10%","XA, collina","Troppa domina tutto."],
+["Ribes rosso","Frutto rosso","acida","purple",9,1,3,8,"Acidità, colore, taglio rosso.","3–12%","XA Redrinks","Non trasformare il sidro in succo rosso."],
+["Ciliegia acida","Frutto rosso","acida-aromatica","purple",8,2,5,9,"Frutto scuro e acidità.","5–15%","XA Redrinks","Rischio sciropposo."],
+["Melograno","Frutto tecnico","tannica","purple",7,5,4,7,"Tannino, colore, acidità.","3–10%","XA, modern cider","Amaro slegato."],
+["Aronia","Frutto tecnico","tannica","purple",7,8,3,6,"Colore, tannino, austerità.","1–6%","XA Redrinks","Troppa diventa medicinale."],
+["Sambuco bacca","Frutto tecnico","aromatica","purple",4,3,5,8,"Nota scura e profilo vinoso.","1–5%","XA sperimentale","Dosare con molta cautela."],
+["Blakeney Red","Pera da perry","pera","pear",4,4,6,7,"Base per perry, corpo e pera.","20–70%","Perry, Most","Fermentazione lenta e instabilità."],
+["Thorn","Pera da perry","pera","pear",5,6,5,7,"Tannino, acidità, profondità.","10–35%","Perry inglese, Most","Gestire chiarifica e nutrienti."],
+["Hendre Huffcap","Pera da perry","pera","pear",4,7,6,6,"Tannino e corpo da perry.","10–35%","Perry","Rischio astringenza."],
+["Moorcroft","Pera da perry","pera","pear",5,5,6,7,"Pera, acidità e bevibilità.","10–35%","Perry","Controllare fermentazione."],
+["Speckbirne","Pera da most","pera","pear",5,5,6,6,"Most austriaco, corpo e tannino.","15–50%","Mostviertel","Note vegetali se acerba."],
+["Dorschbirne","Pera da most","pera","pear",5,6,5,5,"Struttura per most.","10–40%","Most","Non usare acerba."]
+].map((a,i)=>({id:"apple"+i,name:a[0],origin:a[1],cat:a[2],color:a[3],acid:a[4],tannin:a[5],sugar:a[6],aroma:a[7],fun:a[8],pct:a[9],styles:a[10],avoid:a[11]}));
 
 const LESSONS=[
-"Fondamenti del sidro: succo, zuccheri, acidità e tannino",
-"Asturie: Sidra Natural, escanciado e acidità viva",
-"Paesi Baschi: sagardo, txotx e sidro gastronomico",
-"Normandia: mele bittersweet e cidre brut",
-"Bretagna: cidre fermier e profilo agricolo",
-"Somerset: scrumpy, tannino e farmhouse",
-"Herefordshire: bittersharp e blend inglese",
-"Apfelwein: secco, acido, urbano",
-"Québec Ice Cider: concentrazione e dessert wine",
-"Modern American Cider: frutta, luppolo e pulizia",
-"Italia alpina: costruire un sidro moderno italiano",
-"pH, acidità totale e percezione in bocca",
-"Asturian New Wave: tradizione pulita e moderna",
-"Hopped Cider: sidro e luppolo senza ossidazione",
-"Sidro di collina: identità locale e blend",
-"Galizia e territori iberici emergenti",
-"Most e perry: il mondo delle pere fermentate",
-"Nordic Craft Cider: precisione e design",
-"Giappone: pulizia, aromaticità e sidro delicato",
-"XA Fermented Redrinks: costruire uno stile proprietario",
-"Galles: micro produttori e orchard cider",
-"Irlanda: sidro da pub e craft moderno",
-"Danimarca: New Nordic Cider e ristorazione alta",
-"Polonia: grande melicoltura e sidro da monitorare",
-"Lieviti da sidro: neutri, aromatici, kveik",
-"Nutrienti: DAP, organico e prevenzione H2S",
-"Temperatura di fermentazione e profilo aromatico",
-"Rifermentazione in bottiglia: zucchero, pressione, rischio",
-"Stabilizzazione: freddo, solfiti, sorbato, filtrazione",
-"Metodo ancestrale e pét-nat di mela",
-"Sidro fermo, frizzante, sparkling",
-"Mele acide: quando servono e quando distruggono",
-"Mele bittersweet: corpo, tannino e complessità",
-"Bittersharp: la categoria più tecnica",
-"Mele aromatiche: profumo e finezza",
-"Pere da perry: sorbitolo, tannino e lentezza",
-"Frutti rossi nel sidro: colore e rischio bibita",
-"Botaniche: timo, menta, tè, spezie e controllo",
-"Dry hopping: dosi, timing e ossigeno",
-"Difetti: acetico, solforoso, ossidazione, muffa",
-"Degustazione tecnica: vista, naso, bocca, finale",
-"Abbinamento cibo: formaggi, carne, pesce, dessert",
-"Servizio: temperatura, bicchiere, storytelling",
-"Packaging XA: bottiglia, etichetta, vetrofania, shopper",
-"Business: sidro premium in Italia",
-"Importazione: micro produttori e selezione lotti",
-"Menu degustazione: creare una linea sidro",
-"Scheda tecnica professionale",
-"Calcolo blend base per piccoli lotti",
-"pH target per stili storici e moderni",
-"Carbonazione e priming sicuro",
-"Pulizia e sanificazione",
-"Piccoli lotti sperimentali",
-"Sidro senza glutine e comunicazione corretta",
-"Sidro e birra: differenze produttive",
-"Sidro e kombucha: acidità, zucchero, digestione",
-"Sidro e vino: tannino, acidità, fermentazione",
-"Shelf life e conservazione",
-"Come presentare un sidro a un ristorante",
-"Esame finale XA Cider School"
+"Fondamenti: succo, zuccheri, acidità e tannino","Asturie: Sidra Natural e acidità viva","Paesi Baschi: sagardo e gastronomia","Normandia: bittersweet e cidre brut","Bretagna: cidre fermier","Somerset: scrumpy e farmhouse","Herefordshire: bittersharp e blend inglese","Apfelwein: secco, acido, urbano","Québec Ice Cider: concentrazione e dolcezza","Modern American Cider","Italia alpina e clean cider","pH e acidità percepita","Asturian New Wave","Hopped Cider","Sidro di collina XA","Galizia emergente","Most e Perry","Nordic Craft Cider","Japanese Clean Cider","XA Fermented Redrinks","Lieviti da sidro","Nutrienti e H2S","Temperatura di fermentazione","Rifermentazione in bottiglia","Stabilizzazione","Metodo ancestrale","Sidro fermo/frizzante/sparkling","Mele acide","Mele bittersweet","Bittersharp","Mele aromatiche","Pere da perry","Frutti rossi","Botaniche","Dry hopping","Difetti: acetico, solforoso, ossidazione","Degustazione tecnica","Abbinamento cibo","Servizio","Packaging XA","Business sidro premium","Importazione micro produttori","Menu degustazione","Scheda tecnica","Calcolo blend","pH target per stili","Carbonazione sicura","Sanificazione","Piccoli lotti","Sidro senza glutine","Sidro e birra","Sidro e kombucha","Sidro e vino","Shelf life","Vendere a un ristorante","Valutare un produttore","Progettare ricetta XA","Degustazione guidata","Esame tecnico XA","Esame finale XA Cider School"
 ];
 
-const TABS=[
-["home","HOME"],["atlas","ATLAS"],["daw","DAW"],["mele","MELE"],["school","SCHOOL"],["quiz","QUIZ"],
-["business","BUSINESS"],["ricerca","RICERCA"],["mixer","MIXER"],["confronto","CONFR."],["fav","FAV"]
-];
-
+const TABS=[["home","HOME"],["atlas","ATLAS"],["mele","MELE"],["school","SCHOOL"],["quiz","QUIZ"],["mixer","MIXER"],["business","BUSINESS"],["confronto","CONFR."],["fav","FAV"]];
 const $=id=>document.getElementById(id);
-const S={
-tab:"home",
-style:localStorage.getItem("xa92_style")||"xa-redrinks",
-filter:"tutti",
-appleFilter:"tutte",
-lesson:Number(localStorage.getItem("xa92_lesson")||1),
-fav:JSON.parse(localStorage.getItem("xa92_fav")||"[]"),
-progress:JSON.parse(localStorage.getItem("xa92_progress")||"{}"),
-scores:JSON.parse(localStorage.getItem("xa92_scores")||"{}"),
-rec:false,
-loop:false,
-channels:{
-style:{name:"STYLE BUS",level:78,solo:false,mute:false,arm:false},
-apple:{name:"APPLE BUS",level:66,solo:false,mute:false,arm:false},
-school:{name:"SCHOOL BUS",level:58,solo:false,mute:false,arm:false},
-biz:{name:"BUSINESS BUS",level:70,solo:false,mute:false,arm:false}
-},
-mix:{acide:45,dolci:20,tanniche:20,aromatiche:15,frutti:0}
-};
-
+const S={tab:"home",style:localStorage.getItem("xa93_style")||"xa-redrinks",filter:"tutti",appleFilter:"tutte",lesson:Number(localStorage.getItem("xa93_lesson")||1),fav:JSON.parse(localStorage.getItem("xa93_fav")||"[]"),progress:JSON.parse(localStorage.getItem("xa93_progress")||"{}"),scores:JSON.parse(localStorage.getItem("xa93_scores")||"{}"),rec:false,loop:false,mix:{acide:45,dolci:20,tanniche:20,aromatiche:15,frutti:0}};
 let CURRENT_QUIZ=[];
 
-function save(){
-  localStorage.setItem("xa92_style",S.style);
-  localStorage.setItem("xa92_lesson",S.lesson);
-  localStorage.setItem("xa92_fav",JSON.stringify(S.fav));
-  localStorage.setItem("xa92_progress",JSON.stringify(S.progress));
-  localStorage.setItem("xa92_scores",JSON.stringify(S.scores));
-}
+function save(){localStorage.setItem("xa93_style",S.style);localStorage.setItem("xa93_lesson",S.lesson);localStorage.setItem("xa93_fav",JSON.stringify(S.fav));localStorage.setItem("xa93_progress",JSON.stringify(S.progress));localStorage.setItem("xa93_scores",JSON.stringify(S.scores))}
 function st(id=S.style){return STYLES.find(x=>x.id===id)||STYLES[0]}
-function apple(id){return APPLES.find(x=>x.id===id)||APPLES[0]}
 function lcd(t){$("lcd").textContent=t}
 function toast(t){const el=$("toast");el.textContent=t;el.classList.add("show");setTimeout(()=>el.classList.remove("show"),1700)}
 function statusClass(x){return x==="da monitorare"?"monitorare":x}
+function meter(id,val){$("m"+id).textContent=val+"/100";$("bar"+id).style.width=val+"%"}
+function copySafe(t){navigator.clipboard?.writeText(t).then(()=>toast("Copiato negli appunti")).catch(()=>toast("Copia non riuscita: seleziona il testo"))}
 
 function init(){
-  renderTabs();
-  fillSelects();
-  bind();
-  CURRENT_QUIZ=makeQuiz(S.lesson);
-  renderAll();
-  lcd("V9.2 pronta · "+st().territory+" · "+st().style);
+  setTimeout(()=>$("boot").classList.add("hide"),1300);
+  renderTabs();fillSelects();bind();CURRENT_QUIZ=makeQuiz();renderAll();lcd("V9.3 pronta · "+st().territory+" · "+st().style);
 }
 function bind(){
   $("loadBtn").onclick=()=>loadStyle($("styleSelect").value);
-  $("recBtn").onclick=toggleRec;
-  $("loopBtn").onclick=toggleLoop;
-  $("recipeBtn").onclick=()=>openRecipe(S.style,true);
-  $("schoolBtn").onclick=()=>sendSchool(S.style);
-  $("popupBtn").onclick=()=>openStyle(S.style);
-  $("favBtn").onclick=()=>toggleFav(S.style);
-  $("exportBtn").onclick=()=>exportCard();
-  $("stopBtn").onclick=stopAll;
-  $("atlasSearch").oninput=renderStyles;
-  $("appleSearch").oninput=renderApples;
-  $("producerSearch").oninput=renderProducer;
-  $("compareA").onchange=renderCompare;
-  $("compareB").onchange=renderCompare;
-  $("doneLessonBtn").onclick=doneLesson;
-  $("resetQuizBtn").onclick=resetQuiz;
-  $("closeModalBtn").onclick=closeModal;
-  $("okModalBtn").onclick=closeModal;
-  $("copyModalBtn").onclick=()=>copyText($("copyModalBtn").dataset.copy||"");
+  $("recBtn").onclick=()=>toggleRec();$("loopBtn").onclick=()=>toggleLoop();$("recipeBtn").onclick=()=>openRecipe(S.style,true);
+  $("schoolBtn").onclick=()=>sendSchool(S.style);$("popupBtn").onclick=()=>openStyle(S.style);$("favBtn").onclick=()=>toggleFav(S.style);
+  $("exportBtn").onclick=()=>exportCard();$("stopBtn").onclick=()=>stopAll();
+  $("atlasSearch").oninput=renderStyles;$("appleSearch").oninput=renderApples;
+  $("compareA").onchange=renderCompare;$("compareB").onchange=renderCompare;
+  $("doneLessonBtn").onclick=doneLesson;$("prevLessonBtn").onclick=()=>selectLesson(Math.max(1,S.lesson-1));$("nextLessonBtn").onclick=()=>selectLesson(Math.min(LESSONS.length,S.lesson+1));
+  $("resetQuizBtn").onclick=resetQuiz;$("closeModalBtn").onclick=closeModal;$("okModalBtn").onclick=closeModal;$("copyModalBtn").onclick=()=>copySafe($("copyModalBtn").dataset.copy||"");
 }
+function renderTabs(){$("tabs").innerHTML=TABS.map(([id,lab])=>`<button class="tab ${S.tab===id?"active":""}" onclick="switchTab('${id}')">${lab}</button>`).join("")}
+function switchTab(id){S.tab=id;document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));$(id).classList.add("active");renderTabs();if(id==="fav")renderFav();if(id==="confronto")renderCompare();window.scrollTo({top:0,behavior:"smooth"})}
+function fillSelects(){const opt=STYLES.map(s=>`<option value="${s.id}">${s.territory} · ${s.style}</option>`).join("");$("styleSelect").innerHTML=opt;$("compareA").innerHTML=opt;$("compareB").innerHTML=opt;$("styleSelect").value=S.style;$("compareA").value=S.style;$("compareB").value=STYLES[1].id}
+function loadStyle(id){S.style=id;$("styleSelect").value=id;CURRENT_QUIZ=makeQuiz();save();renderAll();lcd("LOAD STYLE · "+st().territory+" · "+st().style);flashVu();toast("Stile caricato")}
+function renderAll(){renderHome();renderStatusTabs();renderStyles();renderAppleTabs();renderApples();renderLessons();renderQuiz();renderMixer();renderBusiness();renderCompare();renderFav();$("favBtn").classList.toggle("active",S.fav.includes(S.style))}
+function renderHome(){const x=st();$("activeStyleName").textContent=x.territory+" · "+x.style+" · "+x.status.toUpperCase();meter("Fit",x.fit);meter("Tech",x.tech);meter("Acid",x.acid);meter("Tannin",x.tannin);renderVu(Math.round(x.fit/6.5))}
+function renderVu(n){$("mainVu").innerHTML=Array.from({length:16},(_,i)=>`<i class="seg ${i<n?"on "+(i>12?"high":i>9?"mid":"low"):""}"></i>`).join("")}
+function flashVu(){renderVu(16);setTimeout(renderHome,420)}
 
-function renderTabs(){
-  $("tabs").innerHTML=TABS.map(([id,lab])=>`<button class="tab ${S.tab===id?"active":""}" onclick="switchTab('${id}')">${lab}</button>`).join("");
-}
-function switchTab(id){
-  S.tab=id;
-  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
-  $(id).classList.add("active");
-  renderTabs();
-  if(id==="business")renderBusiness();
-  if(id==="fav")renderFav();
-  if(id==="confronto")renderCompare();
-  if(id==="ricerca")renderProducer();
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-function fillSelects(){
-  const opt=STYLES.map(s=>`<option value="${s.id}">${s.territory} · ${s.style}</option>`).join("");
-  $("styleSelect").innerHTML=opt;
-  $("compareA").innerHTML=opt;
-  $("compareB").innerHTML=opt;
-  $("styleSelect").value=S.style;
-  $("compareA").value=S.style;
-  $("compareB").value=STYLES[1].id;
-}
-
-function loadStyle(id){
-  S.style=id;
-  $("styleSelect").value=id;
-  save();
-  CURRENT_QUIZ=makeQuiz(S.lesson);
-  renderAll();
-  lcd("LOAD STYLE · "+st().territory+" · "+st().style);
-  flashVu();
-  toast("Stile caricato");
-}
-
-function renderAll(){
-  renderHome();
-  renderStatusTabs();
-  renderStyles();
-  renderChannels();
-  renderAppleTabs();
-  renderApples();
-  renderLessons();
-  renderQuiz();
-  renderBusiness();
-  renderProducer();
-  renderMixer();
-  renderCompare();
-  renderFav();
-  $("favBtn").classList.toggle("active",S.fav.includes(S.style));
-}
-function renderHome(){
-  const x=st();
-  $("activeStyleName").textContent=x.territory+" · "+x.style+" · "+x.status.toUpperCase();
-  setMeter("Business",x.fit);
-  setMeter("Tech",x.tech);
-  setMeter("Acid",x.acid);
-  setMeter("Tannin",x.tannin);
-  renderVu("mainVu",Math.round(x.fit/6.5));
-}
-function setMeter(name,val){
-  $("m"+name).textContent=val+"/100";
-  $("bar"+name).style.width=val+"%";
-}
-function renderVu(id,count){
-  $(id).innerHTML=Array.from({length:16},(_,i)=>{
-    const cls=i>12?"high":i>9?"mid":"low";
-    return `<i class="seg ${i<count?"on "+cls:""}"></i>`;
-  }).join("");
-}
-function flashVu(){renderVu("mainVu",16);setTimeout(renderHome,420)}
-
-function renderStatusTabs(){
-  const arr=["tutti","storico","moderno","emergente","da monitorare","lab"];
-  $("statusTabs").innerHTML=arr.map(f=>`<button class="tab ${S.filter===f?"active":""}" onclick="setFilter('${f}')">${f.toUpperCase()}</button>`).join("");
-}
+function renderStatusTabs(){const arr=["tutti","storico","moderno","emergente","lab"];$("statusTabs").innerHTML=arr.map(f=>`<button class="tab ${S.filter===f?"active":""}" onclick="setFilter('${f}')">${f.toUpperCase()}</button>`).join("")}
 function setFilter(f){S.filter=f;renderStatusTabs();renderStyles()}
 function renderStyles(){
   const q=($("atlasSearch").value||"").toLowerCase();
-  const list=STYLES.filter(x=>{
-    const hay=Object.values(x).join(" ").toLowerCase();
-    return (!q||hay.includes(q))&&(S.filter==="tutti"||x.status===S.filter);
-  });
+  const list=STYLES.filter(x=>(!q||Object.values(x).join(" ").toLowerCase().includes(q))&&(S.filter==="tutti"||x.status===S.filter));
   $("styleGrid").innerHTML=list.map(styleCard).join("")||`<div class="card">Nessun risultato.</div>`;
 }
 function styleCard(x){
   const fav=S.fav.includes(x.id);
   return `<article class="card ${x.id===S.style?"active":""}">
-    <div class="card-head">
-      <div>
-        <h3>${x.territory} · ${x.style}</h3>
-        <div class="muted mini">${x.country}</div>
-      </div>
-      <span class="badge ${statusClass(x.status)}"><i class="led ${x.status==="storico"?"amber":x.status==="moderno"?"blue":x.status==="emergente"?"green":x.status==="lab"?"violet":"red"}"></i>${x.status}</span>
-    </div>
-    <div class="badges">
-      <span class="pill">pH ${x.ph}</span>
-      <span class="pill">FIT ${x.fit}</span>
-      <span class="pill">TEC ${x.tech}</span>
-    </div>
-    <p class="mini"><b>Metodo:</b> ${x.method}</p>
-    <p class="mini"><b>Profilo:</b> ${x.profile}</p>
-    <div class="card-actions">
-      <button class="small-btn" onclick="loadStyle('${x.id}')">LOAD</button>
-      <button class="small-btn" onclick="openStyle('${x.id}')">POPUP</button>
-      <button class="small-btn" onclick="openRecipe('${x.id}',true)">RICETTA</button>
-      <button class="small-btn" onclick="sendSchool('${x.id}')">SCHOOL</button>
-      <button class="small-btn ${fav?"active":""}" onclick="toggleFav('${x.id}')">${fav?"FAV ✓":"FAV"}</button>
-    </div>
+    <div class="card-head"><div><h3>${x.territory} · ${x.style}</h3><div class="muted mini">${x.country}</div></div><span class="badge ${statusClass(x.status)}">${x.status}</span></div>
+    <div class="badges"><span class="pill">pH ${x.ph}</span><span class="pill">FIT ${x.fit}</span><span class="pill">TEC ${x.tech}</span></div>
+    <p class="mini"><b>Metodo:</b> ${x.method}</p><p class="mini"><b>Profilo:</b> ${x.profile}</p>
+    <div class="card-actions"><button class="small-btn" onclick="loadStyle('${x.id}')">LOAD</button><button class="small-btn" onclick="openStyle('${x.id}')">POPUP</button><button class="small-btn" onclick="openRecipe('${x.id}',true)">RICETTA</button><button class="small-btn" onclick="sendSchool('${x.id}')">SCHOOL</button><button class="small-btn ${fav?"active":""}" onclick="toggleFav('${x.id}')">${fav?"FAV ✓":"FAV"}</button></div>
   </article>`;
 }
 
-function renderChannels(){
-  $("channelGrid").innerHTML=Object.entries(S.channels).map(([key,ch],i)=>`
-    <div class="channel">
-      <div class="channel-top">
-        <span class="channel-title">CH ${i+1} · ${ch.name}</span>
-        <i class="led ${ch.arm?"red":ch.solo?"amber":ch.mute?"blue":"green"}"></i>
-      </div>
-      <div class="faderbox">
-        <input class="vertical" type="range" min="0" max="100" value="${ch.level}" oninput="setLevel('${key}',this.value)">
-        <div>
-          <div class="lcd">
-            <div class="label">${ch.name}</div>
-            <div class="value">${ch.level}% · ${ch.mute?"MUTE":ch.solo?"SOLO":ch.arm?"ARM":"LIVE"}</div>
-          </div>
-          <div class="state-row">
-            <button class="state solo ${ch.solo?"on":""}" onclick="toggleChannel('${key}','solo')">SOLO</button>
-            <button class="state mute ${ch.mute?"on":""}" onclick="toggleChannel('${key}','mute')">MUTE</button>
-            <button class="state arm ${ch.arm?"on":""}" onclick="toggleChannel('${key}','arm')">ARM</button>
-          </div>
-        </div>
-        <div class="scale"><span>+6</span><span>0</span><span>-6</span><span>-12</span><span>-24</span><span>∞</span></div>
-      </div>
-    </div>
-  `).join("");
-}
-function toggleChannel(k,p){S.channels[k][p]=!S.channels[k][p];renderChannels();toast(k.toUpperCase()+" "+p.toUpperCase()+" "+(S.channels[k][p]?"ON":"OFF"))}
-function setLevel(k,v){S.channels[k].level=Number(v);renderChannels()}
-
 function renderAppleTabs(){
-  const cats=["tutte","acida","amaro-acida","amaro-dolce","dolce","dolce-amara","aromatica","acida-aromatica","bittersweet","bittersharp","tannica","pera","mista"];
+  const cats=["tutte","acida","amaro-acida","amaro-dolce","dolce","dolce-acida","dolce-amara","aromatica","acida-aromatica","aromatica-tannica","bittersweet","bittersharp","acida-tannica","tannica","pera","mista"];
   $("appleTabs").innerHTML=cats.map(c=>`<button class="tab ${S.appleFilter===c?"active":""}" onclick="setAppleFilter('${c}')">${c.toUpperCase()}</button>`).join("");
 }
 function setAppleFilter(c){S.appleFilter=c;renderAppleTabs();renderApples()}
 function renderApples(){
   const q=($("appleSearch").value||"").toLowerCase();
-  const list=APPLES.filter(a=>{
-    const hay=Object.values(a).join(" ").toLowerCase();
-    return (!q||hay.includes(q))&&(S.appleFilter==="tutte"||a.cat===S.appleFilter);
-  });
+  const list=APPLES.filter(a=>(!q||Object.values(a).join(" ").toLowerCase().includes(q))&&(S.appleFilter==="tutte"||a.cat===S.appleFilter));
   $("appleGrid").innerHTML=list.map(a=>`
     <article class="card apple-card">
       <div class="apple-art ${a.color}"></div>
       <div>
         <h3>${a.name}</h3>
-        <div class="badges"><span class="pill">${a.type}</span><span class="pill">${a.cat}</span><span class="pill">${a.pct}</span></div>
+        <div class="badges"><span class="pill">${a.origin}</span><span class="pill">${a.cat}</span><span class="pill">${a.pct}</span></div>
         <p class="mini"><b>Funzione:</b> ${a.fun}</p>
+        <p class="mini"><b>Dati:</b> acidità ${a.acid}/10 · tannino ${a.tannin}/10 · zucchero ${a.sugar}/10 · aroma ${a.aroma}/10</p>
         <p class="mini"><b>Stili:</b> ${a.styles}</p>
-        <button class="small-btn" onclick="openApple('${a.id}')">POPUP MELA</button>
+        <button class="small-btn" onclick="openApple('${a.id}')">TECH POPUP</button>
       </div>
-    </article>
-  `).join("")||`<div class="card">Nessuna mela trovata.</div>`;
+    </article>`).join("")||`<div class="card">Nessuna mela trovata.</div>`;
 }
 
-function lessonText(n){
-  const x=st();
-  return `<p><b>Obiettivo:</b> studiare ${LESSONS[n-1].toLowerCase()}.</p>
-  <p><b>Collegamento stile attivo:</b> ${x.territory} · ${x.style}.</p>
-  <p><b>Parametri:</b> pH ${x.ph}; blend ${x.blend}; lievito ${x.yeast}; temperatura ${x.temp}</p>
-  <p><b>Errore da evitare:</b> ${x.risk}</p>`;
-}
 function renderLessons(){
-  const done=Object.values(S.progress).filter(Boolean).length;
-  $("lessonProgress").style.width=Math.round(done/LESSONS.length*100)+"%";
+  const done=Object.values(S.progress).filter(Boolean).length;$("lessonProgress").style.width=Math.round(done/LESSONS.length*100)+"%";
   $("lessonTitle").textContent=String(S.lesson).padStart(2,"0")+" · "+LESSONS[S.lesson-1];
-  $("lessonBody").innerHTML=lessonText(S.lesson);
-  $("lessonList").innerHTML=LESSONS.map((t,i)=>{
-    const n=i+1;
-    const lvl=n<=20?"ATLANTE":n<=40?"TECNICA":n<=55?"PRO":"MASTER";
-    return `<div class="card lesson-card ${n===S.lesson?"active":""}" onclick="selectLesson(${n})">
-      <h3>${String(n).padStart(2,"0")} · ${t}</h3>
-      <div class="muted mini">${lvl} · ${S.progress[n]?"COMPLETATA":"DA STUDIARE"}</div>
-    </div>`;
-  }).join("");
+  $("lessonBody").innerHTML=`<p><b>Obiettivo:</b> ${LESSONS[S.lesson-1]}.</p><p><b>Stile collegato:</b> ${st().territory} · ${st().style}.</p><p><b>Dati tecnici:</b> pH ${st().ph}; blend ${st().blend}; lievito ${st().yeast}; temperatura ${st().temp}</p><p><b>Errore da evitare:</b> ${st().risk}</p>`;
+  $("lessonList").innerHTML=LESSONS.map((t,i)=>{const n=i+1;return `<div class="card lesson-card ${n===S.lesson?"active":""}" onclick="selectLesson(${n})"><h3>${String(n).padStart(2,"0")} · ${t}</h3><div class="muted mini">${S.progress[n]?"COMPLETATA":"DA STUDIARE"}</div></div>`}).join("");
 }
-function selectLesson(n){S.lesson=n;CURRENT_QUIZ=makeQuiz(n);save();renderLessons();renderQuiz();lcd("SCHOOL LOAD · lezione "+String(n).padStart(2,"0"));toast("Lezione caricata")}
+function selectLesson(n){S.lesson=n;CURRENT_QUIZ=makeQuiz();save();renderLessons();renderQuiz();lcd("SCHOOL LOAD · lezione "+String(n).padStart(2,"0"))}
 function doneLesson(){S.progress[S.lesson]=true;save();renderLessons();toast("Progresso salvato")}
 
-function makeQuiz(n){
-  const x=st(),topic=LESSONS[n-1];
-  const qs=[
-    ["Quale stile è attivo ora?",[x.style,"Birra IPA","Kombucha","Vino rosso"],0],
-    ["Quale parametro tecnico va sempre controllato?",["pH target","Colore del telefono","Numero di tab","Nome casuale"],0],
-    ["Perché il blend è centrale?",["Bilancia acidità, zucchero, tannino e aroma","Sostituisce la fermentazione","Elimina la pulizia","Serve solo al colore"],0],
-    ["Rischio principale dello stile attivo:",[x.risk,"Avere troppe mele disegnate","Usare GitHub Pages","Premere POPUP"],0],
-    ["Cosa dà struttura al sidro?",["Tannino","Acqua distillata","Luce LED","Bottone REC"],0],
-    ["Fermentazione stressata può causare:",["Solforoso e difetti","Solo profumo migliore","Più vetro","Meno acidità sempre"],0],
-    ["La temperatura influenza:",["Aromi e velocità fermentativa","Solo il colore app","Il nome del file","La lingua"],0],
-    ["SEND RECIPE deve contenere:",["pH, blend, lievito, temperatura, nutrienti","Solo titolo","Solo colore","Solo nazione"],0],
-    ["Tema della lezione corrente:",[topic,"Godot 3D","Grafica esterna","Account banca"],0],
-    ["Per vendere bene uno stile serve:",["Racconto, tecnica e canale giusto","Solo prezzo basso","Solo zucchero","Solo etichetta"],0]
+function makeQuiz(){
+  const x=st(), l=LESSONS[S.lesson-1];
+  const bank=[
+    [`In uno stile come ${x.style}, quale scelta di blend è più coerente con il profilo dichiarato?`,[x.blend,"Solo mele dolci ad alto zucchero, senza quota acida o tannica.","Solo mele acide per aumentare freschezza e bevibilità.","Solo frutti aromatici per rendere il sidro più riconoscibile."],0],
+    [`Se un sidro ha pH basso, acidità percepita alta e poco corpo, qual è la correzione più sensata?`,["Aumentare quota tannica/bittersweet o lavorare su corpo e struttura.","Abbassare ancora il pH per aumentare la stabilità sensoriale.","Aumentare solo la CO2, perché la gasatura sostituisce il corpo.","Usare solo mele acide più mature."],0],
+    [`In rifermentazione in bottiglia, quale errore tecnico è più pericoloso?`,["Imbottigliare senza certezza che la primaria sia finita e senza calcolo zuccheri.","Usare una temperatura di servizio troppo bassa.","Usare una piccola quota di mele tanniche.","Fare una maturazione breve ma controllata."],0],
+    [`Un odore di uovo marcio durante fermentazione indica più probabilmente:`,["Stress del lievito, carenza nutrizionale o gestione fermentativa scorretta.","Eccesso naturale di tannino buono.","Carbonazione già completata.","pH troppo alto risolto automaticamente dal lievito."],0],
+    [`Perché le mele bittersweet sono importanti in un sidro tipo Normandia/Somerset?`,["Danno tannino, corpo e rotondità, non solo zucchero.","Servono soprattutto ad abbassare il pH sotto 3.10.","Eliminano sempre la necessità dei nutrienti.","Rendono il sidro neutro e meno gastronomico."],0],
+    [`In un Hopped Cider, il difetto più probabile se il luppolo è gestito male è:`,["Note erbacee, ossidazione e amaro slegato.","Aumento automatico del tannino da mela.","Fermentazione malolattica obbligatoria.","Riduzione totale dell’acidità."],0],
+    [`Per un sidro con frutti rossi in stile XA, quando il prodotto perde identità?`,["Quando il frutto copre mela, acidità e struttura.","Quando resta sotto pH 3.60.","Quando contiene una piccola quota tannica.","Quando viene servito a 6–8°C."],0],
+    [`Quale frase è tecnicamente più corretta sui nutrienti?`,["Vanno dosati in base a succo, lievito e rischio di stress, non aggiunti a caso.","Più DAP si aggiunge, più il sidro diventa sempre elegante.","I nutrienti non servono mai con succo di mela.","I nutrienti eliminano il bisogno di sanificazione."],0],
+    [`Nel tema “${l}”, qual è il criterio più professionale?`,["Collegare tecnica, materia prima, difetti e stile finale.","Imparare solo nomi di territori senza parametri.","Aumentare sempre zucchero e gasatura.","Scegliere mele solo per colore."],0],
+    [`Quale rischio è indicato per lo stile attivo?`,[x.risk,"Avere troppi dati nella scheda.","Usare un display LCD verde.","Caricare la lezione sbagliata."],0]
   ];
-  return qs.map(q=>shuffle(q));
+  return bank.map(shuffleQ);
 }
-function shuffle(q){
+function shuffleQ(q){
   const arr=q[1].map((t,i)=>({t,ok:i===q[2]}));
-  for(let i=arr.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}
+  for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}
   return {q:q[0],a:arr.map(x=>x.t),c:arr.findIndex(x=>x.ok)};
 }
 function renderQuiz(){
-  const key="L"+S.lesson;
-  const sc=S.scores[key]||{answered:{},score:0,total:0};
-  $("quizTitle").textContent=String(S.lesson).padStart(2,"0")+" · "+LESSONS[S.lesson-1];
-  $("score").textContent=sc.score+"/"+sc.total;
-  $("quizBox").innerHTML=CURRENT_QUIZ.map((q,qi)=>{
-    const ans=sc.answered[qi];
-    return `<div class="quiz-q">
-      <h4>${qi+1}. ${q.q}</h4>
-      ${q.a.map((a,ai)=>{
-        let cls="";
-        if(ans!==undefined){if(ai===q.c)cls="correct";else if(ai===ans)cls="wrong"}
-        return `<button class="answer ${cls}" ${ans!==undefined?"disabled":""} onclick="answer(${qi},${ai})">${a}</button>`;
-      }).join("")}
-    </div>`;
-  }).join("");
+  const key="L"+S.lesson+"_"+S.style;const sc=S.scores[key]||{answered:{},score:0,total:0};
+  $("quizTitle").textContent=String(S.lesson).padStart(2,"0")+" · "+LESSONS[S.lesson-1];$("score").textContent=sc.score+"/"+sc.total;
+  $("quizBox").innerHTML=CURRENT_QUIZ.map((q,qi)=>{const ans=sc.answered[qi];return `<div class="quiz-q"><h4>${qi+1}. ${q.q}</h4>${q.a.map((a,ai)=>{let cls="";if(ans!==undefined){if(ai===q.c)cls="correct";else if(ai===ans)cls="wrong"}return `<button class="answer ${cls}" ${ans!==undefined?"disabled":""} onclick="answer(${qi},${ai})">${a}</button>`}).join("")}</div>`}).join("");
 }
 function answer(qi,ai){
-  const key="L"+S.lesson;
-  if(!S.scores[key])S.scores[key]={answered:{},score:0,total:0};
-  const sc=S.scores[key];
-  if(sc.answered[qi]!==undefined)return;
-  sc.answered[qi]=ai;sc.total++;
-  if(ai===CURRENT_QUIZ[qi].c)sc.score++;
-  save();renderQuiz();toast(ai===CURRENT_QUIZ[qi].c?"Risposta corretta":"Risposta errata");
+  const key="L"+S.lesson+"_"+S.style;if(!S.scores[key])S.scores[key]={answered:{},score:0,total:0};
+  const sc=S.scores[key];if(sc.answered[qi]!==undefined)return;sc.answered[qi]=ai;sc.total++;if(ai===CURRENT_QUIZ[qi].c)sc.score++;save();renderQuiz();toast(ai===CURRENT_QUIZ[qi].c?"Risposta corretta":"Risposta errata")
 }
-function resetQuiz(){delete S.scores["L"+S.lesson];CURRENT_QUIZ=makeQuiz(S.lesson);save();renderQuiz();toast("Quiz resettato")}
+function resetQuiz(){delete S.scores["L"+S.lesson+"_"+S.style];CURRENT_QUIZ=makeQuiz();save();renderQuiz();toast("Quiz resettato")}
 
-function renderBusiness(){
-  const x=st();
-  $("businessGrid").innerHTML=`
-    <div class="module"><h4>Posizionamento</h4><p class="mini">${x.business}</p></div>
-    <div class="module"><h4>Canale ideale</h4><p class="mini">${x.fit>=94?"Ristorazione premium, locale XA, eventi degustazione, beer shop evoluti.":x.fit>=84?"Ristorazione, botteghe specializzate, pairing gastronomico.":"Testare su pubblico selezionato e monitorare."}</p></div>
-    <div class="module"><h4>Argomento vendita</h4><p class="mini">Territorio: ${x.territory}. Metodo: ${x.method}</p></div>
-    <div class="module"><h4>Rischio commerciale</h4><p class="mini">${x.risk}</p></div>`;
-}
-function renderProducer(){
-  const q=($("producerSearch").value||"").toLowerCase();
-  const list=STYLES.filter(x=>!q||Object.values(x).join(" ").toLowerCase().includes(q));
-  $("producerGrid").innerHTML=list.map(x=>`
-    <div class="card">
-      <div class="card-head"><div><h3>${x.territory} · ${x.style}</h3><div class="muted mini">${x.country} · ${x.status}</div></div><span class="badge ${statusClass(x.status)}">${x.fit}/100</span></div>
-      <p class="mini"><b>Da cercare:</b> micro produttori, sidrerie agricole, distributori specializzati, fiere locali, importatori craft.</p>
-      <p class="mini"><b>Motivo:</b> ${x.business}</p>
-      <button class="small-btn" onclick="loadStyle('${x.id}')">LOAD STYLE</button>
-    </div>`).join("")||`<div class="card">Nessun risultato.</div>`;
-}
 function renderMixer(){
   const labels={acide:"MELE ACIDE",dolci:"MELE DOLCI",tanniche:"TANNICHE",aromatiche:"AROMATICHE",frutti:"FRUTTI/BOTANICHE"};
-  $("mixerGrid").innerHTML=Object.entries(S.mix).map(([k,v])=>`
-    <div class="channel">
-      <div class="channel-top"><span class="channel-title">${labels[k]}</span><span class="pill">${v}%</span></div>
-      <input type="range" min="0" max="80" value="${v}" oninput="setMix('${k}',this.value)">
-      <div class="bar" style="margin-top:8px"><i style="width:${v}%"></i></div>
-    </div>`).join("");
-  const sum=Object.values(S.mix).reduce((a,b)=>a+b,0);
-  $("blendMonitor").textContent=(sum===100?"Blend al 100%.":"Totale "+sum+"%. Porta i fader a 100%.")+" Target stile: "+st().blend;
+  $("mixerGrid").innerHTML=Object.entries(S.mix).map(([k,v])=>`<div class="card"><div class="card-head"><h3>${labels[k]}</h3><span class="pill">${v}%</span></div><input type="range" min="0" max="80" value="${v}" oninput="setMix('${k}',this.value)"><div class="bar" style="margin-top:8px"><i style="width:${v}%"></i></div></div>`).join("");
+  const sum=Object.values(S.mix).reduce((a,b)=>a+b,0), acid=S.mix.acide+Math.round(S.mix.frutti*.5), body=S.mix.dolci+S.mix.tanniche, risk=sum!==100?"Totale non a 100%":acid>70?"Rischio acidità tagliente":S.mix.tanniche<10?"Rischio sidro magro":S.mix.frutti>25?"Rischio bibita/frutto dominante":"Blend credibile";
+  $("blendMonitor").textContent=`Totale ${sum}% · acidità stimata ${acid}/100 · corpo ${body}/100 · ${risk}`;
 }
 function setMix(k,v){S.mix[k]=Number(v);renderMixer()}
-
+function renderBusiness(){
+  const x=st();$("businessGrid").innerHTML=`<div class="card"><h3>Posizionamento</h3><p class="mini">${x.business}</p></div><div class="card"><h3>Canale ideale</h3><p class="mini">${x.fit>=94?"Ristorazione premium, locale XA, eventi degustazione, beer shop evoluti.":x.fit>=84?"Ristorazione, botteghe specializzate, pairing gastronomico.":"Test su pubblico selezionato e monitoraggio."}</p></div><div class="card"><h3>Argomento vendita</h3><p class="mini">${x.territory}: ${x.method}</p></div><div class="card"><h3>Rischio</h3><p class="mini">${x.risk}</p></div>`;
+}
 function renderCompare(){
   const a=st($("compareA").value),b=st($("compareB").value);
-  $("compareGrid").innerHTML=[a,b].map(x=>`
-    <div class="card ${x.id===S.style?"active":""}">
-      <h3>${x.territory}</h3>
-      <p class="mini"><b>Stile:</b> ${x.style}</p>
-      <p class="mini"><b>Status:</b> ${x.status}</p>
-      <p class="mini"><b>pH:</b> ${x.ph}</p>
-      <p class="mini"><b>Blend:</b> ${x.blend}</p>
-      <p class="mini"><b>Business:</b> ${x.business}</p>
-      <button class="small-btn" onclick="loadStyle('${x.id}')">CARICA QUESTO</button>
-    </div>`).join("");
+  $("compareGrid").innerHTML=[a,b].map(x=>`<div class="card ${x.id===S.style?"active":""}"><h3>${x.territory}</h3><p class="mini"><b>Stile:</b> ${x.style}</p><p class="mini"><b>pH:</b> ${x.ph}</p><p class="mini"><b>Blend:</b> ${x.blend}</p><p class="mini"><b>Business:</b> ${x.business}</p><button class="small-btn" onclick="loadStyle('${x.id}')">CARICA QUESTO</button></div>`).join("");
 }
-function renderFav(){
-  const list=S.fav.map(id=>st(id));
-  $("favGrid").innerHTML=list.length?list.map(styleCard).join(""):`<div class="card"><h3>Nessun preferito</h3><p class="mini">Vai in ATLAS e premi FAV.</p></div>`;
-}
+function renderFav(){$("favGrid").innerHTML=S.fav.length?S.fav.map(id=>styleCard(st(id))).join(""):`<div class="card"><h3>Nessun preferito</h3><p class="mini">Vai in ATLAS e premi FAV.</p></div>`}
 
-function recipeText(x){
-return `XA TECHNICAL RECIPE V9.2 · ${x.territory} · ${x.style}
+function recipeText(x){return `XA TECHNICAL RECIPE V9.3 · ${x.territory} · ${x.style}
 
-1. IDENTITÀ
+LOTTO BASE
+- Volume pilota: 10 L
+- OG indicativa: 1.045–1.060 secondo blend
+- FG target: 0.998–1.008 secondo stile
+- ABV stimato: 5.5–7.0%
+- pH target: ${x.ph}
+
+IDENTITÀ
 - Paese/Territorio: ${x.country} / ${x.territory}
 - Categoria: ${x.status}
 - Storia: ${x.history}
 
-2. TARGET SENSORIALE
+TARGET SENSORIALE
 - Profilo: ${x.profile}
 - Servizio: ${x.service}
 
-3. PARAMETRI TECNICI
-- pH target: ${x.ph}
+PARAMETRI TECNICI
 - Blend consigliato: ${x.blend}
 - Lievito: ${x.yeast}
 - Temperatura: ${x.temp}
 - Nutrienti: ${x.nutrients}
 - Rifermentazione / CO2: ${x.referm}
 
-4. MATERIA PRIMA
+MATERIA PRIMA
 - Varietà collegate: ${x.varieties}
 
-5. PROCEDURA XA
-- Misura pH e zuccheri prima dell'inoculo.
-- Costruisci il blend prima della fermentazione.
-- Ossigena solo prima dell'inoculo.
-- Inocula il lievito selezionato.
-- Fermenta alla temperatura indicata.
-- Controlla odori solforosi, volatile e arresti.
-- A fine fermentazione valuta acidità, tannino, corpo, pulizia.
-- Decidi se fermo, frizzante o rifermentato.
-- Imbottiglia solo se stabile.
+PROCEDURA
+1. Misura pH, zuccheri e acidità percepita.
+2. Costruisci il blend prima dell'inoculo.
+3. Ossigena solo prima dell'inoculo.
+4. Inocula lievito selezionato.
+5. Fermenta alla temperatura indicata.
+6. Controlla H2S, volatile, ossidazione, arresti.
+7. Matura fino a integrazione di acidità e tannino.
+8. Decidi se fermo, frizzante o rifermentato.
+9. Imbottiglia solo se stabile.
 
-6. RISCHIO DA EVITARE
+ERRORE DA EVITARE
 - ${x.risk}
 
-7. NOTA BUSINESS
-- ${x.business}`;
-}
-function openRecipe(id,show){
-  const x=st(id),txt=recipeText(x);
-  if(show)openModal("RICETTA XA · "+x.style,`<pre class="recipe">${txt}</pre>`,txt);
-  copyText(txt);
-  lcd("SEND RECIPE · aperta e copiata");
-}
-function openStyle(id){
-  const x=st(id);
-  openModal(x.territory+" · "+x.style,`
-    <div class="lcd"><div class="label">STYLE DETAIL</div><div class="value">${x.country} · ${x.status.toUpperCase()}</div></div>
-    <p class="mini"><b>Storia:</b> ${x.history}</p>
-    <p class="mini"><b>Metodo:</b> ${x.method}</p>
-    <p class="mini"><b>Varietà:</b> ${x.varieties}</p>
-    <p class="mini"><b>Profilo:</b> ${x.profile}</p>
-    <p class="mini"><b>Business:</b> ${x.business}</p>
-    <div class="grid two">
-      <button class="hw" onclick="openRecipe('${x.id}',true)">SEND RECIPE</button>
-      <button class="hw blue" onclick="sendSchool('${x.id}')">SEND SCHOOL</button>
-    </div>`,`${x.territory} · ${x.style}\n${x.history}\n${x.method}\n${x.profile}\n${x.business}`);
-}
-function openApple(id){
-  const a=apple(id);
-  openModal(a.name,`
-    <div class="apple-art apple-big ${a.color}"></div>
-    <div class="lcd"><div class="label">APPLE TECH CARD</div><div class="value">${a.type} · ${a.cat}</div></div>
-    <p class="mini"><b>Funzione tecnica:</b> ${a.fun}</p>
-    <p class="mini"><b>Percentuale consigliata:</b> ${a.pct}</p>
-    <p class="mini"><b>Stili collegati:</b> ${a.styles}</p>
-    <p class="mini"><b>Errore da evitare:</b> ${a.avoid}</p>`,`${a.name}\nFunzione: ${a.fun}\nPercentuale: ${a.pct}\nStili: ${a.styles}\nErrore: ${a.avoid}`);
-}
-function sendSchool(id){
-  const x=st(id);
-  S.style=x.id;
-  S.lesson=x.lesson;
-  $("styleSelect").value=x.id;
-  CURRENT_QUIZ=makeQuiz(S.lesson);
-  save();
-  renderAll();
-  switchTab("school");
-  lcd("SEND SCHOOL · "+x.style+" → lezione "+String(x.lesson).padStart(2,"0"));
-  toast("Stile collegato alla lezione");
-}
-function toggleFav(id){
-  if(S.fav.includes(id)){S.fav=S.fav.filter(x=>x!==id);toast("Rimosso dai preferiti")}
-  else{S.fav.push(id);toast("Aggiunto ai preferiti")}
-  save();renderAll();
-}
-function exportCard(){
-  const x=st();
-  const txt=`XA STYLE CARD V9.2
-${x.territory} · ${x.style}
-Categoria: ${x.status}
-pH: ${x.ph}
-Blend: ${x.blend}
-Profilo: ${x.profile}
-Business: ${x.business}`;
-  openModal("EXPORT CARD",`<pre class="recipe">${txt}</pre>`,txt);
-  copyText(txt);
-}
+NOTA BUSINESS
+- ${x.business}`}
 
-function openModal(title,html,copy){
-  $("modalTitle").textContent=title;
-  $("modalBody").innerHTML=html;
-  $("copyModalBtn").dataset.copy=copy||strip(html);
-  $("modal").classList.add("show");
-}
+function openRecipe(id,show){const x=st(id),txt=recipeText(x);if(show)openModal("RICETTA XA · "+x.style,`<pre class="recipe">${txt}</pre>`,txt);copySafe(txt);lcd("SEND RECIPE · aperta e copiata")}
+function openStyle(id){const x=st(id);openModal(x.territory+" · "+x.style,`<div class="lcd"><div class="label">STYLE TECH WINDOW</div><div class="value">${x.country} · ${x.status.toUpperCase()}</div></div><p class="mini"><b>Storia:</b> ${x.history}</p><p class="mini"><b>Metodo:</b> ${x.method}</p><p class="mini"><b>Varietà:</b> ${x.varieties}</p><p class="mini"><b>Profilo:</b> ${x.profile}</p><p class="mini"><b>Business:</b> ${x.business}</p><div class="grid two"><button class="hw" onclick="openRecipe('${x.id}',true)">SEND RECIPE</button><button class="hw blue" onclick="sendSchool('${x.id}')">SEND SCHOOL</button></div>`,`${x.territory} · ${x.style}\n${x.history}\n${x.method}\n${x.profile}\n${x.business}`)}
+function openApple(id){const a=APPLES.find(x=>x.id===id);openModal(a.name,`<div class="apple-art apple-big ${a.color}"></div><div class="lcd"><div class="label">APPLE MATRIX WINDOW</div><div class="value">${a.origin} · ${a.cat}</div></div><p class="mini"><b>Funzione tecnica:</b> ${a.fun}</p><p class="mini"><b>Dati:</b> acidità ${a.acid}/10 · tannino ${a.tannin}/10 · zucchero ${a.sugar}/10 · aroma ${a.aroma}/10</p><p class="mini"><b>Percentuale:</b> ${a.pct}</p><p class="mini"><b>Stili:</b> ${a.styles}</p><p class="mini"><b>Errore:</b> ${a.avoid}</p>`,`${a.name}\n${a.origin}\n${a.cat}\nFunzione: ${a.fun}\nDati: acidità ${a.acid}, tannino ${a.tannin}, zucchero ${a.sugar}, aroma ${a.aroma}\nPercentuale: ${a.pct}\nStili: ${a.styles}\nErrore: ${a.avoid}`)}
+function sendSchool(id){const x=st(id);S.style=x.id;S.lesson=x.lesson;$("styleSelect").value=x.id;CURRENT_QUIZ=makeQuiz();save();renderAll();switchTab("school");lcd("SEND SCHOOL · "+x.style+" → lezione "+String(x.lesson).padStart(2,"0"));toast("Stile collegato alla lezione")}
+function toggleFav(id){S.fav=S.fav.includes(id)?S.fav.filter(x=>x!==id):[...S.fav,id];save();renderAll();toast(S.fav.includes(id)?"Aggiunto ai preferiti":"Rimosso dai preferiti")}
+function exportCard(){const x=st(),txt=`XA STYLE CARD V9.3\n${x.territory} · ${x.style}\nCategoria: ${x.status}\npH: ${x.ph}\nBlend: ${x.blend}\nProfilo: ${x.profile}\nBusiness: ${x.business}`;openModal("EXPORT CARD",`<pre class="recipe">${txt}</pre>`,txt);copySafe(txt)}
+function openModal(title,html,copy){$("modalTitle").textContent=title;$("modalBody").innerHTML=html;$("copyModalBtn").dataset.copy=copy||html;$("modal").classList.add("show")}
 function closeModal(){$("modal").classList.remove("show")}
-function strip(html){const d=document.createElement("div");d.innerHTML=html;return d.textContent||""}
-async function copyText(t){
-  try{await navigator.clipboard.writeText(t);toast("Copiato negli appunti")}
-  catch(e){toast("Copia non riuscita: seleziona il testo")}
-}
-
-function toggleRec(){
-  S.rec=!S.rec;
-  $("recBtn").classList.toggle("active",S.rec);
-  $("ledRec").className="led "+(S.rec?"red":"");
-  document.body.classList.toggle("rec-mode",S.rec);
-  lcd(S.rec?"REC MODE ON · registrazione visiva attiva":"REC MODE OFF");
-}
-function toggleLoop(){
-  S.loop=!S.loop;
-  $("loopBtn").classList.toggle("active",S.loop);
-  $("ledLoop").className="led "+(S.loop?"amber":"");
-  lcd(S.loop?"LOOP ON · analisi stile in ciclo":"LOOP OFF");
-}
-function stopAll(){
-  S.rec=false;S.loop=false;
-  $("recBtn").classList.remove("active");
-  $("loopBtn").classList.remove("active");
-  $("ledRec").className="led";
-  $("ledLoop").className="led";
-  document.body.classList.remove("rec-mode");
-  lcd("STOP · transport fermo");
-  toast("STOP");
-}
+function toggleRec(){S.rec=!S.rec;$("recBtn").classList.toggle("active",S.rec);$("ledRec").className="led "+(S.rec?"red":"");document.body.classList.toggle("rec-mode",S.rec);lcd(S.rec?"REC MODE ON · registrazione visiva attiva":"REC MODE OFF")}
+function toggleLoop(){S.loop=!S.loop;$("loopBtn").classList.toggle("active",S.loop);$("ledLoop").className="led "+(S.loop?"amber":"");lcd(S.loop?"LOOP ON · analisi stile in ciclo":"LOOP OFF")}
+function stopAll(){S.rec=false;S.loop=false;$("recBtn").classList.remove("active");$("loopBtn").classList.remove("active");$("ledRec").className="led";$("ledLoop").className="led";document.body.classList.remove("rec-mode");lcd("STOP · transport fermo");toast("STOP")}
 
 init();
 </script>
